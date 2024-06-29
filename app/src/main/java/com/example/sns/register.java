@@ -17,12 +17,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,6 +40,7 @@ import java.util.Locale;
 
 public class register extends AppCompatActivity {
     private TextView mDisplayDate;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
     private static final String TAG = "MainActivity";
 
     Spinner spinnergender, spinneruser;
@@ -75,7 +82,12 @@ public class register extends AppCompatActivity {
             public void onClick(View view) {
                 String firstname = fname.getText().toString();
                 String lastname = lname.getText().toString();
+                String middlename = mdname.getText().toString();
+                String extensionname = ename.getText().toString();
                 String Age = age.getText().toString();
+                String bod = mDisplayDate.getText().toString();
+                String Gender = spinnergender.getSelectedItem().toString();
+                String Disablity = spinneruser.getSelectedItem().toString();
                 String Email = email.getText().toString();
                 String Password = pass.getText().toString();
                 String Password1 = pass1.getText().toString();
@@ -83,10 +95,37 @@ public class register extends AppCompatActivity {
 
                 if(check == true){
                     if(Password.equals(Password1)){
-                        String textToSend = getString(); // Call your method to get the string
-                        Intent i = new Intent(register.this, sendotp.class);
-                        i.putExtra("keyName", textToSend);
-                        startActivity(i);
+                        String encodedEmail = encodeEmail(Email);
+
+                        DatabaseReference usersRef = databaseReference.child("users");
+
+                        usersRef.child(encodedEmail).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if(snapshot.exists()){
+                                    Toast.makeText(register.this, "Email have been already taken", Toast.LENGTH_SHORT).show();
+                                }else{
+
+                                    Intent i = new Intent(register.this, sendotp.class);
+                                    i.putExtra("firstname", firstname);
+                                    i.putExtra("lastname", lastname);
+                                    i.putExtra("middlename", middlename);
+                                    i.putExtra("extensionname", extensionname);
+                                    i.putExtra("birthdate", bod);
+                                    i.putExtra("age", Age);
+                                    i.putExtra("gender", Gender);
+                                    i.putExtra("disablity", Disablity);
+                                    i.putExtra("email", Email);
+                                    i.putExtra("password", Password);
+                                    startActivity(i);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                     }else{
                         Toast.makeText(register.this, "Password not match", Toast.LENGTH_LONG).show();
                     }
@@ -144,7 +183,6 @@ public class register extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.style_spinner, arrayList);
         spinnergender.setAdapter(adapter);
         //end of code for gender spinner
-
         //code for user type spinner
 
         String[] user = {"Disablity","None", "Deaf", "Mute"};
@@ -153,13 +191,6 @@ public class register extends AppCompatActivity {
         spinneruser.setAdapter(adapter1);
         //end of code for user type spinner
     }
-
-    //code for global variable
-    public static String getString() {
-        String result = email.getText().toString();
-        return result;
-    }
-    //end of code for global variable
 
     //code for validation
     private boolean CheckAllFields(String firstname, String lastname, String Age, String Email, String Password, String Password1) {
@@ -245,6 +276,9 @@ public class register extends AppCompatActivity {
     }
     //end of code for validation
 
-
+    public static String encodeEmail(String email) {
+        // Replace '.' (dot) with ',' (comma) or any other safe character
+        return email.replace(".", ",");
+    }
 
 }

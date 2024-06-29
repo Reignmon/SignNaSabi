@@ -19,10 +19,6 @@
             android:name=".sendotp"
             android:exported="false" />
         <activity
-            android:name=".OTP"
-            android:exported="false"
-            android:theme="@style/Theme.SNS" />
-        <activity
             android:name=".dashboard"
             android:exported="false" />
         <activity
