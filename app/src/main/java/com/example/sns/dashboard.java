@@ -2,6 +2,7 @@ package com.example.sns;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.media.Image;
 import android.os.Build;
@@ -12,6 +13,7 @@ import android.speech.SpeechRecognizer;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -22,6 +24,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -33,6 +36,7 @@ import java.util.Arrays;
 import java.util.Locale;
 
 public class dashboard extends AppCompatActivity {
+
 
     ImageButton imagebtn;
     private static final int REQUEST_CODE_SPEECH_INPUT = 1000;
@@ -58,6 +62,9 @@ public class dashboard extends AppCompatActivity {
 
         imagebtn = findViewById(R.id.micbtn);
         txttrans = findViewById(R.id.transtxt);
+        final Button btnprof = findViewById(R.id.profile);
+        final CardView MbasciLevel = findViewById(R.id.basiclevel);
+
 
         imagebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,8 +73,24 @@ public class dashboard extends AppCompatActivity {
             }
         });
 
-    }
+        btnprof.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(dashboard.this,profile.class));
+                finish();
+            }
+        });
 
+        MbasciLevel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(dashboard.this,basiclevel.class));
+            }
+        });
+
+
+    }
+    //code for mic
     private void speak(){
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
@@ -83,7 +106,6 @@ public class dashboard extends AppCompatActivity {
         }
 
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -97,4 +119,5 @@ public class dashboard extends AppCompatActivity {
             }
         }
     }
+    //end of code for mic
 }

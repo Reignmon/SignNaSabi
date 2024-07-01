@@ -1,6 +1,7 @@
 package com.example.sns;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
+
+    SharedPreferences sharedPreferences;
+
+    private static final String SHARED_PREF_NAME = "mypref";
+    private static final String KEY_EMAIL = "email";
+    private static final String KEY_PASSWORD = "password";
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,18 +44,29 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-
-
         final TextView btnreg = findViewById(R.id.signup);
         final Button btnlogin = findViewById(R.id.btnlogin);
         final TextInputEditText email = findViewById(R.id.txtusername);
         final TextInputEditText password = findViewById(R.id.txtpassword);
+
+        sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+
+        String name = sharedPreferences.getString(KEY_EMAIL,null);
+
+        if(name!=null){
+            Intent i = new Intent(MainActivity.this, dashboard.class);
+            startActivity(i);
+            finish();
+        }
+
+
         // show activity of register
         btnreg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, register.class);
                 startActivity(i);
+                finish();
             }
         });
         // end of activity register code here
@@ -71,6 +89,12 @@ public class MainActivity extends AppCompatActivity {
                             if(snapshot.hasChild(encodedEmail)){
                                 final String getPassword = snapshot.child(encodedEmail).child("password").getValue(String.class);
                                 if(getPassword.equals(Password)){
+
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString(KEY_EMAIL,email.getText().toString());
+                                    editor.putString(KEY_PASSWORD,getPassword);
+                                    editor.apply();
+
                                     Toast.makeText(MainActivity.this, "Successful Login", Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(MainActivity.this,dashboard.class));
                                     finish();

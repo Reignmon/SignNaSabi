@@ -252,6 +252,7 @@
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/basiclevel"
                 android:layout_width="match_parent"
                 android:layout_margin="10dp"
                 android:layout_height="wrap_content"
