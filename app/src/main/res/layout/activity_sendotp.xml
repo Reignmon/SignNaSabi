@@ -104,6 +104,7 @@
             android:textSize="14sp"
             tools:ignore="HardcodedText" />
         <TextView
+            android:id="@+id/resend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"

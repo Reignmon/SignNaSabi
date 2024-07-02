@@ -60,6 +60,7 @@ public class profile extends AppCompatActivity {
         final TextView disablity = findViewById(R.id.disablity);
         final TextView fullname = findViewById(R.id.name);
         final TextView BtnBack = findViewById(R.id.btnback);
+        final TextView btnEdit = findViewById(R.id.btnedit);
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         String name = sharedPreferences.getString(KEY_EMAIL,null);
@@ -90,7 +91,6 @@ public class profile extends AppCompatActivity {
 
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
@@ -114,6 +114,14 @@ public class profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(profile.this,dashboard.class));
+                finish();
+            }
+        });
+
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(profile.this,update.class));
                 finish();
             }
         });

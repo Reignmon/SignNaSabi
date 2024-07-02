@@ -25,6 +25,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
@@ -32,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String SHARED_PREF_NAME = "mypref";
     private static final String KEY_EMAIL = "email";
     private static final String KEY_PASSWORD = "password";
+    String Decrypted = "";
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +97,13 @@ public class MainActivity extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if(snapshot.hasChild(encodedEmail)){
                                 final String getPassword = snapshot.child(encodedEmail).child("password").getValue(String.class);
-                                if(getPassword.equals(Password)){
+                                try {
+                                    Decrypted = DecryptEncrypt.decrypt(getPassword);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
 
+                                if(Decrypted.equals(Password)){
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
                                     editor.putString(KEY_EMAIL,email.getText().toString());
                                     editor.putString(KEY_PASSWORD,getPassword);
