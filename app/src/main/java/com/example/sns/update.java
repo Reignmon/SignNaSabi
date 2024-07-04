@@ -1,6 +1,7 @@
 package com.example.sns;
 
 import android.app.DatePickerDialog;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -15,14 +16,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,10 +42,15 @@ public class update extends AppCompatActivity {
     Spinner spinnergender, spinneruser;
     static EditText fname,lname,mdname,ename,age;
     static EditText email;
-    TextInputEditText pass,pass1;
+    TextInputEditText pass;
     private String date;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     boolean isAllFieldsChecked = false;
+
+    SharedPreferences sharedPreferences;
+    private static final String SHARED_PREF_NAME = "mypref";
+    private static final String KEY_EMAIL = "email";
+    String Decrypted = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +70,92 @@ public class update extends AppCompatActivity {
         age = findViewById(R.id.age);
         email = findViewById(R.id.txtemail);
         pass = findViewById(R.id.txtpass);
-        pass1 = findViewById(R.id.txtpass1);
         final Button btnreg = findViewById(R.id.btnregister);
         mDisplayDate = findViewById(R.id.date);
         spinnergender = findViewById(R.id.spinner_gender);
         spinneruser = findViewById(R.id.spinner_user);
+
+        sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        String name = sharedPreferences.getString(KEY_EMAIL,null);
+        String DecodedEmail = decodeEmail(name);
+
+        if(name!=null){
+            databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.hasChild(DecodedEmail)){
+                        final String getfname = snapshot.child(DecodedEmail).child("firstname").getValue(String.class);
+                        final String getlname = snapshot.child(DecodedEmail).child("lastname").getValue(String.class);
+                        final String getmname = snapshot.child(DecodedEmail).child("middlename").getValue(String.class);
+                        final String getext = snapshot.child(DecodedEmail).child("extensionname").getValue(String.class);
+                        final String getbod = snapshot.child(DecodedEmail).child("birthdate").getValue(String.class);
+                        final String getage = snapshot.child(DecodedEmail).child("age").getValue(String.class);
+                        final String getgender = snapshot.child(DecodedEmail).child("gender").getValue(String.class);
+                        final String getdisablity = snapshot.child(DecodedEmail).child("disablity").getValue(String.class);
+                        final String getpassword = snapshot.child(DecodedEmail).child("password").getValue(String.class);
+                        try {
+                            Decrypted = DecryptEncrypt.decrypt(getpassword);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                        if(getgender.equals("Male")){
+                            spinnergender.setSelection(1);
+                        } else if (getgender.equals("Female")) {
+                            spinnergender.setSelection(2);
+                        }
+
+                        if(getdisablity.equals("None")){
+                            spinneruser.setSelection(1);
+                        } else if (getdisablity.equals("Deaf")) {
+                            spinneruser.setSelection(2);
+                        } else if (getdisablity.equals("Mute")) {
+                            spinneruser.setSelection(3);
+                        }
+
+                        fname.setText(getfname);
+                        lname.setText(getlname);
+                        mdname.setText(getmname);
+                        ename.setText(getext);
+                        mDisplayDate.setText(getbod);
+                        age.setText(getage);
+                        email.setText(name);
+                        pass.setText(Decrypted);
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+        }
+
+
+        btnreg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String firstname = fname.getText().toString();
+                String lastname = lname.getText().toString();
+                String middlename = mdname.getText().toString();
+                String extensionname = ename.getText().toString();
+                String Age = age.getText().toString();
+                String bod = mDisplayDate.getText().toString();
+                String Gender = spinnergender.getSelectedItem().toString();
+                String Disablity = spinneruser.getSelectedItem().toString();
+                String Email = email.getText().toString();
+                String Password = pass.getText().toString();
+                boolean check = CheckAllFields(firstname,lastname,Age,Email,Password);
+
+                if(check == true){
+
+                }
+
+            }
+        });
+
+
+
         //code for datepicker
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +204,7 @@ public class update extends AppCompatActivity {
     }
 
 
-    private boolean CheckAllFields(String firstname, String lastname, String Age, String Email, String Password, String Password1) {
+    private boolean CheckAllFields(String firstname, String lastname, String Age, String Email, String Password) {
         if (firstname.length() == 0) {
             fname.setError("FIELD CANNOT BE EMPTY");
             return false;
@@ -129,12 +220,7 @@ public class update extends AppCompatActivity {
             lname.setError("ALPHABET ONLY");
             return false;
         }
-
-        // Validate Date of Birth
-        if (date == null || date.isEmpty()) {
-            Toast.makeText(update.this, "Please input your birthdate", Toast.LENGTH_LONG).show();
-            return false;
-        }
+        
         if (Age.length() == 0) {
             age.setError("FIELD CANNOT BE EMPTY");
             return false;
@@ -169,15 +255,13 @@ public class update extends AppCompatActivity {
             return false;
         }
 
-        if (Password1.length() == 0) {
-            Toast.makeText(update.this, "Password field cannot be empty", Toast.LENGTH_LONG).show();
-            return false;
-        } else if (Password1.length() < 8) {
-            Toast.makeText(update.this, "Password must be minimum 8 characters", Toast.LENGTH_LONG).show();
-            return false;
-        }
         return true;
     }
     //end of code for validation
+
+    public static String decodeEmail(String email) {
+        // Replace '.' (dot) with ',' (comma) or any other safe character
+        return email.replace(".", ",");
+    }
 
 }
