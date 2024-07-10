@@ -1,5 +1,6 @@
 package com.example.sns;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.AutoTransition;
@@ -17,7 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class basiclevel extends AppCompatActivity {
 
-    LinearLayout Lesson1;
+    LinearLayout Lesson1,alphabetbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class basiclevel extends AppCompatActivity {
             return insets;
         });
         Lesson1 = findViewById(R.id.Lesson1_layout);
+        alphabetbtn = findViewById(R.id.alphabet);
 
         if (Build.VERSION.SDK_INT >= 21) {
             Window window = this.getWindow();
@@ -37,6 +39,13 @@ public class basiclevel extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimaryDark));
         }
+
+        alphabetbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(basiclevel.this,Lesson1.class));
+            }
+        });
 
     }
 

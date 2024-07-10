@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,7 +49,7 @@ public class sendotp extends AppCompatActivity {
     TextView Email;
     String otp ="";
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
-
+    ProgressBar loadingIndicator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,7 +124,6 @@ public class sendotp extends AppCompatActivity {
                 String encodedEmail = encodeEmail(email);
                 if (num.equals(otp)){
                     DatabaseReference usersRef = databaseReference.child("users");
-
                     usersRef.child(encodedEmail).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -164,6 +164,7 @@ public class sendotp extends AppCompatActivity {
     //code for send otp message
     public void SendOTP(String EM, int otp){
         try {
+
             String senderEmail = "reignmondizon93@gmail.com";
             String recieverEmail = EM ;
             String passwordSenderEmail = "tjwr ufiw ejfd zghg";
