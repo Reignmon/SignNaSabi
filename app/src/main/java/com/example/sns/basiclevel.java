@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +20,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class basiclevel extends AppCompatActivity {
 
     LinearLayout Lesson1,alphabetbtn;
-
+    TextView btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,18 +33,21 @@ public class basiclevel extends AppCompatActivity {
         });
         Lesson1 = findViewById(R.id.Lesson1_layout);
         alphabetbtn = findViewById(R.id.alphabet);
+        btnBack = findViewById(R.id.btnback);
 
-        if (Build.VERSION.SDK_INT >= 21) {
-            Window window = this.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimaryDark));
-        }
 
         alphabetbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(basiclevel.this,Lesson1.class));
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(basiclevel.this,dashboard.class));
+                finish();
             }
         });
 

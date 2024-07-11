@@ -9,11 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".basiclevel">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@drawable/cornerbottomframe"
-        android:orientation="vertical">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,7 +60,7 @@
             android:textColor="@color/text_color"
             android:textSize="35sp"
             tools:ignore="HardcodedText" />
-    </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -117,7 +113,7 @@
 
             <LinearLayout
                 android:id="@+id/Lesson1_layout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
                 android:visibility="gone"
@@ -148,6 +144,14 @@
                         android:text="Alphabet"
                         android:textColor="#DD7719"
                         android:textSize="16sp" />
+                    <Space
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_weight="1"
+                        android:layout_height="30dp"
+                        app:srcCompat="@drawable/approved" />
 
                 </LinearLayout>
 
@@ -174,6 +178,15 @@
                         android:text="Alphabet"
                         android:textColor="#DD7719"
                         android:textSize="16sp" />
+                    <Space
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_weight="1"
+                        android:layout_height="30dp"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/approved" />
 
                 </LinearLayout>
 
@@ -200,6 +213,15 @@
                         android:text="Alphabet"
                         android:textColor="#DD7719"
                         android:textSize="16sp" />
+                    <Space
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_weight="1"
+                        android:layout_height="30dp"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/approved" />
 
                 </LinearLayout>
 

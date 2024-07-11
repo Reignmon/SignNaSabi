@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
-
         // show activity of register
         btnreg.setOnClickListener(new View.OnClickListener() {
             @Override

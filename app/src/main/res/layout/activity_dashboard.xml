@@ -283,14 +283,15 @@
                             android:layout_centerInParent="true" />
 
                         <ProgressBar
+                            android:id="@+id/basiclevel_progress"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:indeterminate="false"
-                            android:max="100"
+                            android:max="25"
                             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                             android:progressDrawable="@drawable/circular_progressbar"
                             android:background="@drawable/circle_shape"
-                            android:progress="10"/>
+                            android:progress="0"/>
                     </RelativeLayout>
 
                     <LinearLayout
@@ -328,12 +329,14 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/advancelevel"
                 android:layout_width="match_parent"
                 android:layout_margin="10dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp"
                 android:layout_weight="1"
+                android:visibility="gone"
                 android:backgroundTint="@color/backgroundColor">
 
                 <LinearLayout
@@ -363,7 +366,7 @@
                             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                             android:progressDrawable="@drawable/circular_progressbar"
                             android:background="@drawable/circle_shape"
-                            android:progress="30"/>
+                            android:progress="0"/>
                     </RelativeLayout>
 
                     <LinearLayout
@@ -401,10 +404,12 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/advancelevel1"
                 android:layout_width="match_parent"
                 android:layout_margin="10dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
+                android:visibility="gone"
                 app:cardElevation="5dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/backgroundColor">
@@ -436,7 +441,7 @@
                             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                             android:progressDrawable="@drawable/circular_progressbar"
                             android:background="@drawable/circle_shape"
-                            android:progress="50"/>
+                            android:progress="0"/>
                     </RelativeLayout>
 
                     <LinearLayout
@@ -474,10 +479,12 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/intermediatelevel"
                 android:layout_width="match_parent"
                 android:layout_margin="10dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
+                android:visibility="gone"
                 app:cardElevation="5dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/backgroundColor">
@@ -509,7 +516,7 @@
                             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                             android:progressDrawable="@drawable/circular_progressbar"
                             android:background="@drawable/circle_shape"
-                            android:progress="100"/>
+                            android:progress="0"/>
                     </RelativeLayout>
 
                     <LinearLayout

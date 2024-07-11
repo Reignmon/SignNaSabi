@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -31,6 +32,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
@@ -41,6 +48,19 @@ public class dashboard extends AppCompatActivity {
     ImageButton imagebtn;
     private static final int REQUEST_CODE_SPEECH_INPUT = 1000;
     EditText txttrans;
+    ProgressBar basiclevelProgress;
+
+    static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
+    SharedPreferences sharedPreferences;
+    private static final String SHARED_PREF_NAME = "mypref";
+    private static final String KEY_EMAIL = "email";
+    private static final String KEY_PASSWORD = "password";
+
+    static String name="";
+
+    int basiclevelprogress = 0, progressLevel = 0;
+
+    CardView intermediateCard,advancelevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +84,13 @@ public class dashboard extends AppCompatActivity {
         txttrans = findViewById(R.id.transtxt);
         final Button btnprof = findViewById(R.id.profile);
         final CardView MbasciLevel = findViewById(R.id.basiclevel);
+        basiclevelProgress = findViewById(R.id.basiclevel_progress);
+        advancelevel = findViewById(R.id.advancelevel);
 
+        sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        name = sharedPreferences.getString(KEY_EMAIL,null);
+
+        retrieveCurrentBasicLevelProgress();
 
         imagebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +111,7 @@ public class dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(dashboard.this,basiclevel.class));
+                finish();
             }
         });
 
@@ -120,4 +147,42 @@ public class dashboard extends AppCompatActivity {
         }
     }
     //end of code for mic
+
+    private void retrieveCurrentBasicLevelProgress() {
+        String encodedEmail = encodeEmail(name);
+        DatabaseReference usersRef = databaseReference.child("users").child(encodedEmail).child("Basic_L1");
+        usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    // Get currentIndex from Firebase
+                    basiclevelprogress = snapshot.getValue(Integer.class);
+                    basiclevelProgress.setProgress(basiclevelprogress);
+                    progressLevel = basiclevelProgress.getProgress();
+
+                    if(progressLevel == 25){
+                        advancelevel.setVisibility(View.VISIBLE);
+                        advancelevel.setEnabled(true);
+                    }
+                } else {
+                    basiclevelProgress.setProgress(0);
+                    advancelevel.setVisibility(View.INVISIBLE);
+                    advancelevel.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle any errors
+            }
+        });
+    }
+
+
+    public static String encodeEmail(String email) {
+        // Replace '.' (dot) with ',' (comma) or any other safe character
+        return email.replace(".", ",");
+    }
+
+
 }
