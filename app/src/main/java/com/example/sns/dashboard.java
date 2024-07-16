@@ -1,6 +1,7 @@
 package com.example.sns;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -11,6 +12,7 @@ import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebView;
@@ -44,7 +46,7 @@ import java.util.Locale;
 
 public class dashboard extends AppCompatActivity {
 
-
+    Dialog dialog;
     ImageButton imagebtn;
     private static final int REQUEST_CODE_SPEECH_INPUT = 1000;
     EditText txttrans;
@@ -86,9 +88,16 @@ public class dashboard extends AppCompatActivity {
         final CardView MbasciLevel = findViewById(R.id.basiclevel);
         basiclevelProgress = findViewById(R.id.basiclevel_progress);
         advancelevel = findViewById(R.id.advancelevel);
+        final Button btnTrans = findViewById(R.id.translate);
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         name = sharedPreferences.getString(KEY_EMAIL,null);
+
+        dialog = new Dialog(dashboard.this);
+        dialog.setContentView(R.layout.complete_dialog);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.success_dialog_bg));
+        dialog.setCancelable(false);
 
         retrieveCurrentBasicLevelProgress();
 
@@ -112,6 +121,13 @@ public class dashboard extends AppCompatActivity {
             public void onClick(View view) {
                 startActivity(new Intent(dashboard.this,basiclevel.class));
                 finish();
+            }
+        });
+
+        btnTrans.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.show();
             }
         });
 

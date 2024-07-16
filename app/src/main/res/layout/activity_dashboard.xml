@@ -80,15 +80,17 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/translate"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:layout_weight="1"
                 android:background="#F4E5C5"
-                android:text="Translate"
                 android:drawableTop="@drawable/baseline_camera_alt_24"
+                android:text="Translate"
                 android:textColor="#824000" />
+
             <Button
                 android:id="@+id/practice"
                 android:layout_width="wrap_content"

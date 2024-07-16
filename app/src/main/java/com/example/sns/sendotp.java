@@ -1,8 +1,10 @@
 package com.example.sns;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -45,11 +47,10 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class sendotp extends AppCompatActivity {
-
+    Dialog dialog,loadingIndicatorDialog;
     TextView Email;
     String otp ="";
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
-    ProgressBar loadingIndicator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +78,22 @@ public class sendotp extends AppCompatActivity {
         final String disablity = intent.getStringExtra("disablity");
         final String email = intent.getStringExtra("email");
         final String password = intent.getStringExtra("password");
+
+
+        dialog = new Dialog(sendotp.this);
+        dialog.setContentView(R.layout.sucess_dialog);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.success_dialog_bg));
+        dialog.setCancelable(false);
+        final Button okayBtn = dialog.findViewById(R.id.okaybtn);
+
+        loadingIndicatorDialog = new Dialog(sendotp.this);
+        loadingIndicatorDialog.setContentView(R.layout.loading_dialog);
+        loadingIndicatorDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        loadingIndicatorDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.success_dialog_bg));
+        loadingIndicatorDialog.setCancelable(false);
+
+
 
         String encryptedText;
         try {
@@ -122,6 +139,7 @@ public class sendotp extends AppCompatActivity {
             public void onClick(View view) {
                 String num = pinView.getText().toString();
                 String encodedEmail = encodeEmail(email);
+                loadingIndicatorDialog.show();
                 if (num.equals(otp)){
                     DatabaseReference usersRef = databaseReference.child("users");
                     usersRef.child(encodedEmail).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -139,10 +157,8 @@ public class sendotp extends AppCompatActivity {
                             usersRef.child("disablity").setValue(disablity);
                             usersRef.child("email").setValue(email);
                             usersRef.child("password").setValue(encryptedText);
-                            Toast.makeText(sendotp.this, "Correct OTP", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(sendotp.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
+                            loadingIndicatorDialog.dismiss();
+                            dialog.show();
                         }
 
                         @Override
@@ -155,6 +171,18 @@ public class sendotp extends AppCompatActivity {
                 }
             }
         });
+
+        okayBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(sendotp.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+                dialog.dismiss();
+            }
+        });
+
+
     }
 
     public static String encodeEmail(String email) {

@@ -147,10 +147,13 @@
                     <Space
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"/>
+
                     <ImageView
+                        android:id="@+id/lesson1_image"
                         android:layout_width="30dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:layout_height="30dp"
+                        android:visibility="invisible"
                         app:srcCompat="@drawable/approved" />
 
                 </LinearLayout>

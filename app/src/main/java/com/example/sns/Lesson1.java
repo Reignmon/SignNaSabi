@@ -1,5 +1,6 @@
 package com.example.sns;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -8,6 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -30,7 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Lesson1 extends AppCompatActivity {
-
+    Dialog dialog;
     VideoView videoView;
     Button nextButton,prevButton;
     private int currentIndex = 0;
@@ -61,6 +63,13 @@ public class Lesson1 extends AppCompatActivity {
         prevButton = findViewById(R.id.prevbutton);
         loadingIndicator = findViewById(R.id.loading);
         btnBack = findViewById(R.id.btnback);
+
+        dialog = new Dialog(Lesson1.this);
+        dialog.setContentView(R.layout.sucess_dialog);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.success_dialog_bg));
+        dialog.setCancelable(false);
+        final Button okayBtn = dialog.findViewById(R.id.okaybtn);
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         name = sharedPreferences.getString(KEY_EMAIL,null);
@@ -143,6 +152,14 @@ public class Lesson1 extends AppCompatActivity {
             }
         });
 
+        okayBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Lesson1.this,basiclevel.class));
+                finish();
+            }
+        });
+
     }
 
     // code for next button
@@ -151,8 +168,7 @@ public class Lesson1 extends AppCompatActivity {
         currentIndex++;
         if (currentIndex >= videoUris.length) {
             //currentIndex = 0; // balik sa unang video
-            startActivity(new Intent(Lesson1.this,basiclevel.class));
-            finish();
+            dialog.show();
         }
         videoView.setVideoURI(videoUris[currentIndex]);
         videoView.start();
@@ -250,6 +266,8 @@ public class Lesson1 extends AppCompatActivity {
             }
         });
     }
+
+
 
 
 }

@@ -1,10 +1,12 @@
 package com.example.sns;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -36,6 +38,7 @@ import javax.crypto.NoSuchPaddingException;
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
+    Dialog loadingIndicatorDialog;
 
     private static final String SHARED_PREF_NAME = "mypref";
     private static final String KEY_EMAIL = "email";
@@ -57,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
         final Button btnlogin = findViewById(R.id.btnlogin);
         final TextInputEditText email = findViewById(R.id.txtusername);
         final TextInputEditText password = findViewById(R.id.txtpassword);
+
+        loadingIndicatorDialog = new Dialog(MainActivity.this);
+        loadingIndicatorDialog.setContentView(R.layout.loading_dialog);
+        loadingIndicatorDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        loadingIndicatorDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.success_dialog_bg));
+        loadingIndicatorDialog.setCancelable(false);
+
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
 
@@ -85,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 String Email = email.getText().toString();
                 String Password = password.getText().toString();
                 String encodedEmail = encodeEmail(Email);
+                loadingIndicatorDialog.show();
 
                 if(Email.isEmpty() ){
                     email.setError("ENTER your email");
@@ -111,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                                     Toast.makeText(MainActivity.this, "Successful Login", Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(MainActivity.this,dashboard.class));
                                     finish();
+                                    loadingIndicatorDialog.dismiss();
                                 }else{
                                     Toast.makeText(MainActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                                 }
