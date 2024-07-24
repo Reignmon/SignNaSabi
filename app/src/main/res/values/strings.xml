@@ -7,4 +7,71 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="verification">Please enter the 6-digit code sent to</string>
+    <string name="terms">Terms &amp; Condition</string>
+
+    <!-- Strings used for term and agreement -->
+    <string name="intro">
+        These terms and conditions govern your use of SignNaSabi app and constitute a legal agreement between you and
+        your identification.
+        By accessing or using the App, you agree to be bound by these Terms. If you do not agree to these Terms, please do not use the App.
+    </string>
+    <string name="one_one">
+        \u2022 The App is intended for get your identification that will use to identify the user.
+    </string>
+    <string name="one_two">
+        \u2022 You agree to use the App only for lawful purposes and in accordance with these Terms and all applicable laws and regulations.
+    </string>
+    <string name="two">
+        \u2022 You may need to create an account to access certain features of the App. You are responsible for maintaining
+        the confidentiality of your account credentials and for all activities that occur under your account.
+    </string>
+    <string name="three">
+        \u2022 Our collection and use of personal information is governed by our Privacy Policy.
+        By using the App, you consent to our collection and use of your personal information as described therein.
+    </string>
+    <string name="four">
+        \u2022 The App and its original content, features, and functionality are owned by
+        SingNaSabi and are protected by international copyright, trademark, patent,
+        trade secret, and other intellectual property or proprietary rights laws.
+    </string>
+
+    <string name="five">
+        \u2022 You agree not to engage in any of the following prohibited activities:
+    </string>
+    <string name="five_one">
+        \u2022 Violating any applicable law or regulation.
+    </string>
+    <string name="five_two">
+        \u2022 Using the App for any illegal or unauthorized purpose.
+    </string>
+    <string name="five_three">
+        \u2022 Attempting to interfere with, compromise the system integrity or security,
+        or decipher any transmissions to or from the servers running the App.
+    </string>
+    <string name="five_four">
+        \u2022 Modifying, adapting, or hacking the App or modifying another website so as to falsely imply that it is associated with the App.
+    </string>
+
+    <string name="six">
+        \u2022To the fullest extent permitted by applicable law, SignNaSabi shall not be liable for
+        any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues,
+        whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from (a)
+        your access to or use of or inability to access or use the App; (b) any conduct or content of any third party on the App; (c)
+        any content obtained from the App; and (d) unauthorized access, use, or alteration of your transmissions or content, whether based on warranty,
+        contract, tort (including negligence),
+        or any other legal theory, whether or not we have been informed of the possibility of such damage.
+    </string>
+    <string name="seven">
+        \u2022 We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material,
+        we will try to provide at least 30 days notice prior to any new terms taking effect.
+        What constitutes a material change will be determined at our sole discretion.
+    </string>
+    <string name="eigth">
+        \u2022 These Terms shall be governed and construed in accordance with the laws of Philippines, without regard to its conflict of law provisions.
+    </string>
+    <string name="nine">
+        \u2022 If you have any questions about these Terms, please contact us at reignmondizon93@gmail.com
+    </string>
+
+
 </resources>

@@ -50,6 +50,7 @@ public class register extends AppCompatActivity {
     private String date;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     boolean isAllFieldsChecked = false;
+    int num =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,7 @@ public class register extends AppCompatActivity {
         mDisplayDate = findViewById(R.id.date);
         spinnergender = findViewById(R.id.spinner_gender);
         spinneruser = findViewById(R.id.spinner_user);
+
 
         // function for register
         btnreg.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +107,6 @@ public class register extends AppCompatActivity {
                                 if(snapshot.exists()){
                                     Toast.makeText(register.this, "Email have been already taken", Toast.LENGTH_SHORT).show();
                                 }else{
-
                                     Intent i = new Intent(register.this, sendotp.class);
                                     i.putExtra("firstname", firstname);
                                     i.putExtra("lastname", lastname);
@@ -118,6 +119,7 @@ public class register extends AppCompatActivity {
                                     i.putExtra("email", Email);
                                     i.putExtra("password", Password);
                                     startActivity(i);
+                                    finish();
                                 }
                             }
 

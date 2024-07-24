@@ -94,7 +94,7 @@ public class dashboard extends AppCompatActivity {
         name = sharedPreferences.getString(KEY_EMAIL,null);
 
         dialog = new Dialog(dashboard.this);
-        dialog.setContentView(R.layout.complete_dialog);
+        dialog.setContentView(R.layout.policie_dialog);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.success_dialog_bg));
         dialog.setCancelable(false);
@@ -133,6 +133,7 @@ public class dashboard extends AppCompatActivity {
 
 
     }
+
     //code for mic
     private void speak(){
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);

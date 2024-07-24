@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="backgroundColor">#FEFAE0</color>
     <color name="text_color">#dd7719</color>
+    <color name="policie_color">#582f0a</color>
     <color name="border_color">#d4a373</color>
     <color name="background">#fefae0</color>
     <color name="colorPrimaryDark">#F4E5C5</color>

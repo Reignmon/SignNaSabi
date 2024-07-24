@@ -79,7 +79,6 @@ public class sendotp extends AppCompatActivity {
         final String email = intent.getStringExtra("email");
         final String password = intent.getStringExtra("password");
 
-
         dialog = new Dialog(sendotp.this);
         dialog.setContentView(R.layout.sucess_dialog);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

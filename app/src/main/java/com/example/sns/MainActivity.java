@@ -124,9 +124,11 @@ public class MainActivity extends AppCompatActivity {
                                     finish();
                                     loadingIndicatorDialog.dismiss();
                                 }else{
+                                    loadingIndicatorDialog.dismiss();
                                     Toast.makeText(MainActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                                 }
                             }else {
+                                loadingIndicatorDialog.dismiss();
                                 Toast.makeText(MainActivity.this, "Incorrect email", Toast.LENGTH_SHORT).show();
                             }
                         }
