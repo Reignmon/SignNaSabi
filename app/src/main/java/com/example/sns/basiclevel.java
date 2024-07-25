@@ -1,9 +1,12 @@
 package com.example.sns;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.view.View;
@@ -27,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class basiclevel extends AppCompatActivity {
+    private boolean backPressToExit = false;
     static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
     LinearLayout Lesson1,alphabetbtn;
     TextView btnBack;
@@ -63,6 +67,7 @@ public class basiclevel extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(basiclevel.this,Lesson1.class));
+                finish();
             }
         });
 
@@ -76,6 +81,51 @@ public class basiclevel extends AppCompatActivity {
 
     }
 
+
+    //code for backpress
+    @Override
+    public void onBackPressed() {
+        if (backPressToExit) {
+            super.onBackPressed();
+            return;
+        }
+
+        // Show confirmation dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Exit");
+        builder.setMessage("Are you sure you want to exit?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                backPressToExit = true;
+                onBackPressed();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.setCancelable(false);
+
+        dialog.show();
+
+        // Set a timer to automatically dismiss the dialog after 2 seconds
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            }
+        }, 2000);
+    }
+//end of code for backpress
+
+
+
    public void lesson1_view(View view){
         int v = (Lesson1.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
         TransitionManager.beginDelayedTransition(Lesson1,new AutoTransition());
@@ -84,7 +134,7 @@ public class basiclevel extends AppCompatActivity {
 
     private void retrieveCurrentBasicLevelProgress() {
         String encodedEmail = encodeEmail(name);
-        DatabaseReference usersRef = databaseReference.child("users").child(encodedEmail).child("Basic_L1");
+        DatabaseReference usersRef = databaseReference.child("Elearning_tb").child(encodedEmail).child("Basic_L1");
         usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -106,7 +156,6 @@ public class basiclevel extends AppCompatActivity {
             }
         });
     }
-
 
     public static String encodeEmail(String email) {
         // Replace '.' (dot) with ',' (comma) or any other safe character

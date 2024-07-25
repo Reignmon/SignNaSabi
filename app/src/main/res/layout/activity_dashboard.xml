@@ -67,12 +67,13 @@
 
             <ImageButton
                 android:id="@+id/micbtn"
-                android:background="@null"
-                android:scaleType="centerInside"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/microphone" />
+                android:background="@null"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/microphone"
+                tools:ignore="SpeakableTextPresentCheck" />
         </LinearLayout>
 
         <LinearLayout
@@ -320,7 +321,7 @@
                             android:alpha=".5"
                             android:paddingEnd="40dp"
                             android:justificationMode="inter_word"
-                            android:text="@string/basic_level_text"
+                            android:text="@string/basicLevel"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>

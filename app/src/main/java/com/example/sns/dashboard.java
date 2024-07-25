@@ -1,16 +1,20 @@
 package com.example.sns;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -34,6 +38,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,6 +55,7 @@ public class dashboard extends AppCompatActivity {
     ImageButton imagebtn;
     private static final int REQUEST_CODE_SPEECH_INPUT = 1000;
     EditText txttrans;
+    private boolean backPressToExit = false;
     ProgressBar basiclevelProgress;
 
     static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
@@ -134,6 +140,48 @@ public class dashboard extends AppCompatActivity {
 
     }
 
+    //code for backpress
+    @Override
+    public void onBackPressed() {
+        if (backPressToExit) {
+            super.onBackPressed();
+            return;
+        }
+
+        // Show confirmation dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Exit");
+        builder.setMessage("Are you sure you want to exit?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                backPressToExit = true;
+                onBackPressed();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.setCancelable(false);
+
+        dialog.show();
+
+        // Set a timer to automatically dismiss the dialog after 2 seconds
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            }
+        }, 2000);
+    }
+//end of code for backpress
+
     //code for mic
     private void speak(){
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -167,7 +215,7 @@ public class dashboard extends AppCompatActivity {
 
     private void retrieveCurrentBasicLevelProgress() {
         String encodedEmail = encodeEmail(name);
-        DatabaseReference usersRef = databaseReference.child("users").child(encodedEmail).child("Basic_L1");
+        DatabaseReference usersRef = databaseReference.child("Elearning_tb").child(encodedEmail).child("Basic_L1");
         usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

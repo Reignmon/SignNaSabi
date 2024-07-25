@@ -1,10 +1,13 @@
 package com.example.sns;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -39,6 +42,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class register extends AppCompatActivity {
+    private boolean backPressToExit = false;
     private TextView mDisplayDate;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
     private static final String TAG = "MainActivity";
@@ -193,6 +197,51 @@ public class register extends AppCompatActivity {
         spinneruser.setAdapter(adapter1);
         //end of code for user type spinner
     }
+
+
+    //code for backpress
+    @Override
+    public void onBackPressed() {
+        if (backPressToExit) {
+            super.onBackPressed();
+            return;
+        }
+
+        // Show confirmation dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Exit");
+        builder.setMessage("Are you sure you want to exit?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                backPressToExit = true;
+                onBackPressed();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.setCancelable(false);
+
+        dialog.show();
+
+        // Set a timer to automatically dismiss the dialog after 2 seconds
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            }
+        }, 2000);
+    }
+//end of code for backpress
+
+
 
     //code for validation
     private boolean CheckAllFields(String firstname, String lastname, String Age, String Email, String Password, String Password1) {
