@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         final Button btnlogin = findViewById(R.id.btnlogin);
         final TextInputEditText email = findViewById(R.id.txtusername);
         final TextInputEditText password = findViewById(R.id.txtpassword);
+        final TextView btnforgot = findViewById(R.id.forgotpass);
 
         loadingIndicatorDialog = new Dialog(MainActivity.this);
         loadingIndicatorDialog.setContentView(R.layout.loading_dialog);
@@ -122,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
                                     editor.putString(KEY_PASSWORD,getPassword);
                                     editor.apply();
 
-                                    Toast.makeText(MainActivity.this, "Successful Login", Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(MainActivity.this,dashboard.class));
                                     finish();
                                     loadingIndicatorDialog.dismiss();
@@ -146,6 +146,15 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        btnforgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,forgotpass.class));
+                finish();
+            }
+        });
+
     }
 
 

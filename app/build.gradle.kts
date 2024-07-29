@@ -46,6 +46,7 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation ("io.github.chaosleung:pinview:1.4.4")
+    implementation("com.github.erkutaras:ShowcaseView:1.5.0")
     implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
     implementation("com.google.firebase:firebase-database")
 }

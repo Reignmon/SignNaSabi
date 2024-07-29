@@ -1,61 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".sendotp"
-    android:background="@color/backgroundColor">
+    android:orientation="vertical"
+    android:background="@color/backgroundColor"
+    tools:context=".otp_forgot">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btnback"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:drawableStart="@drawable/baseline_arrow_back_24"/>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"/>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_weight="3"
+
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/logo1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:fontFamily="@font/fredoka_one"
+            android:text="SignNaSabi"
+            android:textColor="@color/text_color"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/btnback"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_margin="5dp"
-        android:padding="10dp"
-        android:drawableStart="@drawable/baseline_arrow_back_24"/>
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/chewy"
+        android:text="VERIFY YOUR EMAIL"
+        android:textAlignment="center"
+        android:textColor="@color/text_color"
+        android:textSize="30sp"
+        tools:ignore="HardcodedText" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        app:srcCompat="@drawable/securedata"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="20dp"
+        app:srcCompat="@drawable/securedata"
         tools:ignore="ContentDescription" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_marginBottom="10dp"
-        android:paddingStart="40dp"
-        android:fontFamily="@font/fredoka_one"
-        android:text="Enter Verification Code"
-        android:textColor="@color/text_color"
-        android:textSize="24sp"
-        tools:ignore="HardcodedText" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:text="@string/verification"
-        android:alpha=".5"
-        android:paddingStart="40dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Please Enter The 6 Digit code Sent To"
+        android:textAlignment="center"
         android:textColor="@color/text_color"
         android:textSize="16sp"
         tools:ignore="HardcodedText" />
     <TextView
-        android:id="@+id/email"
+        android:id="@+id/emaitTextview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_marginHorizontal="30dp"
+        android:fontFamily="@font/roboto_bold"
         android:text="Example@gmail.com"
-        android:alpha=".5"
-        android:paddingStart="40dp"
+        android:textAlignment="center"
         android:textColor="@color/text_color"
         android:textSize="16sp"
         tools:ignore="HardcodedText" />
@@ -119,7 +149,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnregister"
+        android:id="@+id/btnverfiy"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginHorizontal="100dp"
@@ -129,6 +159,7 @@
         android:text="Verify"
         android:textColor="@color/white"
         android:textSize="20sp" />
+
 
 
 

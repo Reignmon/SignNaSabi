@@ -1,12 +1,14 @@
 package com.example.sns;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
@@ -38,6 +40,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.erkutaras.showcaseview.ShowcaseManager;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -67,6 +70,9 @@ public class dashboard extends AppCompatActivity {
     static String name="";
 
     int basiclevelprogress = 0, progressLevel = 0;
+    int showCaseNumber = 0;
+    Button btnprof,btnTrans,btnpractice,btnhistory;
+    int backgroundColor = Color.argb(191, 0, 255, 255);
 
     CardView intermediateCard,advancelevel;
 
@@ -90,11 +96,13 @@ public class dashboard extends AppCompatActivity {
 
         imagebtn = findViewById(R.id.micbtn);
         txttrans = findViewById(R.id.transtxt);
-        final Button btnprof = findViewById(R.id.profile);
+        btnprof = findViewById(R.id.profile);
         final CardView MbasciLevel = findViewById(R.id.basiclevel);
         basiclevelProgress = findViewById(R.id.basiclevel_progress);
         advancelevel = findViewById(R.id.advancelevel);
-        final Button btnTrans = findViewById(R.id.translate);
+        btnTrans = findViewById(R.id.translate);
+        btnpractice = findViewById(R.id.practice);
+        btnhistory= findViewById(R.id.history);
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         name = sharedPreferences.getString(KEY_EMAIL,null);
@@ -106,6 +114,26 @@ public class dashboard extends AppCompatActivity {
         dialog.setCancelable(false);
 
         retrieveCurrentBasicLevelProgress();
+
+        //code for showcase
+        showCaseNumber = 1;
+        new Handler().postDelayed(() -> {
+            ShowcaseManager.Builder builder = new ShowcaseManager.Builder();
+            builder.context(this)
+                    .key("Key")
+                    .developerMode(true)
+                    .view(btnTrans)
+                    .descriptionTitle("Translator Camera")
+                    .descriptionText("This button is use for ASL translor. Just simply point your camera at ASL signs, and instantly see them translated into spoken language.")
+                    .buttonText("Done")
+                    .buttonVisibility(true)
+                    .cancelButtonVisibility(false)
+                    .add()
+                    .build()
+                    .show();
+        }, 1000); // 1-second delay
+        //end of code for showcase
+
 
         imagebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,6 +210,67 @@ public class dashboard extends AppCompatActivity {
     }
 //end of code for backpress
 
+
+    private void openShowCase1(){
+        showCaseNumber = 2;
+        new Handler().postDelayed(() -> {
+            ShowcaseManager.Builder builder = new ShowcaseManager.Builder();
+            builder.context(this)
+                    .key("Key")
+                    .developerMode(true)
+                    .view(btnpractice)
+                    .descriptionTitle("Practice Button")
+                    .descriptionText("This button is use for ASL practice. Practice ASL by " +
+                            "capturing gestures with your camera, and receive instant translations into " +
+                            "spoken language for learning and improvement.")
+                    .buttonText("Done")
+                    .buttonVisibility(true)
+                    .cancelButtonVisibility(false)
+                    .add()
+                    .build()
+                    .show();
+        }, 1000); // 1-second delay
+    }
+
+    private void openShowCase2(){
+        showCaseNumber = 3;
+        new Handler().postDelayed(() -> {
+            ShowcaseManager.Builder builder = new ShowcaseManager.Builder();
+            builder.context(this)
+                    .key("Key")
+                    .developerMode(true)
+                    .view(btnhistory)
+                    .descriptionTitle("History Button")
+                    .descriptionText("This button use to see the last progress that you take in e-learning by this you can view your progress over time.")
+                    .buttonText("Done")
+                    .buttonVisibility(true)
+                    .cancelButtonVisibility(false)
+                    .add()
+                    .build()
+                    .show();
+        }, 1000); // 1-second delay
+    }
+
+    private void openShowCase3(){
+        showCaseNumber = 4;
+        new Handler().postDelayed(() -> {
+            ShowcaseManager.Builder builder = new ShowcaseManager.Builder();
+            builder.context(this)
+                    .key("Key")
+                    .developerMode(true)
+                    .view(btnprof)
+                    .descriptionTitle("Profile Button")
+                    .descriptionText("This button show you and manage your personal profile information, including user details and preferences")
+                    .buttonText("Done")
+                    .buttonVisibility(true)
+                    .cancelButtonVisibility(false)
+                    .add()
+                    .build()
+                    .show();
+        }, 1000); // 1-second delay
+    }
+
+
     //code for mic
     private void speak(){
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -201,6 +290,8 @@ public class dashboard extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        // getting data data from the voice audio
         switch (requestCode){
             case REQUEST_CODE_SPEECH_INPUT:{
                 if(resultCode == RESULT_OK && null != data){
@@ -210,6 +301,20 @@ public class dashboard extends AppCompatActivity {
                 break;
             }
         }
+        // end of code here
+
+        // check if the showcase was done and proceed to another showcase
+        if (requestCode == ShowcaseManager.REQUEST_CODE_SHOWCASE && resultCode == Activity.RESULT_OK && showCaseNumber == 1) {
+            showCaseNumber = 2;
+            openShowCase1();
+        } else if (requestCode == ShowcaseManager.REQUEST_CODE_SHOWCASE && resultCode == Activity.RESULT_OK && showCaseNumber == 2) {
+            showCaseNumber = 3;
+            openShowCase2();
+        }else if (requestCode == ShowcaseManager.REQUEST_CODE_SHOWCASE && resultCode == Activity.RESULT_OK && showCaseNumber == 3) {
+            showCaseNumber = 4;
+            openShowCase3();
+        }
+        // end of code here
     }
     //end of code for mic
 

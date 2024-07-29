@@ -99,24 +99,17 @@
             android:orientation="horizontal"
             android:layout_marginHorizontal="40dp"
             android:layout_marginVertical="16dp">
-
-            <CheckBox
-                android:id="@+id/checkBox"
+            <Space
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:button="@drawable/checkbox"
-                android:text="Remember Me"
-                android:textColor="@color/border_color"
-                android:textSize="14sp" />
-
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/forgotpass"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:layout_marginStart="50dp"
                 android:text="Forgot Password?"
+                android:textAlignment="viewEnd"
                 android:textColor="@color/border_color"
                 android:textSize="14sp"/>
         </LinearLayout>
@@ -147,7 +140,8 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/blinker_semibold"
                 android:text="Dont have any Account?"
-                android:textAlignment="center"
+                android:textAlignment="viewEnd"
+                android:paddingEnd="5dp"
                 android:textColor="@color/text_color"
                 android:textSize="16sp" />
 
