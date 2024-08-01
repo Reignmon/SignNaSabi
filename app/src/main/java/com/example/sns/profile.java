@@ -75,14 +75,21 @@ public class profile extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.hasChild(DecodedEmail)){
+
+                        String getmname="";
+                        String getext = "";
                         final String getfname = snapshot.child(DecodedEmail).child("firstname").getValue(String.class);
                         final String getlname = snapshot.child(DecodedEmail).child("lastname").getValue(String.class);
-                        final String getmname = snapshot.child(DecodedEmail).child("middlename").getValue(String.class);
-                        final String getext = snapshot.child(DecodedEmail).child("extensionname").getValue(String.class);
+                        getmname = snapshot.child(DecodedEmail).child("middlename").getValue(String.class);
+                        getext = snapshot.child(DecodedEmail).child("extensionname").getValue(String.class);
                         final String getbod = snapshot.child(DecodedEmail).child("birthdate").getValue(String.class);
                         final String getage = snapshot.child(DecodedEmail).child("age").getValue(String.class);
                         final String getgender = snapshot.child(DecodedEmail).child("gender").getValue(String.class);
                         final String getdisablity = snapshot.child(DecodedEmail).child("disablity").getValue(String.class);
+
+                        getmname = (getmname != null) ? getmname : "";
+                        getext = (getext != null) ? getext : "";
+
 
                         fullname.setText(getfname + " " + getmname + " " + getlname);
                         fullName.setText(getfname + " " + getmname + " " + getlname+ " " + getext);

@@ -8,13 +8,10 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
@@ -34,7 +31,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Lesson1 extends AppCompatActivity {
+public class B1numbers extends AppCompatActivity {
+
     Dialog dialog;
     private boolean backPressToExit = false;
     VideoView videoView;
@@ -55,7 +53,7 @@ public class Lesson1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_lesson1);
+        setContentView(R.layout.activity_b1numbers);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -68,7 +66,7 @@ public class Lesson1 extends AppCompatActivity {
         loadingIndicator = findViewById(R.id.loading);
         btnBack = findViewById(R.id.btnback);
 
-        dialog = new Dialog(Lesson1.this);
+        dialog = new Dialog(B1numbers.this);
         dialog.setContentView(R.layout.sucess_dialog);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.success_dialog_bg));
@@ -84,35 +82,18 @@ public class Lesson1 extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-
-
+        //https://drive.google.com/file/d/1XZOD0w8X0l6D7nHyqZsHSy4L0ZCj5MYv/view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1lpErjzEVsXdwszyxkzVWqjCarLtkmn4b"), //A not done
-                Uri.parse("https://drive.google.com/uc?export=download&id=1lxSKRgdK7V5HDHnSFPpArNcZasI1aZlo"), //B not done
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Imy6u1xhNjqqWYt7V1DfFqJzH5jUpXPc"), //C
-                Uri.parse("https://drive.google.com/uc?export=download&id=1dMPORTiGKIFWU-H3pv-vP7vqPFKYjsWR"), //D
-                Uri.parse("https://drive.google.com/uc?export=download&id=16aHajT_bSKN750vO6CZJuepKtTdb9mrZ"), //E
-                Uri.parse("https://drive.google.com/uc?export=download&id=189HD7cliG97oAUjSAuAJfpir24FD5xN8"), //F
-                Uri.parse("https://drive.google.com/uc?export=download&id=1TUJyzZkkX5M7ahtR1X2brKdvqdMFDwKU"), //G
-                Uri.parse("https://drive.google.com/uc?export=download&id=1JPsU1491GnGti1NWE4qd7CN2Y5YVB6Ys"), //H
-                Uri.parse("https://drive.google.com/uc?export=download&id=1fvDnoPpSjRobIq6-2r-co1s5dGhw90zM"), //I
-                Uri.parse("https://drive.google.com/uc?export=download&id=19KhnHEQkypQh-0Jh8c0RC6wXWkGkBnv1"), //J
-                Uri.parse("https://drive.google.com/uc?export=download&id=1o_vkWW5DgcoedrrGSCVnU6RNrucllieE"), //K
-                Uri.parse("https://drive.google.com/uc?export=download&id=1OuGxOWOK5TIfxrKP31MzRqh5m6JJElsi"), //L
-                Uri.parse("https://drive.google.com/uc?export=download&id=1nQKgH1Et3bytnfqw6vV6D0VQfqZvxzTC"), //M
-                Uri.parse("https://drive.google.com/uc?export=download&id=1LpmEWUpEymaH_Lo-kLcLGw0G4mhIZz6E"), //N
-                Uri.parse("https://drive.google.com/uc?export=download&id=1CrdfWdFAEJQdKCcLiqyMhUS6ckKeUcFn"), //O
-                Uri.parse("https://drive.google.com/uc?export=download&id=1NNzzy2BlQnOll8R5HP795r_z8vrD7THF"), //P
-                Uri.parse("https://drive.google.com/uc?export=download&id=1V6ZcR1h52YXW6bsS3I3XPDH1Uo374M8q"), //Q
-                Uri.parse("https://drive.google.com/uc?export=download&id=16ZoJMkizbyJ_k9NObdxEQXIqOhuQHEZ-"), //R
-                Uri.parse("https://drive.google.com/uc?export=download&id=1KyrRPlcjBt4jhwGvBREDuGtRnsf6Zt38"), //S not done
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ZelE2EaZJs-eq1lNyZcgPgnwsOx2pImz"), //T
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ZelE2EaZJs-eq1lNyZcgPgnwsOx2pImz"), //U
-                Uri.parse("https://drive.google.com/uc?export=download&id=1WvCSQIJ-dLsNHcE43EJAS3OiHocO-kJL"), //V
-                Uri.parse("https://drive.google.com/uc?export=download&id=1AaYGcz0hUE_HhuQCew-ieIwErl_icnxa"), //W
-                Uri.parse("https://drive.google.com/uc?export=download&id=1QLnOg6L9AET_p8mA09QZSrBE3qYDvM8R"), //X
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DXC-Qggl8kXGWfB02eaesAR2gYk-Ps-x"), //Y
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XyclVlC-KVncPpZlvd6n1P-yO7sG7ijr")  //Z
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ceUegBB8Q4Qf-j3xofluQUzTL4TpO4b0"), //1
+                Uri.parse("https://drive.google.com/uc?export=download&id=1DsjtMSrB4c3JYW9eXS3fHrQbWIPcn8yb"), //2
+                Uri.parse("https://drive.google.com/uc?export=download&id=1u-BDnll3TrLAwAW5qa8EYVvyKxc4Mnnv"), //3
+                Uri.parse("https://drive.google.com/uc?export=download&id=1qM95yK3fJ4gyA-QUwumvC7ghL3DAfJNf"), //4
+                Uri.parse("https://drive.google.com/uc?export=download&id=1v4aewalUKRX1CXRFDQ3GDdYqdecE-KbA"), //5
+                Uri.parse("https://drive.google.com/uc?export=download&id=127Le50vC0BoZoXOSgwlWC9mcyaUK2ONj"), //6
+                Uri.parse("https://drive.google.com/uc?export=download&id=127Le50vC0BoZoXOSgwlWC9mcyaUK2ONj"), //7
+                Uri.parse("https://drive.google.com/uc?export=download&id=1imVdjUHTlzxal1mB7UmNbC6Qxdj82W1T"), //8
+                Uri.parse("https://drive.google.com/uc?export=download&id=1XZOD0w8X0l6D7nHyqZsHSy4L0ZCj5MYv"), //9
+                Uri.parse("https://drive.google.com/uc?export=download&id=19KhnHEQkypQh-0Jh8c0RC6wXWkGkBnv1"), //10 not done yet
                 // Add more URIs as needed
 
         };
@@ -154,15 +135,7 @@ public class Lesson1 extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Lesson1.this,basiclevel.class));
-                finish();
-            }
-        });
-
-        okayBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Lesson1.this,basiclevel.class));
+                startActivity(new Intent(B1numbers.this,basiclevel.class));
                 finish();
             }
         });
@@ -211,8 +184,6 @@ public class Lesson1 extends AppCompatActivity {
     }
 //end of code for backpress
 
-
-
     // code for next button
     public void playNextVideo(View view) {
         // every click it will increment
@@ -237,7 +208,7 @@ public class Lesson1 extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.hasChild(encodedEmail)){
-                        usersRef.child("Alphabet").setValue(currentIndex);
+                        usersRef.child("numbers").setValue(currentIndex);
                     }
                 }
                 @Override
@@ -281,15 +252,11 @@ public class Lesson1 extends AppCompatActivity {
     }
     // end of code for prev button
 
-    public static String encodeEmail(String email) {
-        // Replace '.' (dot) with ',' (comma) or any other safe character
-        return email.replace(".", ",");
-    }
 
     // Method to retrieve currentIndex from Firebase
     private void retrieveCurrentIndexFromFirebase() {
         String encodedEmail = encodeEmail(name);
-        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail).child("Alphabet");
+        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail).child("numbers");
         usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -318,7 +285,10 @@ public class Lesson1 extends AppCompatActivity {
         });
     }
 
-
+    public static String encodeEmail(String email) {
+        // Replace '.' (dot) with ',' (comma) or any other safe character
+        return email.replace(".", ",");
+    }
 
 
 }

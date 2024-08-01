@@ -322,7 +322,7 @@ public class dashboard extends AppCompatActivity {
 
     private void retrieveCurrentBasicLevelProgress() {
         String encodedEmail = encodeEmail(name);
-        DatabaseReference usersRef = databaseReference.child("Elearning_tb").child(encodedEmail).child("Basic_L1");
+        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail).child("Alphabet");
         usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
