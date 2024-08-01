@@ -109,7 +109,7 @@
                 android:background="@drawable/border_bottom"
                 android:ems="10"
                 android:textSize="16sp"
-                android:hint="Extension Name"
+                android:hint="Suffix Name"
                 android:inputType="text"
                 android:paddingStart="10dp"
                 android:textColor="@color/border_color"
@@ -271,6 +271,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginVertical="10dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
 
@@ -281,7 +282,8 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/blinker_semibold"
                 android:text="Have an Account?"
-                android:textAlignment="center"
+                android:textAlignment="viewEnd"
+                android:layout_marginEnd="5dp"
                 android:textColor="@color/border_color"
                 android:textSize="18sp" />
 

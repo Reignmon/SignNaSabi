@@ -97,7 +97,7 @@ public class register extends AppCompatActivity {
                 String Email = email.getText().toString();
                 String Password = pass.getText().toString();
                 String Password1 = pass1.getText().toString();
-                boolean check = CheckAllFields(firstname,lastname,Age,Email,Password,Password1);
+                boolean check = CheckAllFields(firstname,lastname,Age,Email,Password,Password1,extensionname);
 
                 if(check == true){
                     if(Password.equals(Password1)){
@@ -244,7 +244,7 @@ public class register extends AppCompatActivity {
 
 
     //code for validation
-    private boolean CheckAllFields(String firstname, String lastname, String Age, String Email, String Password, String Password1) {
+    private boolean CheckAllFields(String firstname, String lastname, String Age, String Email, String Password, String Password1, String extensionname) {
         if (firstname.length() == 0) {
             fname.setError("FIELD CANNOT BE EMPTY");
             return false;
@@ -258,6 +258,11 @@ public class register extends AppCompatActivity {
             return false;
         } else if (!lastname.matches("[a-zA-Z]+")) {
             lname.setError("ALPHABET ONLY");
+            return false;
+        }
+
+        if (extensionname.length() >2){
+            ename.setError("SUFFIX NAME MUST 2 CHARACTER ONLY ONLY");
             return false;
         }
 
@@ -282,18 +287,17 @@ public class register extends AppCompatActivity {
             }
         }*/
 
-        if (Age.length() == 0) {
+        if (Age.length() == 0 || Age.length() > 3) {
             age.setError("FIELD CANNOT BE EMPTY");
             return false;
         }
 
-        // Spinner validations
-        if (spinnergender.getSelectedItemPosition() == 0) { // Gender Spinner
-            TextView errorText = (TextView)spinnergender.getSelectedView();
-            Toast.makeText(register.this, "Please select your gender", Toast.LENGTH_LONG).show();
-            return false;
-        }
-
+            // Spinner validations
+            if (spinnergender.getSelectedItemPosition() == 0) { // Gender Spinner
+                TextView errorText = (TextView)spinnergender.getSelectedView();
+                Toast.makeText(register.this, "Please select your gender", Toast.LENGTH_LONG).show();
+                return false;
+            }
         if (spinneruser.getSelectedItemPosition() == 0) { // User Type Spinner
             TextView errorText = (TextView)spinneruser.getSelectedView();
             Toast.makeText(register.this, "Please select your disablity", Toast.LENGTH_LONG).show();

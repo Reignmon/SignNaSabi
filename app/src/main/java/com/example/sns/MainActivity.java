@@ -103,8 +103,10 @@ public class MainActivity extends AppCompatActivity {
 
                 if(Email.isEmpty() ){
                     email.setError("ENTER your email");
+                    loadingIndicatorDialog.dismiss();
                 } else if (Password.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Enter your password", Toast.LENGTH_SHORT).show();
+                    loadingIndicatorDialog.dismiss();
                 } else{
                     databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -125,11 +127,11 @@ public class MainActivity extends AppCompatActivity {
 
                                     startActivity(new Intent(MainActivity.this,dashboard.class));
                                     finish();
-                                    loadingIndicatorDialog.dismiss();
                                 }else{
-                                    loadingIndicatorDialog.dismiss();
                                     Toast.makeText(MainActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                                 }
+
+                                loadingIndicatorDialog.dismiss();
                             }else {
                                 loadingIndicatorDialog.dismiss();
                                 Toast.makeText(MainActivity.this, "Incorrect email", Toast.LENGTH_SHORT).show();

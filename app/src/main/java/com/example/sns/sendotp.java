@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,9 +52,11 @@ import javax.mail.internet.MimeMessage;
 
 public class sendotp extends AppCompatActivity {
     private boolean backPressToExit = false;
+    int countdownTime = 60;
     Dialog dialog,loadingIndicatorDialog;
     TextView Email;
     String otp ="";
+    TextView resendOTP;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +71,7 @@ public class sendotp extends AppCompatActivity {
         final TextView btnBack = findViewById(R.id.btnback);
         final Button btnverify = findViewById(R.id.btnregister);
         final PinView pinView = findViewById(R.id.pinview);
-        final TextView resendOTP = findViewById(R.id.resend);
+        resendOTP = findViewById(R.id.resend);
 
         Email = findViewById(R.id.email);
         Intent intent = getIntent();
@@ -95,6 +98,8 @@ public class sendotp extends AppCompatActivity {
         loadingIndicatorDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         loadingIndicatorDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.success_dialog_bg));
         loadingIndicatorDialog.setCancelable(false);
+
+        startCountdown(60 * 1000); // 60 seconds
 
 
 
@@ -134,6 +139,7 @@ public class sendotp extends AppCompatActivity {
             public void onClick(View view) {
                 otp = generateOTP();
                 obj.SendOTP(EM, Integer.parseInt(otp));
+                startCountdown(60 * 1000); // 60 seconds
             }
         });
 
@@ -295,6 +301,29 @@ public class sendotp extends AppCompatActivity {
             otp.append(random.nextInt(10)); // Generates digits between 0-9
         }
         return otp.toString();
+    }
+
+    private void startCountdown(long millisInFuture) {
+        new CountDownTimer(millisInFuture, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                // Calculate minutes and seconds
+                int minutes = (int) (millisUntilFinished / 1000) / 60;
+                int seconds = (int) (millisUntilFinished / 1000) % 60;
+
+                // Update the TextView
+                resendOTP.setText(String.format("%02d",seconds));
+                resendOTP.setEnabled(false);
+            }
+
+            @Override
+            public void onFinish() {
+                // When the timer finishes
+                resendOTP.setText("Resend");
+                resendOTP.setEnabled(true);
+            }
+        }.start();
     }
 
 }

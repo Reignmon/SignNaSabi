@@ -115,7 +115,7 @@ public class dashboard extends AppCompatActivity {
 
         retrieveCurrentBasicLevelProgress();
 
-        //code for showcase
+       /* //code for showcase
         showCaseNumber = 1;
         new Handler().postDelayed(() -> {
             ShowcaseManager.Builder builder = new ShowcaseManager.Builder();
@@ -134,7 +134,7 @@ public class dashboard extends AppCompatActivity {
         }, 1000); // 1-second delay
         //end of code for showcase
 
-
+*/
         imagebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -210,6 +210,7 @@ public class dashboard extends AppCompatActivity {
     }
 //end of code for backpress
 
+/*
 
     private void openShowCase1(){
         showCaseNumber = 2;
@@ -269,6 +270,7 @@ public class dashboard extends AppCompatActivity {
                     .show();
         }, 1000); // 1-second delay
     }
+*/
 
 
     //code for mic
@@ -303,7 +305,7 @@ public class dashboard extends AppCompatActivity {
         }
         // end of code here
 
-        // check if the showcase was done and proceed to another showcase
+       /* // check if the showcase was done and proceed to another showcase
         if (requestCode == ShowcaseManager.REQUEST_CODE_SHOWCASE && resultCode == Activity.RESULT_OK && showCaseNumber == 1) {
             showCaseNumber = 2;
             openShowCase1();
@@ -314,7 +316,7 @@ public class dashboard extends AppCompatActivity {
             showCaseNumber = 4;
             openShowCase3();
         }
-        // end of code here
+        // end of code here*/
     }
     //end of code for mic
 
