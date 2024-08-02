@@ -8,13 +8,10 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
@@ -34,7 +31,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Lesson1 extends AppCompatActivity {
+public class b2greetings extends AppCompatActivity {
+
     Dialog dialog;
     private boolean backPressToExit = false;
     VideoView videoView;
@@ -55,7 +53,7 @@ public class Lesson1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_lesson1);
+        setContentView(R.layout.activity_b2greetings);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -68,7 +66,7 @@ public class Lesson1 extends AppCompatActivity {
         loadingIndicator = findViewById(R.id.loading);
         btnBack = findViewById(R.id.btnback);
 
-        dialog = new Dialog(Lesson1.this);
+        dialog = new Dialog(b2greetings.this);
         dialog.setContentView(R.layout.sucess_dialog);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.success_dialog_bg));
@@ -85,39 +83,37 @@ public class Lesson1 extends AppCompatActivity {
         videoView.setMediaController(mediaController);
 
 
-
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1lpErjzEVsXdwszyxkzVWqjCarLtkmn4b"), //A not done
-                Uri.parse("https://drive.google.com/uc?export=download&id=1lxSKRgdK7V5HDHnSFPpArNcZasI1aZlo"), //B not done
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Imy6u1xhNjqqWYt7V1DfFqJzH5jUpXPc"), //C
-                Uri.parse("https://drive.google.com/uc?export=download&id=1dMPORTiGKIFWU-H3pv-vP7vqPFKYjsWR"), //D
-                Uri.parse("https://drive.google.com/uc?export=download&id=16aHajT_bSKN750vO6CZJuepKtTdb9mrZ"), //E
-                Uri.parse("https://drive.google.com/uc?export=download&id=189HD7cliG97oAUjSAuAJfpir24FD5xN8"), //F
-                Uri.parse("https://drive.google.com/uc?export=download&id=1TUJyzZkkX5M7ahtR1X2brKdvqdMFDwKU"), //G
-                Uri.parse("https://drive.google.com/uc?export=download&id=1JPsU1491GnGti1NWE4qd7CN2Y5YVB6Ys"), //H
-                Uri.parse("https://drive.google.com/uc?export=download&id=1fvDnoPpSjRobIq6-2r-co1s5dGhw90zM"), //I
-                Uri.parse("https://drive.google.com/uc?export=download&id=19KhnHEQkypQh-0Jh8c0RC6wXWkGkBnv1"), //J
-                Uri.parse("https://drive.google.com/uc?export=download&id=1o_vkWW5DgcoedrrGSCVnU6RNrucllieE"), //K
-                Uri.parse("https://drive.google.com/uc?export=download&id=1OuGxOWOK5TIfxrKP31MzRqh5m6JJElsi"), //L
-                Uri.parse("https://drive.google.com/uc?export=download&id=1nQKgH1Et3bytnfqw6vV6D0VQfqZvxzTC"), //M
-                Uri.parse("https://drive.google.com/uc?export=download&id=1LpmEWUpEymaH_Lo-kLcLGw0G4mhIZz6E"), //N
-                Uri.parse("https://drive.google.com/uc?export=download&id=1CrdfWdFAEJQdKCcLiqyMhUS6ckKeUcFn"), //O
-                Uri.parse("https://drive.google.com/uc?export=download&id=1NNzzy2BlQnOll8R5HP795r_z8vrD7THF"), //P
-                Uri.parse("https://drive.google.com/uc?export=download&id=1V6ZcR1h52YXW6bsS3I3XPDH1Uo374M8q"), //Q
-                Uri.parse("https://drive.google.com/uc?export=download&id=16ZoJMkizbyJ_k9NObdxEQXIqOhuQHEZ-"), //R
-                Uri.parse("https://drive.google.com/uc?export=download&id=1KyrRPlcjBt4jhwGvBREDuGtRnsf6Zt38"), //S not done
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ZelE2EaZJs-eq1lNyZcgPgnwsOx2pImz"), //T
-                Uri.parse("https://drive.google.com/uc?export=download&id=1WEQZxltdPab7zAQIVG4-5WI83qVfelvH"), //U
-                Uri.parse("https://drive.google.com/uc?export=download&id=1WvCSQIJ-dLsNHcE43EJAS3OiHocO-kJL"), //V
-                Uri.parse("https://drive.google.com/uc?export=download&id=1AaYGcz0hUE_HhuQCew-ieIwErl_icnxa"), //W
-                Uri.parse("https://drive.google.com/uc?export=download&id=1QLnOg6L9AET_p8mA09QZSrBE3qYDvM8R"), //X
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DXC-Qggl8kXGWfB02eaesAR2gYk-Ps-x"), //Y
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XyclVlC-KVncPpZlvd6n1P-yO7sG7ijr")  //Z
+                Uri.parse("https://drive.google.com/uc?export=download&id=1qXQ8NMIGSTII5UXYZuJ1Ng_SYCAIqrWs"), //Happy new year
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Hiouat9V911ncMK5nnPzCcaqVJuriihg"), //merry christmas
+                Uri.parse("https://drive.google.com/uc?export=download&id=1S05z3zijtyxhFnkGiY1BLQzynM5BHOgw"), //happy birthday
+                Uri.parse("https://drive.google.com/uc?export=download&id=1lEeyHGOKsRNHe1BTLgEdnQ2RKRD1Y2Ue"), //im sorry
+                Uri.parse("https://drive.google.com/uc?export=download&id=1lEeyHGOKsRNHe1BTLgEdnQ2RKRD1Y2Ue"), //where are you going
+                Uri.parse("https://drive.google.com/uc?export=download&id=1PbRPLxuS0ngADlhzZA4Jp20X6komfTMO"), //i have to go home
+                Uri.parse("https://drive.google.com/uc?export=download&id=1wC9xCqoE3552cU6QW3cgQIVjr-lcjM-z"), //what time is it
+                Uri.parse("https://drive.google.com/uc?export=download&id=1LDZNCIIqsxmB0VM0RhIBbLLJ36TaUPx7"), //seet please
+                Uri.parse("https://drive.google.com/uc?export=download&id=1k9GZhDpUtNZvwWb4VKH6DkW_0FRpQoZJ"), //whats your phone number
+                Uri.parse("https://drive.google.com/uc?export=download&id=1DdOAS7Y3xwEJ5WOSX0z2TLJfAMxXI0oL"), //close door
+                Uri.parse("https://drive.google.com/uc?export=download&id=1MzEolbmFjgfUVtvPtQ6USkpFoyY_pzgt"), //open door
+                Uri.parse("https://drive.google.com/uc?export=download&id=1T_rVNQwmBs2DcWnlF-zPOrRzAqC5um4L"), //wheres the bathroom
+                Uri.parse("https://drive.google.com/uc?export=download&id=1k4J9Fjp_SZ8VS2ejt421UaJGHExCNugR"), //pardon me
+                Uri.parse("https://drive.google.com/uc?export=download&id=1XPApmBwWQUN0peEQ9JS196rEwd5_bQYk"), //please
+                Uri.parse("https://drive.google.com/uc?export=download&id=19X0esSI0ypw6MGDE2C_-h4XX1Eb327By"), //thankyou
+                Uri.parse("https://drive.google.com/uc?export=download&id=1MOUKf6ngwqIqSMiIDjJVw73cF5GdgNSb"), //im fine
+                Uri.parse("https://drive.google.com/uc?export=download&id=1AVvDzn1Au4WxQCtTfuyWI6bf1OLiu5Vv"), //goodbye
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Lf63wEpE2pFttHBPCsajjc3ojvTXlwYA"), //see you later
+                Uri.parse("https://drive.google.com/uc?export=download&id=1vGMgGNhY-zZriu20GvXpldbexw-GI4EK"), //im glad to see you
+                Uri.parse("https://drive.google.com/uc?export=download&id=138s1N_MQIv3cjBT-cspD0aUD2aIi2gRS"), //how have you been
+                Uri.parse("https://drive.google.com/uc?export=download&id=138s1N_MQIv3cjBT-cspD0aUD2aIi2gRS"), //not done
+                Uri.parse("https://drive.google.com/uc?export=download&id=1dJmktBDo8nOo3EOTjNAWLDjJ81WfETrY"), //good night
+                Uri.parse("https://drive.google.com/uc?export=download&id=15q2hdABbgYkl-AIHEBUgEAmVKzHQVx56"), //good afternoon
+                Uri.parse("https://drive.google.com/uc?export=download&id=1qPi9JyKNsovL65tXlfgAR4ImGSXJmWQc"), //good morning
                 // Add more URIs as needed
 
         };
 
         retrieveCurrentIndexFromFirebase();
+
 
         // Set the first video URI
         videoView.setVideoURI(videoUris[currentIndex]);
@@ -154,20 +150,13 @@ public class Lesson1 extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Lesson1.this,basiclevel.class));
-                finish();
-            }
-        });
-
-        okayBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Lesson1.this,basiclevel.class));
+                startActivity(new Intent(b2greetings.this,basiclevel.class));
                 finish();
             }
         });
 
     }
+
 
     //code for backpress
     @Override
@@ -212,7 +201,6 @@ public class Lesson1 extends AppCompatActivity {
 //end of code for backpress
 
 
-
     // code for next button
     public void playNextVideo(View view) {
         // every click it will increment
@@ -237,7 +225,7 @@ public class Lesson1 extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.hasChild(encodedEmail)){
-                        usersRef.child("Alphabet").setValue(currentIndex);
+                        usersRef.child("greetings").setValue(currentIndex);
                     }
                 }
                 @Override
@@ -256,6 +244,7 @@ public class Lesson1 extends AppCompatActivity {
 
     }
     // end of code for next button
+
 
     // code for prev button
     public void playPreviousVideo(View view) {
@@ -281,15 +270,11 @@ public class Lesson1 extends AppCompatActivity {
     }
     // end of code for prev button
 
-    public static String encodeEmail(String email) {
-        // Replace '.' (dot) with ',' (comma) or any other safe character
-        return email.replace(".", ",");
-    }
 
     // Method to retrieve currentIndex from Firebase
     private void retrieveCurrentIndexFromFirebase() {
         String encodedEmail = encodeEmail(name);
-        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail).child("Alphabet");
+        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail).child("greetings");
         usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -318,7 +303,9 @@ public class Lesson1 extends AppCompatActivity {
         });
     }
 
-
-
+    public static String encodeEmail(String email) {
+        // Replace '.' (dot) with ',' (comma) or any other safe character
+        return email.replace(".", ",");
+    }
 
 }

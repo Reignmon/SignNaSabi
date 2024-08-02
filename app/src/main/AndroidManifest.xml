@@ -16,6 +16,12 @@
         android:theme="@style/Theme.SNS"
         tools:targetApi="31">
         <activity
+            android:name=".b2questionword"
+            android:exported="false" />
+        <activity
+            android:name=".b2greetings"
+            android:exported="false" />
+        <activity
             android:name=".B1numbers"
             android:exported="false" />
         <activity

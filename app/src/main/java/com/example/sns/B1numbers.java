@@ -82,7 +82,6 @@ public class B1numbers extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d/1XZOD0w8X0l6D7nHyqZsHSy4L0ZCj5MYv/view?usp=sharing
         videoUris = new Uri[]{
                 Uri.parse("https://drive.google.com/uc?export=download&id=1ceUegBB8Q4Qf-j3xofluQUzTL4TpO4b0"), //1
                 Uri.parse("https://drive.google.com/uc?export=download&id=1DsjtMSrB4c3JYW9eXS3fHrQbWIPcn8yb"), //2
@@ -90,7 +89,7 @@ public class B1numbers extends AppCompatActivity {
                 Uri.parse("https://drive.google.com/uc?export=download&id=1qM95yK3fJ4gyA-QUwumvC7ghL3DAfJNf"), //4
                 Uri.parse("https://drive.google.com/uc?export=download&id=1v4aewalUKRX1CXRFDQ3GDdYqdecE-KbA"), //5
                 Uri.parse("https://drive.google.com/uc?export=download&id=127Le50vC0BoZoXOSgwlWC9mcyaUK2ONj"), //6
-                Uri.parse("https://drive.google.com/uc?export=download&id=127Le50vC0BoZoXOSgwlWC9mcyaUK2ONj"), //7
+                Uri.parse("https://drive.google.com/uc?export=download&id=1mHFVXgI6MzfXCBVcn08wPV6ZlOU8-EOr"), //7
                 Uri.parse("https://drive.google.com/uc?export=download&id=1imVdjUHTlzxal1mB7UmNbC6Qxdj82W1T"), //8
                 Uri.parse("https://drive.google.com/uc?export=download&id=1XZOD0w8X0l6D7nHyqZsHSy4L0ZCj5MYv"), //9
                 Uri.parse("https://drive.google.com/uc?export=download&id=19KhnHEQkypQh-0Jh8c0RC6wXWkGkBnv1"), //10 not done yet

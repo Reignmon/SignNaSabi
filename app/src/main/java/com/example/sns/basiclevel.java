@@ -33,9 +33,9 @@ import com.google.firebase.database.ValueEventListener;
 public class basiclevel extends AppCompatActivity {
     private boolean backPressToExit = false;
     static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
-    LinearLayout Lesson1,alphabetbtn,numbersbtn;
+    LinearLayout Lesson1,alphabetbtn,numbersbtn,lesson2,greetingBtn;
     TextView btnBack;
-    ImageView l1_img;
+    ImageView l1_img,imgNum,imgGreet;
     int lesson1;
 
     SharedPreferences sharedPreferences;
@@ -59,6 +59,10 @@ public class basiclevel extends AppCompatActivity {
         alphabetbtn = findViewById(R.id.alphabet);
         btnBack = findViewById(R.id.btnback);
         numbersbtn = findViewById(R.id.numbers);
+        imgNum = findViewById(R.id.imgnum);
+        lesson2 = findViewById(R.id.Lesson2_layout);
+        greetingBtn = findViewById(R.id.greetingbtn);
+        imgGreet = findViewById(R.id.greetingimg);
 
         l1_img = findViewById(R.id.lesson1_image);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
@@ -88,6 +92,14 @@ public class basiclevel extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(basiclevel.this,dashboard.class));
+                finish();
+            }
+        });
+
+        greetingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(basiclevel.this,b2greetings.class));
                 finish();
             }
         });
@@ -145,25 +157,48 @@ public class basiclevel extends AppCompatActivity {
         Lesson1.setVisibility(v);
     }
 
-    private void retrieveCurrentBasicLevelProgress() {
+    public void lesson2_view(View view){
+        int v = (lesson2.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
+        TransitionManager.beginDelayedTransition(lesson2,new AutoTransition());
+        lesson2.setVisibility(v);
+    }
+
+    /*private void retrieveCurrentBasicLevelProgress() {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail);
+
+        // Check and update for "Alphabet"
         usersRef.child("Alphabet").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     // Get currentIndex from Firebase
-                    lesson1 = snapshot.getValue(Integer.class);
-
-                    if(lesson1 == 25){
+                    int lesson1 = snapshot.getValue(Integer.class);
+                    if (lesson1 == 25) {
                         l1_img.setVisibility(View.VISIBLE);
                         DatabaseReference lessonaslRef = usersRef.child("lessonasl");
-                        lessonaslRef.setValue(100);
-                    }
 
+                        // Check the current value of lessonasl before updating
+                        lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
+                                if (lesson1 == 25 && currentLessonAslValue < 100) {
+                                    lessonaslRef.setValue(100);
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                // Handle any errors
+                            }
+                        });
+                    } else {
+
+                    }
                 } else {
-                    lesson1 = 0;
-                    l1_img.setVisibility(View.INVISIBLE);
+
                 }
             }
 
@@ -173,22 +208,36 @@ public class basiclevel extends AppCompatActivity {
             }
         });
 
+        // Check and update for "numbers"
         usersRef.child("numbers").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     // Get currentIndex from Firebase
-                    lesson1 = snapshot.getValue(Integer.class);
+                    int lesson1 = snapshot.getValue(Integer.class);
 
-                    if(lesson1 == 9){
-                        l1_img.setVisibility(View.VISIBLE);
+                    if (lesson1 == 9) {
+                        imgNum.setVisibility(View.VISIBLE);
                         DatabaseReference lessonaslRef = usersRef.child("lessonasl");
-                        lessonaslRef.setValue(200);
-                    }
 
+                        // Check the current value of lessonasl before updating
+                        lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
+                                if (lesson1 == 9 && currentLessonAslValue < 200) {
+                                    lessonaslRef.setValue(200);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                // Handle any errors
+                            }
+                        });
+                    } else {
+                    }
                 } else {
-                    lesson1 = 0;
-                    l1_img.setVisibility(View.INVISIBLE);
                 }
             }
 
@@ -198,9 +247,60 @@ public class basiclevel extends AppCompatActivity {
             }
         });
 
+    }*/
 
 
+    private void retrieveCurrentBasicLevelProgress() {
+        String encodedEmail = encodeEmail(name);
+        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail);
+
+        // Update lesson progress
+        updateLessonProgress(usersRef.child("Alphabet"), 25, 100, l1_img);
+        updateLessonProgress(usersRef.child("numbers"), 9, 200, imgNum);
+        updateLessonProgress(usersRef.child("greetings"), 23, 300, imgGreet);
     }
+
+    private void updateLessonProgress(DatabaseReference lessonRef, int targetValue, int lessonAslValue, ImageView imageView) {
+        lessonRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    int lessonValue = snapshot.getValue(Integer.class);
+                    if (lessonValue == targetValue) {
+                        imageView.setVisibility(View.VISIBLE);
+                        DatabaseReference lessonaslRef = lessonRef.getParent().child("lessonasl");
+
+                        // Check current lessonasl value before updating
+                        lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
+                                if (lessonAslValue > currentLessonAslValue) {
+                                    lessonaslRef.setValue(lessonAslValue);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                // Handle any errors
+                            }
+                        });
+                    } else {
+                        imageView.setVisibility(View.INVISIBLE); // Ensure image is hidden if not matching target
+                    }
+                } else {
+                    imageView.setVisibility(View.INVISIBLE); // Ensure image is hidden if snapshot doesn't exist
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle any errors
+            }
+        });
+    }
+
+
 
     public static String encodeEmail(String email) {
         // Replace '.' (dot) with ',' (comma) or any other safe character
