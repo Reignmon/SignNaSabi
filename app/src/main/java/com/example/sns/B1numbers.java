@@ -32,7 +32,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class B1numbers extends AppCompatActivity {
-
     Dialog dialog;
     private boolean backPressToExit = false;
     VideoView videoView;

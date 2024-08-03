@@ -33,7 +33,8 @@ import com.google.firebase.database.ValueEventListener;
 public class basiclevel extends AppCompatActivity {
     private boolean backPressToExit = false;
     static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
-    LinearLayout Lesson1,alphabetbtn,numbersbtn,lesson2,greetingBtn,qeustionBtn;
+    LinearLayout Lesson1,lesson2,Lesson3;
+    LinearLayout alphabetbtn,numbersbtn,greetingBtn,qeustionBtn,colorsBtn,daysBtn,monthBtn,sizeBtn;
     TextView btnBack;
     ImageView l1_img,imgNum,imgGreet;
     int lesson1;
@@ -64,6 +65,11 @@ public class basiclevel extends AppCompatActivity {
         greetingBtn = findViewById(R.id.greetingbtn);
         imgGreet = findViewById(R.id.greetingimg);
         qeustionBtn = findViewById(R.id.questionbtn);
+        Lesson3 = findViewById(R.id.Lesson3_layout);
+        colorsBtn = findViewById(R.id.colorsbtn);
+        daysBtn = findViewById(R.id.daysow);
+        monthBtn = findViewById(R.id.monthsbtn);
+        sizeBtn = findViewById(R.id.sizebtn);
 
         l1_img = findViewById(R.id.lesson1_image);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
@@ -108,6 +114,38 @@ public class basiclevel extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(basiclevel.this,b2questionword.class));
+                finish();
+            }
+        });
+
+        colorsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(basiclevel.this, b3colors.class));
+                finish();
+            }
+        });
+
+        daysBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(basiclevel.this, b3daysofweek.class));
+                finish();
+            }
+        });
+
+        monthBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(basiclevel.this, b3mothoftheyear.class));
+                finish();
+            }
+        });
+
+        sizeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(basiclevel.this, b3size.class));
                 finish();
             }
         });
@@ -169,6 +207,12 @@ public class basiclevel extends AppCompatActivity {
         int v = (lesson2.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
         TransitionManager.beginDelayedTransition(lesson2,new AutoTransition());
         lesson2.setVisibility(v);
+    }
+
+    public void lesson3_view(View view){
+        int v = (Lesson3.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
+        TransitionManager.beginDelayedTransition(Lesson3,new AutoTransition());
+        Lesson3.setVisibility(v);
     }
 
     /*private void retrieveCurrentBasicLevelProgress() {

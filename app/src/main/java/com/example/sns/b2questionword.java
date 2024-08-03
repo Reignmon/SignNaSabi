@@ -81,7 +81,6 @@ public class b2questionword extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d/1cCq6_GKirlr556g9D0fFgwt9droWGHbj/view?usp=sharing
         videoUris = new Uri[]{
                 Uri.parse("https://drive.google.com/uc?export=download&id=1cPtvDgoTrICpy5M4wo4emPdZmX3L0Ql9"), //how
                 Uri.parse("https://drive.google.com/uc?export=download&id=1Z4v2c0ov-F7thNh6dT_fPZoynx45Za1F"), //why
@@ -91,10 +90,9 @@ public class b2questionword extends AppCompatActivity {
                 Uri.parse("https://drive.google.com/uc?export=download&id=1FZjjXXlbJS3iyRBzT4FYlyMkezVbSkQ3"), //when
                 Uri.parse("https://drive.google.com/uc?export=download&id=1cCq6_GKirlr556g9D0fFgwt9droWGHbj"), //what
                 // Add more URIs as needed
-
         };
 
-        //retrieveCurrentIndexFromFirebase();
+        retrieveCurrentIndexFromFirebase();
 
         // Set the first video URI
         videoView.setVideoURI(videoUris[currentIndex]);
@@ -194,7 +192,7 @@ public class b2questionword extends AppCompatActivity {
         // every click it will increment
         currentIndex++;
         if (currentIndex >= videoUris.length) {
-            //currentIndex = 0; // balik sa unang video
+            currentIndex = 0; // balik sa unang video
             dialog.show();
         }
         videoView.setVideoURI(videoUris[currentIndex]);
@@ -302,13 +300,13 @@ public class b2questionword extends AppCompatActivity {
         DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail);
 
         // Check and update for "Alphabet"
-        usersRef.child("question").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("quetionword").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     // Get currentIndex from Firebase
                     int lesson1 = snapshot.getValue(Integer.class);
-                    if (lesson1 == 9) {
+                    if (lesson1 == 6) {
                         DatabaseReference lessonaslRef = usersRef.child("lessonasl");
 
                         // Check the current value of lessonasl before updating
@@ -316,7 +314,7 @@ public class b2questionword extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 7 && currentLessonAslValue < 400) {
+                                if (lesson1 == 6 && currentLessonAslValue < 400) {
                                     lessonaslRef.setValue(400);
                                 }
                             }

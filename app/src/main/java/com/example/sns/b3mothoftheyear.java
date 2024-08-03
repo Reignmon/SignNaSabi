@@ -31,7 +31,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class b2greetings extends AppCompatActivity {
+public class b3mothoftheyear extends AppCompatActivity {
 
     Dialog dialog;
     private boolean backPressToExit = false;
@@ -48,12 +48,11 @@ public class b2greetings extends AppCompatActivity {
     private static final String KEY_PASSWORD = "password";
 
     static String name="";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_b2greetings);
+        setContentView(R.layout.activity_b3mothoftheyear);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -66,7 +65,7 @@ public class b2greetings extends AppCompatActivity {
         loadingIndicator = findViewById(R.id.loading);
         btnBack = findViewById(R.id.btnback);
 
-        dialog = new Dialog(b2greetings.this);
+        dialog = new Dialog(b3mothoftheyear.this);
         dialog.setContentView(R.layout.sucess_dialog);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.success_dialog_bg));
@@ -82,38 +81,23 @@ public class b2greetings extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1qXQ8NMIGSTII5UXYZuJ1Ng_SYCAIqrWs"), //Happy new year
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Hiouat9V911ncMK5nnPzCcaqVJuriihg"), //merry christmas
-                Uri.parse("https://drive.google.com/uc?export=download&id=1S05z3zijtyxhFnkGiY1BLQzynM5BHOgw"), //happy birthday
-                Uri.parse("https://drive.google.com/uc?export=download&id=1lEeyHGOKsRNHe1BTLgEdnQ2RKRD1Y2Ue"), //im sorry
-                Uri.parse("https://drive.google.com/uc?export=download&id=1lEeyHGOKsRNHe1BTLgEdnQ2RKRD1Y2Ue"), //where are you going
-                Uri.parse("https://drive.google.com/uc?export=download&id=1PbRPLxuS0ngADlhzZA4Jp20X6komfTMO"), //i have to go home
-                Uri.parse("https://drive.google.com/uc?export=download&id=1wC9xCqoE3552cU6QW3cgQIVjr-lcjM-z"), //what time is it
-                Uri.parse("https://drive.google.com/uc?export=download&id=1LDZNCIIqsxmB0VM0RhIBbLLJ36TaUPx7"), //seet please
-                Uri.parse("https://drive.google.com/uc?export=download&id=1k9GZhDpUtNZvwWb4VKH6DkW_0FRpQoZJ"), //whats your phone number
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DdOAS7Y3xwEJ5WOSX0z2TLJfAMxXI0oL"), //close door
-                Uri.parse("https://drive.google.com/uc?export=download&id=1MzEolbmFjgfUVtvPtQ6USkpFoyY_pzgt"), //open door
-                Uri.parse("https://drive.google.com/uc?export=download&id=1T_rVNQwmBs2DcWnlF-zPOrRzAqC5um4L"), //wheres the bathroom
-                Uri.parse("https://drive.google.com/uc?export=download&id=1k4J9Fjp_SZ8VS2ejt421UaJGHExCNugR"), //pardon me
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XPApmBwWQUN0peEQ9JS196rEwd5_bQYk"), //please
-                Uri.parse("https://drive.google.com/uc?export=download&id=19X0esSI0ypw6MGDE2C_-h4XX1Eb327By"), //thankyou
-                Uri.parse("https://drive.google.com/uc?export=download&id=1MOUKf6ngwqIqSMiIDjJVw73cF5GdgNSb"), //im fine
-                Uri.parse("https://drive.google.com/uc?export=download&id=1AVvDzn1Au4WxQCtTfuyWI6bf1OLiu5Vv"), //goodbye
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Lf63wEpE2pFttHBPCsajjc3ojvTXlwYA"), //see you later
-                Uri.parse("https://drive.google.com/uc?export=download&id=1vGMgGNhY-zZriu20GvXpldbexw-GI4EK"), //im glad to see you
-                Uri.parse("https://drive.google.com/uc?export=download&id=138s1N_MQIv3cjBT-cspD0aUD2aIi2gRS"), //how have you been
-                Uri.parse("https://drive.google.com/uc?export=download&id=138s1N_MQIv3cjBT-cspD0aUD2aIi2gRS"), //not done
-                Uri.parse("https://drive.google.com/uc?export=download&id=1dJmktBDo8nOo3EOTjNAWLDjJ81WfETrY"), //good night
-                Uri.parse("https://drive.google.com/uc?export=download&id=15q2hdABbgYkl-AIHEBUgEAmVKzHQVx56"), //good afternoon
-                Uri.parse("https://drive.google.com/uc?export=download&id=1qPi9JyKNsovL65tXlfgAR4ImGSXJmWQc"), //good morning
+                Uri.parse("https://drive.google.com/uc?export=download&id=137nJhYZ6EQuanejnpdC2ukmj97RqOMqD"), //january
+                Uri.parse("https://drive.google.com/uc?export=download&id=1YS8aAJSGRhxX_eofct-x9QcUz7nZLTyq"), //febuary
+                Uri.parse("https://drive.google.com/uc?export=download&id=1uer-XioozqWzgAWIC1AAftZzDxWSmPVe"), //march
+                Uri.parse("https://drive.google.com/uc?export=download&id=1LZE9gLfVaOkjjuocFVR5MHKyzQjH0WRz"), //april
+                Uri.parse("https://drive.google.com/uc?export=download&id=1YUyNFodaC-Cx41lVCctvx_8LeazOBs33"), //april
+                Uri.parse("https://drive.google.com/uc?export=download&id=1zMGq84IZTD30-1tDmClxdD-DL3cd8Low"), //june
+                Uri.parse("https://drive.google.com/uc?export=download&id=1zMGq84IZTD30-1tDmClxdD-DL3cd8Low"), //july
+                Uri.parse("https://drive.google.com/uc?export=download&id=1XpTBrsotSCordRFChxa8AwoPsOrQr7E9"), //august
+                Uri.parse("https://drive.google.com/uc?export=download&id=1rU3fyaVBgV0UsPBsQcWFpUnZ5FyBcQGc"), //september
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Zu0zvJN0_-X1ouJ0IW05eLMw-gTTBeR2"), //october
+                Uri.parse("https://drive.google.com/uc?export=download&id=1DJEeV-rvOvgxDmR55XKRAXSgHhorxov6"), //november
+                Uri.parse("https://drive.google.com/uc?export=download&id=1kSH1dTroQ_olyJH-Y3QXSby3cC_78ZF3"), //december
                 // Add more URIs as needed
-
         };
 
         retrieveCurrentIndexFromFirebase();
-
 
         // Set the first video URI
         videoView.setVideoURI(videoUris[currentIndex]);
@@ -150,16 +134,15 @@ public class b2greetings extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(b2greetings.this,basiclevel.class));
+                startActivity(new Intent(b3mothoftheyear.this,basiclevel.class));
                 finish();
             }
         });
-
         okayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 updatelessonasl();
-                startActivity(new Intent(b2greetings.this,basiclevel.class));
+                startActivity(new Intent(b3mothoftheyear.this,basiclevel.class));
                 finish();
             }
         });
@@ -209,7 +192,6 @@ public class b2greetings extends AppCompatActivity {
     }
 //end of code for backpress
 
-
     // code for next button
     public void playNextVideo(View view) {
         // every click it will increment
@@ -234,7 +216,7 @@ public class b2greetings extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.hasChild(encodedEmail)){
-                        usersRef.child("greetings").setValue(currentIndex);
+                        usersRef.child("months").setValue(currentIndex);
                     }
                 }
                 @Override
@@ -253,7 +235,6 @@ public class b2greetings extends AppCompatActivity {
 
     }
     // end of code for next button
-
 
     // code for prev button
     public void playPreviousVideo(View view) {
@@ -283,7 +264,7 @@ public class b2greetings extends AppCompatActivity {
     // Method to retrieve currentIndex from Firebase
     private void retrieveCurrentIndexFromFirebase() {
         String encodedEmail = encodeEmail(name);
-        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail).child("greetings");
+        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail).child("months");
         usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -322,13 +303,13 @@ public class b2greetings extends AppCompatActivity {
         DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail);
 
         // Check and update for "Alphabet"
-        usersRef.child("greetings").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("months").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     // Get currentIndex from Firebase
                     int lesson1 = snapshot.getValue(Integer.class);
-                    if (lesson1 == 23) {
+                    if (lesson1 == 11) {
                         DatabaseReference lessonaslRef = usersRef.child("lessonasl");
 
                         // Check the current value of lessonasl before updating
@@ -336,8 +317,8 @@ public class b2greetings extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 23 && currentLessonAslValue < 300) {
-                                    lessonaslRef.setValue(300);
+                                if (lesson1 == 11 && currentLessonAslValue < 700) {
+                                    lessonaslRef.setValue(700);
                                 }
                             }
 
