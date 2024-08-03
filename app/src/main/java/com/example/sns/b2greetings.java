@@ -155,6 +155,15 @@ public class b2greetings extends AppCompatActivity {
             }
         });
 
+        okayBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updatelessonasl();
+                startActivity(new Intent(b2greetings.this,basiclevel.class));
+                finish();
+            }
+        });
+
     }
 
 
@@ -206,7 +215,7 @@ public class b2greetings extends AppCompatActivity {
         // every click it will increment
         currentIndex++;
         if (currentIndex >= videoUris.length) {
-            //currentIndex = 0; // balik sa unang video
+            currentIndex = 0; // balik sa unang video
             dialog.show();
         }
         videoView.setVideoURI(videoUris[currentIndex]);
@@ -306,6 +315,50 @@ public class b2greetings extends AppCompatActivity {
     public static String encodeEmail(String email) {
         // Replace '.' (dot) with ',' (comma) or any other safe character
         return email.replace(".", ",");
+    }
+
+    private void updatelessonasl() {
+        String encodedEmail = encodeEmail(name);
+        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail);
+
+        // Check and update for "Alphabet"
+        usersRef.child("greetings").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    // Get currentIndex from Firebase
+                    int lesson1 = snapshot.getValue(Integer.class);
+                    if (lesson1 == 9) {
+                        DatabaseReference lessonaslRef = usersRef.child("lessonasl");
+
+                        // Check the current value of lessonasl before updating
+                        lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
+                                if (lesson1 == 23 && currentLessonAslValue < 300) {
+                                    lessonaslRef.setValue(300);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                // Handle any errors
+                            }
+                        });
+                    } else {
+
+                    }
+                } else {
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle any errors
+            }
+        });
     }
 
 }

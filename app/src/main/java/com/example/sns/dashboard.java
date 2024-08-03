@@ -322,7 +322,7 @@ public class dashboard extends AppCompatActivity {
 
     private void retrieveCurrentBasicLevelProgress() {
         String encodedEmail = encodeEmail(name);
-        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail).child("Alphabet");
+        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail).child("lessonasl");
         usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -332,7 +332,7 @@ public class dashboard extends AppCompatActivity {
                     basiclevelProgress.setProgress(basiclevelprogress);
                     progressLevel = basiclevelProgress.getProgress();
 
-                    if(progressLevel == 25){
+                    if(progressLevel == 1000){
                         advancelevel.setVisibility(View.VISIBLE);
                         advancelevel.setEnabled(true);
                     }

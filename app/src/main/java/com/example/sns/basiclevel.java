@@ -33,7 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 public class basiclevel extends AppCompatActivity {
     private boolean backPressToExit = false;
     static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
-    LinearLayout Lesson1,alphabetbtn,numbersbtn,lesson2,greetingBtn;
+    LinearLayout Lesson1,alphabetbtn,numbersbtn,lesson2,greetingBtn,qeustionBtn;
     TextView btnBack;
     ImageView l1_img,imgNum,imgGreet;
     int lesson1;
@@ -63,12 +63,13 @@ public class basiclevel extends AppCompatActivity {
         lesson2 = findViewById(R.id.Lesson2_layout);
         greetingBtn = findViewById(R.id.greetingbtn);
         imgGreet = findViewById(R.id.greetingimg);
+        qeustionBtn = findViewById(R.id.questionbtn);
 
         l1_img = findViewById(R.id.lesson1_image);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         name = sharedPreferences.getString(KEY_EMAIL,null);
 
-        retrieveCurrentBasicLevelProgress();
+        //retrieveCurrentBasicLevelProgress();
 
 
 
@@ -100,6 +101,13 @@ public class basiclevel extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(basiclevel.this,b2greetings.class));
+                finish();
+            }
+        });
+        qeustionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(basiclevel.this,b2questionword.class));
                 finish();
             }
         });
@@ -249,6 +257,7 @@ public class basiclevel extends AppCompatActivity {
 
     }*/
 
+/*
 
     private void retrieveCurrentBasicLevelProgress() {
         String encodedEmail = encodeEmail(name);
@@ -258,6 +267,7 @@ public class basiclevel extends AppCompatActivity {
         updateLessonProgress(usersRef.child("Alphabet"), 25, 100, l1_img);
         updateLessonProgress(usersRef.child("numbers"), 9, 200, imgNum);
         updateLessonProgress(usersRef.child("greetings"), 23, 300, imgGreet);
+        updateLessonProgress(usersRef.child("quetionword"), 7, 400, imgGreet);
     }
 
     private void updateLessonProgress(DatabaseReference lessonRef, int targetValue, int lessonAslValue, ImageView imageView) {
@@ -299,6 +309,7 @@ public class basiclevel extends AppCompatActivity {
             }
         });
     }
+*/
 
 
 

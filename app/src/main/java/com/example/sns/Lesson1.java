@@ -69,7 +69,7 @@ public class Lesson1 extends AppCompatActivity {
         btnBack = findViewById(R.id.btnback);
 
         dialog = new Dialog(Lesson1.this);
-        dialog.setContentView(R.layout.sucess_dialog);
+        dialog.setContentView(R.layout.complete_dialog);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.success_dialog_bg));
         dialog.setCancelable(false);
@@ -162,6 +162,7 @@ public class Lesson1 extends AppCompatActivity {
         okayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                updatelessonasl();
                 startActivity(new Intent(Lesson1.this,basiclevel.class));
                 finish();
             }
@@ -218,7 +219,7 @@ public class Lesson1 extends AppCompatActivity {
         // every click it will increment
         currentIndex++;
         if (currentIndex >= videoUris.length) {
-            //currentIndex = 0; // balik sa unang video
+            currentIndex = 0; // balik sa unang video
             dialog.show();
         }
         videoView.setVideoURI(videoUris[currentIndex]);
@@ -316,6 +317,53 @@ public class Lesson1 extends AppCompatActivity {
                 // Handle any errors
             }
         });
+    }
+
+
+    private void updatelessonasl() {
+        String encodedEmail = encodeEmail(name);
+        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail);
+
+        // Check and update for "Alphabet"
+        usersRef.child("Alphabet").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    // Get currentIndex from Firebase
+                    int lesson1 = snapshot.getValue(Integer.class);
+                    if (lesson1 == 25) {
+                        DatabaseReference lessonaslRef = usersRef.child("lessonasl");
+
+                        // Check the current value of lessonasl before updating
+                        lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
+                                if (lesson1 == 25 && currentLessonAslValue < 100) {
+                                    lessonaslRef.setValue(100);
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                // Handle any errors
+                            }
+                        });
+                    } else {
+
+                    }
+                } else {
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle any errors
+            }
+        });
+
     }
 
 
