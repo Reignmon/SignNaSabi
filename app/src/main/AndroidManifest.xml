@@ -16,6 +16,15 @@
         android:theme="@style/Theme.SNS"
         tools:targetApi="31">
         <activity
+            android:name=".b4relationship"
+            android:exported="false" />
+        <activity
+            android:name=".b4people"
+            android:exported="false" />
+        <activity
+            android:name=".b4family"
+            android:exported="false" />
+        <activity
             android:name=".b3size"
             android:exported="false" />
         <activity

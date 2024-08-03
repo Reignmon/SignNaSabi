@@ -33,8 +33,9 @@ import com.google.firebase.database.ValueEventListener;
 public class basiclevel extends AppCompatActivity {
     private boolean backPressToExit = false;
     static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
-    LinearLayout Lesson1,lesson2,Lesson3;
-    LinearLayout alphabetbtn,numbersbtn,greetingBtn,qeustionBtn,colorsBtn,daysBtn,monthBtn,sizeBtn;
+    LinearLayout Lesson1,lesson2,Lesson3,Lesson4;
+    LinearLayout alphabetbtn,numbersbtn,greetingBtn,qeustionBtn,colorsBtn,daysBtn,monthBtn,sizeBtn,
+            familyBtn,peopleBtn,relationshipBtn;
     TextView btnBack;
     ImageView l1_img,imgNum,imgGreet;
     int lesson1;
@@ -57,21 +58,27 @@ public class basiclevel extends AppCompatActivity {
             return insets;
         });
         Lesson1 = findViewById(R.id.Lesson1_layout);
+        lesson2 = findViewById(R.id.Lesson2_layout);
+        Lesson3 = findViewById(R.id.Lesson3_layout);
+        Lesson4 = findViewById(R.id.Lesson4_layout);
+
+        l1_img = findViewById(R.id.lesson1_image);
+        imgNum = findViewById(R.id.imgnum);
+        imgGreet = findViewById(R.id.greetingimg);
+
         alphabetbtn = findViewById(R.id.alphabet);
         btnBack = findViewById(R.id.btnback);
         numbersbtn = findViewById(R.id.numbers);
-        imgNum = findViewById(R.id.imgnum);
-        lesson2 = findViewById(R.id.Lesson2_layout);
         greetingBtn = findViewById(R.id.greetingbtn);
-        imgGreet = findViewById(R.id.greetingimg);
         qeustionBtn = findViewById(R.id.questionbtn);
-        Lesson3 = findViewById(R.id.Lesson3_layout);
         colorsBtn = findViewById(R.id.colorsbtn);
         daysBtn = findViewById(R.id.daysow);
         monthBtn = findViewById(R.id.monthsbtn);
         sizeBtn = findViewById(R.id.sizebtn);
+        familyBtn = findViewById(R.id.familybtn);
+        peopleBtn = findViewById(R.id.peoplebtn);
+        relationshipBtn = findViewById(R.id.relatioshipbtn);
 
-        l1_img = findViewById(R.id.lesson1_image);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         name = sharedPreferences.getString(KEY_EMAIL,null);
 
@@ -150,6 +157,29 @@ public class basiclevel extends AppCompatActivity {
             }
         });
 
+        familyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(basiclevel.this,b4family.class));
+                finish();
+            }
+        });
+
+        peopleBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(basiclevel.this,b4people.class));
+                finish();
+            }
+        });
+
+        relationshipBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(basiclevel.this,b4relationship.class));
+                finish();
+            }
+        });
     }
 
 
@@ -213,6 +243,12 @@ public class basiclevel extends AppCompatActivity {
         int v = (Lesson3.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
         TransitionManager.beginDelayedTransition(Lesson3,new AutoTransition());
         Lesson3.setVisibility(v);
+    }
+
+    public void lesson4_view(View view){
+        int v = (Lesson4.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
+        TransitionManager.beginDelayedTransition(Lesson4,new AutoTransition());
+        Lesson4.setVisibility(v);
     }
 
     /*private void retrieveCurrentBasicLevelProgress() {

@@ -332,7 +332,7 @@ public class dashboard extends AppCompatActivity {
                     basiclevelProgress.setProgress(basiclevelprogress);
                     progressLevel = basiclevelProgress.getProgress();
 
-                    if(progressLevel == 1000){
+                    if(progressLevel == 2000){
                         advancelevel.setVisibility(View.VISIBLE);
                         advancelevel.setEnabled(true);
                     }
