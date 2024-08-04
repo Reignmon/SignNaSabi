@@ -33,9 +33,10 @@ import com.google.firebase.database.ValueEventListener;
 public class basiclevel extends AppCompatActivity {
     private boolean backPressToExit = false;
     static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
-    LinearLayout Lesson1,lesson2,Lesson3,Lesson4;
+    LinearLayout Lesson1,lesson2,Lesson3,Lesson4,Lesson5,Lesson6,Lesson7,Lesson8;
     LinearLayout alphabetbtn,numbersbtn,greetingBtn,qeustionBtn,colorsBtn,daysBtn,monthBtn,sizeBtn,
-            familyBtn,peopleBtn,relationshipBtn;
+            familyBtn,peopleBtn,relationshipBtn,actionBtn,adjectiveBtn,emotionBtn,mentalactBtn
+            ,directionBtn,componentsBtn,foodsdrinkBtn,clothesbtn,bodypartBtn;
     TextView btnBack;
     ImageView l1_img,imgNum,imgGreet;
     int lesson1;
@@ -61,6 +62,10 @@ public class basiclevel extends AppCompatActivity {
         lesson2 = findViewById(R.id.Lesson2_layout);
         Lesson3 = findViewById(R.id.Lesson3_layout);
         Lesson4 = findViewById(R.id.Lesson4_layout);
+        Lesson5 = findViewById(R.id.Lesson5_layout);
+        Lesson6 = findViewById(R.id.Lesson6_layout);
+        Lesson7 = findViewById(R.id.Lesson7_layout);
+        Lesson8 = findViewById(R.id.Lesson8_layout);
 
         l1_img = findViewById(R.id.lesson1_image);
         imgNum = findViewById(R.id.imgnum);
@@ -78,13 +83,36 @@ public class basiclevel extends AppCompatActivity {
         familyBtn = findViewById(R.id.familybtn);
         peopleBtn = findViewById(R.id.peoplebtn);
         relationshipBtn = findViewById(R.id.relatioshipbtn);
+        actionBtn = findViewById(R.id.actwordbtn);
+        adjectiveBtn = findViewById(R.id.adjectivebtn);
+        emotionBtn = findViewById(R.id.emotionbtn);
+        mentalactBtn = findViewById(R.id.mentalactbtn);
+        directionBtn = findViewById(R.id.Placeloctbtn);
+        componentsBtn = findViewById(R.id.partsthingsbtn);
+        foodsdrinkBtn = findViewById(R.id.foodsdrinksbtn);
+        clothesbtn = findViewById(R.id.clothesbtn);
+        bodypartBtn = findViewById(R.id.bodypartbtn);
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         name = sharedPreferences.getString(KEY_EMAIL,null);
 
         //retrieveCurrentBasicLevelProgress();
 
+        bodypartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(basiclevel.this,b8bodypart.class));
+                finish();
+            }
+        });
 
+        clothesbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(basiclevel.this,b8clothehygiene.class));
+                finish();
+            }
+        });
 
         alphabetbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,6 +208,61 @@ public class basiclevel extends AppCompatActivity {
                 finish();
             }
         });
+
+        actionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(basiclevel.this,b5actionword.class));
+                finish();
+            }
+        });
+
+        adjectiveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(basiclevel.this,b4adjective.class));
+                finish();
+            }
+        });
+
+        emotionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(basiclevel.this,b6emotion.class));
+                finish();
+            }
+        });
+
+        mentalactBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(basiclevel.this,b6mentalact.class));
+                finish();
+            }
+        });
+
+        directionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(basiclevel.this,b7placelocation.class));
+                finish();
+            }
+        });
+
+        componentsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(basiclevel.this,b7areas.class));
+                finish();
+            }
+        });
+        foodsdrinkBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(basiclevel.this,b7foodsdrinks.class));
+                finish();
+            }
+        });
     }
 
 
@@ -251,6 +334,27 @@ public class basiclevel extends AppCompatActivity {
         Lesson4.setVisibility(v);
     }
 
+    public void lesson5_view(View view){
+        int v = (Lesson5.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
+        TransitionManager.beginDelayedTransition(Lesson5,new AutoTransition());
+        Lesson5.setVisibility(v);
+    }
+    public void lesson6_view(View view){
+        int v = (Lesson6.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
+        TransitionManager.beginDelayedTransition(Lesson6,new AutoTransition());
+        Lesson6.setVisibility(v);
+    }
+    public void lesson7_view(View view){
+        int v = (Lesson7.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
+        TransitionManager.beginDelayedTransition(Lesson7,new AutoTransition());
+        Lesson7.setVisibility(v);
+    }
+
+    public void lesson8_view(View view){
+        int v = (Lesson8.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
+        TransitionManager.beginDelayedTransition(Lesson8,new AutoTransition());
+        Lesson8.setVisibility(v);
+    }
     /*private void retrieveCurrentBasicLevelProgress() {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail);

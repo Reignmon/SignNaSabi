@@ -16,6 +16,33 @@
         android:theme="@style/Theme.SNS"
         tools:targetApi="31">
         <activity
+            android:name=".b8bodypart"
+            android:exported="false" />
+        <activity
+            android:name=".b8clothehygiene"
+            android:exported="false" />
+        <activity
+            android:name=".b7foodsdrinks"
+            android:exported="false" />
+        <activity
+            android:name=".b7areas"
+            android:exported="false" />
+        <activity
+            android:name=".b7placelocation"
+            android:exported="false" />
+        <activity
+            android:name=".b6mentalact"
+            android:exported="false" />
+        <activity
+            android:name=".b6emotion"
+            android:exported="false" />
+        <activity
+            android:name=".b4adjective"
+            android:exported="false" />
+        <activity
+            android:name=".b5actionword"
+            android:exported="false" />
+        <activity
             android:name=".b4relationship"
             android:exported="false" />
         <activity
