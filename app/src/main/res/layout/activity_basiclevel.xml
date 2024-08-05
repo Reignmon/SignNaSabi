@@ -189,7 +189,7 @@
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
-                                android:layout_width="150dp"
+                                android:layout_width="160dp"
                                 android:layout_height="wrap_content"/>
                             <ImageView
                                 android:id="@+id/imgnum"
@@ -324,7 +324,7 @@
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
-                                android:layout_width="130dp"
+                                android:layout_width="120dp"
                                 android:layout_height="wrap_content"/>
                             <ImageView
                                 android:id="@+id/quetionimg"
@@ -425,7 +425,7 @@
                                 android:layout_height="wrap_content"/>
 
                             <ImageView
-                                android:id="@+id/greetingsimg"
+                                android:id="@+id/colorimg"
                                 android:layout_width="30dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -627,6 +627,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
                                 android:layout_weight="1"
+                                android:layout_marginBottom="3dp"
                                 android:fontFamily="@font/chewy"
                                 android:text="Family"
                                 android:textColor="#DD7719"
@@ -800,6 +801,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
                                 android:layout_weight="1"
+                                android:layout_marginBottom="3dp"
                                 android:fontFamily="@font/chewy"
                                 android:text="Basic Action Word"
                                 android:textColor="#DD7719"
@@ -840,6 +842,7 @@
                                 android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Adjective"
+                                android:layout_marginBottom="3dp"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
@@ -939,6 +942,7 @@
                                 android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Emotion"
+                                android:layout_marginBottom="3dp"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
@@ -976,6 +980,7 @@
                                 android:layout_marginStart="10dp"
                                 android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
+                                android:layout_marginBottom="3dp"
                                 android:text="Mental Action"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
@@ -1076,6 +1081,7 @@
                                 android:layout_marginStart="10dp"
                                 android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
+                                android:layout_marginBottom="3dp"
                                 android:text="Direction"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
@@ -1115,6 +1121,7 @@
                                 android:layout_marginStart="10dp"
                                 android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
+                                android:layout_marginBottom="3dp"
                                 android:text="Components"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
@@ -1152,13 +1159,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
+                                android:layout_marginBottom="3dp"
                                 android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Foods and Drinks"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
-                                android:layout_width="125dp"
+                                android:layout_width="105dp"
                                 android:layout_height="wrap_content"/>
 
                             <ImageView
@@ -1244,7 +1252,7 @@
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_height="47dp"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 app:srcCompat="@drawable/hygiene" />
                             <TextView
@@ -1253,6 +1261,7 @@
                                 android:layout_marginStart="10dp"
                                 android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
+                                android:layout_marginBottom="3dp"
                                 android:text="Clothing and Hygiene"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
@@ -1291,6 +1300,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
                                 android:layout_weight="1"
+                                android:layout_marginBottom="3dp"
                                 android:fontFamily="@font/chewy"
                                 android:text="Parts Of The Body"
                                 android:textColor="#DD7719"

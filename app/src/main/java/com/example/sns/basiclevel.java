@@ -38,7 +38,9 @@ public class basiclevel extends AppCompatActivity {
             familyBtn,peopleBtn,relationshipBtn,actionBtn,adjectiveBtn,emotionBtn,mentalactBtn
             ,directionBtn,componentsBtn,foodsdrinkBtn,clothesbtn,bodypartBtn;
     TextView btnBack;
-    ImageView l1_img,imgNum,imgGreet;
+    ImageView l1_img,imgNum,imgGreet,quesstionImg,colorsImg,daysImg,monthImg,sizeImg,
+            familyImg,peopleImg,relationshipImg,actionImg,adjectiveImg,emotionImg,mentalactImg
+            ,directionImg,componentsImg,foodsdrinkImg,clothesImg,bodypartImg;
     int lesson1;
 
     SharedPreferences sharedPreferences;
@@ -70,6 +72,23 @@ public class basiclevel extends AppCompatActivity {
         l1_img = findViewById(R.id.lesson1_image);
         imgNum = findViewById(R.id.imgnum);
         imgGreet = findViewById(R.id.greetingimg);
+        quesstionImg = findViewById(R.id.quetionimg);
+        colorsImg = findViewById(R.id.colorimg);
+        daysImg = findViewById(R.id.daysofwimg);
+        monthImg = findViewById(R.id.montsimg);
+        sizeImg = findViewById(R.id.sizeimg);
+        familyImg = findViewById(R.id.familyimg);
+        peopleImg = findViewById(R.id.peopleimg);
+        relationshipImg = findViewById(R.id.relationshipimg);
+        actionImg = findViewById(R.id.actwordimg);
+        adjectiveImg = findViewById(R.id.adjectivesimg);
+        emotionImg = findViewById(R.id.emotionimg);
+        mentalactImg = findViewById(R.id.mentalactimg);
+        directionImg = findViewById(R.id.placeloctbtn);
+        componentsImg = findViewById(R.id.partsthingsimg);
+        foodsdrinkImg = findViewById(R.id.foodsdrinkimg);
+        clothesImg = findViewById(R.id.clothesimg);
+        bodypartImg = findViewById(R.id.bodypartimg);
 
         alphabetbtn = findViewById(R.id.alphabet);
         btnBack = findViewById(R.id.btnback);
@@ -97,6 +116,7 @@ public class basiclevel extends AppCompatActivity {
         name = sharedPreferences.getString(KEY_EMAIL,null);
 
         //retrieveCurrentBasicLevelProgress();
+        retrieveLessonASL();
 
         bodypartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -494,7 +514,137 @@ public class basiclevel extends AppCompatActivity {
         });
     }
 */
+/*
+    public void retrieveLessonASL(){
+        String encodedEmail = encodeEmail(name);
+        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail).child("lessonasl");
 
+        usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    int lessonAsl = snapshot.getValue(Integer.class);
+                    switch (lessonAsl){
+                        case 100:
+                            l1_img.setVisibility(View.VISIBLE);
+                            break;
+                        case 200:
+                            l1_img.setVisibility(View.VISIBLE);
+                            imgNum.setVisibility(View.VISIBLE);
+                            break;
+                        case 300:
+                            l1_img.setVisibility(View.VISIBLE);
+                            imgNum.setVisibility(View.VISIBLE);
+                            imgGreet.setVisibility(View.VISIBLE);
+                            break;
+                        case 400:
+                            l1_img.setVisibility(View.VISIBLE);
+                            imgNum.setVisibility(View.VISIBLE);
+                            imgGreet.setVisibility(View.VISIBLE);
+                            quesstionImg.setVisibility(View.VISIBLE);
+                            break;
+                        case 500:
+                            l1_img.setVisibility(View.VISIBLE);
+                            imgNum.setVisibility(View.VISIBLE);
+                            imgGreet.setVisibility(View.VISIBLE);
+                            quesstionImg.setVisibility(View.VISIBLE);
+                            colorsImg.setVisibility(View.VISIBLE);
+                            break;
+                        case 600:
+                            l1_img.setVisibility(View.VISIBLE);
+                            imgNum.setVisibility(View.VISIBLE);
+                            imgGreet.setVisibility(View.VISIBLE);
+                            quesstionImg.setVisibility(View.VISIBLE);
+                            colorsImg.setVisibility(View.VISIBLE);
+                            daysImg.setVisibility(View.VISIBLE);
+                            break;
+                        case 700:
+                            l1_img.setVisibility(View.VISIBLE);
+                            imgNum.setVisibility(View.VISIBLE);
+                            imgGreet.setVisibility(View.VISIBLE);
+                            quesstionImg.setVisibility(View.VISIBLE);
+                            colorsImg.setVisibility(View.VISIBLE);
+                            daysImg.setVisibility(View.VISIBLE);
+                            monthImg.setVisibility(View.VISIBLE);
+                            break;
+                        case 800:
+                            l1_img.setVisibility(View.VISIBLE);
+                            imgNum.setVisibility(View.VISIBLE);
+                            imgGreet.setVisibility(View.VISIBLE);
+                            quesstionImg.setVisibility(View.VISIBLE);
+                            colorsImg.setVisibility(View.VISIBLE);
+                            daysImg.setVisibility(View.VISIBLE);
+                            monthImg.setVisibility(View.VISIBLE);
+                            sizeImg.setVisibility(View.VISIBLE);
+                            break;
+                        case 900:
+                            l1_img.setVisibility(View.VISIBLE);
+                            imgNum.setVisibility(View.VISIBLE);
+                            imgGreet.setVisibility(View.VISIBLE);
+                            quesstionImg.setVisibility(View.VISIBLE);
+                            colorsImg.setVisibility(View.VISIBLE);
+                            daysImg.setVisibility(View.VISIBLE);
+                            monthImg.setVisibility(View.VISIBLE);
+                            sizeImg.setVisibility(View.VISIBLE);
+                            familyImg.setVisibility(View.VISIBLE);
+                            break;
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }*/
+
+
+    public void retrieveLessonASL() {
+        String encodedEmail = encodeEmail(name);
+        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail).child("lessonasl");
+
+        usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    int lessonAsl = snapshot.getValue(Integer.class);
+                    handleVisibility(lessonAsl);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle possible errors
+            }
+        });
+    }
+
+
+    private void handleVisibility(int lessonAsl) {
+        // Visibility settings based on lessonAsl value
+        if (lessonAsl >= 100) l1_img.setVisibility(View.VISIBLE);
+        if (lessonAsl >= 200) imgNum.setVisibility(View.VISIBLE);
+        if (lessonAsl >= 300) imgGreet.setVisibility(View.VISIBLE);
+        if (lessonAsl >= 400) quesstionImg.setVisibility(View.VISIBLE);
+        if (lessonAsl >= 500) colorsImg.setVisibility(View.VISIBLE);
+        if (lessonAsl >= 600) daysImg.setVisibility(View.VISIBLE);
+        if (lessonAsl >= 700) monthImg.setVisibility(View.VISIBLE);
+        if (lessonAsl >= 800) sizeImg.setVisibility(View.VISIBLE);
+        if (lessonAsl >= 900) familyImg.setVisibility(View.VISIBLE);
+        if (lessonAsl >= 1000) peopleImg.setVisibility(View.VISIBLE);
+        if (lessonAsl >= 1100) relationshipImg.setVisibility(View.VISIBLE);
+        if (lessonAsl >= 1200) actionImg.setVisibility(View.VISIBLE);
+        if (lessonAsl >= 1300) adjectiveImg.setVisibility(View.VISIBLE);
+        if (lessonAsl >= 1400) emotionImg.setVisibility(View.VISIBLE);
+        if (lessonAsl >= 1500) mentalactImg.setVisibility(View.VISIBLE);
+        if (lessonAsl >= 1600) directionImg.setVisibility(View.VISIBLE);
+        if (lessonAsl >= 1700) componentsImg.setVisibility(View.VISIBLE);
+        if (lessonAsl >= 1800) foodsdrinkImg.setVisibility(View.VISIBLE);
+        if (lessonAsl >= 1900) clothesImg.setVisibility(View.VISIBLE);
+        if (lessonAsl >= 2000) bodypartImg.setVisibility(View.VISIBLE);
+    }
 
 
     public static String encodeEmail(String email) {
