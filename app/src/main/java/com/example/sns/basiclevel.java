@@ -115,24 +115,9 @@ public class basiclevel extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         name = sharedPreferences.getString(KEY_EMAIL,null);
 
-        //retrieveCurrentBasicLevelProgress();
         retrieveLessonASL();
 
-        bodypartBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(basiclevel.this,b8bodypart.class));
-                finish();
-            }
-        });
 
-        clothesbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(basiclevel.this,b8clothehygiene.class));
-                finish();
-            }
-        });
 
         alphabetbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,13 +127,6 @@ public class basiclevel extends AppCompatActivity {
             }
         });
 
-        numbersbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(basiclevel.this, B1numbers.class));
-                finish();
-            }
-        });
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,131 +136,6 @@ public class basiclevel extends AppCompatActivity {
             }
         });
 
-        greetingBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(basiclevel.this,b2greetings.class));
-                finish();
-            }
-        });
-        qeustionBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(basiclevel.this,b2questionword.class));
-                finish();
-            }
-        });
-
-        colorsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(basiclevel.this, b3colors.class));
-                finish();
-            }
-        });
-
-        daysBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(basiclevel.this, b3daysofweek.class));
-                finish();
-            }
-        });
-
-        monthBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(basiclevel.this, b3mothoftheyear.class));
-                finish();
-            }
-        });
-
-        sizeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(basiclevel.this, b3size.class));
-                finish();
-            }
-        });
-
-        familyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(basiclevel.this,b4family.class));
-                finish();
-            }
-        });
-
-        peopleBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(basiclevel.this,b4people.class));
-                finish();
-            }
-        });
-
-        relationshipBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(basiclevel.this,b4relationship.class));
-                finish();
-            }
-        });
-
-        actionBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(basiclevel.this,b5actionword.class));
-                finish();
-            }
-        });
-
-        adjectiveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(basiclevel.this,b4adjective.class));
-                finish();
-            }
-        });
-
-        emotionBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(basiclevel.this,b6emotion.class));
-                finish();
-            }
-        });
-
-        mentalactBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(basiclevel.this,b6mentalact.class));
-                finish();
-            }
-        });
-
-        directionBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(basiclevel.this,b7placelocation.class));
-                finish();
-            }
-        });
-
-        componentsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(basiclevel.this,b7areas.class));
-                finish();
-            }
-        });
-        foodsdrinkBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(basiclevel.this,b7foodsdrinks.class));
-                finish();
-            }
-        });
     }
 
 
@@ -514,92 +367,6 @@ public class basiclevel extends AppCompatActivity {
         });
     }
 */
-/*
-    public void retrieveLessonASL(){
-        String encodedEmail = encodeEmail(name);
-        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail).child("lessonasl");
-
-        usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    int lessonAsl = snapshot.getValue(Integer.class);
-                    switch (lessonAsl){
-                        case 100:
-                            l1_img.setVisibility(View.VISIBLE);
-                            break;
-                        case 200:
-                            l1_img.setVisibility(View.VISIBLE);
-                            imgNum.setVisibility(View.VISIBLE);
-                            break;
-                        case 300:
-                            l1_img.setVisibility(View.VISIBLE);
-                            imgNum.setVisibility(View.VISIBLE);
-                            imgGreet.setVisibility(View.VISIBLE);
-                            break;
-                        case 400:
-                            l1_img.setVisibility(View.VISIBLE);
-                            imgNum.setVisibility(View.VISIBLE);
-                            imgGreet.setVisibility(View.VISIBLE);
-                            quesstionImg.setVisibility(View.VISIBLE);
-                            break;
-                        case 500:
-                            l1_img.setVisibility(View.VISIBLE);
-                            imgNum.setVisibility(View.VISIBLE);
-                            imgGreet.setVisibility(View.VISIBLE);
-                            quesstionImg.setVisibility(View.VISIBLE);
-                            colorsImg.setVisibility(View.VISIBLE);
-                            break;
-                        case 600:
-                            l1_img.setVisibility(View.VISIBLE);
-                            imgNum.setVisibility(View.VISIBLE);
-                            imgGreet.setVisibility(View.VISIBLE);
-                            quesstionImg.setVisibility(View.VISIBLE);
-                            colorsImg.setVisibility(View.VISIBLE);
-                            daysImg.setVisibility(View.VISIBLE);
-                            break;
-                        case 700:
-                            l1_img.setVisibility(View.VISIBLE);
-                            imgNum.setVisibility(View.VISIBLE);
-                            imgGreet.setVisibility(View.VISIBLE);
-                            quesstionImg.setVisibility(View.VISIBLE);
-                            colorsImg.setVisibility(View.VISIBLE);
-                            daysImg.setVisibility(View.VISIBLE);
-                            monthImg.setVisibility(View.VISIBLE);
-                            break;
-                        case 800:
-                            l1_img.setVisibility(View.VISIBLE);
-                            imgNum.setVisibility(View.VISIBLE);
-                            imgGreet.setVisibility(View.VISIBLE);
-                            quesstionImg.setVisibility(View.VISIBLE);
-                            colorsImg.setVisibility(View.VISIBLE);
-                            daysImg.setVisibility(View.VISIBLE);
-                            monthImg.setVisibility(View.VISIBLE);
-                            sizeImg.setVisibility(View.VISIBLE);
-                            break;
-                        case 900:
-                            l1_img.setVisibility(View.VISIBLE);
-                            imgNum.setVisibility(View.VISIBLE);
-                            imgGreet.setVisibility(View.VISIBLE);
-                            quesstionImg.setVisibility(View.VISIBLE);
-                            colorsImg.setVisibility(View.VISIBLE);
-                            daysImg.setVisibility(View.VISIBLE);
-                            monthImg.setVisibility(View.VISIBLE);
-                            sizeImg.setVisibility(View.VISIBLE);
-                            familyImg.setVisibility(View.VISIBLE);
-                            break;
-                    }
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }*/
-
 
     public void retrieveLessonASL() {
         String encodedEmail = encodeEmail(name);
@@ -621,29 +388,203 @@ public class basiclevel extends AppCompatActivity {
         });
     }
 
-
     private void handleVisibility(int lessonAsl) {
         // Visibility settings based on lessonAsl value
-        if (lessonAsl >= 100) l1_img.setVisibility(View.VISIBLE);
-        if (lessonAsl >= 200) imgNum.setVisibility(View.VISIBLE);
-        if (lessonAsl >= 300) imgGreet.setVisibility(View.VISIBLE);
-        if (lessonAsl >= 400) quesstionImg.setVisibility(View.VISIBLE);
-        if (lessonAsl >= 500) colorsImg.setVisibility(View.VISIBLE);
-        if (lessonAsl >= 600) daysImg.setVisibility(View.VISIBLE);
-        if (lessonAsl >= 700) monthImg.setVisibility(View.VISIBLE);
-        if (lessonAsl >= 800) sizeImg.setVisibility(View.VISIBLE);
-        if (lessonAsl >= 900) familyImg.setVisibility(View.VISIBLE);
-        if (lessonAsl >= 1000) peopleImg.setVisibility(View.VISIBLE);
-        if (lessonAsl >= 1100) relationshipImg.setVisibility(View.VISIBLE);
-        if (lessonAsl >= 1200) actionImg.setVisibility(View.VISIBLE);
-        if (lessonAsl >= 1300) adjectiveImg.setVisibility(View.VISIBLE);
-        if (lessonAsl >= 1400) emotionImg.setVisibility(View.VISIBLE);
-        if (lessonAsl >= 1500) mentalactImg.setVisibility(View.VISIBLE);
-        if (lessonAsl >= 1600) directionImg.setVisibility(View.VISIBLE);
-        if (lessonAsl >= 1700) componentsImg.setVisibility(View.VISIBLE);
-        if (lessonAsl >= 1800) foodsdrinkImg.setVisibility(View.VISIBLE);
-        if (lessonAsl >= 1900) clothesImg.setVisibility(View.VISIBLE);
-        if (lessonAsl >= 2000) bodypartImg.setVisibility(View.VISIBLE);
+        if (lessonAsl >= 100){
+            numbersbtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(basiclevel.this, B1numbers.class));
+                    finish();
+                }
+            });
+            l1_img.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 200){
+            greetingBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(basiclevel.this,b2greetings.class));
+                    finish();
+                }
+            });
+            imgNum.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 300){
+            qeustionBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(basiclevel.this,b2questionword.class));
+                    finish();
+                }
+            });
+
+            imgGreet.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 400){
+            colorsBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(basiclevel.this, b3colors.class));
+                    finish();
+                }
+            });
+            quesstionImg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 500){
+            daysBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(basiclevel.this, b3daysofweek.class));
+                    finish();
+                }
+            });
+            colorsImg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 600){
+
+            monthBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(basiclevel.this, b3mothoftheyear.class));
+                    finish();
+                }
+            });
+            daysImg.setVisibility(View.VISIBLE);
+        }
+
+        if (lessonAsl >= 700){
+            sizeBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(basiclevel.this, b3size.class));
+                    finish();
+                }
+            });
+            monthImg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 800){
+            familyBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(basiclevel.this,b4family.class));
+                    finish();
+                }
+            });
+            sizeImg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 900){
+            peopleBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(basiclevel.this,b4people.class));
+                    finish();
+                }
+            });
+            familyImg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 1000){
+            relationshipBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(basiclevel.this,b4relationship.class));
+                    finish();
+                }
+            });
+            peopleImg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 1100){
+            actionBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(basiclevel.this,b5actionword.class));
+                    finish();
+                }
+            });
+            relationshipImg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 1200){
+            adjectiveBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(basiclevel.this,b5actionword.class));
+                    finish();
+                }
+            });
+            actionImg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 1300){
+            emotionBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(basiclevel.this,b5actionword.class));
+                    finish();
+                }
+            });
+            adjectiveImg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 1400){
+            mentalactBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(basiclevel.this,b5actionword.class));
+                    finish();
+                }
+            });
+            emotionImg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 1500){
+            directionBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(basiclevel.this,b5actionword.class));
+                    finish();
+                }
+            });
+            mentalactImg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 1600){
+            componentsBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(basiclevel.this,b5actionword.class));
+                    finish();
+                }
+            });
+            directionImg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 1700){
+            foodsdrinkBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(basiclevel.this,b5actionword.class));
+                    finish();
+                }
+            });
+            componentsImg.setVisibility(View.VISIBLE);
+        }if (lessonAsl >= 1800){
+            clothesbtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(basiclevel.this,b5actionword.class));
+                    finish();
+                }
+            });
+            foodsdrinkImg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 1900){
+            bodypartBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(basiclevel.this,b5actionword.class));
+                    finish();
+                }
+            });
+            clothesImg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 2000){
+            bodypartImg.setVisibility(View.VISIBLE);
+        }
     }
 
 

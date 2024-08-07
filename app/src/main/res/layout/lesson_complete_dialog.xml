@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="500dp">
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/trophy"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/trophy"/>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/congrats"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_alignBottom="@+id/trophy"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/congrats" />
+
+        <Button
+            android:id="@+id/okaybtn"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignStart="@id/congrats"
+            android:layout_alignEnd="@id/congrats"
+            android:layout_alignBottom="@+id/trophy"
+            android:layout_marginHorizontal="90dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/corner_dialogcongrats"
+            android:text="Okay"
+            android:textColor="#F4E5C5"
+            tools:ignore="TouchTargetSizeCheck" />
+    </RelativeLayout>
+
+
+
+
+
+
+</LinearLayout>

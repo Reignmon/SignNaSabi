@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
@@ -108,9 +109,9 @@ public class dashboard extends AppCompatActivity {
         name = sharedPreferences.getString(KEY_EMAIL,null);
 
         dialog = new Dialog(dashboard.this);
-        dialog.setContentView(R.layout.policie_dialog);
+        dialog.setContentView(R.layout.lesson_complete_dialog);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.success_dialog_bg));
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
 
         retrieveCurrentBasicLevelProgress();

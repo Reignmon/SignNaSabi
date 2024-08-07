@@ -6,10 +6,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -66,9 +68,9 @@ public class B1numbers extends AppCompatActivity {
         btnBack = findViewById(R.id.btnback);
 
         dialog = new Dialog(B1numbers.this);
-        dialog.setContentView(R.layout.sucess_dialog);
+        dialog.setContentView(R.layout.lesson_complete_dialog);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.success_dialog_bg));
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
 
         final Button okayBtn = dialog.findViewById(R.id.okaybtn);
@@ -115,7 +117,6 @@ public class B1numbers extends AppCompatActivity {
             // Restart the video or load another video
             videoView.setVideoURI(videoUris[currentIndex]); // Reload the same video
             videoView.start(); // Start playing again
-
             nextButton.setVisibility(View.VISIBLE);
             nextButton.setEnabled(true);
         });
@@ -141,8 +142,10 @@ public class B1numbers extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 updatelessonasl();
-                startActivity(new Intent(B1numbers.this,basiclevel.class));
-                finish();
+                new Handler().postDelayed(() -> {
+                    startActivity(new Intent(B1numbers.this,basiclevel.class));
+                    finish();
+                }, 500); // 1-second delay
             }
         });
     }
@@ -195,10 +198,18 @@ public class B1numbers extends AppCompatActivity {
         currentIndex++;
         if (currentIndex >= videoUris.length) {
             currentIndex = 0; // balik sa unang video
+            /*if (videoView.isPlaying()) {
+                Log.d("VideoPlayback", "Pausing video");
+                videoView.pause();
+            } else {
+                Log.d("VideoPlayback", "Video is not playing, cannot pause");
+            }*/
             dialog.show();
+        }else {
+            // Set the new video URI and start playback
+            videoView.setVideoURI(videoUris[currentIndex]);
+            videoView.start();
         }
-        videoView.setVideoURI(videoUris[currentIndex]);
-        videoView.start();
 
         nextButton.setVisibility(View.INVISIBLE);
         nextButton.setEnabled(false);

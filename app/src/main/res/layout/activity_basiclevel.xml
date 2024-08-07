@@ -168,17 +168,18 @@
                             android:id="@+id/numbers"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
+                                android:layout_weight="1"
                                 app:srcCompat="@drawable/number" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -188,14 +189,16 @@
                                 android:text="Number"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
+
                             <Space
                                 android:layout_width="160dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content" />
+
                             <ImageView
                                 android:id="@+id/imgnum"
                                 android:layout_width="30dp"
-                                android:layout_weight="1"
                                 android:layout_height="match_parent"
+                                android:layout_weight="1"
                                 android:visibility="invisible"
                                 app:srcCompat="@drawable/approved" />
 
@@ -225,12 +228,13 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="lesson2_view"
-                        android:layout_marginVertical="5dp"
                         android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="5dp"
                         android:layout_weight="1"
                         android:gravity="start"
+                        android:onClick="lesson2_view"
                         android:orientation="vertical">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -245,9 +249,9 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:alpha=".5"
-                            android:paddingEnd="40dp"
                             android:justificationMode="inter_word"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:paddingEnd="40dp"
+                            android:text=" Learn key greetings and question words."
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -257,25 +261,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="5dp"
-                        android:visibility="gone"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        >
 
                         <LinearLayout
                             android:id="@+id/greetingbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
-                                app:srcCompat="@drawable/agreement" />
+                                android:layout_weight="1"
+                                app:srcCompat="@drawable/partnershiphandshake" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -285,9 +291,10 @@
                                 android:text="Greetings"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
+
                             <Space
                                 android:layout_width="150dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content" />
 
                             <ImageView
                                 android:id="@+id/greetingimg"
@@ -303,17 +310,18 @@
                             android:id="@+id/questionbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
-                                app:srcCompat="@drawable/number" />
+                                android:layout_weight="1"
+                                app:srcCompat="@drawable/speechbubble" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -323,14 +331,16 @@
                                 android:text="Question Word"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
+
                             <Space
                                 android:layout_width="120dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content" />
+
                             <ImageView
                                 android:id="@+id/quetionimg"
                                 android:layout_width="30dp"
-                                android:layout_weight="1"
                                 android:layout_height="match_parent"
+                                android:layout_weight="1"
                                 android:visibility="invisible"
                                 app:srcCompat="@drawable/approved" />
 
@@ -382,7 +392,7 @@
                             android:alpha=".5"
                             android:paddingEnd="40dp"
                             android:justificationMode="inter_word"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:text="signs for colors, days, months, and sizes "
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -591,9 +601,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:alpha=".5"
-                            android:paddingEnd="40dp"
-                            android:justificationMode="inter_word"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:paddingEnd="20dp"
+                            android:text="People, family members, and relationships"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -765,9 +774,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:alpha=".5"
-                            android:justificationMode="inter_word"
-                            android:paddingEnd="40dp"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:paddingEnd="5dp"
+                            android:text="signs for common actions and adjectives"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -904,9 +912,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:alpha=".5"
-                            android:justificationMode="inter_word"
-                            android:paddingEnd="40dp"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:paddingEnd="10dp"
+                            android:text="signs for expressing mental actions and emotions"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -1044,9 +1051,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:alpha=".5"
-                            android:justificationMode="inter_word"
-                            android:paddingEnd="40dp"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:text="Directions,components, and foods drinks"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -1224,9 +1229,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:alpha=".5"
-                            android:justificationMode="inter_word"
-                            android:paddingEnd="40dp"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:text="signs for clothes, personal hygiene, and body parts"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>

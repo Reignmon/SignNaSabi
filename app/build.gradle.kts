@@ -49,4 +49,5 @@ dependencies {
     implementation("com.github.erkutaras:ShowcaseView:1.5.0")
     implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
     implementation("com.google.firebase:firebase-database")
+    implementation("com.airbnb.android:lottie:6.5.0")
 }

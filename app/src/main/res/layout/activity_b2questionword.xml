@@ -104,14 +104,14 @@
                     android:textColor="@color/text_color"
                     android:textSize="20sp"
                     tools:ignore="HardcodedText" />
-            </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/image1"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/agreement" />
+                <ImageView
+                    android:id="@+id/image1"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/speechbubble" />
+            </RelativeLayout>
 
         </RelativeLayout>
 

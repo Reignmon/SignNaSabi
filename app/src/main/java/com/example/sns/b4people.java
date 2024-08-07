@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -66,9 +67,9 @@ public class b4people extends AppCompatActivity {
         btnBack = findViewById(R.id.btnback);
 
         dialog = new Dialog(b4people.this);
-        dialog.setContentView(R.layout.sucess_dialog);
+        dialog.setContentView(R.layout.lesson_complete_dialog);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.success_dialog_bg));
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
 
         final Button okayBtn = dialog.findViewById(R.id.okaybtn);
@@ -147,8 +148,11 @@ public class b4people extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 updatelessonasl();
-                startActivity(new Intent(b4people.this,basiclevel.class));
-                finish();
+                new Handler().postDelayed(() -> {
+                    startActivity(new Intent(b4people.this,basiclevel.class));
+                    finish();
+                }, 500); // 1-second delay
+
             }
         });
 
