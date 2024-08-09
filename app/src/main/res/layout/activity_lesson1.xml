@@ -144,18 +144,19 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"/>
 
-            <ProgressBar
+            <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/loading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/video"
                 android:layout_alignParentTop="true"
-                android:indeterminate="true"
-                android:visibility="gone"
-                android:indeterminateDrawable="@drawable/progress_bg"
                 android:layout_marginTop="134dp"
+                android:visibility="gone"
                 android:layout_marginBottom="118dp"
-                android:foregroundGravity="center" />
+                android:foregroundGravity="center"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/load"/>
 
         </RelativeLayout>
 

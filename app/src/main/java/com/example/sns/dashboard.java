@@ -109,7 +109,7 @@ public class dashboard extends AppCompatActivity {
         name = sharedPreferences.getString(KEY_EMAIL,null);
 
         dialog = new Dialog(dashboard.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.loading_dialog);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
