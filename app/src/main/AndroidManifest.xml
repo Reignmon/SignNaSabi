@@ -16,6 +16,12 @@
         android:theme="@style/Theme.SNS"
         tools:targetApi="31">
         <activity
+            android:name=".advanceL1personel"
+            android:exported="false" />
+        <activity
+            android:name=".advancelevel"
+            android:exported="false" />
+        <activity
             android:name=".b8bodypart"
             android:exported="false" />
         <activity

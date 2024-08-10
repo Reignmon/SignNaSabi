@@ -507,7 +507,7 @@ public class basiclevel extends AppCompatActivity {
             adjectiveBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(basiclevel.this,b5actionword.class));
+                    startActivity(new Intent(basiclevel.this,b4adjective.class));
                     finish();
                 }
             });
@@ -517,7 +517,7 @@ public class basiclevel extends AppCompatActivity {
             emotionBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(basiclevel.this,b5actionword.class));
+                    startActivity(new Intent(basiclevel.this,b6emotion.class));
                     finish();
                 }
             });
@@ -527,7 +527,7 @@ public class basiclevel extends AppCompatActivity {
             mentalactBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(basiclevel.this,b5actionword.class));
+                    startActivity(new Intent(basiclevel.this,b6mentalact.class));
                     finish();
                 }
             });
@@ -537,7 +537,7 @@ public class basiclevel extends AppCompatActivity {
             directionBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(basiclevel.this,b5actionword.class));
+                    startActivity(new Intent(basiclevel.this,b7placelocation.class));
                     finish();
                 }
             });
@@ -547,7 +547,7 @@ public class basiclevel extends AppCompatActivity {
             componentsBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(basiclevel.this,b5actionword.class));
+                    startActivity(new Intent(basiclevel.this,b7areas.class));
                     finish();
                 }
             });
@@ -557,7 +557,7 @@ public class basiclevel extends AppCompatActivity {
             foodsdrinkBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(basiclevel.this,b5actionword.class));
+                    startActivity(new Intent(basiclevel.this,b7foodsdrinks.class));
                     finish();
                 }
             });
@@ -566,7 +566,7 @@ public class basiclevel extends AppCompatActivity {
             clothesbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(basiclevel.this,b5actionword.class));
+                    startActivity(new Intent(basiclevel.this,b8clothehygiene.class));
                     finish();
                 }
             });
@@ -576,7 +576,7 @@ public class basiclevel extends AppCompatActivity {
             bodypartBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(basiclevel.this,b5actionword.class));
+                    startActivity(new Intent(basiclevel.this,b8bodypart.class));
                     finish();
                 }
             });

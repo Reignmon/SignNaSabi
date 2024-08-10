@@ -60,7 +60,7 @@ public class dashboard extends AppCompatActivity {
     private static final int REQUEST_CODE_SPEECH_INPUT = 1000;
     EditText txttrans;
     private boolean backPressToExit = false;
-    ProgressBar basiclevelProgress;
+    ProgressBar basiclevelProgress,advanceProgress;
 
     static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
     SharedPreferences sharedPreferences;
@@ -70,12 +70,12 @@ public class dashboard extends AppCompatActivity {
 
     static String name="";
 
-    int basiclevelprogress = 0, progressLevel = 0;
+    int basiclevelprogress = 0, progressLevel = 0,advancelevelprog = 0, progressLevel1 = 0;
     int showCaseNumber = 0;
     Button btnprof,btnTrans,btnpractice,btnhistory;
     int backgroundColor = Color.argb(191, 0, 255, 255);
 
-    CardView intermediateCard,advancelevel;
+    CardView intermediateCard,advancelevel,advanceLevel1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +100,9 @@ public class dashboard extends AppCompatActivity {
         btnprof = findViewById(R.id.profile);
         final CardView MbasciLevel = findViewById(R.id.basiclevel);
         basiclevelProgress = findViewById(R.id.basiclevel_progress);
+        advanceProgress = findViewById(R.id.advanceprogress);
         advancelevel = findViewById(R.id.advancelevel);
+        advanceLevel1 = findViewById(R.id.advancelevel1);
         btnTrans = findViewById(R.id.translate);
         btnpractice = findViewById(R.id.practice);
         btnhistory= findViewById(R.id.history);
@@ -115,6 +117,7 @@ public class dashboard extends AppCompatActivity {
         dialog.setCancelable(false);
 
         retrieveCurrentBasicLevelProgress();
+        retrieveadvacelessson();
 
        /* //code for showcase
         showCaseNumber = 1;
@@ -136,6 +139,13 @@ public class dashboard extends AppCompatActivity {
         //end of code for showcase
 
 */
+        advancelevel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(dashboard.this,advancelevel.class));
+                finish();
+            }
+        });
         imagebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -324,6 +334,7 @@ public class dashboard extends AppCompatActivity {
     private void retrieveCurrentBasicLevelProgress() {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail).child("lessonasl");
+        DatabaseReference Advancelevel = databaseReference.child("advancelevel_tb").child(encodedEmail).child("advancelesson");
         usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -337,7 +348,7 @@ public class dashboard extends AppCompatActivity {
                         advancelevel.setVisibility(View.VISIBLE);
                         advancelevel.setEnabled(true);
                     }
-                } else {
+                } else if (basiclevelprogress == 0){
                     basiclevelProgress.setProgress(0);
                     advancelevel.setVisibility(View.INVISIBLE);
                     advancelevel.setEnabled(false);
@@ -347,6 +358,33 @@ public class dashboard extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Handle any errors
+            }
+        });
+    }
+
+    private void retrieveadvacelessson() {
+        String encodedEmail = encodeEmail(name);
+        DatabaseReference Advancelevel = databaseReference.child("advancelevel_tb").child(encodedEmail).child("advancelesson");
+        Advancelevel.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    advancelevelprog = snapshot.getValue(Integer.class);
+                    advanceProgress.setProgress(advancelevelprog);
+                    if(advancelevelprog == 2000){
+                        advanceLevel1.setVisibility(View.VISIBLE);
+                        advanceLevel1.setEnabled(true);
+                    } else if (advancelevelprog == 0) {
+                        advanceProgress.setProgress(0);
+                        advanceLevel1.setVisibility(View.INVISIBLE);
+                        advanceLevel1.setEnabled(false);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
