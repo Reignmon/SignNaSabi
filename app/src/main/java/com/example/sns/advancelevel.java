@@ -28,8 +28,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class advancelevel extends AppCompatActivity {
     LinearLayout Lesson1,lesson2,Lesson3,Lesson4,Lesson5,Lesson6,Lesson7,Lesson8;
-    LinearLayout schoolperBtn;
-    ImageView schoolpersonelImg;
+    LinearLayout schoolperBtn,schoolTermbtn,subjectBtn,idustriesBtn,measureBtn,computertermBtn,sportsBtn,countriesBtn,nationBtn;
+    ImageView schoolpersonelImg,schoolTermimg,subjectimg,idustriesimg,measureimg,computertermimg,sportsimg,countriesimg,nationimg;
     private boolean backPressToExit = false;
     TextView btnBack;
 
@@ -53,10 +53,31 @@ public class advancelevel extends AppCompatActivity {
         btnBack = findViewById(R.id.btnback);
 
         Lesson1 = findViewById(R.id.Lesson1_layout);
+        lesson2 = findViewById(R.id.Lesson2_layout);
+        Lesson3 = findViewById(R.id.Lesson3_layout);
+        Lesson4 = findViewById(R.id.Lesson4_layout);
+        Lesson5 = findViewById(R.id.Lesson5_layout);
+        Lesson6 = findViewById(R.id.Lesson6_layout);
 
         schoolperBtn = findViewById(R.id.schoolpersonelbtn);
+        schoolTermbtn = findViewById(R.id.schooltermbtn);
+        subjectBtn = findViewById(R.id.subjectbtn);
+        idustriesBtn = findViewById(R.id.tradeindusbtn);
+        measureBtn = findViewById(R.id.measurebtn);
+        computertermBtn = findViewById(R.id.compurtertermbtn);
+        sportsBtn = findViewById(R.id.sportsbtn);
+        countriesBtn = findViewById(R.id.countriesbtn);
+        nationBtn = findViewById(R.id.nationalitiesbtn);
 
+        nationimg = findViewById(R.id.nationalitiesimg);
+        countriesimg = findViewById(R.id.countriesimg);
+        computertermimg = findViewById(R.id.compurtertermimg);
+        schoolTermimg = findViewById(R.id.schooltermimg);
         schoolpersonelImg = findViewById(R.id.schoolpersonelimg);
+        subjectimg = findViewById(R.id.subjectimg);
+        idustriesimg = findViewById(R.id.tradeindusimg);
+        measureimg = findViewById(R.id.measureimg);
+        sportsimg = findViewById(R.id.sportsimg);
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         name = sharedPreferences.getString(KEY_EMAIL,null);
@@ -77,6 +98,69 @@ public class advancelevel extends AppCompatActivity {
                 finish();
             }
         });
+        schoolTermbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(advancelevel.this, advanceL1schoolterm.class));
+                finish();
+            }
+        });
+
+        subjectBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(advancelevel.this, advanceL1subject.class));
+                finish();
+            }
+        });
+
+        idustriesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(advancelevel.this, advanceL2industries.class));
+                finish();
+            }
+        });
+
+        measureBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(advancelevel.this, advanceL3measure.class));
+                finish();
+            }
+        });
+
+        computertermBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(advancelevel.this, advanceL4computer.class));
+                finish();
+            }
+        });
+        sportsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(advancelevel.this, advanceL5sports.class));
+                finish();
+            }
+        });
+
+        countriesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(advancelevel.this, advanceL6countries.class));
+                finish();
+            }
+        });
+
+        nationBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(advancelevel.this, advanceL6nation.class));
+                finish();
+            }
+        });
+
     }
     //code for backpress
     @Override
@@ -125,6 +209,35 @@ public class advancelevel extends AppCompatActivity {
         TransitionManager.beginDelayedTransition(Lesson1,new AutoTransition());
         Lesson1.setVisibility(v);
     }
+    public void lesson2_view(View view){
+        int v = (lesson2.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
+        TransitionManager.beginDelayedTransition(lesson2,new AutoTransition());
+        lesson2.setVisibility(v);
+    }
+
+    public void lesson3_view(View view){
+        int v = (Lesson3.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
+        TransitionManager.beginDelayedTransition(Lesson3,new AutoTransition());
+        Lesson3.setVisibility(v);
+    }
+    public void lesson4_view(View view){
+        int v = (Lesson4.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
+        TransitionManager.beginDelayedTransition(Lesson4,new AutoTransition());
+        Lesson4.setVisibility(v);
+    }
+
+    public void lesson5_view(View view){
+        int v = (Lesson5.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
+        TransitionManager.beginDelayedTransition(Lesson5,new AutoTransition());
+        Lesson5.setVisibility(v);
+    }
+
+    public void lesson6_view(View view){
+        int v = (Lesson6.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
+        TransitionManager.beginDelayedTransition(Lesson6,new AutoTransition());
+        Lesson6.setVisibility(v);
+    }
+
 
     public void retrieveLessonASL() {
         String encodedEmail = encodeEmail(name);
@@ -149,6 +262,30 @@ public class advancelevel extends AppCompatActivity {
     private void handleVisibility(int lessonAsl) {
         if (lessonAsl >= 100){
             schoolpersonelImg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 200){
+            schoolTermimg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 300){
+            subjectimg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 400){
+            idustriesimg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 500){
+            measureimg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 600){
+            computertermimg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 700){
+            sportsimg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 800){
+            countriesimg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 900){
+            nationimg.setVisibility(View.VISIBLE);
         }
     }
 

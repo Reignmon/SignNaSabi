@@ -16,6 +16,30 @@
         android:theme="@style/Theme.SNS"
         tools:targetApi="31">
         <activity
+            android:name=".advanceL6nation"
+            android:exported="false" />
+        <activity
+            android:name=".advanceL6countries"
+            android:exported="false" />
+        <activity
+            android:name=".advanceL5sports"
+            android:exported="false" />
+        <activity
+            android:name=".advanceL4computer"
+            android:exported="false" />
+        <activity
+            android:name=".advanceL3measure"
+            android:exported="false" />
+        <activity
+            android:name=".advanceL2industries"
+            android:exported="false" />
+        <activity
+            android:name=".advanceL1subject"
+            android:exported="false" />
+        <activity
+            android:name=".advanceL1schoolterm"
+            android:exported="false" />
+        <activity
             android:name=".advanceL1personel"
             android:exported="false" />
         <activity
