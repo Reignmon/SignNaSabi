@@ -691,7 +691,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="5dp"
-
+                        android:visibility="gone"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -775,6 +775,104 @@
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/lesson7"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/backgroundColor">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="lesson7_view"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/chewy"
+                            android:text="Lesson 7"
+                            android:textColor="#DD7719"
+                            android:textSize="25sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:alpha=".5"
+                            android:paddingEnd="40dp"
+                            android:justificationMode="inter_word"
+                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:textColor="#824000"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Lesson7_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:visibility="gone"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/idiomsbtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="5dp"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_weight="1"
+                                android:layout_height="24dp"
+                                app:srcCompat="@drawable/fracture" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/chewy"
+                                android:text="Idioms"
+                                android:textColor="#DD7719"
+                                android:textSize="16sp" />
+                            <Space
+                                android:layout_width="165dp"
+                                android:layout_height="wrap_content"/>
+
+                            <ImageView
+                                android:id="@+id/idiomsimg"
+                                android:layout_width="30dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:visibility="invisible"
+                                app:srcCompat="@drawable/approved" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
 
 
         </LinearLayout>

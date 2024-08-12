@@ -28,8 +28,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class advancelevel extends AppCompatActivity {
     LinearLayout Lesson1,lesson2,Lesson3,Lesson4,Lesson5,Lesson6,Lesson7,Lesson8;
-    LinearLayout schoolperBtn,schoolTermbtn,subjectBtn,idustriesBtn,measureBtn,computertermBtn,sportsBtn,countriesBtn,nationBtn;
-    ImageView schoolpersonelImg,schoolTermimg,subjectimg,idustriesimg,measureimg,computertermimg,sportsimg,countriesimg,nationimg;
+    LinearLayout schoolperBtn,schoolTermbtn,subjectBtn,idustriesBtn,measureBtn,computertermBtn,sportsBtn,countriesBtn,nationBtn,idiomBtn;
+    ImageView schoolpersonelImg,schoolTermimg,subjectimg,idustriesimg,measureimg,computertermimg,sportsimg,countriesimg,nationimg,idiomimg;
     private boolean backPressToExit = false;
     TextView btnBack;
 
@@ -58,6 +58,7 @@ public class advancelevel extends AppCompatActivity {
         Lesson4 = findViewById(R.id.Lesson4_layout);
         Lesson5 = findViewById(R.id.Lesson5_layout);
         Lesson6 = findViewById(R.id.Lesson6_layout);
+        Lesson7 = findViewById(R.id.Lesson7_layout);
 
         schoolperBtn = findViewById(R.id.schoolpersonelbtn);
         schoolTermbtn = findViewById(R.id.schooltermbtn);
@@ -68,7 +69,9 @@ public class advancelevel extends AppCompatActivity {
         sportsBtn = findViewById(R.id.sportsbtn);
         countriesBtn = findViewById(R.id.countriesbtn);
         nationBtn = findViewById(R.id.nationalitiesbtn);
+        idiomBtn = findViewById(R.id.idiomsbtn);
 
+        idiomimg = findViewById(R.id.idiomsimg);
         nationimg = findViewById(R.id.nationalitiesimg);
         countriesimg = findViewById(R.id.countriesimg);
         computertermimg = findViewById(R.id.compurtertermimg);
@@ -95,68 +98,6 @@ public class advancelevel extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(advancelevel.this, advanceL1personel.class));
-                finish();
-            }
-        });
-        schoolTermbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(advancelevel.this, advanceL1schoolterm.class));
-                finish();
-            }
-        });
-
-        subjectBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(advancelevel.this, advanceL1subject.class));
-                finish();
-            }
-        });
-
-        idustriesBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(advancelevel.this, advanceL2industries.class));
-                finish();
-            }
-        });
-
-        measureBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(advancelevel.this, advanceL3measure.class));
-                finish();
-            }
-        });
-
-        computertermBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(advancelevel.this, advanceL4computer.class));
-                finish();
-            }
-        });
-        sportsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(advancelevel.this, advanceL5sports.class));
-                finish();
-            }
-        });
-
-        countriesBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(advancelevel.this, advanceL6countries.class));
-                finish();
-            }
-        });
-
-        nationBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(advancelevel.this, advanceL6nation.class));
                 finish();
             }
         });
@@ -238,6 +179,13 @@ public class advancelevel extends AppCompatActivity {
         Lesson6.setVisibility(v);
     }
 
+    public void lesson7_view(View view){
+        int v = (Lesson7.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
+        TransitionManager.beginDelayedTransition(Lesson7,new AutoTransition());
+        Lesson7.setVisibility(v);
+    }
+
+
 
     public void retrieveLessonASL() {
         String encodedEmail = encodeEmail(name);
@@ -261,31 +209,97 @@ public class advancelevel extends AppCompatActivity {
 
     private void handleVisibility(int lessonAsl) {
         if (lessonAsl >= 100){
+            schoolTermbtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(advancelevel.this, advanceL1schoolterm.class));
+                    finish();
+                }
+            });
             schoolpersonelImg.setVisibility(View.VISIBLE);
         }
         if (lessonAsl >= 200){
+            subjectBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(advancelevel.this, advanceL1subject.class));
+                    finish();
+                }
+            });
             schoolTermimg.setVisibility(View.VISIBLE);
         }
         if (lessonAsl >= 300){
+            idustriesBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(advancelevel.this, advanceL2industries.class));
+                    finish();
+                }
+            });
             subjectimg.setVisibility(View.VISIBLE);
         }
         if (lessonAsl >= 400){
+            measureBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(advancelevel.this, advanceL3measure.class));
+                    finish();
+                }
+            });
             idustriesimg.setVisibility(View.VISIBLE);
         }
         if (lessonAsl >= 500){
+            computertermBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(advancelevel.this, advanceL4computer.class));
+                    finish();
+                }
+            });
             measureimg.setVisibility(View.VISIBLE);
         }
         if (lessonAsl >= 600){
+            sportsBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(advancelevel.this, advanceL5sports.class));
+                    finish();
+                }
+            });
             computertermimg.setVisibility(View.VISIBLE);
         }
         if (lessonAsl >= 700){
+            countriesBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(advancelevel.this, advanceL6countries.class));
+                    finish();
+                }
+            });
             sportsimg.setVisibility(View.VISIBLE);
         }
         if (lessonAsl >= 800){
+            nationBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(advancelevel.this, advanceL6nation.class));
+                    finish();
+                }
+            });
             countriesimg.setVisibility(View.VISIBLE);
         }
         if (lessonAsl >= 900){
+            idiomBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(advancelevel.this, advanceL7idiom.class));
+                    finish();
+                }
+            });
             nationimg.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 1000){
+            idiomimg.setVisibility(View.VISIBLE);
         }
     }
 

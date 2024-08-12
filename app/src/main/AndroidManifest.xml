@@ -16,6 +16,9 @@
         android:theme="@style/Theme.SNS"
         tools:targetApi="31">
         <activity
+            android:name=".advanceL7idiom"
+            android:exported="false" />
+        <activity
             android:name=".advanceL6nation"
             android:exported="false" />
         <activity
