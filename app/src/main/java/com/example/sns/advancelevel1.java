@@ -27,9 +27,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class advancelevel1 extends AppCompatActivity {
-    LinearLayout Lesson1,lesson2,Lesson3,Lesson4,Lesson5,Lesson6,Lesson7;
-    LinearLayout biblicaltermBtn,biblicalcharacBtn,evangelistBtn,bibleplaceBtn,celebrationBtn;
-    ImageView biblicaltermimg,biblicalcharacimg,evangelistimg,bibleplaceimg,celebrationimg;
+    LinearLayout Lesson1,lesson2,Lesson3,Lesson4,Lesson5,Lesson6,Lesson7,Lesson8,Lesson9;
+    LinearLayout biblicaltermBtn,biblicalcharacBtn,evangelistBtn,bibleplaceBtn,celebrationBtn,sacramentsBtn,perosonelBtn,sectorBtn,artsBtn;
+    ImageView biblicaltermimg,biblicalcharacimg,evangelistimg,bibleplaceimg,celebrationimg,sacramentsimg,perosonelimg,sectorimg,artsimg;
     private boolean backPressToExit = false;
     TextView btnBack;
 
@@ -57,18 +57,30 @@ public class advancelevel1 extends AppCompatActivity {
         Lesson3 = findViewById(R.id.Lesson3_layout);
         Lesson4 = findViewById(R.id.Lesson4_layout);
         Lesson5 = findViewById(R.id.Lesson5_layout);
+        Lesson6 = findViewById(R.id.Lesson6_layout);
+        Lesson7 = findViewById(R.id.Lesson7_layout);
+        Lesson8 = findViewById(R.id.Lesson8_layout);
+        Lesson9 = findViewById(R.id.Lesson9_layout);
 
         biblicaltermBtn = findViewById(R.id.biblicaltermbtn);
         biblicalcharacBtn = findViewById(R.id.biblicalcharacterbtn);
         evangelistBtn = findViewById(R.id.evangelistbtn);
         bibleplaceBtn = findViewById(R.id.bibleplacebtn);
         celebrationBtn = findViewById(R.id.religiouscelebbtn);
+        sacramentsBtn = findViewById(R.id.sacramentsbtn);
+        perosonelBtn = findViewById(R.id.churchpersonelbtn);
+        sectorBtn = findViewById(R.id.sectorbtn);
+        artsBtn = findViewById(R.id.performingartsbtn);
 
         biblicaltermimg = findViewById(R.id.biblicaltermimg);
         biblicalcharacimg = findViewById(R.id.biblicalcharacterimg);
         evangelistimg = findViewById(R.id.evangelistimg);
         bibleplaceimg = findViewById(R.id.bibleplaceimg);
         celebrationimg = findViewById(R.id.religiousceleimg);
+        sacramentsimg = findViewById(R.id.sacramentsimg);
+        perosonelimg = findViewById(R.id.churchpersonelimg);
+        sectorimg = findViewById(R.id.sectorimg);
+        artsimg = findViewById(R.id.performingartsimg);
 
         btnBack = findViewById(R.id.btnback);
 
@@ -160,6 +172,26 @@ public class advancelevel1 extends AppCompatActivity {
         TransitionManager.beginDelayedTransition(Lesson5,new AutoTransition());
         Lesson5.setVisibility(v);
     }
+    public void lesson6_view(View view){
+        int v = (Lesson6.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
+        TransitionManager.beginDelayedTransition(Lesson6,new AutoTransition());
+        Lesson6.setVisibility(v);
+    }
+    public void lesson7_view(View view){
+        int v = (Lesson7.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
+        TransitionManager.beginDelayedTransition(Lesson7,new AutoTransition());
+        Lesson7.setVisibility(v);
+    }
+    public void lesson8_view(View view){
+        int v = (Lesson8.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
+        TransitionManager.beginDelayedTransition(Lesson8,new AutoTransition());
+        Lesson8.setVisibility(v);
+    }
+    public void lesson9_view(View view){
+        int v = (Lesson9.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
+        TransitionManager.beginDelayedTransition(Lesson9,new AutoTransition());
+        Lesson9.setVisibility(v);
+    }
 
     public void retrieveLessonASL() {
         String encodedEmail = encodeEmail(name);
@@ -223,6 +255,46 @@ public class advancelevel1 extends AppCompatActivity {
         }
         if (lessonAsl >= 500){
             celebrationimg.setVisibility(View.VISIBLE);
+            sacramentsBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(advancelevel1.this, advance1L6sacraments.class));
+                    finish();
+                }
+            });
+        }
+        if (lessonAsl >= 600){
+            sacramentsimg.setVisibility(View.VISIBLE);
+            perosonelBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(advancelevel1.this, advance1L7personel.class));
+                    finish();
+                }
+            });
+        }
+        if (lessonAsl >= 700){
+            perosonelimg.setVisibility(View.VISIBLE);
+            sectorBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(advancelevel1.this, advance1L8sector.class));
+                    finish();
+                }
+            });
+        }
+        if (lessonAsl >= 800){
+            sectorimg.setVisibility(View.VISIBLE);
+            artsBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(advancelevel1.this, advance1L9arts.class));
+                    finish();
+                }
+            });
+        }
+        if (lessonAsl >= 900){
+            artsimg.setVisibility(View.VISIBLE);
         }
     }
 

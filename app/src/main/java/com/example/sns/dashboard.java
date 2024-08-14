@@ -408,7 +408,7 @@ public class dashboard extends AppCompatActivity {
                 if (snapshot.exists()){
                     advancelevelprog = snapshot.getValue(Integer.class);
                     advanceLevel1progress.setProgress(advancelevelprog);
-                    if(advancelevelprog == 1000){
+                    if(advancelevelprog == 900){
                         intermediateLevel.setVisibility(View.VISIBLE);
                         intermediateLevel.setEnabled(true);
                     } else if (advancelevelprog == 0) {
