@@ -26,10 +26,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class advancelevel extends AppCompatActivity {
+public class advancelevel1 extends AppCompatActivity {
     LinearLayout Lesson1,lesson2,Lesson3,Lesson4,Lesson5,Lesson6,Lesson7;
-    LinearLayout schoolperBtn,schoolTermbtn,subjectBtn,idustriesBtn,measureBtn,computertermBtn,sportsBtn,countriesBtn,nationBtn,idiomBtn;
-    ImageView schoolpersonelImg,schoolTermimg,subjectimg,idustriesimg,measureimg,computertermimg,sportsimg,countriesimg,nationimg,idiomimg;
+    LinearLayout biblicaltermBtn,biblicalcharacBtn,evangelistBtn,bibleplaceBtn,celebrationBtn;
+    ImageView biblicaltermimg,biblicalcharacimg,evangelistimg,bibleplaceimg,celebrationimg;
     private boolean backPressToExit = false;
     TextView btnBack;
 
@@ -40,69 +40,59 @@ public class advancelevel extends AppCompatActivity {
     static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
 
     static String name="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_advancelevel);
+        setContentView(R.layout.activity_advancelevel1);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        btnBack = findViewById(R.id.btnback);
 
         Lesson1 = findViewById(R.id.Lesson1_layout);
         lesson2 = findViewById(R.id.Lesson2_layout);
         Lesson3 = findViewById(R.id.Lesson3_layout);
         Lesson4 = findViewById(R.id.Lesson4_layout);
         Lesson5 = findViewById(R.id.Lesson5_layout);
-        Lesson6 = findViewById(R.id.Lesson6_layout);
-        Lesson7 = findViewById(R.id.Lesson7_layout);
 
-        schoolperBtn = findViewById(R.id.schoolpersonelbtn);
-        schoolTermbtn = findViewById(R.id.schooltermbtn);
-        subjectBtn = findViewById(R.id.subjectbtn);
-        idustriesBtn = findViewById(R.id.tradeindusbtn);
-        measureBtn = findViewById(R.id.measurebtn);
-        computertermBtn = findViewById(R.id.compurtertermbtn);
-        sportsBtn = findViewById(R.id.sportsbtn);
-        countriesBtn = findViewById(R.id.countriesbtn);
-        nationBtn = findViewById(R.id.nationalitiesbtn);
-        idiomBtn = findViewById(R.id.idiomsbtn);
+        biblicaltermBtn = findViewById(R.id.biblicaltermbtn);
+        biblicalcharacBtn = findViewById(R.id.biblicalcharacterbtn);
+        evangelistBtn = findViewById(R.id.evangelistbtn);
+        bibleplaceBtn = findViewById(R.id.bibleplacebtn);
+        celebrationBtn = findViewById(R.id.religiouscelebbtn);
 
-        idiomimg = findViewById(R.id.idiomsimg);
-        nationimg = findViewById(R.id.nationalitiesimg);
-        countriesimg = findViewById(R.id.countriesimg);
-        computertermimg = findViewById(R.id.compurtertermimg);
-        schoolTermimg = findViewById(R.id.schooltermimg);
-        schoolpersonelImg = findViewById(R.id.schoolpersonelimg);
-        subjectimg = findViewById(R.id.subjectimg);
-        idustriesimg = findViewById(R.id.tradeindusimg);
-        measureimg = findViewById(R.id.measureimg);
-        sportsimg = findViewById(R.id.sportsimg);
+        biblicaltermimg = findViewById(R.id.biblicaltermimg);
+        biblicalcharacimg = findViewById(R.id.biblicalcharacterimg);
+        evangelistimg = findViewById(R.id.evangelistimg);
+        bibleplaceimg = findViewById(R.id.bibleplaceimg);
+        celebrationimg = findViewById(R.id.religiousceleimg);
+
+        btnBack = findViewById(R.id.btnback);
+
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         name = sharedPreferences.getString(KEY_EMAIL,null);
-
         retrieveLessonASL();
 
+        biblicaltermBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(advancelevel1.this,advance1L1biblicalterm.class));
+                finish();
+            }
+        });
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(advancelevel.this, dashboard.class));
+                startActivity(new Intent(advancelevel1.this,dashboard.class));
                 finish();
             }
         });
-        schoolperBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(advancelevel.this, advanceL1personel.class));
-                finish();
-            }
-        });
-
     }
+
     //code for backpress
     @Override
     public void onBackPressed() {
@@ -144,7 +134,6 @@ public class advancelevel extends AppCompatActivity {
         }, 2000);
     }
 //end of code for backpress
-
     public void lesson1_view(View view){
         int v = (Lesson1.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
         TransitionManager.beginDelayedTransition(Lesson1,new AutoTransition());
@@ -155,7 +144,6 @@ public class advancelevel extends AppCompatActivity {
         TransitionManager.beginDelayedTransition(lesson2,new AutoTransition());
         lesson2.setVisibility(v);
     }
-
     public void lesson3_view(View view){
         int v = (Lesson3.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
         TransitionManager.beginDelayedTransition(Lesson3,new AutoTransition());
@@ -173,23 +161,9 @@ public class advancelevel extends AppCompatActivity {
         Lesson5.setVisibility(v);
     }
 
-    public void lesson6_view(View view){
-        int v = (Lesson6.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
-        TransitionManager.beginDelayedTransition(Lesson6,new AutoTransition());
-        Lesson6.setVisibility(v);
-    }
-
-    public void lesson7_view(View view){
-        int v = (Lesson7.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
-        TransitionManager.beginDelayedTransition(Lesson7,new AutoTransition());
-        Lesson7.setVisibility(v);
-    }
-
-
-
     public void retrieveLessonASL() {
         String encodedEmail = encodeEmail(name);
-        DatabaseReference usersRef = databaseReference.child("advancelevel_tb").child(encodedEmail).child("advancelesson");
+        DatabaseReference usersRef = databaseReference.child("advancelevel1_tb").child(encodedEmail).child("advancelesson1");
 
         usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -206,108 +180,55 @@ public class advancelevel extends AppCompatActivity {
             }
         });
     }
-
     private void handleVisibility(int lessonAsl) {
         if (lessonAsl >= 100){
-            schoolTermbtn.setOnClickListener(new View.OnClickListener() {
+            biblicaltermimg.setVisibility(View.VISIBLE);
+            biblicalcharacBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(advancelevel.this, advanceL1schoolterm.class));
+                    startActivity(new Intent(advancelevel1.this, advance1L1biblicalcharac.class));
                     finish();
                 }
             });
-            schoolpersonelImg.setVisibility(View.VISIBLE);
         }
         if (lessonAsl >= 200){
-            subjectBtn.setOnClickListener(new View.OnClickListener() {
+            biblicalcharacimg.setVisibility(View.VISIBLE);
+            evangelistBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(advancelevel.this, advanceL1subject.class));
+                    startActivity(new Intent(advancelevel1.this, adavance1L3evangelist.class));
                     finish();
                 }
             });
-            schoolTermimg.setVisibility(View.VISIBLE);
         }
         if (lessonAsl >= 300){
-            idustriesBtn.setOnClickListener(new View.OnClickListener() {
+            evangelistimg.setVisibility(View.VISIBLE);
+            bibleplaceBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(advancelevel.this, advanceL2industries.class));
+                    startActivity(new Intent(advancelevel1.this, advance1L4bibleplace.class));
                     finish();
                 }
             });
-            subjectimg.setVisibility(View.VISIBLE);
         }
         if (lessonAsl >= 400){
-            measureBtn.setOnClickListener(new View.OnClickListener() {
+            bibleplaceimg.setVisibility(View.VISIBLE);
+            celebrationBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(advancelevel.this, advanceL3measure.class));
+                    startActivity(new Intent(advancelevel1.this, advance1L5celebration.class));
                     finish();
                 }
             });
-            idustriesimg.setVisibility(View.VISIBLE);
         }
         if (lessonAsl >= 500){
-            computertermBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(advancelevel.this, advanceL4computer.class));
-                    finish();
-                }
-            });
-            measureimg.setVisibility(View.VISIBLE);
-        }
-        if (lessonAsl >= 600){
-            sportsBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(advancelevel.this, advanceL5sports.class));
-                    finish();
-                }
-            });
-            computertermimg.setVisibility(View.VISIBLE);
-        }
-        if (lessonAsl >= 700){
-            countriesBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(advancelevel.this, advanceL6countries.class));
-                    finish();
-                }
-            });
-            sportsimg.setVisibility(View.VISIBLE);
-        }
-        if (lessonAsl >= 800){
-            nationBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(advancelevel.this, advanceL6nation.class));
-                    finish();
-                }
-            });
-            countriesimg.setVisibility(View.VISIBLE);
-        }
-        if (lessonAsl >= 900){
-            idiomBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(advancelevel.this, advanceL7idiom.class));
-                    finish();
-                }
-            });
-            nationimg.setVisibility(View.VISIBLE);
-        }
-        if (lessonAsl >= 1000){
-            idiomimg.setVisibility(View.VISIBLE);
+            celebrationimg.setVisibility(View.VISIBLE);
         }
     }
-
 
     public static String encodeEmail(String email) {
         // Replace '.' (dot) with ',' (comma) or any other safe character
         return email.replace(".", ",");
     }
-
 
 }

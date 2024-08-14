@@ -438,10 +438,11 @@
                             android:layout_centerInParent="true" />
 
                         <ProgressBar
+                            android:id="@+id/advanceprogress1"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:indeterminate="false"
-                            android:max="100"
+                            android:max="1000"
                             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                             android:progressDrawable="@drawable/circular_progressbar"
                             android:background="@drawable/circle_shape"
@@ -513,6 +514,7 @@
                             android:layout_centerInParent="true" />
 
                         <ProgressBar
+                            android:id="@+id/interprogress"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:indeterminate="false"

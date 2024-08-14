@@ -60,7 +60,7 @@ public class dashboard extends AppCompatActivity {
     private static final int REQUEST_CODE_SPEECH_INPUT = 1000;
     EditText txttrans;
     private boolean backPressToExit = false;
-    ProgressBar basiclevelProgress,advanceProgress;
+    ProgressBar basiclevelProgress,advanceProgress,interProgressbar,advanceLevel1progress;
 
     static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
     SharedPreferences sharedPreferences;
@@ -70,12 +70,12 @@ public class dashboard extends AppCompatActivity {
 
     static String name="";
 
-    int basiclevelprogress = 0, progressLevel = 0,advancelevelprog = 0, progressLevel1 = 0;
+    int basiclevelprogress = 0, progressLevel = 0,advancelevelprog = 0,advancelevelprog1 = 0, progressLevel1 = 0;
     int showCaseNumber = 0;
     Button btnprof,btnTrans,btnpractice,btnhistory;
     int backgroundColor = Color.argb(191, 0, 255, 255);
 
-    CardView intermediateCard,advancelevel,advanceLevel1;
+    CardView intermediateCard,advancelevel,advanceLevel1,intermediateLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +106,9 @@ public class dashboard extends AppCompatActivity {
         btnTrans = findViewById(R.id.translate);
         btnpractice = findViewById(R.id.practice);
         btnhistory= findViewById(R.id.history);
+        intermediateLevel = findViewById(R.id.intermediatelevel);
+        interProgressbar = findViewById(R.id.interprogress);
+        advanceLevel1progress = findViewById(R.id.advanceprogress1);
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         name = sharedPreferences.getString(KEY_EMAIL,null);
@@ -118,6 +121,7 @@ public class dashboard extends AppCompatActivity {
 
         retrieveCurrentBasicLevelProgress();
         retrieveadvacelessson();
+        retrieveadvacelessson1();
 
        /* //code for showcase
         showCaseNumber = 1;
@@ -139,6 +143,13 @@ public class dashboard extends AppCompatActivity {
         //end of code for showcase
 
 */
+        advanceLevel1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(dashboard.this,advancelevel1.class));
+                finish();
+            }
+        });
         advancelevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -334,7 +345,6 @@ public class dashboard extends AppCompatActivity {
     private void retrieveCurrentBasicLevelProgress() {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail).child("lessonasl");
-        DatabaseReference Advancelevel = databaseReference.child("advancelevel_tb").child(encodedEmail).child("advancelesson");
         usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -389,6 +399,32 @@ public class dashboard extends AppCompatActivity {
         });
     }
 
+    private void retrieveadvacelessson1() {
+        String encodedEmail = encodeEmail(name);
+        DatabaseReference Advancelevel = databaseReference.child("advancelevel1_tb").child(encodedEmail).child("advancelesson1");
+        Advancelevel.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    advancelevelprog = snapshot.getValue(Integer.class);
+                    advanceLevel1progress.setProgress(advancelevelprog);
+                    if(advancelevelprog == 1000){
+                        intermediateLevel.setVisibility(View.VISIBLE);
+                        intermediateLevel.setEnabled(true);
+                    } else if (advancelevelprog == 0) {
+                        advanceProgress.setProgress(0);
+                        intermediateLevel.setVisibility(View.INVISIBLE);
+                        intermediateLevel.setEnabled(false);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
     public static String encodeEmail(String email) {
         // Replace '.' (dot) with ',' (comma) or any other safe character
