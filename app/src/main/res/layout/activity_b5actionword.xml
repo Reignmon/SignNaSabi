@@ -69,16 +69,16 @@
         android:textSize="10sp" />
 
     <LinearLayout
-        android:layout_width="230dp"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="40dp"
         android:paddingHorizontal="10dp"
-        android:gravity="center"
+
         android:orientation="horizontal">
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="230dp"
             android:layout_height="match_parent">
 
             <RelativeLayout
@@ -114,7 +114,19 @@
                 app:srcCompat="@drawable/walk" />
 
         </RelativeLayout>
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
 
+        <TextView
+            android:id="@+id/btnerestart"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_margin="5dp"
+            android:visibility="gone"
+            android:drawableStart="@drawable/baseline_restart_alt_24"
+            android:padding="10dp" />
     </LinearLayout>
 
     <androidx.cardview.widget.CardView

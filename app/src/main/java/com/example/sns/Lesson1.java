@@ -44,7 +44,7 @@ public class Lesson1 extends AppCompatActivity {
     private int currentIndex = 0;
     private Uri[] videoUris;
     LottieAnimationView loadingIndicator;
-    TextView btnBack;
+    TextView btnBack,btnRestart;
     static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
     SharedPreferences sharedPreferences;
     private static final String SHARED_PREF_NAME = "mypref";
@@ -69,6 +69,7 @@ public class Lesson1 extends AppCompatActivity {
         prevButton = findViewById(R.id.prevbutton);
         loadingIndicator = findViewById(R.id.loading);
         btnBack = findViewById(R.id.btnback);
+        btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(Lesson1.this);
         dialog.setContentView(R.layout.lesson_complete_dialog);
@@ -172,6 +173,16 @@ public class Lesson1 extends AppCompatActivity {
 
             }
         });
+
+        showButton();
+        btnRestart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                restart();
+            }
+        });
+
+
 
     }
 
@@ -346,7 +357,6 @@ public class Lesson1 extends AppCompatActivity {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
                                 if (lesson1 == 25 && currentLessonAslValue < 100) {
                                     lessonaslRef.setValue(100);
-
                                 }
                             }
 
@@ -369,6 +379,56 @@ public class Lesson1 extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void restart(){
+        String encodedEmail = encodeEmail(name);
+        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail);
+
+        usersRef.child("Alphabet").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    currentIndex = 0;
+                    usersRef.child("Alphabet").setValue(currentIndex);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        loadingIndicator.setVisibility(View.VISIBLE);
+        videoView.setBackgroundColor(this.getResources().getColor(R.color.backgroundColor));
+    }
+
+    public void showButton (){
+        String encodedEmail = encodeEmail(name);
+        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail);
+
+        usersRef.child("lessonasl").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                    if (currentLessonAslValue >= 100){
+                        btnRestart.setVisibility(View.VISIBLE);
+                    }else{
+                        btnRestart.setVisibility(View.GONE);
+                    }
+                }
+                else{
+                    btnRestart.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 }
