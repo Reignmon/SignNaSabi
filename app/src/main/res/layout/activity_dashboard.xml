@@ -397,7 +397,7 @@
                             android:alpha=".5"
                             android:paddingEnd="40dp"
                             android:justificationMode="inter_word"
-                            android:text="@string/basic_level_text"
+                            android:text="@string/advancelevel"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -473,7 +473,7 @@
                             android:alpha=".5"
                             android:paddingEnd="40dp"
                             android:justificationMode="inter_word"
-                            android:text="@string/basic_level_text"
+                            android:text="@string/advancelevel1"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>

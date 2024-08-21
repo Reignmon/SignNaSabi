@@ -107,9 +107,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:alpha=".5"
-                            android:paddingEnd="40dp"
-                            android:justificationMode="inter_word"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:text="School Personel, School Ternm, and Subject"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -287,7 +285,7 @@
                             android:alpha=".5"
                             android:paddingEnd="40dp"
                             android:justificationMode="inter_word"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:text="Sign Language for Trade and Industries"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -387,7 +385,7 @@
                             android:alpha=".5"
                             android:paddingEnd="40dp"
                             android:justificationMode="inter_word"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:text="Learn the sign in Weight and Measure"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -485,7 +483,7 @@
                             android:alpha=".5"
                             android:justificationMode="inter_word"
                             android:paddingEnd="40dp"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:text="Sign Language in Computer Term"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -585,7 +583,7 @@
                             android:alpha=".5"
                             android:paddingEnd="40dp"
                             android:justificationMode="inter_word"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:text="Sport and Recreation lesson"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -681,7 +679,7 @@
                             android:alpha=".5"
                             android:paddingEnd="40dp"
                             android:justificationMode="inter_word"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:text="Learn the sign in Countries and Nationalities"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -819,7 +817,7 @@
                             android:alpha=".5"
                             android:paddingEnd="40dp"
                             android:justificationMode="inter_word"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:text="Idiom sign language lesson"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>

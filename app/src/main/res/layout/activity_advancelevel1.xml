@@ -110,7 +110,7 @@
                             android:alpha=".5"
                             android:paddingEnd="40dp"
                             android:justificationMode="inter_word"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:text="Learn biblical term sign language"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -206,7 +206,7 @@
                             android:alpha=".5"
                             android:paddingEnd="40dp"
                             android:justificationMode="inter_word"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:text="Learn biblical character sign language"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -303,7 +303,7 @@
                             android:alpha=".5"
                             android:paddingEnd="40dp"
                             android:justificationMode="inter_word"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:text="Evangalist lesson in sign language"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -399,7 +399,7 @@
                             android:alpha=".5"
                             android:paddingEnd="40dp"
                             android:justificationMode="inter_word"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:text="Place in bible sign language lesson"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -495,7 +495,7 @@
                             android:alpha=".5"
                             android:paddingEnd="40dp"
                             android:justificationMode="inter_word"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:text="Religious Celebratiion sign language lesson"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -530,7 +530,7 @@
                                 android:layout_marginStart="10dp"
                                 android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
-                                android:text="Relegious Celebration"
+                                android:text="Religious Celebration"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
@@ -592,7 +592,7 @@
                             android:alpha=".5"
                             android:justificationMode="inter_word"
                             android:paddingEnd="40dp"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:text="Sacrament sign language lesson"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -692,7 +692,7 @@
                             android:alpha=".5"
                             android:justificationMode="inter_word"
                             android:paddingEnd="40dp"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:text="Church Personel sign language lesson"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -790,7 +790,7 @@
                             android:alpha=".5"
                             android:paddingEnd="40dp"
                             android:justificationMode="inter_word"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:text="Religious Sector sign language lesson"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -887,7 +887,7 @@
                             android:alpha=".5"
                             android:paddingEnd="40dp"
                             android:justificationMode="inter_word"
-                            android:text="Handshapes, Alphabet Signs, and Numbers"
+                            android:text="Performing Arts sign language lesson"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>

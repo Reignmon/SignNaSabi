@@ -76,4 +76,11 @@
         learning essential signs, hand shapes,
         and basic grammar to communicate effectively</string>
 
+    <string name="advancelevel">Advanced ASL instruction includes teaching school personnel, covering school terms,
+        subject areas, trade industries, and more.</string>
+
+    <string name="advancelevel1">Advanced Level 1 ASL includes training on religious vocabulary and Bible terminology.
+        This helps users communicate effectively about faith.</string>
+
+
 </resources>

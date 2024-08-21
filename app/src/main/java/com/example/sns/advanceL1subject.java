@@ -33,14 +33,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class advanceL1subject extends AppCompatActivity {
-    Dialog dialog;
+    Dialog dialog,Loading;
     private boolean backPressToExit = false;
     VideoView videoView;
     Button nextButton,prevButton;
     private int currentIndex = 0;
     private Uri[] videoUris;
     LottieAnimationView loadingIndicator;
-    TextView btnBack;
+    TextView btnBack,btnRestart;
     static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
     SharedPreferences sharedPreferences;
     private static final String SHARED_PREF_NAME = "mypref";
@@ -64,12 +64,19 @@ public class advanceL1subject extends AppCompatActivity {
         prevButton = findViewById(R.id.prevbutton);
         loadingIndicator = findViewById(R.id.loading);
         btnBack = findViewById(R.id.btnback);
+        btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(advanceL1subject.this);
         dialog.setContentView(R.layout.lesson_complete_dialog);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
+
+        Loading = new Dialog(advanceL1subject.this);
+        Loading.setContentView(R.layout.loading_dialog);
+        Loading.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        Loading.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Loading.setCancelable(false);
 
         final Button okayBtn = dialog.findViewById(R.id.okaybtn);
 
@@ -84,7 +91,7 @@ public class advanceL1subject extends AppCompatActivity {
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
                 Uri.parse("https://drive.google.com/uc?export=download&id=1XLQUlxWLuSBtYrk3Cccf3COcMsOq9pH8"), //math
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XLQUlxWLuSBtYrk3Cccf3COcMsOq9pH8"), //science
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Kz_72xt0gwtt2OSJZw97jy-Mm4BpIMjd"), //science
                 Uri.parse("https://drive.google.com/uc?export=download&id=1XPVQX1pOfPt3u3wSwV72Ff-W-Ek3xxpF"), //history
                 Uri.parse("https://drive.google.com/uc?export=download&id=1iTWIUoDSurWkUNdPDxuEqN3-Dgb2_nh0"), //art
                 Uri.parse("https://drive.google.com/uc?export=download&id=1fd7TX8ZXI4YgcadYLRtzWA3q-D4db8Ll"), //music
@@ -137,10 +144,13 @@ public class advanceL1subject extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 updatelessonasl();
-                new Handler().postDelayed(() -> {
-                    startActivity(new Intent(advanceL1subject.this,advancelevel.class));
-                    finish();
-                }, 500); // 1-second delay
+            }
+        });
+        showButton();
+        btnRestart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                restart();
             }
         });
     }
@@ -299,6 +309,7 @@ public class advanceL1subject extends AppCompatActivity {
     private void updatelessonasl() {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("advancelevel_tb").child(encodedEmail);
+        Loading.show();
 
         // Check and update for "Alphabet"
         usersRef.child("subject").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -317,6 +328,13 @@ public class advanceL1subject extends AppCompatActivity {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
                                 if (lesson1 == 6 && currentLessonAslValue < 300) {
                                     lessonaslRef.setValue(300);
+                                    Loading.dismiss();
+                                    startActivity(new Intent(advanceL1subject.this,advancelevel.class));
+                                    finish();
+                                }else{
+                                    Loading.dismiss();
+                                    startActivity(new Intent(advanceL1subject.this,advancelevel.class));
+                                    finish();
                                 }
                             }
 
@@ -339,4 +357,58 @@ public class advanceL1subject extends AppCompatActivity {
             }
         });
     }
+    public void restart(){
+        String encodedEmail = encodeEmail(name);
+        DatabaseReference usersRef = databaseReference.child("advancelevel_tb").child(encodedEmail);
+
+        usersRef.child("subject").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    currentIndex = 0;
+                    usersRef.child("subject").setValue(currentIndex);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        prevButton.setVisibility(View.INVISIBLE);
+        prevButton.setEnabled(false);
+        loadingIndicator.setVisibility(View.VISIBLE);
+        videoView.setBackgroundColor(this.getResources().getColor(R.color.backgroundColor));
+    }
+
+    public void showButton (){
+        String encodedEmail = encodeEmail(name);
+        DatabaseReference usersRef = databaseReference.child("advancelevel_tb").child(encodedEmail);
+
+        usersRef.child("advancelesson").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                    if (currentLessonAslValue >= 300){
+                        btnRestart.setVisibility(View.VISIBLE);
+                    }else{
+                        btnRestart.setVisibility(View.GONE);
+                    }
+                }
+                else{
+                    btnRestart.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
 }

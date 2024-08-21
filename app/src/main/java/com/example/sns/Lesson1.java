@@ -37,7 +37,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Lesson1 extends AppCompatActivity {
-    Dialog dialog;
+    Dialog dialog,Loading;
     private boolean backPressToExit = false;
     VideoView videoView;
     Button nextButton,prevButton;
@@ -76,6 +76,12 @@ public class Lesson1 extends AppCompatActivity {
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
+
+        Loading = new Dialog(Lesson1.this);
+        Loading.setContentView(R.layout.loading_dialog);
+        Loading.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        Loading.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Loading.setCancelable(false);
 
         final Button okayBtn = dialog.findViewById(R.id.okaybtn);
 
@@ -166,11 +172,6 @@ public class Lesson1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 updatelessonasl();
-                new Handler().postDelayed(() -> {
-                    startActivity(new Intent(Lesson1.this,basiclevel.class));
-                    finish();
-                }, 500); // 1-second delay
-
             }
         });
 
@@ -339,6 +340,7 @@ public class Lesson1 extends AppCompatActivity {
     private void updatelessonasl() {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail);
+        Loading.show();
 
         // Check and update for "Alphabet"
         usersRef.child("Alphabet").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -357,6 +359,13 @@ public class Lesson1 extends AppCompatActivity {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
                                 if (lesson1 == 25 && currentLessonAslValue < 100) {
                                     lessonaslRef.setValue(100);
+                                    Loading.dismiss();
+                                    startActivity(new Intent(Lesson1.this, basiclevel.class));
+                                    finish();
+                                }else{
+                                    Loading.dismiss();
+                                    startActivity(new Intent(Lesson1.this, basiclevel.class));
+                                    finish();
                                 }
                             }
 
@@ -399,7 +408,8 @@ public class Lesson1 extends AppCompatActivity {
 
             }
         });
-
+        prevButton.setVisibility(View.INVISIBLE);
+        prevButton.setEnabled(false);
         loadingIndicator.setVisibility(View.VISIBLE);
         videoView.setBackgroundColor(this.getResources().getColor(R.color.backgroundColor));
     }
