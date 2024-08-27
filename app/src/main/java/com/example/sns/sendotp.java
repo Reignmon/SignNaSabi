@@ -34,6 +34,7 @@ import org.w3c.dom.Text;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Properties;
 import java.util.Random;
 
@@ -52,6 +53,8 @@ import javax.mail.internet.MimeMessage;
 
 public class sendotp extends AppCompatActivity {
     private boolean backPressToExit = false;
+    private static final String OTP_CHARACTERS = "0123456789";
+    private static final int OTP_LENGTH = 6;
     int countdownTime = 60;
     Dialog dialog,loadingIndicatorDialog;
     TextView Email;
@@ -292,14 +295,14 @@ public class sendotp extends AppCompatActivity {
     //end of code for send otp message
 
     public static String generateOTP() {
-        // Define the length of the OTP
-        int otpLength = 6;
-        // Generate random digits
-        Random random = new Random();
-        StringBuilder otp = new StringBuilder(otpLength);
-        for (int i = 0; i < otpLength; i++) {
-            otp.append(random.nextInt(10)); // Generates digits between 0-9
+        SecureRandom random = new SecureRandom();
+        StringBuilder otp = new StringBuilder(OTP_LENGTH);
+
+        for (int i = 0; i < OTP_LENGTH; i++) {
+            int index = random.nextInt(OTP_CHARACTERS.length());
+            otp.append(OTP_CHARACTERS.charAt(index));
         }
+
         return otp.toString();
     }
 

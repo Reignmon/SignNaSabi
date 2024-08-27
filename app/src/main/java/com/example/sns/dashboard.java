@@ -114,7 +114,7 @@ public class dashboard extends AppCompatActivity {
         name = sharedPreferences.getString(KEY_EMAIL,null);
 
         dialog = new Dialog(dashboard.this);
-        dialog.setContentView(R.layout.loading_dialog);
+        dialog.setContentView(R.layout.incorrect_dialog);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -183,9 +183,18 @@ public class dashboard extends AppCompatActivity {
         btnTrans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(dashboard.this,basicL1Asses1.class));
+                finish();
+            }
+        });
+
+        btnpractice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 dialog.show();
             }
         });
+
 
 
     }

@@ -42,58 +42,42 @@
             android:textSize="20sp"
             tools:ignore="HardcodedText" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="10dp"
-            android:layout_marginHorizontal="40dp">
 
             <EditText
                 android:id="@+id/firtsname"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="40dp"
                 android:layout_height="48dp"
-                android:layout_weight="1"
-                android:ems="10"
                 android:inputType="text"
                 android:textSize="16sp"
                 android:background="@drawable/border_bottom"
                 android:paddingStart="10dp"
                 android:textColor="@color/border_color"
                 android:hint="Firstname"
-                android:textColorHint="@color/border_color"
-                android:layout_marginEnd="10dp"/>
+                android:textColorHint="@color/border_color" />
 
             <EditText
                 android:id="@+id/lastname"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_weight="1"
+                android:layout_marginHorizontal="40dp"
                 android:background="@drawable/border_bottom"
-                android:ems="10"
                 android:textSize="16sp"
                 android:hint="Lastname"
+                android:layout_marginTop="5dp"
                 android:inputType="text"
                 android:paddingStart="10dp"
                 android:textColor="@color/border_color"
                 android:textColorHint="@color/border_color" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="10dp"
-            android:layout_marginHorizontal="40dp">
 
             <EditText
                 android:id="@+id/middlename"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/border_bottom"
-                android:ems="10"
                 android:hint="Middlename"
                 android:textSize="16sp"
                 android:inputType="text"
@@ -103,18 +87,17 @@
 
             <EditText
                 android:id="@+id/jrname"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_weight="1"
+                android:layout_marginHorizontal="40dp"
                 android:background="@drawable/border_bottom"
-                android:ems="10"
                 android:textSize="16sp"
+                android:layout_marginTop="5dp"
                 android:hint="Suffix Name"
                 android:inputType="text"
                 android:paddingStart="10dp"
                 android:textColor="@color/border_color"
                 android:textColorHint="@color/border_color" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

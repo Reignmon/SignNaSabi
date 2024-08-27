@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -59,6 +60,7 @@ public class forgotpass extends AppCompatActivity {
         });
 
         final Button btnsend = findViewById(R.id.btnsend);
+        final TextView btnback = findViewById(R.id.btnback);
         txtEmail = findViewById(R.id.txtemail);
 
 
@@ -104,6 +106,13 @@ public class forgotpass extends AppCompatActivity {
 
 
                 }
+            }
+        });
+
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(forgotpass.this,otp_forgot.class));
             }
         });
 

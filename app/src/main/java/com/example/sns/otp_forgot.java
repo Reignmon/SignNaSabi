@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Properties;
 import java.util.Random;
 
@@ -44,6 +45,8 @@ public class otp_forgot extends AppCompatActivity {
     String email;
     TextView Email;
     private boolean backPressToExit = false;
+    private static final String OTP_CHARACTERS = "0123456789";
+    private static final int OTP_LENGTH = 6;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +60,7 @@ public class otp_forgot extends AppCompatActivity {
 
 
         final Button btnverify = findViewById(R.id.btnverfiy);
+        final TextView btnback = findViewById(R.id.btnback);
         final PinView pinView = findViewById(R.id.pinview);
         Email = findViewById(R.id.emaitTextview);
 
@@ -81,6 +85,14 @@ public class otp_forgot extends AppCompatActivity {
                     startActivity(i);
                     finish();
                 }
+            }
+        });
+
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(otp_forgot.this, MainActivity.class));
+                finish();
             }
         });
 
@@ -179,14 +191,14 @@ public class otp_forgot extends AppCompatActivity {
     //end of code for send otp message
 
     public static String generateOTP() {
-        // Define the length of the OTP
-        int otpLength = 6;
-        // Generate random digits
-        Random random = new Random();
-        StringBuilder otp = new StringBuilder(otpLength);
-        for (int i = 0; i < otpLength; i++) {
-            otp.append(random.nextInt(10)); // Generates digits between 0-9
+        SecureRandom random = new SecureRandom();
+        StringBuilder otp = new StringBuilder(OTP_LENGTH);
+
+        for (int i = 0; i < OTP_LENGTH; i++) {
+            int index = random.nextInt(OTP_CHARACTERS.length());
+            otp.append(OTP_CHARACTERS.charAt(index));
         }
+
         return otp.toString();
     }
 

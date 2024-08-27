@@ -2,6 +2,7 @@ package com.example.sns;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -49,11 +51,14 @@ public class register extends AppCompatActivity {
 
     Spinner spinnergender, spinneruser;
     static EditText fname,lname,mdname,ename,age;
+    Dialog dialog;
     static EditText email;
     TextInputEditText pass,pass1;
     private String date;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     boolean isAllFieldsChecked = false;
+    String firstname = "",lastname = "",middlename = "",extensionname = "",Age = "",
+    bod = "",Gender = "", Disablity = "",Email = "",Password= "",Password1 = "";
     int num =0;
 
     @Override
@@ -81,22 +86,30 @@ public class register extends AppCompatActivity {
         spinnergender = findViewById(R.id.spinner_gender);
         spinneruser = findViewById(R.id.spinner_user);
 
+        dialog = new Dialog(register.this);
+        dialog.setContentView(R.layout.policie_dialog);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.success_dialog_bg));
+        dialog.setCancelable(false);
+
+        final Button agreeBtn = dialog.findViewById(R.id.agreebtn);
+        final Button cancelBtn = dialog.findViewById(R.id.cancelbtn);
 
         // function for register
         btnreg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String firstname = fname.getText().toString();
-                String lastname = lname.getText().toString();
-                String middlename = mdname.getText().toString();
-                String extensionname = ename.getText().toString();
-                String Age = age.getText().toString();
-                String bod = mDisplayDate.getText().toString();
-                String Gender = spinnergender.getSelectedItem().toString();
-                String Disablity = spinneruser.getSelectedItem().toString();
-                String Email = email.getText().toString();
-                String Password = pass.getText().toString();
-                String Password1 = pass1.getText().toString();
+                 firstname = fname.getText().toString();
+                 lastname = lname.getText().toString();
+                 middlename = mdname.getText().toString();
+                 extensionname = ename.getText().toString();
+                 Age = age.getText().toString();
+                 bod = mDisplayDate.getText().toString();
+                 Gender = spinnergender.getSelectedItem().toString();
+                 Disablity = spinneruser.getSelectedItem().toString();
+                 Email = email.getText().toString();
+                 Password = pass.getText().toString();
+                 Password1 = pass1.getText().toString();
                 boolean check = CheckAllFields(firstname,lastname,Age,Email,Password,Password1,extensionname);
 
                 if(check == true){
@@ -111,7 +124,8 @@ public class register extends AppCompatActivity {
                                 if(snapshot.exists()){
                                     Toast.makeText(register.this, "Email have been already taken", Toast.LENGTH_SHORT).show();
                                 }else{
-                                    Intent i = new Intent(register.this, sendotp.class);
+                                    dialog.show();
+                                    /*Intent i = new Intent(register.this, sendotp.class);
                                     i.putExtra("firstname", firstname);
                                     i.putExtra("lastname", lastname);
                                     i.putExtra("middlename", middlename);
@@ -123,7 +137,7 @@ public class register extends AppCompatActivity {
                                     i.putExtra("email", Email);
                                     i.putExtra("password", Password);
                                     startActivity(i);
-                                    finish();
+                                    finish();*/
                                 }
                             }
 
@@ -149,6 +163,33 @@ public class register extends AppCompatActivity {
             }
         });
         // end of activity register code here
+
+        agreeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(register.this, sendotp.class);
+                                    i.putExtra("firstname", firstname);
+                                    i.putExtra("lastname", lastname);
+                                    i.putExtra("middlename", middlename);
+                                    i.putExtra("extensionname", extensionname);
+                                    i.putExtra("birthdate", bod);
+                                    i.putExtra("age", Age);
+                                    i.putExtra("gender", Gender);
+                                    i.putExtra("disablity", Disablity);
+                                    i.putExtra("email", Email);
+                                    i.putExtra("password", Password);
+                                    startActivity(i);
+                                    finish();
+                                    dialog.dismiss();
+            }
+        });
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
 
 
         //code for datepicker
@@ -245,6 +286,7 @@ public class register extends AppCompatActivity {
 
     //code for validation
     private boolean CheckAllFields(String firstname, String lastname, String Age, String Email, String Password, String Password1, String extensionname) {
+        // Validate first name
         if (firstname.length() == 0) {
             fname.setError("FIELD CANNOT BE EMPTY");
             return false;
@@ -253,6 +295,7 @@ public class register extends AppCompatActivity {
             return false;
         }
 
+        // Validate last name
         if (lastname.length() == 0) {
             lname.setError("FIELD CANNOT BE EMPTY");
             return false;
@@ -261,8 +304,9 @@ public class register extends AppCompatActivity {
             return false;
         }
 
-        if (extensionname.length() >2){
-            ename.setError("SUFFIX NAME MUST 2 CHARACTER ONLY ONLY");
+        // Validate extension name
+        if (extensionname.length() > 2) {
+            ename.setError("SUFFIX NAME MUST BE 2 CHARACTERS ONLY");
             return false;
         }
 
@@ -270,40 +314,27 @@ public class register extends AppCompatActivity {
         if (date == null || date.isEmpty()) {
             Toast.makeText(register.this, "Please input your birthdate", Toast.LENGTH_LONG).show();
             return false;
-        } /*else {
-            // Perform date validation here (assuming date is in a format that can be compared)
-            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault());
-            Date selectedDate;
-            try {
-                selectedDate = sdf.parse(date); // Parse the selected date
-                Date currentDate = new Date(); // Get current date
-                if (selectedDate.before(currentDate)) {
-                    Toast.makeText(register.this, "Date cannot be in future", Toast.LENGTH_LONG).show();
-                    return false;
-                }
-            } catch (ParseException e) {
-                e.printStackTrace();
-                return false; // Handle parsing exception if needed
-            }
-        }*/
+        }
 
+        // Validate age
         if (Age.length() == 0 || Age.length() > 3) {
             age.setError("FIELD CANNOT BE EMPTY");
             return false;
         }
 
-            // Spinner validations
-            if (spinnergender.getSelectedItemPosition() == 0) { // Gender Spinner
-                TextView errorText = (TextView)spinnergender.getSelectedView();
-                Toast.makeText(register.this, "Please select your gender", Toast.LENGTH_LONG).show();
-                return false;
-            }
-        if (spinneruser.getSelectedItemPosition() == 0) { // User Type Spinner
-            TextView errorText = (TextView)spinneruser.getSelectedView();
-            Toast.makeText(register.this, "Please select your disablity", Toast.LENGTH_LONG).show();
+        // Validate gender spinner
+        if (spinnergender.getSelectedItemPosition() == 0) { // Gender Spinner
+            Toast.makeText(register.this, "Please select your gender", Toast.LENGTH_LONG).show();
             return false;
         }
 
+        // Validate disability spinner
+        if (spinneruser.getSelectedItemPosition() == 0) { // User Type Spinner
+            Toast.makeText(register.this, "Please select your disability", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        // Validate email
         if (Email.length() == 0) {
             email.setError("FIELD CANNOT BE EMPTY");
             return false;
@@ -312,24 +343,42 @@ public class register extends AppCompatActivity {
             return false;
         }
 
+        // Validate password
         if (Password.length() == 0) {
             Toast.makeText(register.this, "Password field cannot be empty", Toast.LENGTH_LONG).show();
             return false;
         } else if (Password.length() < 8) {
-            Toast.makeText(register.this, "Password must be minimum 8 characters", Toast.LENGTH_LONG).show();
+            Toast.makeText(register.this, "Password must be at least 8 characters", Toast.LENGTH_LONG).show();
+            return false;
+        } else if (!containsUpperCase(Password)) {
+            Toast.makeText(register.this, "Password must contain at least one uppercase letter", Toast.LENGTH_LONG).show();
             return false;
         }
 
+        // Validate confirm password
         if (Password1.length() == 0) {
-            Toast.makeText(register.this, "Password field cannot be empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(register.this, "Confirm password field cannot be empty", Toast.LENGTH_LONG).show();
             return false;
         } else if (Password1.length() < 8) {
-            Toast.makeText(register.this, "Password must be minimum 8 characters", Toast.LENGTH_LONG).show();
+            Toast.makeText(register.this, "Confirm password must be at least 8 characters", Toast.LENGTH_LONG).show();
+            return false;
+        } else if (!Password1.equals(Password)) {
+            Toast.makeText(register.this, "Passwords do not match", Toast.LENGTH_LONG).show();
             return false;
         }
+
         return true;
     }
-    //end of code for validation
+
+    // Helper method to check if the string contains at least one uppercase letter
+    private boolean containsUpperCase(String password) {
+        for (char c : password.toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public static String encodeEmail(String email) {
         // Replace '.' (dot) with ',' (comma) or any other safe character
