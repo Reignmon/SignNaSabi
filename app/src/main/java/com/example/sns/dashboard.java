@@ -70,7 +70,7 @@ public class dashboard extends AppCompatActivity {
 
     static String name="";
 
-    int basiclevelprogress = 0, progressLevel = 0,advancelevelprog = 0,advancelevelprog1 = 0, progressLevel1 = 0;
+    int basiclevelprogress = 0, progressLevel = 0,advancelevelprog = 0,intermediateprog = 0, progressLevel1 = 0;
     int showCaseNumber = 0;
     Button btnprof,btnTrans,btnpractice,btnhistory;
     int backgroundColor = Color.argb(191, 0, 255, 255);
@@ -122,6 +122,7 @@ public class dashboard extends AppCompatActivity {
         retrieveCurrentBasicLevelProgress();
         retrieveadvacelessson();
         retrieveadvacelessson1();
+        retrieveintermediate();
 
        /* //code for showcase
         showCaseNumber = 1;
@@ -143,6 +144,14 @@ public class dashboard extends AppCompatActivity {
         //end of code for showcase
 
 */
+        intermediateLevel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(dashboard.this, intermediatelevel.class));
+                finish();
+            }
+        });
+
         advanceLevel1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -425,6 +434,25 @@ public class dashboard extends AppCompatActivity {
                         intermediateLevel.setVisibility(View.INVISIBLE);
                         intermediateLevel.setEnabled(false);
                     }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void retrieveintermediate() {
+        String encodedEmail = encodeEmail(name);
+        DatabaseReference Advancelevel = databaseReference.child("intermediatelevel_tb").child(encodedEmail).child("intermediatelesson");
+        Advancelevel.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    intermediateprog = snapshot.getValue(Integer.class);
+                    interProgressbar.setProgress(intermediateprog);
                 }
             }
 
