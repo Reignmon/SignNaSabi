@@ -28,6 +28,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -114,18 +115,20 @@ public class dashboard extends AppCompatActivity {
         name = sharedPreferences.getString(KEY_EMAIL,null);
 
         dialog = new Dialog(dashboard.this);
-        dialog.setContentView(R.layout.incorrect_dialog);
+        dialog.setContentView(R.layout.better_luck_nexttime);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
+
+        final TextView txt = dialog.findViewById(R.id.txt);
 
         retrieveCurrentBasicLevelProgress();
         retrieveadvacelessson();
         retrieveadvacelessson1();
         retrieveintermediate();
 
-       /* //code for showcase
-        showCaseNumber = 1;
+        //code for showcase
+        /*showCaseNumber = 1;
         new Handler().postDelayed(() -> {
             ShowcaseManager.Builder builder = new ShowcaseManager.Builder();
             builder.context(this)
@@ -141,9 +144,8 @@ public class dashboard extends AppCompatActivity {
                     .build()
                     .show();
         }, 1000); // 1-second delay
-        //end of code for showcase
+        //end of code for showcase*/
 
-*/
         intermediateLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -201,6 +203,10 @@ public class dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dialog.show();
+                new Handler().postDelayed(() -> {
+                    txt.setVisibility(View.VISIBLE);
+                }, 1000); // 1-second delay
+
             }
         });
 
@@ -249,7 +255,6 @@ public class dashboard extends AppCompatActivity {
         }, 2000);
     }
 //end of code for backpress
-
 /*
 
     private void openShowCase1(){
@@ -270,7 +275,7 @@ public class dashboard extends AppCompatActivity {
                     .add()
                     .build()
                     .show();
-        }, 1000); // 1-second delay
+        }, 500); // 1-second delay
     }
 
     private void openShowCase2(){
@@ -289,7 +294,7 @@ public class dashboard extends AppCompatActivity {
                     .add()
                     .build()
                     .show();
-        }, 1000); // 1-second delay
+        }, 500); // 1-second delay
     }
 
     private void openShowCase3(){
@@ -308,7 +313,7 @@ public class dashboard extends AppCompatActivity {
                     .add()
                     .build()
                     .show();
-        }, 1000); // 1-second delay
+        }, 500); // 1-second delay
     }
 */
 
@@ -345,7 +350,7 @@ public class dashboard extends AppCompatActivity {
         }
         // end of code here
 
-       /* // check if the showcase was done and proceed to another showcase
+      /*  // check if the showcase was done and proceed to another showcase
         if (requestCode == ShowcaseManager.REQUEST_CODE_SHOWCASE && resultCode == Activity.RESULT_OK && showCaseNumber == 1) {
             showCaseNumber = 2;
             openShowCase1();

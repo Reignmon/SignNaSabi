@@ -16,6 +16,9 @@
         android:theme="@style/Theme.SNS"
         tools:targetApi="31">
         <activity
+            android:name=".basicL1assesnum"
+            android:exported="false" />
+        <activity
             android:name=".interL8transpo"
             android:exported="false" />
         <activity

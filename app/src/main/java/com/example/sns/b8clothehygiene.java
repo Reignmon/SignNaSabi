@@ -94,7 +94,7 @@ public class b8clothehygiene extends AppCompatActivity {
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
                 Uri.parse("https://drive.google.com/uc?export=download&id=1eq8bwpkhaN0PGDGW6yZl9oBON_-E0wyA"), //shirt
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DsjtMSrB4c3JYW9eXS3fHrQbWIPcn8yb"), //2 not done yet
+                Uri.parse("https://drive.google.com/uc?export=download&id=1z5b0P5ugS0uFBwRrHZfnCu-a3B5zyXxX"), //pants
                 Uri.parse("https://drive.google.com/uc?export=download&id=1XX8LNMzwEdbf5GLN1924x4qBpqqB5y4p"), //short
                 Uri.parse("https://drive.google.com/uc?export=download&id=1gPG2DZ4L_xgOXFwamXtAA2QSuXvHK-np"), //jeans
                 Uri.parse("https://drive.google.com/uc?export=download&id=1JbjQd2icX6rHsXA4jTu-GkZY9sQdOUIl"), //dress

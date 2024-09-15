@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -72,9 +73,9 @@ public class Lesson1 extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(Lesson1.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.success_dialog_bg));
         dialog.setCancelable(false);
 
         Loading = new Dialog(Lesson1.this);
@@ -94,10 +95,10 @@ public class Lesson1 extends AppCompatActivity {
         videoView.setMediaController(mediaController);
 
 
-
+        //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1lpErjzEVsXdwszyxkzVWqjCarLtkmn4b"), //A not done
-                Uri.parse("https://drive.google.com/uc?export=download&id=1lxSKRgdK7V5HDHnSFPpArNcZasI1aZlo"), //B not done
+                Uri.parse("https://drive.google.com/uc?export=download&id=1XVAx83xHbVcC4ywsDouTxSP11e3_Ctet"), //A
+                Uri.parse("https://drive.google.com/uc?export=download&id=1iRirkuZLK7yA6TBq84JbfRJQsYkMnmAn"), //B
                 Uri.parse("https://drive.google.com/uc?export=download&id=1Imy6u1xhNjqqWYt7V1DfFqJzH5jUpXPc"), //C
                 Uri.parse("https://drive.google.com/uc?export=download&id=1dMPORTiGKIFWU-H3pv-vP7vqPFKYjsWR"), //D
                 Uri.parse("https://drive.google.com/uc?export=download&id=16aHajT_bSKN750vO6CZJuepKtTdb9mrZ"), //E
@@ -114,7 +115,7 @@ public class Lesson1 extends AppCompatActivity {
                 Uri.parse("https://drive.google.com/uc?export=download&id=1NNzzy2BlQnOll8R5HP795r_z8vrD7THF"), //P
                 Uri.parse("https://drive.google.com/uc?export=download&id=1V6ZcR1h52YXW6bsS3I3XPDH1Uo374M8q"), //Q
                 Uri.parse("https://drive.google.com/uc?export=download&id=16ZoJMkizbyJ_k9NObdxEQXIqOhuQHEZ-"), //R
-                Uri.parse("https://drive.google.com/uc?export=download&id=1KyrRPlcjBt4jhwGvBREDuGtRnsf6Zt38"), //S not done
+                Uri.parse("https://drive.google.com/uc?export=download&id=1568TwkQEDQ0tbvb5ivmb8YeZLPfzpqMd"), //S
                 Uri.parse("https://drive.google.com/uc?export=download&id=1ZelE2EaZJs-eq1lNyZcgPgnwsOx2pImz"), //T
                 Uri.parse("https://drive.google.com/uc?export=download&id=1WEQZxltdPab7zAQIVG4-5WI83qVfelvH"), //U
                 Uri.parse("https://drive.google.com/uc?export=download&id=1WvCSQIJ-dLsNHcE43EJAS3OiHocO-kJL"), //V
@@ -159,6 +160,7 @@ public class Lesson1 extends AppCompatActivity {
             }
             return false;
         });
+
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -316,8 +318,13 @@ public class Lesson1 extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if (currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else {
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -356,15 +363,35 @@ public class Lesson1 extends AppCompatActivity {
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 25 && currentLessonAslValue < 100) {
+                                Integer currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : null;
+                                DatabaseReference getScore = usersRef.child("alphabetscore");
+                                if (currentLessonAslValue != null) {
+                                    getScore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            Integer currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : null;
+                                            if (lesson1 == 25 && currentScore < 10) {
+                                                Log.e("UpdateLesson1", "Failed to update score" + currentScore);
+                                                Loading.dismiss();
+                                                startActivity(new Intent(Lesson1.this, basicL1Asses1.class));
+                                                finish();
+                                            }else{
+                                                Log.e("UpdateLesson1", "update score " + currentScore);
+                                                Loading.dismiss();
+                                                startActivity(new Intent(Lesson1.this, basiclevel.class));
+                                                finish();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                            Loading.dismiss();
+                                        }
+                                    });
+                                }else{
                                     lessonaslRef.setValue(100);
                                     Loading.dismiss();
-                                    startActivity(new Intent(Lesson1.this, basiclevel.class));
-                                    finish();
-                                }else{
-                                    Loading.dismiss();
-                                    startActivity(new Intent(Lesson1.this, basiclevel.class));
+                                    startActivity(new Intent(Lesson1.this, basicL1Asses1.class));
                                     finish();
                                 }
                             }
@@ -372,19 +399,21 @@ public class Lesson1 extends AppCompatActivity {
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
                                 // Handle any errors
+                                Loading.dismiss();
                             }
                         });
                     } else {
-
+                        Loading.dismiss();
                     }
                 } else {
-
+                    Loading.dismiss();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Handle any errors
+                Loading.dismiss();
             }
         });
 
@@ -405,7 +434,7 @@ public class Lesson1 extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Loading.dismiss();
             }
         });
         prevButton.setVisibility(View.INVISIBLE);

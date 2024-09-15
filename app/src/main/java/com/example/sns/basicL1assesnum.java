@@ -33,15 +33,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class basicL1Asses1 extends AppCompatActivity {
-
+public class basicL1assesnum extends AppCompatActivity {
     Dialog correctAnswer,wrongAnswer,congratsDialog,betterLuck,Loading;
     VideoView videoView;
     LinearLayout aButton, bButton;
@@ -78,12 +75,13 @@ public class basicL1Asses1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_basic_l1_asses1);
+        setContentView(R.layout.activity_basic_l1assesnum);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
 
         videoView = findViewById(R.id.video);
         aButton = findViewById(R.id.lettera);
@@ -107,14 +105,14 @@ public class basicL1Asses1 extends AppCompatActivity {
         questionImages = new ImageView[]{question1, question2, question3,question4,question5,
                 question6,question7,question8,question9,question10};
 
-        correctAnswer = new Dialog(basicL1Asses1.this);
+        correctAnswer = new Dialog(basicL1assesnum.this);
         correctAnswer.setContentView(R.layout.correct_answer);
         correctAnswer.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         correctAnswer.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         correctAnswer.setCancelable(false);
         final Button btncorrect = correctAnswer.findViewById(R.id.okaybtn);
 
-        betterLuck = new Dialog(basicL1Asses1.this);
+        betterLuck = new Dialog(basicL1assesnum.this);
         betterLuck.setContentView(R.layout.better_luck_nexttime);
         betterLuck.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         betterLuck.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -122,21 +120,21 @@ public class basicL1Asses1 extends AppCompatActivity {
         final Button btnbetter = betterLuck.findViewById(R.id.okaybtn);
         txt = betterLuck.findViewById(R.id.txt);
 
-        wrongAnswer = new Dialog(basicL1Asses1.this);
+        wrongAnswer = new Dialog(basicL1assesnum.this);
         wrongAnswer.setContentView(R.layout.incorrect_dialog);
         wrongAnswer.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         wrongAnswer.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         wrongAnswer.setCancelable(false);
         final Button btnwrong = wrongAnswer.findViewById(R.id.okaybtn);
 
-        congratsDialog = new Dialog(basicL1Asses1.this);
+        congratsDialog = new Dialog(basicL1assesnum.this);
         congratsDialog.setContentView(R.layout.lesson_complete_dialog);
         congratsDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         congratsDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         congratsDialog.setCancelable(false);
         final Button btncongrats = congratsDialog.findViewById(R.id.okaybtn);
 
-        Loading = new Dialog(basicL1Asses1.this);
+        Loading = new Dialog(basicL1assesnum.this);
         Loading.setContentView(R.layout.loading_dialog);
         Loading.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         Loading.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -154,38 +152,21 @@ public class basicL1Asses1 extends AppCompatActivity {
 
         // Define video URIs and corresponding answers
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XVAx83xHbVcC4ywsDouTxSP11e3_Ctet"), //A
-                Uri.parse("https://drive.google.com/uc?export=download&id=1iRirkuZLK7yA6TBq84JbfRJQsYkMnmAn"), //B
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Imy6u1xhNjqqWYt7V1DfFqJzH5jUpXPc"), //C
-                Uri.parse("https://drive.google.com/uc?export=download&id=1dMPORTiGKIFWU-H3pv-vP7vqPFKYjsWR"), //D
-                Uri.parse("https://drive.google.com/uc?export=download&id=16aHajT_bSKN750vO6CZJuepKtTdb9mrZ"), //E
-                Uri.parse("https://drive.google.com/uc?export=download&id=189HD7cliG97oAUjSAuAJfpir24FD5xN8"), //F
-                Uri.parse("https://drive.google.com/uc?export=download&id=1TUJyzZkkX5M7ahtR1X2brKdvqdMFDwKU"), //G
-                Uri.parse("https://drive.google.com/uc?export=download&id=1JPsU1491GnGti1NWE4qd7CN2Y5YVB6Ys"), //H
-                Uri.parse("https://drive.google.com/uc?export=download&id=1fvDnoPpSjRobIq6-2r-co1s5dGhw90zM"), //I
-                Uri.parse("https://drive.google.com/uc?export=download&id=19KhnHEQkypQh-0Jh8c0RC6wXWkGkBnv1"), //J
-                Uri.parse("https://drive.google.com/uc?export=download&id=1o_vkWW5DgcoedrrGSCVnU6RNrucllieE"), //K
-                Uri.parse("https://drive.google.com/uc?export=download&id=1OuGxOWOK5TIfxrKP31MzRqh5m6JJElsi"), //L
-                Uri.parse("https://drive.google.com/uc?export=download&id=1nQKgH1Et3bytnfqw6vV6D0VQfqZvxzTC"), //M
-                Uri.parse("https://drive.google.com/uc?export=download&id=1LpmEWUpEymaH_Lo-kLcLGw0G4mhIZz6E"), //N
-                Uri.parse("https://drive.google.com/uc?export=download&id=1CrdfWdFAEJQdKCcLiqyMhUS6ckKeUcFn"), //O
-                Uri.parse("https://drive.google.com/uc?export=download&id=1NNzzy2BlQnOll8R5HP795r_z8vrD7THF"), //P
-                Uri.parse("https://drive.google.com/uc?export=download&id=1V6ZcR1h52YXW6bsS3I3XPDH1Uo374M8q"), //Q
-                Uri.parse("https://drive.google.com/uc?export=download&id=16ZoJMkizbyJ_k9NObdxEQXIqOhuQHEZ-"), //R
-                Uri.parse("https://drive.google.com/uc?export=download&id=1568TwkQEDQ0tbvb5ivmb8YeZLPfzpqMd"), //S
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ZelE2EaZJs-eq1lNyZcgPgnwsOx2pImz"), //T
-                Uri.parse("https://drive.google.com/uc?export=download&id=1WEQZxltdPab7zAQIVG4-5WI83qVfelvH"), //U
-                Uri.parse("https://drive.google.com/uc?export=download&id=1WvCSQIJ-dLsNHcE43EJAS3OiHocO-kJL"), //V
-                Uri.parse("https://drive.google.com/uc?export=download&id=1AaYGcz0hUE_HhuQCew-ieIwErl_icnxa"), //W
-                Uri.parse("https://drive.google.com/uc?export=download&id=1QLnOg6L9AET_p8mA09QZSrBE3qYDvM8R"), //X
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DXC-Qggl8kXGWfB02eaesAR2gYk-Ps-x"), //Y
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XyclVlC-KVncPpZlvd6n1P-yO7sG7ijr")  //Z
-                // Add more URIs here as needed
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ceUegBB8Q4Qf-j3xofluQUzTL4TpO4b0"), //1
+                Uri.parse("https://drive.google.com/uc?export=download&id=1DsjtMSrB4c3JYW9eXS3fHrQbWIPcn8yb"), //2
+                Uri.parse("https://drive.google.com/uc?export=download&id=1u-BDnll3TrLAwAW5qa8EYVvyKxc4Mnnv"), //3
+                Uri.parse("https://drive.google.com/uc?export=download&id=1qM95yK3fJ4gyA-QUwumvC7ghL3DAfJNf"), //4
+                Uri.parse("https://drive.google.com/uc?export=download&id=1v4aewalUKRX1CXRFDQ3GDdYqdecE-KbA"), //5
+                Uri.parse("https://drive.google.com/uc?export=download&id=127Le50vC0BoZoXOSgwlWC9mcyaUK2ONj"), //6
+                Uri.parse("https://drive.google.com/uc?export=download&id=1mHFVXgI6MzfXCBVcn08wPV6ZlOU8-EOr"), //7
+                Uri.parse("https://drive.google.com/uc?export=download&id=1imVdjUHTlzxal1mB7UmNbC6Qxdj82W1T"), //8
+                Uri.parse("https://drive.google.com/uc?export=download&id=1XZOD0w8X0l6D7nHyqZsHSy4L0ZCj5MYv"), //9
+                Uri.parse("https://drive.google.com/uc?export=download&id=1-hqrfaLgnJORyUcNHjBYPYBwup9MMTOf"), //10
+                // Add more URIs as needed
         };
 
-        answers = new String[]{"Letter A", "Letter B", "Letter C", "Letter D", "Letter E", "Letter F", "Letter G", "Letter H", "Letter I",
-                "Letter J", "Letter K", "Letter L", "Letter M", "Letter N", "Letter O", "Letter P", "Letter Q", "Letter R", "Letter S",
-                "Letter T", "Letter U", "Letter V", "Letter W", "Letter X", "Letter Y", "Letter Z"};
+        answers = new String[]{"Number 1", "Number 2", "Number 3", "Number 4", "Number 5", "Number 6", "Number 7", "Number 8", "Number 9",
+                "Number 10"};
 
         // Initialize unplayed videos
         unplayedVideos = new ArrayList<>();
@@ -207,7 +188,7 @@ public class basicL1Asses1 extends AppCompatActivity {
         });
 
         btnback.setOnClickListener(view -> {
-            startActivity(new Intent(basicL1Asses1.this, Lesson1.class));
+            startActivity(new Intent(basicL1assesnum.this, Lesson1.class));
             finish();
         });
 
@@ -251,24 +232,24 @@ public class basicL1Asses1 extends AppCompatActivity {
                 Loading.show();
                 String encodedEmail = encodeEmail(name);
                 DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail);
-                usersRef.child("Alphabet").addListenerForSingleValueEvent(new ValueEventListener() {
+                usersRef.child("numbers").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        DatabaseReference lessonaslRef = usersRef.child("Alphabet");
-                        DatabaseReference checkalphabetScore = usersRef.child("alphabetscore");
-                        checkalphabetScore.addListenerForSingleValueEvent(new ValueEventListener() {
+                        DatabaseReference lessonaslRef = usersRef.child("numbers");
+                        DatabaseReference checknumberScore = usersRef.child("numberscore");
+                        checknumberScore.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 if (snapshot.exists()){
                                     betterLuck.dismiss();
                                     Loading.dismiss();
-                                    startActivity(new Intent(basicL1Asses1.this, basiclevel.class));
+                                    startActivity(new Intent(basicL1assesnum.this, basiclevel.class));
                                     finish();
                                 }else{
                                     lessonaslRef.setValue(0);
                                     betterLuck.dismiss();
                                     Loading.dismiss();
-                                    startActivity(new Intent(basicL1Asses1.this, Lesson1.class));
+                                    startActivity(new Intent(basicL1assesnum.this, B1numbers.class));
                                     finish();
                                 }
                             }
@@ -419,14 +400,14 @@ public class basicL1Asses1 extends AppCompatActivity {
         DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail);
 
         // Add a listener to read the previous score
-        usersRef.child("alphabetscore").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("numberscore").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     previousScore = snapshot.getValue(Integer.class);
                     Log.d("UpdateLesson1", "Previous score: " + previousScore);
                 }else{
-                    usersRef.child("alphabetscore").setValue(correctScore).addOnCompleteListener(task -> {
+                    usersRef.child("numberscore").setValue(correctScore).addOnCompleteListener(task -> {
                         Loading.dismiss();
                         if (task.isSuccessful()) {
                             if (onComplete != null) {
@@ -440,7 +421,7 @@ public class basicL1Asses1 extends AppCompatActivity {
 
                 if(correctScore > previousScore){
                     // Update the score with the current score
-                    usersRef.child("alphabetscore").setValue(correctScore).addOnCompleteListener(task -> {
+                    usersRef.child("numberscore").setValue(correctScore).addOnCompleteListener(task -> {
                         Loading.dismiss();
                         if (task.isSuccessful()) {
                             if (onComplete != null) {
@@ -452,7 +433,7 @@ public class basicL1Asses1 extends AppCompatActivity {
                     });
                 }else{
                     Loading.dismiss();
-                    startActivity(new Intent(basicL1Asses1.this, basiclevel.class));
+                    startActivity(new Intent(basicL1assesnum.this, basiclevel.class));
                     finish();
                 }
             }
@@ -480,7 +461,7 @@ public class basicL1Asses1 extends AppCompatActivity {
                 usersRef.child("lessonasl").setValue(total).addOnCompleteListener(task -> {
                     Loading.dismiss();
                     if (task.isSuccessful()) {
-                        startActivity(new Intent(basicL1Asses1.this, basiclevel.class));
+                        startActivity(new Intent(basicL1assesnum.this, basiclevel.class));
                         finish();
                     } else {
                         Log.e("UpdateLesson2", "Failed to update lesson", task.getException());

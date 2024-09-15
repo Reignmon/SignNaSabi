@@ -99,7 +99,7 @@ public class b4family extends AppCompatActivity {
                 Uri.parse("https://drive.google.com/uc?export=download&id=1RNaFtA5uu-gsoYZGRwdWo1wnaZaBGQS8"), //sister
                 Uri.parse("https://drive.google.com/uc?export=download&id=1IfJx1rV-22fp6yHxcEI6G-AAbZX9B8k1"), //brother
                 Uri.parse("https://drive.google.com/uc?export=download&id=1x5pPuRm4S1GIh-WbTkRqwir33S1f2ZQi"), //step brother
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DsjtMSrB4c3JYW9eXS3fHrQbWIPcn8yb"), //not done yet
+                Uri.parse("https://drive.google.com/uc?export=download&id=1fmOrUChH2ft0Fje6foACFzTfFWBwAB1V"), //step sister
                 Uri.parse("https://drive.google.com/uc?export=download&id=1y8AjW3O-rdqOan_wHDV0FPbWEeF7p2z3"), //brother in law
                 Uri.parse("https://drive.google.com/uc?export=download&id=1VGNXYnQgXUQfK4ahbvhNZCPgCFRbHhGV"), //sister in law
                 Uri.parse("https://drive.google.com/uc?export=download&id=1B1CGf9QNR16-25SXdcgttIwMA_VopnCA"), //step mother

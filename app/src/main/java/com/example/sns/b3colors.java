@@ -90,16 +90,17 @@ public class b3colors extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
+        //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
                 Uri.parse("https://drive.google.com/uc?export=download&id=1za57bnWf8FdO7_foxM0-3vfH7qhbz0X6"), //white
                 Uri.parse("https://drive.google.com/uc?export=download&id=1sDJYDqz9GGUxhMOMsaCXLHKGpLO3xyOp"), //black
                 Uri.parse("https://drive.google.com/uc?export=download&id=1S7-W0RV3mtBWQTswyoDLlcyE8IL219Hp"), //red
                 Uri.parse("https://drive.google.com/uc?export=download&id=1FtBRdAbUVtxYUMKjI0UM3OBKhCyR8ovA"), //green
-                Uri.parse("https://drive.google.com/uc?export=download&id=1v4aewalUKRX1CXRFDQ3GDdYqdecE-KbA"), //not done yet
+                Uri.parse("https://drive.google.com/uc?export=download&id=1V-2ourJKvEVQ5Dye5hfheiEjRfRGZ5AN"), //blue
                 Uri.parse("https://drive.google.com/uc?export=download&id=1Sk3wKshI7D7LS-H92_3K1AyGERCIfoWY"), //brown
                 Uri.parse("https://drive.google.com/uc?export=download&id=1nmtzyUqKm0JvYYIbaDYTN43ln0ottQlO"), //yellow
-                Uri.parse("https://drive.google.com/uc?export=download&id=1imVdjUHTlzxal1mB7UmNbC6Qxdj82W1T"), //not done yet
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XZOD0w8X0l6D7nHyqZsHSy4L0ZCj5MYv"), //9
+                Uri.parse("https://drive.google.com/uc?export=download&id=1j-tfxgpYW-GpD2yKVNfhaQj6JckoIo-1"), //gold
+                Uri.parse("https://drive.google.com/uc?export=download&id=1BGingQ1zYHQN-ipQ0DTr4cskg05DhYC3"), //gray
                 Uri.parse("https://drive.google.com/uc?export=download&id=1b5_AshwuT0d7XMVbiySWkUTHcLvphsjS"), //pink
                 Uri.parse("https://drive.google.com/uc?export=download&id=15zifTsZIt2dAswokP0gS4SVZyFagMOfq"), //orange
                 Uri.parse("https://drive.google.com/uc?export=download&id=1QkiPwIm_1YgpCtj2sONKr3fpicRmi2Hp"), //purple

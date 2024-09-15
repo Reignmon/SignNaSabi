@@ -20,6 +20,7 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -41,7 +42,10 @@ public class basiclevel extends AppCompatActivity {
     ImageView l1_img,imgNum,imgGreet,quesstionImg,colorsImg,daysImg,monthImg,sizeImg,
             familyImg,peopleImg,relationshipImg,actionImg,adjectiveImg,emotionImg,mentalactImg
             ,directionImg,componentsImg,foodsdrinkImg,clothesImg,bodypartImg;
-    int lesson1;
+    TextView alphabetScore,numberScore;
+    CardView LESSON2;
+    LinearLayout Lesson2Click;
+    int lesson1,alphaScore = 0,numScore =  0;
 
     SharedPreferences sharedPreferences;
     private static final String SHARED_PREF_NAME = "mypref";
@@ -68,6 +72,13 @@ public class basiclevel extends AppCompatActivity {
         Lesson6 = findViewById(R.id.Lesson6_layout);
         Lesson7 = findViewById(R.id.Lesson7_layout);
         Lesson8 = findViewById(R.id.Lesson8_layout);
+
+        LESSON2 = findViewById(R.id.lesson2);
+
+        Lesson2Click = findViewById(R.id.lesson2Click);
+
+        alphabetScore = findViewById(R.id.alphabetscore);
+        numberScore = findViewById(R.id.numberscore);
 
         l1_img = findViewById(R.id.lesson1_image);
         imgNum = findViewById(R.id.imgnum);
@@ -190,9 +201,7 @@ public class basiclevel extends AppCompatActivity {
     }
 
     public void lesson2_view(View view){
-        int v = (lesson2.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
-        TransitionManager.beginDelayedTransition(lesson2,new AutoTransition());
-        lesson2.setVisibility(v);
+
     }
 
     public void lesson3_view(View view){
@@ -228,145 +237,6 @@ public class basiclevel extends AppCompatActivity {
         TransitionManager.beginDelayedTransition(Lesson8,new AutoTransition());
         Lesson8.setVisibility(v);
     }
-    /*private void retrieveCurrentBasicLevelProgress() {
-        String encodedEmail = encodeEmail(name);
-        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail);
-
-        // Check and update for "Alphabet"
-        usersRef.child("Alphabet").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    // Get currentIndex from Firebase
-                    int lesson1 = snapshot.getValue(Integer.class);
-                    if (lesson1 == 25) {
-                        l1_img.setVisibility(View.VISIBLE);
-                        DatabaseReference lessonaslRef = usersRef.child("lessonasl");
-
-                        // Check the current value of lessonasl before updating
-                        lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 25 && currentLessonAslValue < 100) {
-                                    lessonaslRef.setValue(100);
-
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                // Handle any errors
-                            }
-                        });
-                    } else {
-
-                    }
-                } else {
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Handle any errors
-            }
-        });
-
-        // Check and update for "numbers"
-        usersRef.child("numbers").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    // Get currentIndex from Firebase
-                    int lesson1 = snapshot.getValue(Integer.class);
-
-                    if (lesson1 == 9) {
-                        imgNum.setVisibility(View.VISIBLE);
-                        DatabaseReference lessonaslRef = usersRef.child("lessonasl");
-
-                        // Check the current value of lessonasl before updating
-                        lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 9 && currentLessonAslValue < 200) {
-                                    lessonaslRef.setValue(200);
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                // Handle any errors
-                            }
-                        });
-                    } else {
-                    }
-                } else {
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Handle any errors
-            }
-        });
-
-    }*/
-
-/*
-
-    private void retrieveCurrentBasicLevelProgress() {
-        String encodedEmail = encodeEmail(name);
-        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail);
-
-        // Update lesson progress
-        updateLessonProgress(usersRef.child("Alphabet"), 25, 100, l1_img);
-        updateLessonProgress(usersRef.child("numbers"), 9, 200, imgNum);
-        updateLessonProgress(usersRef.child("greetings"), 23, 300, imgGreet);
-        updateLessonProgress(usersRef.child("quetionword"), 7, 400, imgGreet);
-    }
-
-    private void updateLessonProgress(DatabaseReference lessonRef, int targetValue, int lessonAslValue, ImageView imageView) {
-        lessonRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    int lessonValue = snapshot.getValue(Integer.class);
-                    if (lessonValue == targetValue) {
-                        imageView.setVisibility(View.VISIBLE);
-                        DatabaseReference lessonaslRef = lessonRef.getParent().child("lessonasl");
-
-                        // Check current lessonasl value before updating
-                        lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lessonAslValue > currentLessonAslValue) {
-                                    lessonaslRef.setValue(lessonAslValue);
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                // Handle any errors
-                            }
-                        });
-                    } else {
-                        imageView.setVisibility(View.INVISIBLE); // Ensure image is hidden if not matching target
-                    }
-                } else {
-                    imageView.setVisibility(View.INVISIBLE); // Ensure image is hidden if snapshot doesn't exist
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Handle any errors
-            }
-        });
-    }
-*/
 
     public void retrieveLessonASL() {
         String encodedEmail = encodeEmail(name);
@@ -378,6 +248,7 @@ public class basiclevel extends AppCompatActivity {
                 if (snapshot.exists()) {
                     int lessonAsl = snapshot.getValue(Integer.class);
                     handleVisibility(lessonAsl);
+                    showLesson(lessonAsl);
                 }
             }
 
@@ -388,9 +259,26 @@ public class basiclevel extends AppCompatActivity {
         });
     }
 
+    public void showLesson(int lessonAsl ){
+        if (lessonAsl >= 232){
+            Lesson2Click.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int v = (lesson2.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
+                    TransitionManager.beginDelayedTransition(lesson2,new AutoTransition());
+                    lesson2.setVisibility(v);
+                }
+            });
+            LESSON2.setAlpha(1.0f);
+        }
+    }
+
     private void handleVisibility(int lessonAsl) {
         // Visibility settings based on lessonAsl value
         if (lessonAsl >= 100){
+            l1_img.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 116){
             numbersbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -398,17 +286,22 @@ public class basiclevel extends AppCompatActivity {
                     finish();
                 }
             });
-            l1_img.setVisibility(View.VISIBLE);
+            fetchAndDisplayScore(name, alphabetScore,"alphabetscore");
+            alphabetScore.setVisibility(View.VISIBLE);
         }
         if (lessonAsl >= 200){
+            imgNum.setVisibility(View.VISIBLE);
+        }
+        if (lessonAsl >= 232){
             greetingBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(basiclevel.this,b2greetings.class));
+                    startActivity(new Intent(basiclevel.this, b2greetings.class));
                     finish();
                 }
             });
-            imgNum.setVisibility(View.VISIBLE);
+            fetchAndDisplayScore(name, numberScore,"numberscore");
+            numberScore.setVisibility(View.VISIBLE);
         }
         if (lessonAsl >= 300){
             qeustionBtn.setOnClickListener(new View.OnClickListener() {
@@ -591,6 +484,25 @@ public class basiclevel extends AppCompatActivity {
     public static String encodeEmail(String email) {
         // Replace '.' (dot) with ',' (comma) or any other safe character
         return email.replace(".", ",");
+    }
+
+    private void fetchAndDisplayScore(String email, TextView scoreTextView, String score) {
+        String encodedEmail = encodeEmail(email);
+        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail).child(score);
+
+        usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int alphaScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                scoreTextView.setText(alphaScore + "/10");
+                scoreTextView.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle possible errors here
+            }
+        });
     }
 
 }

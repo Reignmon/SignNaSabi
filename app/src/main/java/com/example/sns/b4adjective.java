@@ -105,7 +105,7 @@ public class b4adjective extends AppCompatActivity {
                 Uri.parse("https://drive.google.com/uc?export=download&id=1LEsiGg3rXsyeWBtLuguuUMdCNUs_GzZ-"), //bright
                 Uri.parse("https://drive.google.com/uc?export=download&id=15JWpmicfkDjBsxYqoqcUCa5l2Rtc8FGy"), //normal
                 Uri.parse("https://drive.google.com/uc?export=download&id=1IufBHSL-xai0zcSfdSYVOwseV76q1Y8h"), //light
-                Uri.parse("https://drive.google.com/uc?export=download&id=1LEsiGg3rXsyeWBtLuguuUMdCNUs_GzZ-"), //not done yet
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ZMxzrQmxFLaVF7sjjOLJgAywJDD8hbg0"), //heavy
                 // Add more URIs as needed
 
         };

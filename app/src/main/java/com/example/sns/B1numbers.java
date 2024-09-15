@@ -70,7 +70,7 @@ public class B1numbers extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(B1numbers.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -91,6 +91,7 @@ public class B1numbers extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
+        //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
                 Uri.parse("https://drive.google.com/uc?export=download&id=1ceUegBB8Q4Qf-j3xofluQUzTL4TpO4b0"), //1
                 Uri.parse("https://drive.google.com/uc?export=download&id=1DsjtMSrB4c3JYW9eXS3fHrQbWIPcn8yb"), //2
@@ -101,7 +102,7 @@ public class B1numbers extends AppCompatActivity {
                 Uri.parse("https://drive.google.com/uc?export=download&id=1mHFVXgI6MzfXCBVcn08wPV6ZlOU8-EOr"), //7
                 Uri.parse("https://drive.google.com/uc?export=download&id=1imVdjUHTlzxal1mB7UmNbC6Qxdj82W1T"), //8
                 Uri.parse("https://drive.google.com/uc?export=download&id=1XZOD0w8X0l6D7nHyqZsHSy4L0ZCj5MYv"), //9
-                Uri.parse("https://drive.google.com/uc?export=download&id=19KhnHEQkypQh-0Jh8c0RC6wXWkGkBnv1"), //10 not done yet
+                Uri.parse("https://drive.google.com/uc?export=download&id=1-hqrfaLgnJORyUcNHjBYPYBwup9MMTOf"), //10
                 // Add more URIs as needed
 
         };
@@ -326,22 +327,40 @@ public class B1numbers extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 9) {
                         DatabaseReference lessonaslRef = usersRef.child("lessonasl");
+                        DatabaseReference getscore = usersRef.child("numberscore");
 
                         // Check the current value of lessonasl before updating
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 9 && currentLessonAslValue < 200) {
-                                    lessonaslRef.setValue(200);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(B1numbers.this,basiclevel.class));
-                                    finish();
-                                }else{
-                                    Loading.dismiss();
-                                    startActivity(new Intent(B1numbers.this,basiclevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 200){
+                                            int total = (currentLessonAslValue + 100);
+                                            lessonaslRef.setValue(total);
+                                            Loading.dismiss();
+                                            startActivity(new Intent(B1numbers.this, basicL1assesnum.class));
+                                            finish();
+                                        }else if (lesson1 == 9 && currentScore < 10) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(B1numbers.this,basicL1assesnum.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(B1numbers.this,basiclevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override
