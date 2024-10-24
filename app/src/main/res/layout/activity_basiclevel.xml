@@ -61,6 +61,7 @@
             tools:ignore="HardcodedText" />
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -129,16 +130,21 @@
                             android:id="@+id/alphabet"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="15dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/abc" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -147,30 +153,32 @@
                                 android:text="Alphabet"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
+
                             <Space
                                 android:layout_width="135dp"
-                                android:layout_weight="1"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" />
 
                             <ImageView
                                 android:id="@+id/lesson1_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
                                 android:visibility="gone"
-                                app:srcCompat="@drawable/approved"
-                                android:scaleType="fitEnd"/>
+                                app:srcCompat="@drawable/approved" />
+
                             <TextView
                                 android:id="@+id/alphabetscore"
+                                android:layout_width="40dp"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/chewy"
                                 android:gravity="center"
                                 android:text="10/10"
                                 android:textAlignment="center"
-                                android:visibility="gone"
                                 android:textColor="@color/text_color"
-                                android:layout_width="40dp"
-                                android:textSize="16sp" />
+                                android:textSize="16sp"
+                                android:visibility="gone"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -181,7 +189,11 @@
                             android:layout_marginHorizontal="15dp"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
@@ -200,28 +212,28 @@
                             <Space
                                 android:layout_width="175dp"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" />
 
                             <ImageView
                                 android:id="@+id/imgnum"
-                                android:layout_marginEnd="5dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
                                 android:visibility="gone"
-                                app:srcCompat="@drawable/approved"
-                                android:scaleType="fitEnd"/>
+                                app:srcCompat="@drawable/approved" />
 
                             <TextView
                                 android:id="@+id/numberscore"
+                                android:layout_width="40dp"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/chewy"
                                 android:gravity="center"
                                 android:text="9/10"
-                                android:visibility="gone"
                                 android:textAlignment="center"
                                 android:textColor="@color/text_color"
-                                android:layout_width="40dp"
-                                android:textSize="16sp" />
+                                android:textSize="16sp"
+                                android:visibility="gone" />
 
 
                         </LinearLayout>
@@ -257,7 +269,6 @@
                         android:layout_marginVertical="5dp"
                         android:layout_weight="1"
                         android:gravity="start"
-                        android:onClick="lesson2_view"
                         android:orientation="vertical">
 
                         <TextView
@@ -288,8 +299,7 @@
                         android:layout_marginVertical="5dp"
                         android:visibility="gone"
                         android:layout_weight="1"
-                        android:orientation="vertical"
-                        >
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:id="@+id/greetingbtn"
@@ -297,6 +307,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginHorizontal="15dp"
+                            android:background="?android:attr/selectableItemBackground"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
@@ -326,6 +337,7 @@
                                 android:layout_height="match_parent"
                                 app:srcCompat="@drawable/approved"
                                 android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 android:layout_marginEnd="5dp"/>
 
                             <TextView
@@ -334,6 +346,7 @@
                                 android:fontFamily="@font/chewy"
                                 android:gravity="center"
                                 android:text="7/10"
+                                android:visibility="gone"
                                 android:textAlignment="center"
                                 android:textColor="@color/text_color"
                                 android:layout_width="40dp"
@@ -348,6 +361,7 @@
                             android:layout_gravity="center"
                             android:layout_marginHorizontal="15dp"
                             android:layout_marginVertical="5dp"
+                            android:background="?android:attr/selectableItemBackground"
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
@@ -376,6 +390,7 @@
                                 android:layout_height="match_parent"
                                 app:srcCompat="@drawable/approved"
                                 android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 android:layout_marginEnd="5dp"/>
 
                             <TextView
@@ -383,7 +398,8 @@
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/chewy"
                                 android:gravity="center"
-                                android:text="10/10"
+                                android:text="10/7"
+                                android:visibility="gone"
                                 android:textAlignment="center"
                                 android:textColor="@color/text_color"
                                 android:layout_width="40dp"
@@ -417,7 +433,6 @@
                         android:id="@+id/lesson3Click"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="lesson3_view"
                         android:layout_marginVertical="5dp"
                         android:layout_marginHorizontal="20dp"
                         android:layout_weight="1"
@@ -457,37 +472,48 @@
                             android:id="@+id/colorsbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
+                            android:background="?android:attr/selectableItemBackground"
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/palette" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Colors"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
-                                android:layout_width="175dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_width="165dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/colorimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                app:srcCompat="@drawable/approved"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                android:layout_marginEnd="5dp" />
+                            <TextView
+                                android:id="@+id/colorscore"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="7/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:layout_width="40dp"/>
 
                         </LinearLayout>
 
@@ -495,36 +521,51 @@
                             android:id="@+id/daysow"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
+                            android:background="?android:attr/selectableItemBackground"
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/days" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Days of the week"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
+
                             <Space
-                                android:layout_width="105dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_width="104dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
+
                             <ImageView
                                 android:id="@+id/daysofwimg"
-                                android:layout_width="30dp"
-                                android:layout_weight="1"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:visibility="invisible"
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 app:srcCompat="@drawable/approved" />
+
+                            <TextView
+                                android:id="@+id/weekscore"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="7/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:layout_width="40dp"/>
 
                         </LinearLayout>
 
@@ -532,36 +573,49 @@
                             android:id="@+id/monthsbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
+                            android:background="?android:attr/selectableItemBackground"
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/month" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Months of the year"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
-                                android:layout_width="95dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_width="91dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
+
                             <ImageView
                                 android:id="@+id/montsimg"
-                                android:layout_width="30dp"
-                                android:layout_weight="1"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:visibility="invisible"
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 app:srcCompat="@drawable/approved" />
+
+                            <TextView
+                                android:id="@+id/monthscore"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="7/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:layout_width="40dp"/>
 
                         </LinearLayout>
 
@@ -569,36 +623,48 @@
                             android:id="@+id/sizebtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
+                            android:background="?android:attr/selectableItemBackground"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/measuringtape" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Size"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
-                                android:layout_width="195dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_width="190dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
                             <ImageView
                                 android:id="@+id/sizeimg"
-                                android:layout_width="30dp"
-                                android:layout_weight="1"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                app:srcCompat="@drawable/approved"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                android:layout_marginEnd="5dp" />
+
+                            <TextView
+                                android:id="@+id/sizescore"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="7/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:layout_width="40dp"/>
 
                         </LinearLayout>
 
@@ -630,7 +696,6 @@
                         android:id="@+id/lesson4Click"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="lesson4_view"
                         android:layout_marginVertical="5dp"
                         android:layout_marginHorizontal="20dp"
                         android:layout_weight="1"
@@ -669,22 +734,21 @@
                             android:id="@+id/familybtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
+                            android:background="?android:attr/selectableItemBackground"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
+                                android:layout_height="24dp"
                                 app:srcCompat="@drawable/family" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:layout_marginBottom="3dp"
                                 android:fontFamily="@font/chewy"
                                 android:text="Family"
@@ -692,15 +756,27 @@
                                 android:textSize="16sp" />
                             <Space
                                 android:layout_width="175dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/familyimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                app:srcCompat="@drawable/approved"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                android:layout_marginEnd="5dp" />
+                            <TextView
+                                android:id="@+id/familyscore"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="7/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:layout_width="40dp"/>
 
                         </LinearLayout>
 
@@ -708,36 +784,47 @@
                             android:id="@+id/peoplebtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
+                            android:background="?android:attr/selectableItemBackground"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/people" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="People"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
                                 android:layout_width="175dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
                             <ImageView
                                 android:id="@+id/peopleimg"
-                                android:layout_width="30dp"
-                                android:layout_weight="1"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                app:srcCompat="@drawable/approved"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                android:layout_marginEnd="5dp"/>
+                            <TextView
+                                android:id="@+id/peoplescore"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="7/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:layout_width="40dp"/>
 
                         </LinearLayout>
 
@@ -745,36 +832,47 @@
                             android:id="@+id/relatioshipbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
+                            android:background="?android:attr/selectableItemBackground"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/interpersonal" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Relationship"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
                                 android:layout_width="140dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
                             <ImageView
                                 android:id="@+id/relationshipimg"
-                                android:layout_width="30dp"
-                                android:layout_weight="1"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                app:srcCompat="@drawable/approved"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                android:layout_marginEnd="5dp" />
+                            <TextView
+                                android:id="@+id/relationscore"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="7/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:layout_width="40dp"/>
 
                         </LinearLayout>
 
@@ -808,7 +906,6 @@
                         android:layout_marginVertical="5dp"
                         android:layout_weight="1"
                         android:gravity="start"
-                        android:onClick="lesson5_view"
                         android:orientation="vertical">
 
                         <TextView
@@ -844,22 +941,22 @@
                             android:id="@+id/actwordbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
+                            android:background="?android:attr/selectableItemBackground"
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
+                                android:layout_height="24dp"
+
                                 app:srcCompat="@drawable/walk" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:layout_marginBottom="3dp"
                                 android:fontFamily="@font/chewy"
                                 android:text="Basic Action Word"
@@ -867,15 +964,27 @@
                                 android:textSize="16sp" />
                             <Space
                                 android:layout_width="100dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/actwordimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                app:srcCompat="@drawable/approved"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                android:layout_marginEnd="5dp" />
+                            <TextView
+                                android:id="@+id/actionwordscore"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="7/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:layout_width="40dp"/>
 
                         </LinearLayout>
 
@@ -883,22 +992,21 @@
                             android:id="@+id/adjectivebtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
                                 app:srcCompat="@drawable/specification" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Adjective"
                                 android:layout_marginBottom="3dp"
@@ -906,15 +1014,27 @@
                                 android:textSize="16sp" />
                             <Space
                                 android:layout_width="155dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/adjectivesimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                app:srcCompat="@drawable/approved"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                android:layout_marginEnd="5dp" />
+                            <TextView
+                                android:id="@+id/adjectivescore"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="7/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:layout_width="40dp"/>
 
                         </LinearLayout>
 
@@ -948,7 +1068,6 @@
                         android:layout_marginVertical="5dp"
                         android:layout_weight="1"
                         android:gravity="start"
-                        android:onClick="lesson6_view"
                         android:orientation="vertical">
 
                         <TextView
@@ -984,22 +1103,21 @@
                             android:id="@+id/emotionbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
+                            android:background="?android:attr/selectableItemBackground"
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
+                                android:layout_height="24dp"
                                 app:srcCompat="@drawable/emotion" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Emotion"
                                 android:layout_marginBottom="3dp"
@@ -1007,15 +1125,27 @@
                                 android:textSize="16sp" />
                             <Space
                                 android:layout_width="155dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/emotionimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                app:srcCompat="@drawable/approved"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                android:layout_marginEnd="5dp"/>
+                            <TextView
+                                android:id="@+id/emtionscore"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="7/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:layout_width="40dp"/>
 
                         </LinearLayout>
 
@@ -1023,38 +1153,51 @@
                             android:id="@+id/mentalactbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
+                            android:background="?android:attr/selectableItemBackground"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
+                                android:layout_height="24dp"
                                 app:srcCompat="@drawable/mentalhealth" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/chewy"
                                 android:layout_marginBottom="3dp"
+                                android:fontFamily="@font/chewy"
                                 android:text="Mental Action"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
+
                             <Space
                                 android:layout_width="115dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/mentalactimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                app:srcCompat="@drawable/approved"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                android:layout_marginEnd="5dp" />
+                            <TextView
+                                android:id="@+id/mentalscore"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="7/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:layout_width="40dp"/>
 
                         </LinearLayout>
 
@@ -1089,7 +1232,6 @@
                         android:layout_marginVertical="5dp"
                         android:layout_weight="1"
                         android:gravity="start"
-                        android:onClick="lesson7_view"
                         android:orientation="vertical">
 
                         <TextView
@@ -1124,38 +1266,51 @@
                             android:id="@+id/Placeloctbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
+                            android:background="?android:attr/selectableItemBackground"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
+                                android:layout_height="24dp"
                                 app:srcCompat="@drawable/map" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/chewy"
                                 android:layout_marginBottom="3dp"
+                                android:fontFamily="@font/chewy"
                                 android:text="Direction"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
+
                             <Space
                                 android:layout_width="155dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/placeloctbtn"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 app:srcCompat="@drawable/approved" />
+                            <TextView
+                                android:id="@+id/directionscore"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="7/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:layout_width="40dp"/>
 
                         </LinearLayout>
 
@@ -1163,23 +1318,22 @@
                             android:id="@+id/partsthingsbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
+                            android:background="?android:attr/selectableItemBackground"
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
                                 app:srcCompat="@drawable/livingroom" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:layout_marginBottom="3dp"
                                 android:text="Components"
@@ -1188,15 +1342,27 @@
 
                             <Space
                                 android:layout_width="140dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/partsthingsimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 app:srcCompat="@drawable/approved" />
+                            <TextView
+                                android:id="@+id/componentsscore"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="7/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:layout_width="40dp"/>
 
                         </LinearLayout>
 
@@ -1204,38 +1370,49 @@
                             android:id="@+id/foodsdrinksbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
+                            android:background="?android:attr/selectableItemBackground"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
+                                android:layout_height="24dp"
                                 app:srcCompat="@drawable/waterbottle" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginBottom="3dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Foods and Drinks"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
                                 android:layout_width="105dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/foodsdrinkimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/approved"  />
+                            <TextView
+                                android:id="@+id/foodsdrinkscore"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="7/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:layout_width="40dp"/>
 
                         </LinearLayout>
 
@@ -1269,7 +1446,6 @@
                         android:layout_marginVertical="5dp"
                         android:layout_weight="1"
                         android:gravity="start"
-                        android:onClick="lesson8_view"
                         android:orientation="vertical">
 
                         <TextView
@@ -1304,22 +1480,21 @@
                             android:id="@+id/clothesbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
+                            android:background="?android:attr/selectableItemBackground"
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
+                                android:layout_height="24dp"
                                 app:srcCompat="@drawable/hygiene" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:layout_marginBottom="3dp"
                                 android:text="Clothing and Hygiene"
@@ -1327,15 +1502,27 @@
                                 android:textSize="16sp" />
                             <Space
                                 android:layout_width="85dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/clothesimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 app:srcCompat="@drawable/approved" />
+                            <TextView
+                                android:id="@+id/clothesscore"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="7/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:layout_width="40dp"/>
 
                         </LinearLayout>
 
@@ -1343,23 +1530,22 @@
                             android:id="@+id/bodypartbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
+                            android:background="?android:attr/selectableItemBackground"
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
+                                android:layout_height="24dp"
                                 app:srcCompat="@drawable/parts" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:layout_marginBottom="3dp"
                                 android:fontFamily="@font/chewy"
                                 android:text="Parts Of The Body"
@@ -1368,15 +1554,27 @@
 
                             <Space
                                 android:layout_width="105dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/bodypartimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 app:srcCompat="@drawable/approved" />
+                            <TextView
+                                android:id="@+id/partsofbodyscore"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="7/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:layout_width="40dp"/>
 
                         </LinearLayout>
 

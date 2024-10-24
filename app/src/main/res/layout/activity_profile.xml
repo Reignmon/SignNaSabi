@@ -52,7 +52,7 @@
             android:text="Juan B. Dela Cruz"
             android:textAlignment="center"
             android:textColor="#DD7719"
-            android:textSize="35sp" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/emailtxt"

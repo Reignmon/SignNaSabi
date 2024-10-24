@@ -14,6 +14,7 @@ import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.ContactsContract;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -50,9 +51,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.function.Consumer;
 
 public class dashboard extends AppCompatActivity {
 
@@ -77,6 +81,8 @@ public class dashboard extends AppCompatActivity {
     int backgroundColor = Color.argb(191, 0, 255, 255);
 
     CardView intermediateCard,advancelevel,advanceLevel1,intermediateLevel;
+    TextView Points,Sign,Complete;
+    String pointsTotal = "0",signTotal = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,12 +116,15 @@ public class dashboard extends AppCompatActivity {
         intermediateLevel = findViewById(R.id.intermediatelevel);
         interProgressbar = findViewById(R.id.interprogress);
         advanceLevel1progress = findViewById(R.id.advanceprogress1);
+        Points = findViewById(R.id.points);
+        Sign = findViewById(R.id.sign);
+        Complete = findViewById(R.id.complete);
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         name = sharedPreferences.getString(KEY_EMAIL,null);
 
         dialog = new Dialog(dashboard.this);
-        dialog.setContentView(R.layout.better_luck_nexttime);
+        dialog.setContentView(R.layout.loading_dialog);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -126,6 +135,7 @@ public class dashboard extends AppCompatActivity {
         retrieveadvacelessson();
         retrieveadvacelessson1();
         retrieveintermediate();
+        showSign();
 
         //code for showcase
         /*showCaseNumber = 1;
@@ -194,18 +204,13 @@ public class dashboard extends AppCompatActivity {
         btnTrans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(dashboard.this,basicL1Asses1.class));
-                finish();
+
             }
         });
 
         btnpractice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.show();
-                new Handler().postDelayed(() -> {
-                    txt.setVisibility(View.VISIBLE);
-                }, 1000); // 1-second delay
 
             }
         });
@@ -367,24 +372,42 @@ public class dashboard extends AppCompatActivity {
 
     private void retrieveCurrentBasicLevelProgress() {
         String encodedEmail = encodeEmail(name);
-        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail).child("lessonasl");
-        usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail);
+        DatabaseReference lessonasl = usersRef.child("lessonasl");
+        DatabaseReference sign = usersRef.child("bodypartsscore");
+        dialog.show();
+        lessonasl.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
+                    dialog.dismiss();
                     // Get currentIndex from Firebase
                     basiclevelprogress = snapshot.getValue(Integer.class);
+                    pointsTotal = String.valueOf(Integer.parseInt(Integer.toString(basiclevelprogress)));
                     basiclevelProgress.setProgress(basiclevelprogress);
+                    Points.setText(pointsTotal);
                     progressLevel = basiclevelProgress.getProgress();
 
-                    if(progressLevel == 2000){
-                        advancelevel.setVisibility(View.VISIBLE);
-                        advancelevel.setEnabled(true);
-                    }
+                    sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            int sign = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                            if (sign >=8){
+                                advancelevel.setVisibility(View.VISIBLE);
+                                advancelevel.setEnabled(true);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 } else if (basiclevelprogress == 0){
                     basiclevelProgress.setProgress(0);
                     advancelevel.setVisibility(View.INVISIBLE);
                     advancelevel.setEnabled(false);
+                    dialog.dismiss();
                 }
             }
 
@@ -467,6 +490,27 @@ public class dashboard extends AppCompatActivity {
             }
         });
     }
+
+    public void showSign(){
+        String encodedEmail = encodeEmail(name);
+        DatabaseReference Advancelevel = databaseReference.child("BasicLevel_tb").child(encodedEmail).child("sign");
+        Advancelevel.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    int total = snapshot.getValue(Integer.class);
+                    signTotal = String.valueOf(Integer.parseInt(Integer.toString(total)));
+                    Sign.setText(signTotal);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 
     public static String encodeEmail(String email) {
         // Replace '.' (dot) with ',' (comma) or any other safe character

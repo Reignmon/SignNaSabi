@@ -70,7 +70,7 @@ public class b2greetings extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(b2greetings.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -91,32 +91,32 @@ public class b2greetings extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-
+        //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1qXQ8NMIGSTII5UXYZuJ1Ng_SYCAIqrWs"), //Happy new year
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Hiouat9V911ncMK5nnPzCcaqVJuriihg"), //merry christmas
-                Uri.parse("https://drive.google.com/uc?export=download&id=1S05z3zijtyxhFnkGiY1BLQzynM5BHOgw"), //happy birthday
-                Uri.parse("https://drive.google.com/uc?export=download&id=1lEeyHGOKsRNHe1BTLgEdnQ2RKRD1Y2Ue"), //im sorry
-                Uri.parse("https://drive.google.com/uc?export=download&id=1lEeyHGOKsRNHe1BTLgEdnQ2RKRD1Y2Ue"), //where are you going
-                Uri.parse("https://drive.google.com/uc?export=download&id=1PbRPLxuS0ngADlhzZA4Jp20X6komfTMO"), //i have to go home
-                Uri.parse("https://drive.google.com/uc?export=download&id=1wC9xCqoE3552cU6QW3cgQIVjr-lcjM-z"), //what time is it
-                Uri.parse("https://drive.google.com/uc?export=download&id=1LDZNCIIqsxmB0VM0RhIBbLLJ36TaUPx7"), //seet please
-                Uri.parse("https://drive.google.com/uc?export=download&id=1k9GZhDpUtNZvwWb4VKH6DkW_0FRpQoZJ"), //whats your phone number
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DdOAS7Y3xwEJ5WOSX0z2TLJfAMxXI0oL"), //close door
+                Uri.parse("https://drive.google.com/uc?export=download&id=1_t5VNfUCXhonQRDh0Q1OCdE9s9s528I-"), //Happy new year
+                Uri.parse("https://drive.google.com/uc?export=download&id=1F1bkBxzAsqZtk4hHYqaZB5XRbDefXCIF"), //merry christmas
+                Uri.parse("https://drive.google.com/uc?export=download&id=1wZeau1iOusMFI51sEd7O6yMuR3BHAeAx"), //happy birthday
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Rvp3p3G11LalNe-EjCmYXS_xs5eDu9Ns"), //im sorry
+                Uri.parse("https://drive.google.com/uc?export=download&id=1JIkPfXcUNZdJ7TbPfbm9fFC69BFXvK16"), //where are you going
+                Uri.parse("https://drive.google.com/uc?export=download&id=1j-op-Otq1jMv3i4MllF9lGoBOUk_G7SI"), //i have to go home
+                Uri.parse("https://drive.google.com/uc?export=download&id=1KoZxwhSrLLl0DVlfPsc5DRmbxDwJN-dw"), //what time is it
+                Uri.parse("https://drive.google.com/uc?export=download&id=1TW_pFQ6lEFkSWItCzN9yQx-KsNxjJ081"), //seet please
+                Uri.parse("https://drive.google.com/uc?export=download&id=1TW_pFQ6lEFkSWItCzN9yQx-KsNxjJ081"), //whats your phone number
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Vk1-4I9sY0GwlhYYzX--6-EZEZR9Pf6Z"), //close door
                 Uri.parse("https://drive.google.com/uc?export=download&id=1MzEolbmFjgfUVtvPtQ6USkpFoyY_pzgt"), //open door
-                Uri.parse("https://drive.google.com/uc?export=download&id=1T_rVNQwmBs2DcWnlF-zPOrRzAqC5um4L"), //wheres the bathroom
-                Uri.parse("https://drive.google.com/uc?export=download&id=1k4J9Fjp_SZ8VS2ejt421UaJGHExCNugR"), //pardon me
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XPApmBwWQUN0peEQ9JS196rEwd5_bQYk"), //please
-                Uri.parse("https://drive.google.com/uc?export=download&id=19X0esSI0ypw6MGDE2C_-h4XX1Eb327By"), //thankyou
-                Uri.parse("https://drive.google.com/uc?export=download&id=1MOUKf6ngwqIqSMiIDjJVw73cF5GdgNSb"), //im fine
-                Uri.parse("https://drive.google.com/uc?export=download&id=1AVvDzn1Au4WxQCtTfuyWI6bf1OLiu5Vv"), //goodbye
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Lf63wEpE2pFttHBPCsajjc3ojvTXlwYA"), //see you later
-                Uri.parse("https://drive.google.com/uc?export=download&id=1vGMgGNhY-zZriu20GvXpldbexw-GI4EK"), //im glad to see you
-                Uri.parse("https://drive.google.com/uc?export=download&id=138s1N_MQIv3cjBT-cspD0aUD2aIi2gRS"), //how have you been
+                Uri.parse("https://drive.google.com/uc?export=download&id=1UL0OQ9TZSPZkRx4GKy2vd7OjG632AQys"), //wheres the bathroom
+                Uri.parse("https://drive.google.com/uc?export=download&id=1OaCXpRBp4nGik03Is8rWjyXPyKlxz7M_"), //pardon me
+                Uri.parse("https://drive.google.com/uc?export=download&id=1avBBXBN8tg80nXeEGjohvBu9h9fdo6m-"), //please
+                Uri.parse("https://drive.google.com/uc?export=download&id=1j5XqR7sO_IVx0qW3Yr_8RG8sXSTmupBn"), //thankyou
+                Uri.parse("https://drive.google.com/uc?export=download&id=1AedZ0KoUKljFn0emlblJt233usgWZhPe"), //im fine
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Z2DKZYHtBjTf-75gsctCRkcJLZ-ydwaM"), //goodbye
+                Uri.parse("https://drive.google.com/uc?export=download&id=14Ol_1VAeX1zj5HHGvWRXgFTTlcSqzCB2"), //see you later
+                Uri.parse("https://drive.google.com/uc?export=download&id=14Ol_1VAeX1zj5HHGvWRXgFTTlcSqzCB2"), //im glad to see you
+                Uri.parse("https://drive.google.com/uc?export=download&id=1EhNJCkL7K_YilkvNR2GZOS26k5J0r4hD"), //how have you been
                 Uri.parse("https://drive.google.com/uc?export=download&id=138s1N_MQIv3cjBT-cspD0aUD2aIi2gRS"), //not done
-                Uri.parse("https://drive.google.com/uc?export=download&id=1dJmktBDo8nOo3EOTjNAWLDjJ81WfETrY"), //good night
-                Uri.parse("https://drive.google.com/uc?export=download&id=15q2hdABbgYkl-AIHEBUgEAmVKzHQVx56"), //good afternoon
-                Uri.parse("https://drive.google.com/uc?export=download&id=1qPi9JyKNsovL65tXlfgAR4ImGSXJmWQc"), //good morning
+                Uri.parse("https://drive.google.com/uc?export=download&id=1rGzK5FNXTCIBIc2NANsZueVd5_jOtG6O"), //good night
+                Uri.parse("https://drive.google.com/uc?export=download&id=1nbP8pYWC-HVGlpp3KE5DAzF__hrhnhne"), //good afternoon
+                Uri.parse("https://drive.google.com/uc?export=download&id=18AOSOYTTu3EW3JPdGCpo_ZqKKzvMaiGE"), //good morning
                 // Add more URIs as needed
 
         };
@@ -307,6 +307,14 @@ public class b2greetings extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else {
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
+
                     prevButton.setVisibility(View.VISIBLE);
                     prevButton.setEnabled(true);
 
@@ -346,22 +354,56 @@ public class b2greetings extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 23) {
                         DatabaseReference lessonaslRef = usersRef.child("lessonasl");
+                        DatabaseReference getscore = usersRef.child("greetingsscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
 
-                        // Check the current value of lessonasl before updating
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 23 && currentLessonAslValue < 300) {
-                                    lessonaslRef.setValue(300);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(b2greetings.this,basiclevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(b2greetings.this,basiclevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 300){
+
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(3);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(b2greetings.this, basicL2asessgreetings.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+                                        }else if (lesson1 == 23 && currentScore < 10) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(b2greetings.this,basicL2asessgreetings.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(b2greetings.this,basiclevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override

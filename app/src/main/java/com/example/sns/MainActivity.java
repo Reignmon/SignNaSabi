@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String KEY_EMAIL = "email";
     private static final String KEY_PASSWORD = "password";
     String Decrypted = "";
+    int count = 0;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +129,17 @@ public class MainActivity extends AppCompatActivity {
                                     startActivity(new Intent(MainActivity.this,dashboard.class));
                                     finish();
                                 }else{
-                                    Toast.makeText(MainActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                                    count++;
+                                    if(count >= 3){
+                                        Intent i = new Intent(MainActivity.this, forgotpass.class);
+                                        i.putExtra("email", Email);
+                                        startActivity(i);
+                                        finish();
+                                    }else{
+                                        Toast.makeText(MainActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                                        password.setText("");
+                                    }
+
                                 }
 
                                 loadingIndicatorDialog.dismiss();

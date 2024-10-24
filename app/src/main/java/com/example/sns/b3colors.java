@@ -69,7 +69,7 @@ public class b3colors extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(b3colors.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -92,18 +92,18 @@ public class b3colors extends AppCompatActivity {
 
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1za57bnWf8FdO7_foxM0-3vfH7qhbz0X6"), //white
-                Uri.parse("https://drive.google.com/uc?export=download&id=1sDJYDqz9GGUxhMOMsaCXLHKGpLO3xyOp"), //black
-                Uri.parse("https://drive.google.com/uc?export=download&id=1S7-W0RV3mtBWQTswyoDLlcyE8IL219Hp"), //red
-                Uri.parse("https://drive.google.com/uc?export=download&id=1FtBRdAbUVtxYUMKjI0UM3OBKhCyR8ovA"), //green
-                Uri.parse("https://drive.google.com/uc?export=download&id=1V-2ourJKvEVQ5Dye5hfheiEjRfRGZ5AN"), //blue
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Sk3wKshI7D7LS-H92_3K1AyGERCIfoWY"), //brown
-                Uri.parse("https://drive.google.com/uc?export=download&id=1nmtzyUqKm0JvYYIbaDYTN43ln0ottQlO"), //yellow
-                Uri.parse("https://drive.google.com/uc?export=download&id=1j-tfxgpYW-GpD2yKVNfhaQj6JckoIo-1"), //gold
-                Uri.parse("https://drive.google.com/uc?export=download&id=1BGingQ1zYHQN-ipQ0DTr4cskg05DhYC3"), //gray
-                Uri.parse("https://drive.google.com/uc?export=download&id=1b5_AshwuT0d7XMVbiySWkUTHcLvphsjS"), //pink
-                Uri.parse("https://drive.google.com/uc?export=download&id=15zifTsZIt2dAswokP0gS4SVZyFagMOfq"), //orange
-                Uri.parse("https://drive.google.com/uc?export=download&id=1QkiPwIm_1YgpCtj2sONKr3fpicRmi2Hp"), //purple
+                Uri.parse("https://drive.google.com/uc?export=download&id=1BceO-AvCTuAOYCkE-CBrqiSsgM2P__Qn"), //white
+                Uri.parse("https://drive.google.com/uc?export=download&id=1druvr0fVw5-jw-3qt7jVVUh4lLuFkxLP"), //black
+                Uri.parse("https://drive.google.com/uc?export=download&id=1KVos9Tfx7GdH6sxu_cpqoE6RJUN0PwWZ"), //red
+                Uri.parse("https://drive.google.com/uc?export=download&id=1KVos9Tfx7GdH6sxu_cpqoE6RJUN0PwWZ"), //green
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Vs-mG0UPpYbc9vJS3JdDhvm_EHyGehpT"), //blue
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Vs-mG0UPpYbc9vJS3JdDhvm_EHyGehpT"), //brown
+                Uri.parse("https://drive.google.com/uc?export=download&id=1-pflDP3zBxWBGELh1PfblfDKVqVK1U9t"), //yellow
+                Uri.parse("https://drive.google.com/uc?export=download&id=1t9V-vpFlakcytwk6Jb6f8-cUHnZxmAlA"), //gold
+                Uri.parse("https://drive.google.com/uc?export=download&id=1EaztsA3nvdzsdKXQgsOoeD222_dxVs8t"), //gray
+                Uri.parse("https://drive.google.com/uc?export=download&id=1sRWgl3t365JRT5bTql3CAPBDzeITVg8l"), //pink
+                Uri.parse("https://drive.google.com/uc?export=download&id=1LWUnFnSKS7gm_pwHoZDgzUHmx4_LTQsA"), //orange
+                Uri.parse("https://drive.google.com/uc?export=download&id=1GBIpKKD05UbF3ryfvvFJme4hy0IetGXj"), //purple
                 // Add more URIs as needed
 
         };
@@ -289,10 +289,13 @@ public class b3colors extends AppCompatActivity {
                     // Get currentIndex from Firebase
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
-
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
-
+                    if (currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else {
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
                 } else {
@@ -329,22 +332,55 @@ public class b3colors extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 11) {
                         DatabaseReference lessonaslRef = usersRef.child("lessonasl");
+                        DatabaseReference getscore = usersRef.child("colorsscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
 
-                        // Check the current value of lessonasl before updating
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 11 && currentLessonAslValue < 500) {
-                                    lessonaslRef.setValue(500);
-                                    startActivity(new Intent(b3colors.this,basiclevel.class));
-                                    finish();
-                                    Loading.dismiss();
-                                }else{
-                                    startActivity(new Intent(b3colors.this,basiclevel.class));
-                                    finish();
-                                    Loading.dismiss();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 500){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(5);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(b3colors.this, basicL3asesscolors.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+                                        }else if (lesson1 == 11 && currentScore < 10) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(b3colors.this,basicL3asesscolors.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(b3colors.this,basiclevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override

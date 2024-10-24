@@ -1,13 +1,17 @@
 package com.example.sns;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -34,6 +38,7 @@ public class profile extends AppCompatActivity {
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
     private static final String SHARED_PREF_NAME = "mypref";
     private static final String KEY_EMAIL = "email";
+    Dialog loading;
 
 
 
@@ -55,37 +60,44 @@ public class profile extends AppCompatActivity {
         }
 
         final Button btnLogout = findViewById(R.id.btnlogout);
-        final TextView emailTxt = findViewById(R.id.txtEmail);
-        final TextView Emailtxt = findViewById(R.id.emailtxt);
-        final TextView fullName = findViewById(R.id.fullname);
-        final TextView bod = findViewById(R.id.bod);
-        final TextView age = findViewById(R.id.age);
-        final TextView gender = findViewById(R.id.gender);
-        final TextView disablity = findViewById(R.id.disablity);
-        final TextView fullname = findViewById(R.id.name);
-        final TextView BtnBack = findViewById(R.id.btnback);
-        final TextView btnEdit = findViewById(R.id.btnedit);
+        TextView emailTxt = findViewById(R.id.txtEmail);
+        TextView Emailtxt = findViewById(R.id.emailtxt);
+        TextView fullName = findViewById(R.id.fullname);
+        TextView bod = findViewById(R.id.bod);
+        TextView age = findViewById(R.id.age);
+        TextView gender = findViewById(R.id.gender);
+        TextView disablity = findViewById(R.id.disablity);
+        TextView fullname = findViewById(R.id.name);
+        TextView BtnBack = findViewById(R.id.btnback);
+        TextView btnEdit = findViewById(R.id.btnedit);
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         String name = sharedPreferences.getString(KEY_EMAIL,null);
         String DecodedEmail = decodeEmail(name);
 
+        loading = new Dialog(profile.this);
+        loading.setContentView(R.layout.loading_dialog);
+        loading.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        loading.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        loading.setCancelable(false);
+
         if(name!=null){
+            loading.show();
             databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.hasChild(DecodedEmail)){
-
+                        loading.dismiss();
                         String getmname="";
                         String getext = "";
-                        final String getfname = snapshot.child(DecodedEmail).child("firstname").getValue(String.class);
-                        final String getlname = snapshot.child(DecodedEmail).child("lastname").getValue(String.class);
+                        String getfname = snapshot.child(DecodedEmail).child("firstname").getValue(String.class);
+                        String getlname = snapshot.child(DecodedEmail).child("lastname").getValue(String.class);
                         getmname = snapshot.child(DecodedEmail).child("middlename").getValue(String.class);
                         getext = snapshot.child(DecodedEmail).child("extensionname").getValue(String.class);
-                        final String getbod = snapshot.child(DecodedEmail).child("birthdate").getValue(String.class);
-                        final String getage = snapshot.child(DecodedEmail).child("age").getValue(String.class);
-                        final String getgender = snapshot.child(DecodedEmail).child("gender").getValue(String.class);
-                        final String getdisablity = snapshot.child(DecodedEmail).child("disablity").getValue(String.class);
+                        String getbod = snapshot.child(DecodedEmail).child("birthdate").getValue(String.class);
+                        String getage = snapshot.child(DecodedEmail).child("age").getValue(String.class);
+                        String getgender = snapshot.child(DecodedEmail).child("gender").getValue(String.class);
+                        String getdisablity = snapshot.child(DecodedEmail).child("disablity").getValue(String.class);
 
                         getmname = (getmname != null) ? getmname : "";
                         getext = (getext != null) ? getext : "";

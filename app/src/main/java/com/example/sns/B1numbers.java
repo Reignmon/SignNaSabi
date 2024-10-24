@@ -93,16 +93,16 @@ public class B1numbers extends AppCompatActivity {
 
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ceUegBB8Q4Qf-j3xofluQUzTL4TpO4b0"), //1
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DsjtMSrB4c3JYW9eXS3fHrQbWIPcn8yb"), //2
-                Uri.parse("https://drive.google.com/uc?export=download&id=1u-BDnll3TrLAwAW5qa8EYVvyKxc4Mnnv"), //3
-                Uri.parse("https://drive.google.com/uc?export=download&id=1qM95yK3fJ4gyA-QUwumvC7ghL3DAfJNf"), //4
-                Uri.parse("https://drive.google.com/uc?export=download&id=1v4aewalUKRX1CXRFDQ3GDdYqdecE-KbA"), //5
-                Uri.parse("https://drive.google.com/uc?export=download&id=127Le50vC0BoZoXOSgwlWC9mcyaUK2ONj"), //6
-                Uri.parse("https://drive.google.com/uc?export=download&id=1mHFVXgI6MzfXCBVcn08wPV6ZlOU8-EOr"), //7
-                Uri.parse("https://drive.google.com/uc?export=download&id=1imVdjUHTlzxal1mB7UmNbC6Qxdj82W1T"), //8
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XZOD0w8X0l6D7nHyqZsHSy4L0ZCj5MYv"), //9
-                Uri.parse("https://drive.google.com/uc?export=download&id=1-hqrfaLgnJORyUcNHjBYPYBwup9MMTOf"), //10
+                Uri.parse("https://drive.google.com/uc?export=download&id=1l31fgeSpL24uV3tN7PeTha7ZChhYvrTd"), //1
+                Uri.parse("https://drive.google.com/uc?export=download&id=12pQ84oIZU8SDbRfkD9nCoDYJToXgiENO"), //2
+                Uri.parse("https://drive.google.com/uc?export=download&id=1EgHrXF66JZGZ5E4orEbGuXh-i_VqQASZ"), //3
+                Uri.parse("https://drive.google.com/uc?export=download&id=1KpdfTvkAXDz0Xq6rQShnnjtfDqNbaXs5"), //4
+                Uri.parse("https://drive.google.com/uc?export=download&id=1elGBZw37vKqPTmgGBnMGbvUKyE1tby9b"), //5
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ZqM4jbWrormTWUXwl33R48p9P_qCCbPL"), //6
+                Uri.parse("https://drive.google.com/uc?export=download&id=1rL3KtZ6iVUgwQYrSMyGftpl2RYQ_qdqo"), //7
+                Uri.parse("https://drive.google.com/uc?export=download&id=1CrZjtbY1DomoUYe54JRuosyFrLsml4X1"), //8
+                Uri.parse("https://drive.google.com/uc?export=download&id=1MXxvoDG3_R6_oMzqZ8HwZPHZRCdIVgL1"), //9
+                Uri.parse("https://drive.google.com/uc?export=download&id=1r-4gTc0JZHcAd5dQTP9mEiSrrQSvrnyh"), //10
                 // Add more URIs as needed
 
         };
@@ -328,6 +328,8 @@ public class B1numbers extends AppCompatActivity {
                     if (lesson1 == 9) {
                         DatabaseReference lessonaslRef = usersRef.child("lessonasl");
                         DatabaseReference getscore = usersRef.child("numberscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
 
                         // Check the current value of lessonasl before updating
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -339,11 +341,26 @@ public class B1numbers extends AppCompatActivity {
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
                                         if (currentLessonAslValue < 200){
-                                            int total = (currentLessonAslValue + 100);
-                                            lessonaslRef.setValue(total);
-                                            Loading.dismiss();
-                                            startActivity(new Intent(B1numbers.this, basicL1assesnum.class));
-                                            finish();
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(2);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(B1numbers.this, basicL1assesnum.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+
                                         }else if (lesson1 == 9 && currentScore < 10) {
                                             Loading.dismiss();
                                             startActivity(new Intent(B1numbers.this,basicL1assesnum.class));

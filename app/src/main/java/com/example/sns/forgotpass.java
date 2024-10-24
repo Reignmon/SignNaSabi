@@ -70,6 +70,13 @@ public class forgotpass extends AppCompatActivity {
         loadingIndicatorDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.success_dialog_bg));
         loadingIndicatorDialog.setCancelable(false);
 
+        Intent intent = getIntent();
+        final String EMAIL = intent.getStringExtra("email");
+
+        if(EMAIL != null){
+            txtEmail.setText(EMAIL);
+        }
+
 
         btnsend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +119,8 @@ public class forgotpass extends AppCompatActivity {
         btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(forgotpass.this,otp_forgot.class));
+                startActivity(new Intent(forgotpass.this,MainActivity.class));
+                finish();
             }
         });
 

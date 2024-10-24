@@ -319,17 +319,34 @@ public class b3size extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 2) {
                         DatabaseReference lessonaslRef = usersRef.child("lessonasl");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
 
-                        // Check the current value of lessonasl before updating
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 2 && currentLessonAslValue < 800) {
-                                    lessonaslRef.setValue(800);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(b3size.this,basiclevel.class));
-                                    finish();
+                                if (lesson1 == 2 && currentLessonAslValue < 900) {
+                                    //add sign value
+                                    sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if (snapshot.exists()){
+                                                int total = (currentLessonAslValue + 100);
+                                                lessonaslRef.setValue(total);
+                                                sign.setValue(8);
+                                                Loading.dismiss();
+                                                startActivity(new Intent(b3size.this,basiclevel.class));
+                                                finish();
+                                            }
+                                        }
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                    //add sign value
+
                                 }
                                 else{
                                     Loading.dismiss();
@@ -386,12 +403,12 @@ public class b3size extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail);
 
-        usersRef.child("lessonasl").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 800){
+                    if (currentLessonAslValue >= 8){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

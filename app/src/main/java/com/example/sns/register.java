@@ -44,22 +44,23 @@ import java.util.Date;
 import java.util.Locale;
 
 public class register extends AppCompatActivity {
+    private static final int OTP_REQUEST_CODE =1 ;
     private boolean backPressToExit = false;
     private TextView mDisplayDate;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
     private static final String TAG = "MainActivity";
 
     Spinner spinnergender, spinneruser;
-    static EditText fname,lname,mdname,ename,age;
+    static EditText fname, lname, mdname, ename, age;
     Dialog dialog;
     static EditText email;
-    TextInputEditText pass,pass1;
+    TextInputEditText pass, pass1;
     private String date;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     boolean isAllFieldsChecked = false;
-    String firstname = "",lastname = "",middlename = "",extensionname = "",Age = "",
-    bod = "",Gender = "", Disablity = "",Email = "",Password= "",Password1 = "";
-    int num =0;
+    String firstname = "", lastname = "", middlename = "", extensionname = "", Age = "",
+            bod = "", Gender = "", Disablity = "", Email = "", Password = "", Password1 = "";
+    int calculatedAge = -1; // Variable to store calculated age
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,152 +96,189 @@ public class register extends AppCompatActivity {
         final Button agreeBtn = dialog.findViewById(R.id.agreebtn);
         final Button cancelBtn = dialog.findViewById(R.id.cancelbtn);
 
-        // function for register
-        btnreg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                 firstname = fname.getText().toString();
-                 lastname = lname.getText().toString();
-                 middlename = mdname.getText().toString();
-                 extensionname = ename.getText().toString();
-                 Age = age.getText().toString();
-                 bod = mDisplayDate.getText().toString();
-                 Gender = spinnergender.getSelectedItem().toString();
-                 Disablity = spinneruser.getSelectedItem().toString();
-                 Email = email.getText().toString();
-                 Password = pass.getText().toString();
-                 Password1 = pass1.getText().toString();
-                boolean check = CheckAllFields(firstname,lastname,Age,Email,Password,Password1,extensionname);
 
-                if(check == true){
-                    if(Password.equals(Password1)){
-                        String encodedEmail = encodeEmail(Email);
+        // Function for register
+        btnreg.setOnClickListener(view -> {
+            firstname = fname.getText().toString();
+            lastname = lname.getText().toString();
+            middlename = mdname.getText().toString();
+            extensionname = ename.getText().toString();
+            Age = age.getText().toString();
+            bod = mDisplayDate.getText().toString();
+            Gender = spinnergender.getSelectedItem().toString();
+            Disablity = spinneruser.getSelectedItem().toString();
+            Email = email.getText().toString();
+            Password = pass.getText().toString();
+            Password1 = pass1.getText().toString();
+            boolean check = CheckAllFields(firstname, lastname, Age, Email, Password, Password1, extensionname);
 
-                        DatabaseReference usersRef = databaseReference.child("users");
+            if (check) {
+                if (Password.equals(Password1)) {
+                    String encodedEmail = encodeEmail(Email);
+                    DatabaseReference usersRef = databaseReference.child("users");
 
-                        usersRef.child(encodedEmail).addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                if(snapshot.exists()){
-                                    Toast.makeText(register.this, "Email have been already taken", Toast.LENGTH_SHORT).show();
-                                }else{
-                                    dialog.show();
-                                    /*Intent i = new Intent(register.this, sendotp.class);
-                                    i.putExtra("firstname", firstname);
-                                    i.putExtra("lastname", lastname);
-                                    i.putExtra("middlename", middlename);
-                                    i.putExtra("extensionname", extensionname);
-                                    i.putExtra("birthdate", bod);
-                                    i.putExtra("age", Age);
-                                    i.putExtra("gender", Gender);
-                                    i.putExtra("disablity", Disablity);
-                                    i.putExtra("email", Email);
-                                    i.putExtra("password", Password);
-                                    startActivity(i);
-                                    finish();*/
-                                }
+                    usersRef.child(encodedEmail).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()) {
+                                Toast.makeText(register.this, "Email has already been taken", Toast.LENGTH_SHORT).show();
+                            } else {
+                                dialog.show();
                             }
+                        }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
-                    }else{
-                        Toast.makeText(register.this, "Password not match", Toast.LENGTH_LONG).show();
-                    }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            // Handle potential errors
+                        }
+                    });
+                } else {
+                    Toast.makeText(register.this, "Passwords do not match", Toast.LENGTH_LONG).show();
                 }
             }
         });
-        // end of function for register
+        // End of function for register
 
-        // show activity of register
-        btnlog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(register.this, MainActivity.class);
-                startActivity(i);
-            }
+        // Show activity of register
+        btnlog.setOnClickListener(v -> {
+            Intent i = new Intent(register.this, MainActivity.class);
+            startActivity(i);
+            finish();
         });
-        // end of activity register code here
+        // End of activity register code here
 
-        agreeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(register.this, sendotp.class);
-                                    i.putExtra("firstname", firstname);
-                                    i.putExtra("lastname", lastname);
-                                    i.putExtra("middlename", middlename);
-                                    i.putExtra("extensionname", extensionname);
-                                    i.putExtra("birthdate", bod);
-                                    i.putExtra("age", Age);
-                                    i.putExtra("gender", Gender);
-                                    i.putExtra("disablity", Disablity);
-                                    i.putExtra("email", Email);
-                                    i.putExtra("password", Password);
-                                    startActivity(i);
-                                    finish();
-                                    dialog.dismiss();
-            }
+        agreeBtn.setOnClickListener(view -> {
+            Intent i = new Intent(register.this, sendotp.class);
+            i.putExtra("firstname", firstname);
+            i.putExtra("lastname", lastname);
+            i.putExtra("middlename", middlename);
+            i.putExtra("extensionname", extensionname);
+            i.putExtra("birthdate", bod);
+            i.putExtra("age", Age);
+            i.putExtra("gender", Gender);
+            i.putExtra("disablity", Disablity);
+            i.putExtra("email", Email);
+            i.putExtra("password", Password);
+            startActivityForResult(i, OTP_REQUEST_CODE);
+            dialog.dismiss();
         });
 
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
+        cancelBtn.setOnClickListener(view -> dialog.dismiss());
 
+        // Code for datepicker
+        mDisplayDate.setOnClickListener(v -> {
+            Calendar cal = Calendar.getInstance();
+            int year = cal.get(Calendar.YEAR);
+            int month = cal.get(Calendar.MONTH);
+            int day = cal.get(Calendar.DAY_OF_MONTH);
 
-        //code for datepicker
-        mDisplayDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog dialog = new DatePickerDialog(
-                        register.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mDateSetListener,
-                        year, month, day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
+            DatePickerDialog dialog = new DatePickerDialog(
+                    register.this,
+                    android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                    mDateSetListener,
+                    year, month, day);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
         });
 
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month = month + 1;
-                Log.d(TAG, "onDateSet: date: " + year + "/" + month + "/" + dayOfMonth);
+                month = month + 1; // Increment month by 1 since month is zero-based
+                String selectedDateStr = month + "/" + dayOfMonth + "/" + year;
 
-                date = month + "/" + dayOfMonth + "/" + year;
-                mDisplayDate.setText(date);
+                // Create a SimpleDateFormat object to parse the date
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault());
+                try {
+                    Date selectedDate = sdf.parse(selectedDateStr);
+                    Date currentDate = new Date();
+
+                    // Compare the selected date with the current date
+                    if (selectedDate != null && selectedDate.after(currentDate)) {
+                        Toast.makeText(register.this, "The date cannot be in the future", Toast.LENGTH_LONG).show();
+                        mDisplayDate.setText(""); // Clear the date field if invalid
+                    } else {
+                        // Set the selected date if valid
+                        date = selectedDateStr;
+                        mDisplayDate.setText(date);
+
+                        // Calculate age
+                        calculatedAge = calculateAge(selectedDate);
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         };
-        //end of code for datepicker
+        // End of code for datepicker
 
-        //code for gender spinner
-
+        // Code for gender spinner
         String[] gender = {"Gender", "Male", "Female"};
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(gender));
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.style_spinner, arrayList);
         spinnergender.setAdapter(adapter);
-        //end of code for gender spinner
-        //code for user type spinner
+        // End of code for gender spinner
 
-        String[] user = {"Disablity","None", "Deaf", "Mute"};
+        // Code for user type spinner
+        String[] user = {"Disability", "None", "Deaf", "Mute"};
         ArrayList<String> arrayList1 = new ArrayList<>(Arrays.asList(user));
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, R.layout.style_spinner, arrayList1);
         spinneruser.setAdapter(adapter1);
-        //end of code for user type spinner
+        // End of code for user type spinner
     }
 
 
-    //code for backpress
+
+    // Method to calculate age
+    private int calculateAge(Date birthDate) {
+        Calendar birthCal = Calendar.getInstance();
+        birthCal.setTime(birthDate);
+        Calendar currentCal = Calendar.getInstance();
+
+        int age = currentCal.get(Calendar.YEAR) - birthCal.get(Calendar.YEAR);
+        if (currentCal.get(Calendar.DAY_OF_YEAR) < birthCal.get(Calendar.DAY_OF_YEAR)) {
+            age--;
+        }
+        return age;
+    }
+
+    // Code for backpress
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == OTP_REQUEST_CODE) {
+            // Retrieve the data from the intent
+            if (resultCode == RESULT_OK) {
+                String firstname1 = data.getStringExtra("firstname");
+                String lastname1 = data.getStringExtra("lastname");
+                String middlename1 = data.getStringExtra("middlename");
+                String extensionname1 = data.getStringExtra("extensionname");
+                String birthdate1 = data.getStringExtra("birthdate");
+                String age1 = data.getStringExtra("age");
+                String gender1 = data.getStringExtra("gender");
+                String disablity1 = data.getStringExtra("disablity");
+                String email1 = data.getStringExtra("email");
+                String password1 = data.getStringExtra("password");
+
+                // Populate the fields with retrieved data
+                fname.setText(firstname1);
+                lname.setText(lastname1);
+                mdname.setText(middlename1);
+                ename.setText(extensionname1);
+                mDisplayDate.setText(birthdate1);
+                age.setText(age1);
+                spinnergender.setSelection(((ArrayAdapter<String>) spinnergender.getAdapter()).getPosition(gender1));
+                spinneruser.setSelection(((ArrayAdapter<String>) spinneruser.getAdapter()).getPosition(disablity1));
+                email.setText(email1);
+                pass.setText(password1);
+                pass1.setText(password1);
+                }
+            }
+        }
+
+
     @Override
     public void onBackPressed() {
         if (backPressToExit) {
@@ -252,49 +290,35 @@ public class register extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Exit");
         builder.setMessage("Are you sure you want to exit?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                backPressToExit = true;
-                onBackPressed();
-            }
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            backPressToExit = true;
+            onBackPressed();
         });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
+        builder.setNegativeButton("No", (dialog, which) -> dialog.dismiss());
         AlertDialog dialog = builder.create();
         dialog.setCancelable(false);
 
         dialog.show();
 
         // Set a timer to automatically dismiss the dialog after 2 seconds
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (dialog.isShowing()) {
-                    dialog.dismiss();
-                }
+        new Handler().postDelayed(() -> {
+            if (dialog.isShowing()) {
+                dialog.dismiss();
             }
         }, 2000);
     }
-//end of code for backpress
+    // End of code for backpress
 
-
-
-    //code for validation
+    // Code for validation
     private boolean CheckAllFields(String firstname, String lastname, String Age, String Email, String Password, String Password1, String extensionname) {
         // Validate first name
         if (firstname.length() == 0) {
             fname.setError("FIELD CANNOT BE EMPTY");
             return false;
-        } else if (!firstname.matches("[a-zA-Z]+")) {
-            fname.setError("ALPHABET ONLY");
+        } else if (!firstname.matches("[a-zA-Z\\s]+")) {
+            fname.setError("LETTERS AND SPACES ONLY");
             return false;
         }
-
         // Validate last name
         if (lastname.length() == 0) {
             lname.setError("FIELD CANNOT BE EMPTY");
@@ -320,6 +344,16 @@ public class register extends AppCompatActivity {
         if (Age.length() == 0 || Age.length() > 3) {
             age.setError("FIELD CANNOT BE EMPTY");
             return false;
+        } else {
+            int enteredAge = Integer.parseInt(Age);
+            if (enteredAge < 10) {
+                age.setError("Age must be 10 or older");
+                return false;
+            }
+            if (enteredAge != calculatedAge) {
+                age.setError("Entered age does not match the birthdate");
+                return false;
+            }
         }
 
         // Validate gender spinner
@@ -354,7 +388,6 @@ public class register extends AppCompatActivity {
             Toast.makeText(register.this, "Password must contain at least one uppercase letter", Toast.LENGTH_LONG).show();
             return false;
         }
-
         // Validate confirm password
         if (Password1.length() == 0) {
             Toast.makeText(register.this, "Confirm password field cannot be empty", Toast.LENGTH_LONG).show();
@@ -384,5 +417,4 @@ public class register extends AppCompatActivity {
         // Replace '.' (dot) with ',' (comma) or any other safe character
         return email.replace(".", ",");
     }
-
 }

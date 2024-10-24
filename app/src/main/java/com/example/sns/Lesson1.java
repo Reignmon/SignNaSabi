@@ -97,32 +97,32 @@ public class Lesson1 extends AppCompatActivity {
 
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XVAx83xHbVcC4ywsDouTxSP11e3_Ctet"), //A
-                Uri.parse("https://drive.google.com/uc?export=download&id=1iRirkuZLK7yA6TBq84JbfRJQsYkMnmAn"), //B
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Imy6u1xhNjqqWYt7V1DfFqJzH5jUpXPc"), //C
-                Uri.parse("https://drive.google.com/uc?export=download&id=1dMPORTiGKIFWU-H3pv-vP7vqPFKYjsWR"), //D
-                Uri.parse("https://drive.google.com/uc?export=download&id=16aHajT_bSKN750vO6CZJuepKtTdb9mrZ"), //E
-                Uri.parse("https://drive.google.com/uc?export=download&id=189HD7cliG97oAUjSAuAJfpir24FD5xN8"), //F
+                Uri.parse("https://drive.google.com/uc?export=download&id=1R-6GhNHQDLzgZpDGGeTcJJ5CLV16Ptn2"), //A
+                Uri.parse("https://drive.google.com/uc?export=download&id=1YQCjFWBCnWpPu9ZSNkU6pxltjdUIwZpm"), //B
+                Uri.parse("https://drive.google.com/uc?export=download&id=1zzBT7DE_fpO-SXzObfxqewyoTye-G79C"), //C
+                Uri.parse("https://drive.google.com/uc?export=download&id=1LNgS4j22C67UX-jOqueYyMchb6oChBi9"), //D
+                Uri.parse("https://drive.google.com/uc?export=download&id=13fxKUkZsi9-4zaNW2eXUZvgE2IWAvGrf"), //E
+                Uri.parse("https://drive.google.com/uc?export=download&id=1J4-vl3XD1-wTvG6-Fb-hudB44HWqse7w"), //F
                 Uri.parse("https://drive.google.com/uc?export=download&id=1TUJyzZkkX5M7ahtR1X2brKdvqdMFDwKU"), //G
-                Uri.parse("https://drive.google.com/uc?export=download&id=1JPsU1491GnGti1NWE4qd7CN2Y5YVB6Ys"), //H
-                Uri.parse("https://drive.google.com/uc?export=download&id=1fvDnoPpSjRobIq6-2r-co1s5dGhw90zM"), //I
-                Uri.parse("https://drive.google.com/uc?export=download&id=19KhnHEQkypQh-0Jh8c0RC6wXWkGkBnv1"), //J
-                Uri.parse("https://drive.google.com/uc?export=download&id=1o_vkWW5DgcoedrrGSCVnU6RNrucllieE"), //K
-                Uri.parse("https://drive.google.com/uc?export=download&id=1OuGxOWOK5TIfxrKP31MzRqh5m6JJElsi"), //L
-                Uri.parse("https://drive.google.com/uc?export=download&id=1nQKgH1Et3bytnfqw6vV6D0VQfqZvxzTC"), //M
-                Uri.parse("https://drive.google.com/uc?export=download&id=1LpmEWUpEymaH_Lo-kLcLGw0G4mhIZz6E"), //N
-                Uri.parse("https://drive.google.com/uc?export=download&id=1CrdfWdFAEJQdKCcLiqyMhUS6ckKeUcFn"), //O
-                Uri.parse("https://drive.google.com/uc?export=download&id=1NNzzy2BlQnOll8R5HP795r_z8vrD7THF"), //P
-                Uri.parse("https://drive.google.com/uc?export=download&id=1V6ZcR1h52YXW6bsS3I3XPDH1Uo374M8q"), //Q
-                Uri.parse("https://drive.google.com/uc?export=download&id=16ZoJMkizbyJ_k9NObdxEQXIqOhuQHEZ-"), //R
-                Uri.parse("https://drive.google.com/uc?export=download&id=1568TwkQEDQ0tbvb5ivmb8YeZLPfzpqMd"), //S
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ZelE2EaZJs-eq1lNyZcgPgnwsOx2pImz"), //T
-                Uri.parse("https://drive.google.com/uc?export=download&id=1WEQZxltdPab7zAQIVG4-5WI83qVfelvH"), //U
-                Uri.parse("https://drive.google.com/uc?export=download&id=1WvCSQIJ-dLsNHcE43EJAS3OiHocO-kJL"), //V
-                Uri.parse("https://drive.google.com/uc?export=download&id=1AaYGcz0hUE_HhuQCew-ieIwErl_icnxa"), //W
-                Uri.parse("https://drive.google.com/uc?export=download&id=1QLnOg6L9AET_p8mA09QZSrBE3qYDvM8R"), //X
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DXC-Qggl8kXGWfB02eaesAR2gYk-Ps-x"), //Y
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XyclVlC-KVncPpZlvd6n1P-yO7sG7ijr")  //Z
+                Uri.parse("https://drive.google.com/uc?export=download&id=1G0VqRaGSHNYVJf8DrzXO5x_eBw9YgJt-"), //H
+                Uri.parse("https://drive.google.com/uc?export=download&id=1UPPBtvRcaotp-0pV1KIpy8mdS6k8hyBN"), //I
+                Uri.parse("https://drive.google.com/uc?export=download&id=1DCBSjLPiMaXLTcPOIduRCnx_FJui0Dbo"), //J
+                Uri.parse("https://drive.google.com/uc?export=download&id=1o_vkWW5DgcoedrrGSCVnU6RNrucllieE"), //K not change
+                Uri.parse("https://drive.google.com/uc?export=download&id=1OuGxOWOK5TIfxrKP31MzRqh5m6JJElsi"), //L not change
+                Uri.parse("https://drive.google.com/uc?export=download&id=1iSdB0F6t-HyYzmxrUAYn-RsmQJISQJIg"), //M
+                Uri.parse("https://drive.google.com/uc?export=download&id=1SYvyI7Sk4CFVMSuPGl6Y7CgmElzTtS7K"), //N
+                Uri.parse("https://drive.google.com/uc?export=download&id=1H5VwL8AV-TbaKnwKMa8V6rkaEXerRhP8"), //O
+                Uri.parse("https://drive.google.com/uc?export=download&id=11cXvYCVd1JWvCXYhw-eCbUDuvVK58dSy"), //P
+                Uri.parse("https://drive.google.com/uc?export=download&id=1V6ZcR1h52YXW6bsS3I3XPDH1Uo374M8q"), //Q not change
+                Uri.parse("https://drive.google.com/uc?export=download&id=19hsfpUDQVnMxpjI1VXeof0L-s1gFI62Y"), //R
+                Uri.parse("https://drive.google.com/uc?export=download&id=1gqdCIXRX7JLNmqJNuIx6-okwQmfvrzPm"), //S
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ZelE2EaZJs-eq1lNyZcgPgnwsOx2pImz"), //T not change
+                Uri.parse("https://drive.google.com/uc?export=download&id=13EjY6nMPJJ21nvlj4uR5ymJ60KoDHW94"), //U
+                Uri.parse("https://drive.google.com/uc?export=download&id=1_X4wBgvyvP2AikkIYD4ivHY34z79bk7-"), //V
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Qtif2tNpA1MckWuXl9avUmMCgDCsuIpa"), //W
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Kf226MHDtNsV-qfdVHRptkqV-dQm_2wO"), //X
+                Uri.parse("https://drive.google.com/uc?export=download&id=1DXC-Qggl8kXGWfB02eaesAR2gYk-Ps-x"), //Y not change
+                Uri.parse("https://drive.google.com/uc?export=download&id=146Gnv1824nHtAjLnzko0W87U8WeXbW8k")  //Z
                 // Add more URIs as needed
 
         };
@@ -358,6 +358,8 @@ public class Lesson1 extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 25) {
                         DatabaseReference lessonaslRef = usersRef.child("lessonasl");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
 
                         // Check the current value of lessonasl before updating
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -369,7 +371,7 @@ public class Lesson1 extends AppCompatActivity {
                                     getScore.addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                            Integer currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : null;
+                                            Integer currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
                                             if (lesson1 == 25 && currentScore < 10) {
                                                 Log.e("UpdateLesson1", "Failed to update score" + currentScore);
                                                 Loading.dismiss();
@@ -389,10 +391,24 @@ public class Lesson1 extends AppCompatActivity {
                                         }
                                     });
                                 }else{
-                                    lessonaslRef.setValue(100);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(Lesson1.this, basicL1Asses1.class));
-                                    finish();
+                                    //add sign value
+                                    sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if (!snapshot.exists()){
+                                                lessonaslRef.setValue(100);
+                                                sign.setValue(1);
+                                                Loading.dismiss();
+                                                startActivity(new Intent(Lesson1.this, basicL1Asses1.class));
+                                                finish();
+                                            }
+                                        }
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                    //add sign value
                                 }
                             }
 

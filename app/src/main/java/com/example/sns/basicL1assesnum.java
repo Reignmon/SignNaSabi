@@ -49,10 +49,10 @@ public class basicL1assesnum extends AppCompatActivity {
     private String[] answers;
     private String currentAnswer;
     private int correctScore = 0, wrongScore = 0;
-    private Random random = new Random(); // Create a Random instance
+    private Random random = new Random();
 
-    private List<Uri> unplayedVideos; // List to track unplayed videos
-    private int videosPlayed = 0; // Counter to track the number of videos played
+    private List<Uri> unplayedVideos;
+    private int videosPlayed = 0;
     static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
     SharedPreferences sharedPreferences;
     private static final String SHARED_PREF_NAME = "mypref";
@@ -64,11 +64,11 @@ public class basicL1assesnum extends AppCompatActivity {
     ImageView question1, question2, question3,question4,question5,question6,
             question7,question8,question9,question10;
     private ImageView[] questionImages;
-    private int checkImage = R.drawable.check; // Reference to check image
-    private int wrongImage = R.drawable.wrong; // Reference to wrong image
+    private int checkImage = R.drawable.check;
+    private int wrongImage = R.drawable.wrong;
 
 
-    private int currentQuestionIndex = 0; // Track the current question
+    private int currentQuestionIndex = 0;
     static int previousScore = 0,gettotalScore = 0;
 
     @Override
@@ -150,18 +150,18 @@ public class basicL1assesnum extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        // Define video URIs and corresponding answers
+        //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ceUegBB8Q4Qf-j3xofluQUzTL4TpO4b0"), //1
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DsjtMSrB4c3JYW9eXS3fHrQbWIPcn8yb"), //2
-                Uri.parse("https://drive.google.com/uc?export=download&id=1u-BDnll3TrLAwAW5qa8EYVvyKxc4Mnnv"), //3
-                Uri.parse("https://drive.google.com/uc?export=download&id=1qM95yK3fJ4gyA-QUwumvC7ghL3DAfJNf"), //4
-                Uri.parse("https://drive.google.com/uc?export=download&id=1v4aewalUKRX1CXRFDQ3GDdYqdecE-KbA"), //5
-                Uri.parse("https://drive.google.com/uc?export=download&id=127Le50vC0BoZoXOSgwlWC9mcyaUK2ONj"), //6
-                Uri.parse("https://drive.google.com/uc?export=download&id=1mHFVXgI6MzfXCBVcn08wPV6ZlOU8-EOr"), //7
-                Uri.parse("https://drive.google.com/uc?export=download&id=1imVdjUHTlzxal1mB7UmNbC6Qxdj82W1T"), //8
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XZOD0w8X0l6D7nHyqZsHSy4L0ZCj5MYv"), //9
-                Uri.parse("https://drive.google.com/uc?export=download&id=1-hqrfaLgnJORyUcNHjBYPYBwup9MMTOf"), //10
+                Uri.parse("https://drive.google.com/uc?export=download&id=1_d1QmzAheHBiaXwT1E3LxPzUoUkP7iS8"), //1
+                Uri.parse("https://drive.google.com/uc?export=download&id=1CMp0Ybnt4FCrXqU1AJTFd-sFdHlnzt64"), //2
+                Uri.parse("https://drive.google.com/uc?export=download&id=1N2Y7zmM9sYUZiEXmAkc0KHpQItRyYmvS"), //3
+                Uri.parse("https://drive.google.com/uc?export=download&id=1KvQpuvG64kY_6RsmLJxQ5GPWeUwWdlZD"), //4
+                Uri.parse("https://drive.google.com/uc?export=download&id=1sjRj6cVgEfbLgYnVPqSCkO1MQI0GvSb8"), //5
+                Uri.parse("https://drive.google.com/uc?export=download&id=1jYAVqcONd_oGQ92IpZK052Rk7UCC3oHS"), //6
+                Uri.parse("https://drive.google.com/uc?export=download&id=1txl5Zbr_XL2G5IrEa6oAsGgAiMnD7F7p"), //7
+                Uri.parse("https://drive.google.com/uc?export=download&id=1txl5Zbr_XL2G5IrEa6oAsGgAiMnD7F7p"), //8
+                Uri.parse("https://drive.google.com/uc?export=download&id=1dV6_qkKkI4zAoXQ48DnllPGiaLdBd0mL"), //9
+                Uri.parse("https://drive.google.com/uc?export=download&id=1dV6_qkKkI4zAoXQ48DnllPGiaLdBd0mL"), //10
                 // Add more URIs as needed
         };
 

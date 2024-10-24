@@ -16,6 +16,57 @@
         android:theme="@style/Theme.SNS"
         tools:targetApi="31">
         <activity
+            android:name=".basicL8asessbodypart"
+            android:exported="false" />
+        <activity
+            android:name=".basicL8asessclothes"
+            android:exported="false" />
+        <activity
+            android:name=".basicL7asessfooddrinks"
+            android:exported="false" />
+        <activity
+            android:name=".basicL7asesscomponents"
+            android:exported="false" />
+        <activity
+            android:name=".basicL7asessdirection"
+            android:exported="false" />
+        <activity
+            android:name=".basicL6asessmental"
+            android:exported="false" />
+        <activity
+            android:name=".basicL6asessemtion"
+            android:exported="false" />
+        <activity
+            android:name=".basicL5asessadjective"
+            android:exported="false" />
+        <activity
+            android:name=".basicL5asessaction"
+            android:exported="false" />
+        <activity
+            android:name=".basicL4asessrelation"
+            android:exported="false" />
+        <activity
+            android:name=".basicL4assespeople"
+            android:exported="false" />
+        <activity
+            android:name=".basicL4asessfamily"
+            android:exported="false" />
+        <activity
+            android:name=".basic3asessmonth"
+            android:exported="false" />
+        <activity
+            android:name=".basicL3asessweek"
+            android:exported="false" />
+        <activity
+            android:name=".basicL3asesscolors"
+            android:exported="false" />
+        <activity
+            android:name=".basicL2asessquest"
+            android:exported="false" />
+        <activity
+            android:name=".basicL2asessgreetings"
+            android:exported="false" />
+        <activity
             android:name=".basicL1assesnum"
             android:exported="false" />
         <activity

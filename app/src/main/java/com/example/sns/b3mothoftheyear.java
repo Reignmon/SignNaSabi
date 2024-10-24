@@ -69,7 +69,7 @@ public class b3mothoftheyear extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(b3mothoftheyear.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -90,19 +90,20 @@ public class b3mothoftheyear extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
+        //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=137nJhYZ6EQuanejnpdC2ukmj97RqOMqD"), //january
-                Uri.parse("https://drive.google.com/uc?export=download&id=1YS8aAJSGRhxX_eofct-x9QcUz7nZLTyq"), //febuary
-                Uri.parse("https://drive.google.com/uc?export=download&id=1uer-XioozqWzgAWIC1AAftZzDxWSmPVe"), //march
-                Uri.parse("https://drive.google.com/uc?export=download&id=1LZE9gLfVaOkjjuocFVR5MHKyzQjH0WRz"), //april
-                Uri.parse("https://drive.google.com/uc?export=download&id=1YUyNFodaC-Cx41lVCctvx_8LeazOBs33"), //april
-                Uri.parse("https://drive.google.com/uc?export=download&id=1zMGq84IZTD30-1tDmClxdD-DL3cd8Low"), //june
-                Uri.parse("https://drive.google.com/uc?export=download&id=1zMGq84IZTD30-1tDmClxdD-DL3cd8Low"), //july
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XpTBrsotSCordRFChxa8AwoPsOrQr7E9"), //august
-                Uri.parse("https://drive.google.com/uc?export=download&id=1rU3fyaVBgV0UsPBsQcWFpUnZ5FyBcQGc"), //september
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Zu0zvJN0_-X1ouJ0IW05eLMw-gTTBeR2"), //october
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DJEeV-rvOvgxDmR55XKRAXSgHhorxov6"), //november
-                Uri.parse("https://drive.google.com/uc?export=download&id=1kSH1dTroQ_olyJH-Y3QXSby3cC_78ZF3"), //december
+                Uri.parse("https://drive.google.com/uc?export=download&id=1IV3tuAQl7SbU661XRsKNGUd47Kz4AfA6"), //january
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Jp6XzH20wPY1xqX-O77-EtdSdtlKcB5l"), //febuary
+                Uri.parse("https://drive.google.com/uc?export=download&id=1MjQ8XiXtkxQx6obizWGX-1FdJ8b1b4ag"), //march
+                Uri.parse("https://drive.google.com/uc?export=download&id=1eYr5dsvCWi_FpYxC1ui34upiZRc390r2"), //april
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Y007c6G442ivk_dXzg0OcVBqVZDQzyM7"), //may
+                Uri.parse("https://drive.google.com/uc?export=download&id=1vsjw31EYf9Lbw5gqyvqhVtQCpuS3V3Nm"), //june
+                Uri.parse("https://drive.google.com/uc?export=download&id=1_GEqemogf1Vv1CR0niyYsIbaqlaNjGew"), //july
+                Uri.parse("https://drive.google.com/uc?export=download&id=1StSz5WLl34maotZ8DvIS8kUEKCbP7hqZ"), //august
+                Uri.parse("https://drive.google.com/uc?export=download&id=1DeuL6FBlaurmQ5NT8StEcbdx8z8LHJL3"), //september
+                Uri.parse("https://drive.google.com/uc?export=download&id=1oLiqV_JspqNTszvU-brnBM3MLhoFgYPR"), //october
+                Uri.parse("https://drive.google.com/uc?export=download&id=1y_biOpkEL39tD79AwGbTxd4X8Qv-yz-W"), //november
+                Uri.parse("https://drive.google.com/uc?export=download&id=1zp1L12mQAUESorUBGDMPvPe-tsuP3tqr"), //december
                 // Add more URIs as needed
         };
 
@@ -288,8 +289,13 @@ public class b3mothoftheyear extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if (currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else {
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -327,22 +333,55 @@ public class b3mothoftheyear extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 11) {
                         DatabaseReference lessonaslRef = usersRef.child("lessonasl");
+                        DatabaseReference getscore = usersRef.child("monthscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
 
-                        // Check the current value of lessonasl before updating
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 11 && currentLessonAslValue < 700) {
-                                    lessonaslRef.setValue(700);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(b3mothoftheyear.this,basiclevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(b3mothoftheyear.this,basiclevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 708){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(7);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(b3mothoftheyear.this, basic3asessmonth.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+                                        }else if (lesson1 == 11 && currentScore < 7) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(b3mothoftheyear.this,basic3asessmonth.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(b3mothoftheyear.this,basiclevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override
@@ -393,12 +432,12 @@ public class b3mothoftheyear extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail);
 
-        usersRef.child("lessonasl").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 700){
+                    if (currentLessonAslValue >= 7){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

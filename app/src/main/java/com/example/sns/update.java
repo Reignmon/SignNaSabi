@@ -2,7 +2,9 @@ package com.example.sns;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -10,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -32,9 +35,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 public class update extends AppCompatActivity {
     private boolean backPressToExit = false;
@@ -49,11 +59,15 @@ public class update extends AppCompatActivity {
     private String date;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     boolean isAllFieldsChecked = false;
+    Dialog loadingIndicatorDialog;
 
     SharedPreferences sharedPreferences;
     private static final String SHARED_PREF_NAME = "mypref";
     private static final String KEY_EMAIL = "email";
     String Decrypted = "";
+
+    public static String getfname = "", getlname = "",getmname = "",getext = "",getbod = "",
+            getage = "",getgender = "",getdisablity = "",getpassword = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +80,12 @@ public class update extends AppCompatActivity {
             return insets;
         });
 
+        loadingIndicatorDialog = new Dialog(update.this);
+        loadingIndicatorDialog.setContentView(R.layout.loading_dialog);
+        loadingIndicatorDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        loadingIndicatorDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.success_dialog_bg));
+        loadingIndicatorDialog.setCancelable(false);
+
         fname = findViewById(R.id.firtsname);
         lname = findViewById(R.id.lastname);
         mdname = findViewById(R.id.middlename);
@@ -74,6 +94,7 @@ public class update extends AppCompatActivity {
         email = findViewById(R.id.txtemail);
         pass = findViewById(R.id.txtpass);
         final Button btnreg = findViewById(R.id.btnregister);
+        final TextView btnback = findViewById(R.id.btnback);
         mDisplayDate = findViewById(R.id.date);
         spinnergender = findViewById(R.id.spinner_gender);
         spinneruser = findViewById(R.id.spinner_user);
@@ -82,20 +103,22 @@ public class update extends AppCompatActivity {
         String name = sharedPreferences.getString(KEY_EMAIL,null);
         String DecodedEmail = decodeEmail(name);
 
+
+
         if(name!=null){
             databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.hasChild(DecodedEmail)){
-                        final String getfname = snapshot.child(DecodedEmail).child("firstname").getValue(String.class);
-                        final String getlname = snapshot.child(DecodedEmail).child("lastname").getValue(String.class);
-                        final String getmname = snapshot.child(DecodedEmail).child("middlename").getValue(String.class);
-                        final String getext = snapshot.child(DecodedEmail).child("extensionname").getValue(String.class);
-                        final String getbod = snapshot.child(DecodedEmail).child("birthdate").getValue(String.class);
-                        final String getage = snapshot.child(DecodedEmail).child("age").getValue(String.class);
-                        final String getgender = snapshot.child(DecodedEmail).child("gender").getValue(String.class);
-                        final String getdisablity = snapshot.child(DecodedEmail).child("disablity").getValue(String.class);
-                        final String getpassword = snapshot.child(DecodedEmail).child("password").getValue(String.class);
+                        getfname = snapshot.child(DecodedEmail).child("firstname").getValue(String.class);
+                        getlname = snapshot.child(DecodedEmail).child("lastname").getValue(String.class);
+                        getmname = snapshot.child(DecodedEmail).child("middlename").getValue(String.class);
+                        getext = snapshot.child(DecodedEmail).child("extensionname").getValue(String.class);
+                        getbod = snapshot.child(DecodedEmail).child("birthdate").getValue(String.class);
+                        getage = snapshot.child(DecodedEmail).child("age").getValue(String.class);
+                        getgender = snapshot.child(DecodedEmail).child("gender").getValue(String.class);
+                        getdisablity = snapshot.child(DecodedEmail).child("disablity").getValue(String.class);
+                        getpassword = snapshot.child(DecodedEmail).child("password").getValue(String.class);
                         try {
                             Decrypted = DecryptEncrypt.decrypt(getpassword);
                         } catch (Exception e) {
@@ -134,6 +157,14 @@ public class update extends AppCompatActivity {
 
         }
 
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(update.this, profile.class));
+                finish();
+            }
+        });
+
 
         btnreg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,8 +181,51 @@ public class update extends AppCompatActivity {
                 String Password = pass.getText().toString();
                 boolean check = CheckAllFields(firstname,lastname,Age,Email,Password);
 
-                if(check == true){
+                String encryptedText;
+                try {
+                    encryptedText = DecryptEncrypt.encrypt(Password);
+                } catch (NoSuchPaddingException e) {
+                    throw new RuntimeException(e);
+                } catch (NoSuchAlgorithmException e) {
+                    throw new RuntimeException(e);
+                } catch (InvalidAlgorithmParameterException e) {
+                    throw new RuntimeException(e);
+                } catch (InvalidKeyException e) {
+                    throw new RuntimeException(e);
+                } catch (IllegalBlockSizeException e) {
+                    throw new RuntimeException(e);
+                } catch (BadPaddingException e) {
+                    throw new RuntimeException(e);
+                }
 
+                if(check == true){
+                    loadingIndicatorDialog.show();
+                    databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                        String encodedEmail = decodeEmail(Email);
+                        DatabaseReference usersRef = databaseReference.child("users").child(encodedEmail);
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.hasChild(encodedEmail)){
+                                usersRef.child("firstname").setValue(firstname);
+                                usersRef.child("lastname").setValue(lastname);
+                                usersRef.child("middlename").setValue(middlename);
+                                usersRef.child("extensioname").setValue(extensionname);
+                                usersRef.child("age").setValue(Age);
+                                usersRef.child("birthdate").setValue(bod);
+                                usersRef.child("gender").setValue(Gender);
+                                usersRef.child("disablity").setValue(Disablity);
+                                usersRef.child("password").setValue(encryptedText);
+                                startActivity(new Intent(update.this, profile.class));
+                                finish();
+                                loadingIndicatorDialog.dismiss();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
 
             }
@@ -256,15 +330,15 @@ public class update extends AppCompatActivity {
         if (firstname.length() == 0) {
             fname.setError("FIELD CANNOT BE EMPTY");
             return false;
-        } else if (!firstname.matches("[a-zA-Z]+")) {
-            fname.setError("ALPHABET ONLY");
+        } else if (!firstname.matches("[a-zA-Z\\s]+")) {
+            fname.setError("LETTERS AND SPACES ONLY");
             return false;
         }
 
         if (lastname.length() == 0) {
             lname.setError("FIELD CANNOT BE EMPTY");
             return false;
-        } else if (!lastname.matches("[a-zA-Z]+")) {
+        } else if (!lastname.matches("[a-zA-Z\\s]+")) {
             lname.setError("ALPHABET ONLY");
             return false;
         }
@@ -301,15 +375,26 @@ public class update extends AppCompatActivity {
         } else if (Password.length() < 8) {
             Toast.makeText(update.this, "Password must be minimum 8 characters", Toast.LENGTH_LONG).show();
             return false;
+        } else if (!containsUpperCase(Password)) {
+            Toast.makeText(update.this, "Password must contain at least one uppercase letter", Toast.LENGTH_LONG).show();
+            return false;
         }
 
         return true;
     }
     //end of code for validation
 
+    private boolean containsUpperCase(String password) {
+        for (char c : password.toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static String decodeEmail(String email) {
         // Replace '.' (dot) with ',' (comma) or any other safe character
         return email.replace(".", ",");
     }
-
 }

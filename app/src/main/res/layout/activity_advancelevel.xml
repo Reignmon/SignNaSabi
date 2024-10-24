@@ -60,6 +60,7 @@
         android:textSize="35sp"
         tools:ignore="HardcodedText" />
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -125,37 +126,52 @@
                             android:id="@+id/schoolpersonelbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/classroom" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="School Personel"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
                                 android:layout_width="115dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/schoolpersonelimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/approved"  />
+                            <TextView
+                                android:id="@+id/schoolpersonelscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"/>
 
                         </LinearLayout>
 
@@ -164,22 +180,24 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginHorizontal="15dp"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
-                                android:layout_weight="1"
                                 app:srcCompat="@drawable/stationery" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="School Term"
                                 android:textColor="#DD7719"
@@ -187,15 +205,28 @@
 
                             <Space
                                 android:layout_width="135dp"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/schooltermimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/approved"/>
+                            <TextView
+                                android:id="@+id/schooltermscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"/>
 
                         </LinearLayout>
 
@@ -204,22 +235,24 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginHorizontal="15dp"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
-                                android:layout_weight="1"
                                 app:srcCompat="@drawable/textbooks" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Subject Areas"
                                 android:textColor="#DD7719"
@@ -227,15 +260,28 @@
 
                             <Space
                                 android:layout_width="125dp"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/subjectimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 app:srcCompat="@drawable/approved" />
+                            <TextView
+                                android:id="@+id/subjectscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"/>
 
                         </LinearLayout>
 
@@ -245,9 +291,11 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/lesson2"
+                android:alpha=".7"
+                android:clickable="false"
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="2dp"
@@ -261,7 +309,8 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:id="@+id/lesson2Click"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="lesson2_view"
                         android:layout_marginVertical="5dp"
@@ -303,37 +352,52 @@
                             android:id="@+id/tradeindusbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/google" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Trade and Industries"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
                                 android:layout_width="85dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/tradeindusimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 app:srcCompat="@drawable/approved" />
+                            <TextView
+                                android:id="@+id/tradeindusscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"/>
 
                         </LinearLayout>
 
@@ -345,9 +409,11 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/lesson3"
+                android:alpha=".7"
+                android:clickable="false"
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="2dp"
@@ -361,7 +427,8 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:id="@+id/lesson3Click"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="lesson3_view"
                         android:layout_marginVertical="5dp"
@@ -403,37 +470,52 @@
                             android:id="@+id/measurebtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/bodymass" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Weight and Measure"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
                                 android:layout_width="85dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/measureimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/approved"/>
+                            <TextView
+                                android:id="@+id/measurescore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"/>
 
                         </LinearLayout>
                     </LinearLayout>
@@ -442,9 +524,11 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/lesson4"
+                android:alpha=".7"
+                android:clickable="false"
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="2dp"
@@ -458,7 +542,8 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:id="@+id/lesson4Click"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginVertical="5dp"
@@ -494,30 +579,32 @@
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="5dp"
                         android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:visibility="gone">
+                        android:visibility="gone"
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:id="@+id/compurtertermbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginHorizontal="15dp"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
-                                android:layout_weight="1"
                                 app:srcCompat="@drawable/gaming" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Computer Term"
                                 android:textColor="#DD7719"
@@ -525,15 +612,28 @@
 
                             <Space
                                 android:layout_width="115dp"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/compurtertermimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/approved"/>
+                            <TextView
+                                android:id="@+id/compurtertermscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"/>
 
                         </LinearLayout>
 
@@ -543,9 +643,11 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/lesson5"
+                android:alpha=".7"
+                android:clickable="false"
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="2dp"
@@ -559,7 +661,8 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:id="@+id/lesson5Click"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="lesson5_view"
                         android:layout_marginVertical="5dp"
@@ -601,37 +704,52 @@
                             android:id="@+id/sportsbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/sports" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Sports and Recreation"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
                                 android:layout_width="70dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/sportsimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 app:srcCompat="@drawable/approved" />
+                            <TextView
+                                android:id="@+id/sportsscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"/>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -639,9 +757,11 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/lesson6"
+                android:alpha=".7"
+                android:clickable="false"
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="2dp"
@@ -655,7 +775,8 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:id="@+id/lesson6Click"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="lesson6_view"
                         android:layout_marginVertical="5dp"
@@ -697,37 +818,52 @@
                             android:id="@+id/countriesbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/countries" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Countries"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
                                 android:layout_width="150dp"
+                                android:layout_weight="1"
                                 android:layout_height="wrap_content"/>
 
                             <ImageView
                                 android:id="@+id/countriesimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/approved"  />
+                            <TextView
+                                android:id="@+id/countriesscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"/>
 
                         </LinearLayout>
 
@@ -736,38 +872,53 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginHorizontal="15dp"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
-                                android:layout_weight="1"
                                 app:srcCompat="@drawable/nation" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Nationalities"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
 
                             <Space
+                                android:layout_weight="1"
                                 android:layout_width="125dp"
                                 android:layout_height="wrap_content" />
 
                             <ImageView
                                 android:id="@+id/nationalitiesimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 app:srcCompat="@drawable/approved" />
+                            <TextView
+                                android:id="@+id/nationalitiesscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"/>
 
                         </LinearLayout>
                     </LinearLayout>
@@ -776,12 +927,14 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/lesson7"
+                android:alpha=".7"
+                android:clickable="false"
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
+                android:layout_marginBottom="5dp"
                 app:cardElevation="2dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/backgroundColor">
@@ -793,7 +946,8 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:id="@+id/lesson7Click"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="lesson7_view"
                         android:layout_marginVertical="5dp"
@@ -835,37 +989,52 @@
                             android:id="@+id/idiomsbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/fracture" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Idioms"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
                                 android:layout_width="165dp"
+                                android:layout_weight="1"
                                 android:layout_height="wrap_content"/>
 
                             <ImageView
                                 android:id="@+id/idiomsimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 app:srcCompat="@drawable/approved" />
+                            <TextView
+                                android:id="@+id/idiomsscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"/>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>

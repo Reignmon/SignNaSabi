@@ -152,40 +152,23 @@ public class basicL1Asses1 extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        // Define video URIs and corresponding answers
+        //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XVAx83xHbVcC4ywsDouTxSP11e3_Ctet"), //A
-                Uri.parse("https://drive.google.com/uc?export=download&id=1iRirkuZLK7yA6TBq84JbfRJQsYkMnmAn"), //B
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Imy6u1xhNjqqWYt7V1DfFqJzH5jUpXPc"), //C
-                Uri.parse("https://drive.google.com/uc?export=download&id=1dMPORTiGKIFWU-H3pv-vP7vqPFKYjsWR"), //D
-                Uri.parse("https://drive.google.com/uc?export=download&id=16aHajT_bSKN750vO6CZJuepKtTdb9mrZ"), //E
-                Uri.parse("https://drive.google.com/uc?export=download&id=189HD7cliG97oAUjSAuAJfpir24FD5xN8"), //F
-                Uri.parse("https://drive.google.com/uc?export=download&id=1TUJyzZkkX5M7ahtR1X2brKdvqdMFDwKU"), //G
-                Uri.parse("https://drive.google.com/uc?export=download&id=1JPsU1491GnGti1NWE4qd7CN2Y5YVB6Ys"), //H
-                Uri.parse("https://drive.google.com/uc?export=download&id=1fvDnoPpSjRobIq6-2r-co1s5dGhw90zM"), //I
-                Uri.parse("https://drive.google.com/uc?export=download&id=19KhnHEQkypQh-0Jh8c0RC6wXWkGkBnv1"), //J
-                Uri.parse("https://drive.google.com/uc?export=download&id=1o_vkWW5DgcoedrrGSCVnU6RNrucllieE"), //K
-                Uri.parse("https://drive.google.com/uc?export=download&id=1OuGxOWOK5TIfxrKP31MzRqh5m6JJElsi"), //L
-                Uri.parse("https://drive.google.com/uc?export=download&id=1nQKgH1Et3bytnfqw6vV6D0VQfqZvxzTC"), //M
-                Uri.parse("https://drive.google.com/uc?export=download&id=1LpmEWUpEymaH_Lo-kLcLGw0G4mhIZz6E"), //N
-                Uri.parse("https://drive.google.com/uc?export=download&id=1CrdfWdFAEJQdKCcLiqyMhUS6ckKeUcFn"), //O
-                Uri.parse("https://drive.google.com/uc?export=download&id=1NNzzy2BlQnOll8R5HP795r_z8vrD7THF"), //P
-                Uri.parse("https://drive.google.com/uc?export=download&id=1V6ZcR1h52YXW6bsS3I3XPDH1Uo374M8q"), //Q
-                Uri.parse("https://drive.google.com/uc?export=download&id=16ZoJMkizbyJ_k9NObdxEQXIqOhuQHEZ-"), //R
-                Uri.parse("https://drive.google.com/uc?export=download&id=1568TwkQEDQ0tbvb5ivmb8YeZLPfzpqMd"), //S
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ZelE2EaZJs-eq1lNyZcgPgnwsOx2pImz"), //T
-                Uri.parse("https://drive.google.com/uc?export=download&id=1WEQZxltdPab7zAQIVG4-5WI83qVfelvH"), //U
-                Uri.parse("https://drive.google.com/uc?export=download&id=1WvCSQIJ-dLsNHcE43EJAS3OiHocO-kJL"), //V
-                Uri.parse("https://drive.google.com/uc?export=download&id=1AaYGcz0hUE_HhuQCew-ieIwErl_icnxa"), //W
-                Uri.parse("https://drive.google.com/uc?export=download&id=1QLnOg6L9AET_p8mA09QZSrBE3qYDvM8R"), //X
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DXC-Qggl8kXGWfB02eaesAR2gYk-Ps-x"), //Y
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XyclVlC-KVncPpZlvd6n1P-yO7sG7ijr")  //Z
+                Uri.parse("https://drive.google.com/uc?export=download&id=1pETX6UoigVGL5__upsmDxCygxAhPd36C"), //A
+                Uri.parse("https://drive.google.com/uc?export=download&id=1zuo8MUASw4iGSLstsuo9sWq7TsISkFiN"), //B
+                Uri.parse("https://drive.google.com/uc?export=download&id=1HXLWq8uvySw3pp0gqL_mzaxelpuIUPUy"), //C
+                Uri.parse("https://drive.google.com/uc?export=download&id=1jaInbQ8RmGABRxKiERNnULk6CfmTuuEi"), //D
+                Uri.parse("https://drive.google.com/uc?export=download&id=1jaInbQ8RmGABRxKiERNnULk6CfmTuuEi"), //E
+                Uri.parse("https://drive.google.com/uc?export=download&id=1YeENuexn9j6OHepjs6xGouVWKFEJqPz5"), //F
+                Uri.parse("https://drive.google.com/uc?export=download&id=1O9ytJkj9zc_mc--1FB9Nu4z_Xq21N8oQ"), //G
+                Uri.parse("https://drive.google.com/uc?export=download&id=1562C8hZV6I_ZGhGrVMT-rtkj5fRypvMb"), //H
+                Uri.parse("https://drive.google.com/uc?export=download&id=1OJpn-xdlvtMbI-uQZiltwpC2NwT1HUkc"), //I
+                Uri.parse("https://drive.google.com/uc?export=download&id=1dyYjHIm9yzA6NnZY2EEQOIddF-ILGAfM"), //J
                 // Add more URIs here as needed
         };
 
         answers = new String[]{"Letter A", "Letter B", "Letter C", "Letter D", "Letter E", "Letter F", "Letter G", "Letter H", "Letter I",
-                "Letter J", "Letter K", "Letter L", "Letter M", "Letter N", "Letter O", "Letter P", "Letter Q", "Letter R", "Letter S",
-                "Letter T", "Letter U", "Letter V", "Letter W", "Letter X", "Letter Y", "Letter Z"};
+                "Letter J"};
 
         // Initialize unplayed videos
         unplayedVideos = new ArrayList<>();

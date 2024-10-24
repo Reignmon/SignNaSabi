@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:fontFamily="@font/sniglet"
-        android:text="Watch carefully to learn the numbers Sign"
+        android:text="Watch carefully to learn the greetings Sign"
         android:textColor="#DD7719"
         android:textSize="10sp" />
 

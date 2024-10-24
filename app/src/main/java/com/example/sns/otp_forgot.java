@@ -75,6 +75,7 @@ public class otp_forgot extends AppCompatActivity {
 
 
 
+
         btnverify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,6 +85,7 @@ public class otp_forgot extends AppCompatActivity {
                     i.putExtra("email", EM);
                     startActivity(i);
                     finish();
+
                 }
             }
         });

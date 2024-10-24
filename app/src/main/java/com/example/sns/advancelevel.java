@@ -16,6 +16,7 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -40,6 +41,8 @@ public class advancelevel extends AppCompatActivity {
     static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
 
     static String name="";
+    CardView LESSON2,LESSON3,LESSON4,LESSON5,LESSON6,LESSON7;
+    LinearLayout Lesson2Click,Lesson3Click,Lesson4Click,Lesson5Click,Lesson6Click,Lesson7Click;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +62,20 @@ public class advancelevel extends AppCompatActivity {
         Lesson5 = findViewById(R.id.Lesson5_layout);
         Lesson6 = findViewById(R.id.Lesson6_layout);
         Lesson7 = findViewById(R.id.Lesson7_layout);
+
+        LESSON2 = findViewById(R.id.lesson2);
+        LESSON3 = findViewById(R.id.lesson3);
+        LESSON4 = findViewById(R.id.lesson4);
+        LESSON5 = findViewById(R.id.lesson5);
+        LESSON6 = findViewById(R.id.lesson6);
+        LESSON7 = findViewById(R.id.lesson7);
+
+        Lesson2Click = findViewById(R.id.lesson2Click);
+        Lesson3Click = findViewById(R.id.lesson3Click);
+        Lesson4Click = findViewById(R.id.lesson4Click);
+        Lesson5Click = findViewById(R.id.lesson5Click);
+        Lesson6Click = findViewById(R.id.lesson6Click);
+        Lesson7Click = findViewById(R.id.lesson7Click);
 
         schoolperBtn = findViewById(R.id.schoolpersonelbtn);
         schoolTermbtn = findViewById(R.id.schooltermbtn);

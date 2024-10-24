@@ -131,9 +131,20 @@ public class sendotp extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(sendotp.this, register.class);
-                startActivity(i);
-                finish();
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("firstname", firstname);
+                resultIntent.putExtra("lastname", lastname);
+                resultIntent.putExtra("middlename", middlename);
+                resultIntent.putExtra("extensionname", extensionname);
+                resultIntent.putExtra("birthdate", birthdate);
+                resultIntent.putExtra("age", age);
+                resultIntent.putExtra("gender", gender);
+                resultIntent.putExtra("disablity", disablity);
+                resultIntent.putExtra("email", email);
+                resultIntent.putExtra("password", password);
+
+                setResult(RESULT_OK, resultIntent); // Set the result for this activity
+                finish(); // Close this activity and return to the previous one
             }
         });
 
