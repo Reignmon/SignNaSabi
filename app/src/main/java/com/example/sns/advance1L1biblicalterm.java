@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -67,7 +68,7 @@ public class advance1L1biblicalterm extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(advance1L1biblicalterm.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -90,20 +91,20 @@ public class advance1L1biblicalterm extends AppCompatActivity {
 
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1gIuFXDTFPAMFP97NeupcnSEgZfRRGyVU"), //religion
-                Uri.parse("https://drive.google.com/uc?export=download&id=1eK2DqTxE7texORmxStCzXtRpNX_-s3Nr"), //church
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Q4Ajctkt58IGuqTFjq_u3NVvY19s73tb"), //bible
-                Uri.parse("https://drive.google.com/uc?export=download&id=1xPmQwWQokp1qS2L_kv-T0W_5FvjXh75h"), //jesus son
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XCW3bqjamrbygOFyRLoGB6MK7ROz15qY"), //holy spirit
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Hekr_XhxpuCq7OSpSeAAO9sgWe9UrYJM"), //angel
-                Uri.parse("https://drive.google.com/uc?export=download&id=11ttS_FhlHJvMeXKWgHyz2SfT1xcSYQ28"), //heaven
-                Uri.parse("https://drive.google.com/uc?export=download&id=1rDTe-H9Xepe-SaOsYoHSjToZljmLgpOk"), //hell
-                Uri.parse("https://drive.google.com/uc?export=download&id=1bW0XhkdWG1t7b34V3XBn4EG8I2KHHL2N"), //redeem
-                Uri.parse("https://drive.google.com/uc?export=download&id=1kSXrxOWpFlVHfC6SXVp-ZSUs6zX6QL2A"), //save
-                Uri.parse("https://drive.google.com/uc?export=download&id=1MMXLqW1obTqzqCKYfiFO2qYRjNSlaaw7"), //forgive
-                Uri.parse("https://drive.google.com/uc?export=download&id=1iDedaAnPuLyK2aJNwXH513VvGUYCRoF5"), //grace
-                Uri.parse("https://drive.google.com/uc?export=download&id=1a37VOxIJMKK6BS4ZqRxawYAjq4WN3obN"), //love
-                Uri.parse("https://drive.google.com/uc?export=download&id=1mmWpcnNlKYlCD21SeabvOp4hpaivc0N3"), //bless
+                Uri.parse("https://drive.google.com/uc?export=download&id=191w7hQsrWGp9w2-t1INPyDECZ8MMxhSr"), //religion
+                Uri.parse("https://drive.google.com/uc?export=download&id=10Xc7YbNeEGgqtujLqYp5WG92S8SUogrS"), //church
+                Uri.parse("https://drive.google.com/uc?export=download&id=1z4EGNzlrXoEghC71pXR5PefbK-4lov8G"), //bible
+                Uri.parse("https://drive.google.com/uc?export=download&id=1U9PRCvWCfZBAPi7DmxSY4xU4xFRmhAqJ"), //jesus son
+                Uri.parse("https://drive.google.com/uc?export=download&id=1o-kulHNJfSLUdG6hLxwCD2dL8hpd43wo"), //holy spirit
+                Uri.parse("https://drive.google.com/uc?export=download&id=1BorXM-qYVEMhzaxu-5PJOWL2-wEzsKM2"), //angel
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Ue4LzjpLHxuiDR7sc8KC-p3h5SiZfh1F"), //heaven
+                Uri.parse("https://drive.google.com/uc?export=download&id=1MAqP7Ao77VHVJi-Fd15cgHcta-MLee8w"), //hell
+                Uri.parse("https://drive.google.com/uc?export=download&id=1xsGKn9gQc4cwkB94TErQIeM1L_Cbn-RV"), //redeem
+                Uri.parse("https://drive.google.com/uc?export=download&id=1e1VAv7ZLWkqiDiWsIcJUVRzZ1HvYTHwM"), //save
+                Uri.parse("https://drive.google.com/uc?export=download&id=1NAsIAs50T9WTizrfLnZRiFrmJK2oz2CZ"), //forgive
+                Uri.parse("https://drive.google.com/uc?export=download&id=1O18IIXlVnwKF2pQBolGJwrVTkdNLj8tk"), //grace
+                Uri.parse("https://drive.google.com/uc?export=download&id=1eg1c58JoXrjWsSk67kgbmUqP3GrFDJP2"), //love
+                Uri.parse("https://drive.google.com/uc?export=download&id=1OELZ9Cvc72mM-zXsy-QKf6ATFFUy71Eu"), //bless
                 // Add more URIs as needed
 
         };
@@ -290,9 +291,13 @@ public class advance1L1biblicalterm extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
-
+                    if (currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
                 } else {
@@ -329,27 +334,62 @@ public class advance1L1biblicalterm extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 13) {
                         DatabaseReference lessonaslRef = usersRef.child("advancelesson1");
-
-                        // Check the current value of lessonasl before updating
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 13 && currentLessonAslValue < 100) {
-                                    lessonaslRef.setValue(100);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advance1L1biblicalterm.this,advancelevel1.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advance1L1biblicalterm.this,advancelevel1.class));
-                                    finish();
+                                Integer currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : null;
+                                DatabaseReference getScore = usersRef.child("biblicaltermscore");
+                                if (currentLessonAslValue != null) {
+                                    getScore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            Integer currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                            if (lesson1 == 13 && currentScore < 10) {
+                                                Log.e("UpdateLesson1", "Failed to update score" + currentScore);
+                                                Loading.dismiss();
+                                                startActivity(new Intent(advance1L1biblicalterm.this, advance1L1asessterm.class));
+                                                finish();
+                                            }else{
+                                                Log.e("UpdateLesson1", "update score " + currentScore);
+                                                Loading.dismiss();
+                                                startActivity(new Intent(advance1L1biblicalterm.this, advancelevel1.class));
+                                                finish();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                            Loading.dismiss();
+                                        }
+                                    });
+                                }else{
+                                    //add sign value
+                                    sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if (!snapshot.exists()){
+                                                lessonaslRef.setValue(100);
+                                                sign.setValue(1);
+                                                Loading.dismiss();
+                                                startActivity(new Intent(advance1L1biblicalterm.this, advance1L1asessterm.class));
+                                                finish();
+                                            }
+                                        }
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                    //add sign value
                                 }
                             }
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
                                 // Handle any errors
+                                Loading.dismiss();
                             }
                         });
                     } else {

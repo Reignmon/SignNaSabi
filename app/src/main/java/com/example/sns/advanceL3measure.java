@@ -67,7 +67,7 @@ public class advanceL3measure extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(advanceL3measure.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -88,22 +88,22 @@ public class advanceL3measure extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-
+        //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=17XHbupMLW_9hd_y29vzDexp9iKoe2Pwj"), //weight
-                Uri.parse("https://drive.google.com/uc?export=download&id=1deiX_S6AZdOAB4oCnlz3VKAKcKt-pt42"), //pound
-                Uri.parse("https://drive.google.com/uc?export=download&id=1fukKuhvfS9j9UToSOTf9Vgx563o1G5Pr"), //square
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Eoen9hqA5PJinuWkUk-xUZ57CA0qj4bZ"), //inch
-                Uri.parse("https://drive.google.com/uc?export=download&id=1jALFhavjgrfXVbCM0OYIl-J4zdQ-_kFL"), //meter
-                Uri.parse("https://drive.google.com/uc?export=download&id=1A5Itx0L7cWrSQA0PsPYS58nvxAKOFFHK"), //millimeter
-                Uri.parse("https://drive.google.com/uc?export=download&id=1bnT0CM-EIkYgFLyprRc16O3Vsnr5UBNv"), //centi meter
-                Uri.parse("https://drive.google.com/uc?export=download&id=1FdMqD267s2D8VTDocuUj2NMrdDiB5bIo"), //yard
-                Uri.parse("https://drive.google.com/uc?export=download&id=16gvzHJhC-F4p-2rJpM8btaL6IiQO5L88"), //mile
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DFdx3uCQhJl4JcZTOWlO1zq5_z-_gRvR"), //liter
-                Uri.parse("https://drive.google.com/uc?export=download&id=1LmLWN42OQ178_HbbJEILlkQ0aKbKGHwZ"), //mile perhour
-                Uri.parse("https://drive.google.com/uc?export=download&id=14Jhf3AVlSJYX3mcGcAOhCPQmtDNnSG3a"), //ounce
-                Uri.parse("https://drive.google.com/uc?export=download&id=11t8xT4v4aTJkkSvPmyKpQGviUaWH1vWp"), //gallon
-                Uri.parse("https://drive.google.com/uc?export=download&id=1tXeV48ijSkwBA09Nw25pdp0TI5yriUyy"), //degree
+                Uri.parse("https://drive.google.com/uc?export=download&id=1cpo09v7_vPf9qKvhJU_Sv4RoCQxthi4C"), //weight
+                Uri.parse("https://drive.google.com/uc?export=download&id=1BVNUsNOxH0QKKj3c0M2PfcaGO8xVx_ga"), //pound
+                Uri.parse("https://drive.google.com/uc?export=download&id=1GZBJBjHk6L0glA-eU8loD9X1cnfL4cex"), //square
+                Uri.parse("https://drive.google.com/uc?export=download&id=1fw4AEFlOc32As-7usjrQSxaHtI_58oWX"), //inch
+                Uri.parse("https://drive.google.com/uc?export=download&id=1uXza8ya6b_F8WBmQMG3nhlvhcnKiNJUH"), //meter
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Lrgvu9Gpy3eAML0zVApOPyPdSA__Ouqf"), //millimeter
+                Uri.parse("https://drive.google.com/uc?export=download&id=1W8n-z2AgeJ4vUd72l6Vdsnl8Ujhz1Mr1"), //centi meter
+                Uri.parse("https://drive.google.com/uc?export=download&id=10lwfpfr70IIDGPFCVKa53SYCUAsQmDAA"), //yard
+                Uri.parse("https://drive.google.com/uc?export=download&id=1NzQHX565Yopfcf_kdXCjG_Wq7_nBbaLl"), //mile
+                Uri.parse("https://drive.google.com/uc?export=download&id=16PCLQZz349lbTDoc0ZHRCBslO9C-czv6"), //liter
+                Uri.parse("https://drive.google.com/uc?export=download&id=1zUbEjkzW4wBnzuRauM8csYLeqVHk5yix"), //mile perhour
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ATl7vfg5ps722A4x6Vo0yFm4khVDS6SV"), //ounce
+                Uri.parse("https://drive.google.com/uc?export=download&id=1D2fJvHrkSODQUfLmdcyR-ryNu9fDwsdj"), //gallon
+                Uri.parse("https://drive.google.com/uc?export=download&id=1D2fJvHrkSODQUfLmdcyR-ryNu9fDwsdj"), //degree
                 // Add more URIs as needed
 
         };
@@ -290,8 +290,13 @@ public class advanceL3measure extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -329,22 +334,55 @@ public class advanceL3measure extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 13) {
                         DatabaseReference lessonaslRef = usersRef.child("advancelesson");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("measurescore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 13 && currentLessonAslValue < 500) {
-                                    lessonaslRef.setValue(500);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advanceL3measure.this,advancelevel.class));
-                                    finish();
-                                }else{
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advanceL3measure.this,advancelevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 500){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(5);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(advanceL3measure.this, advanceL4asessweight.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+
+                                        }else if (lesson1 == 13 && currentScore < 7) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advanceL3measure.this,advanceL4asessweight.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advanceL3measure.this,advancelevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override
@@ -397,12 +435,12 @@ public class advanceL3measure extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("advancelevel_tb").child(encodedEmail);
 
-        usersRef.child("advancelesson").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 500){
+                    if (currentLessonAslValue >= 5){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

@@ -108,7 +108,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:alpha=".5"
-                            android:text="School Personel, School Ternm, and Subject"
+                            android:text="School Personnel, School Term, and Subject"
                             android:textColor="#824000"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -145,7 +145,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
                                 android:fontFamily="@font/chewy"
-                                android:text="School Personel"
+                                android:text="School Personnel"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space

@@ -67,7 +67,7 @@ public class advance1L6sacraments extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(advance1L6sacraments.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -90,15 +90,14 @@ public class advance1L6sacraments extends AppCompatActivity {
 
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=18-WfUWwto0zunQDbZuUv2LcUvEcIdVYg"), //baptism
-                Uri.parse("https://drive.google.com/uc?export=download&id=1e6lkPe9KyBFbZE20TsourrCflMU_wKZ6"), //confirmation
-                Uri.parse("https://drive.google.com/uc?export=download&id=1lubXMWPtJ_hDXIDU7riAuv1lLdAY1n7_"), //eucharist
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Nk4dQTLNJIoX1cnRFcfSKG9V8Pv9FNcB"), //confension
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ebzSESIKoXezsxDs_w3u3a1CqI1nd8Jt"), //annoiting of seek
-                Uri.parse("https://drive.google.com/uc?export=download&id=15iUkrzYw48Sy6A9ogpVS3n__d1EYrQKo"), //holy orders
-                Uri.parse("https://drive.google.com/uc?export=download&id=1QkdHPml6DGtcH-CyGC_eu9JBYqfNYwUc"), //matarimony
+                Uri.parse("https://drive.google.com/uc?export=download&id=1U57gvJI_9WkJo2vXVhSJajJdUfT81Kpi"), //baptism
+                Uri.parse("https://drive.google.com/uc?export=download&id=1tHejhjpVe7wcFowvA1j1HsReGoo-OKL4"), //confirmation
+                Uri.parse("https://drive.google.com/uc?export=download&id=1y4xiM2d34gTr1AuJCxcmFJjoC9UKXLf0"), //eucharist
+                Uri.parse("https://drive.google.com/uc?export=download&id=1CiAZAhFYJxhpj-Q5tStgg3-o7QlzSbHJ"), //confension
+                Uri.parse("https://drive.google.com/uc?export=download&id=1JY93Yg7FXYIr5qhSzBmNLzDe776IIlFs"), //annoiting of seek
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Zkq3d1Tsv_X7p2z-LkMRmrT29kLDtVGO"), //holy orders
+                Uri.parse("https://drive.google.com/uc?export=download&id=1J1W__HWAhsLFbtFVJrgXz5lHNh8U5DQl"), //matarimony
                 // Add more URIs as needed
-
         };
 
         retrieveCurrentIndexFromFirebase();
@@ -282,8 +281,13 @@ public class advance1L6sacraments extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -321,22 +325,54 @@ public class advance1L6sacraments extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 6) {
                         DatabaseReference lessonaslRef = usersRef.child("advancelesson1");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("sacramentsscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 6 && currentLessonAslValue < 600) {
-                                    lessonaslRef.setValue(600);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advance1L6sacraments.this,advancelevel1.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advance1L6sacraments.this,advancelevel1.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 600){
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(6);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(advance1L6sacraments.this, advance1L6asessSacrament.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+
+                                        }else if (lesson1 == 6 && currentScore < 7) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advance1L6sacraments.this,advance1L6asessSacrament.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advance1L6sacraments.this,advancelevel1.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override
@@ -388,12 +424,12 @@ public class advance1L6sacraments extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("advancelevel1_tb").child(encodedEmail);
 
-        usersRef.child("advancelesson1").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 600){
+                    if (currentLessonAslValue >= 6){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

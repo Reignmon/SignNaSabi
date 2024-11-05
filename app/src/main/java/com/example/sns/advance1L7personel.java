@@ -70,7 +70,7 @@ public class advance1L7personel extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(advance1L7personel.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -91,18 +91,18 @@ public class advance1L7personel extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d/1EJxOqsQGxpBCSJt58MYcumSuIvxGCwhh/view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1nBQkNfTGW_X02XCw6NrpeNwuWTKAkglV"), //custodian
-                Uri.parse("https://drive.google.com/uc?export=download&id=1vumXmj2G7yLyyDm2hWkhxA360zECT024"), //music director
-                Uri.parse("https://drive.google.com/uc?export=download&id=1QmE4Exeb8-QIP3zXWTjZFRXnkk36qJiH"), //church secretary
-                Uri.parse("https://drive.google.com/uc?export=download&id=1P-PMTY4oF0V9-UfKacE_CSZaqZYBaye0"), //youth pastor
-                Uri.parse("https://drive.google.com/uc?export=download&id=1t_XcGEdOrG84WYjxWq0Dd1oGTqe5AJwX"), //receptionist
-                Uri.parse("https://drive.google.com/uc?export=download&id=1eiJJ_8pjb42vM3YMIgmIDIG4w38vWfB_"), //worship leader
-                Uri.parse("https://drive.google.com/uc?export=download&id=1GvYHSyDDe7nGXmkiZgwPw2EjjmeS4DNU"), //pastor
-                Uri.parse("https://drive.google.com/uc?export=download&id=1BZ-0lgCGBD5Hyef96SuKSGAK10mgpMgv"), //chaplain
-                Uri.parse("https://drive.google.com/uc?export=download&id=1KFr-4Atw3XiQqbkDRKX4sMnHnk58ijyX"), //office manager
-                Uri.parse("https://drive.google.com/uc?export=download&id=1wUHcxvLc4mzFTWA6z-vR7lN9pq_ekq7Z"), //accountant
+                Uri.parse("https://drive.google.com/uc?export=download&id=1EJxOqsQGxpBCSJt58MYcumSuIvxGCwhh"), //custodian
+                Uri.parse("https://drive.google.com/uc?export=download&id=1JkLwbeNTlqK89TecR2i5pNES6S6I4kjQ"), //music director
+                Uri.parse("https://drive.google.com/uc?export=download&id=169MwNJTi-9Ke9QgSfWcmjOKvMKC7r3vS"), //church secretary
+                Uri.parse("https://drive.google.com/uc?export=download&id=1XkS7uneGUsdXqcwlJIZv71_MUDOAOBWZ"), //youth pastor
+                Uri.parse("https://drive.google.com/uc?export=download&id=1X6JGWf4flcFTltkZeFjMu8OM4n4mm-X7"), //receptionist
+                Uri.parse("https://drive.google.com/uc?export=download&id=1qLLdZLxm44u3r7QZ6J2WolMJzsB3Mv1w"), //worship leader
+                Uri.parse("https://drive.google.com/uc?export=download&id=1tbY68PRMl3PiWOX0l_AeLFTVfaKTjNOl"), //pastor
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Qaoc_ZqI0aq3TiDkmgg8rQ6wxw2J4mWf"), //chaplain
+                Uri.parse("https://drive.google.com/uc?export=download&id=1zhICqSC2y60LGLRkoF01yyIVK_buc_d3"), //office manager
+                Uri.parse("https://drive.google.com/uc?export=download&id=1rJC1b8BgCSck9QuobHHyOA5gE0PXROl7"), //accountant
                 // Add more URIs as needed
         };
 
@@ -288,8 +288,13 @@ public class advance1L7personel extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if (currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -327,22 +332,54 @@ public class advance1L7personel extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 9) {
                         DatabaseReference lessonaslRef = usersRef.child("advancelesson1");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("churchpersonelscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 9 && currentLessonAslValue < 700) {
-                                    lessonaslRef.setValue(700);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advance1L7personel.this,advancelevel1.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advance1L7personel.this,advancelevel1.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 710){
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(7);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(advance1L7personel.this, advance1L7asessperso.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+
+                                        }else if (lesson1 == 9 && currentScore < 10) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advance1L7personel.this,advance1L7asessperso.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advance1L7personel.this,advancelevel1.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override
@@ -395,12 +432,12 @@ public class advance1L7personel extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("advancelevel1_tb").child(encodedEmail);
 
-        usersRef.child("advancelesson1").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 700){
+                    if (currentLessonAslValue >= 7){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

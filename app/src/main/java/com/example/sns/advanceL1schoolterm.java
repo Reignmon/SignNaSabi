@@ -68,7 +68,7 @@ public class advanceL1schoolterm extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(advanceL1schoolterm.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -91,15 +91,15 @@ public class advanceL1schoolterm extends AppCompatActivity {
 
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1dbEZxRIXD436b_yy1YpGp0GeaaOJVxOE"), //paper
-                Uri.parse("https://drive.google.com/uc?export=download&id=10YebxF6Ue2leWIXU92LX09LyawEy02aa"), //pencil pen
-                Uri.parse("https://drive.google.com/uc?export=download&id=1pULkxqGoFMxzcY3vAlSfcaiQK9Xm7q_r"), //backpack
-                Uri.parse("https://drive.google.com/uc?export=download&id=1yBYvE0EhRoAAcUodYcKbu8IznQh0Qo4f"), //computer
-                Uri.parse("https://drive.google.com/uc?export=download&id=1QzvmtFcoDAgoTJqol73zk1v5WXClePZi"), //internet
-                Uri.parse("https://drive.google.com/uc?export=download&id=15NiEDoblKMkSn-_hS2khpdKBGuPPBDxX"), //homework
-                Uri.parse("https://drive.google.com/uc?export=download&id=17RQJfPUac0xInIxKzEOHT0swR2yerAop"), //name
-                Uri.parse("https://drive.google.com/uc?export=download&id=1xLkaBwXHrO1ZCQZD69Fj-4umVj4opJ3n"), //class
-                Uri.parse("https://drive.google.com/uc?export=download&id=1CoXZPPeIqa0k0e9AKUJZPdCmbsUWXvJP"), //table desk
+                Uri.parse("https://drive.google.com/uc?export=download&id=1UKhG3g4yg14zTf3o9oCsxddd_31fpcVT"), //paper
+                Uri.parse("https://drive.google.com/uc?export=download&id=16cmOBNlfAJJn6QF8Qg45cpabA5tap_eJ"), //pencil pen
+                Uri.parse("https://drive.google.com/uc?export=download&id=1lCcjbV3QWoJ0XEm4c0xNHCyTkjgeGWaq"), //backpack
+                Uri.parse("https://drive.google.com/uc?export=download&id=1EfwiNPwWitsXAt7MTjScpngAAaJOfnC6"), //computer
+                Uri.parse("https://drive.google.com/uc?export=download&id=1UN2Xj3lLCOK3un1fb2Hjy-DfuwFd2LIw"), //internet
+                Uri.parse("https://drive.google.com/uc?export=download&id=1BPfPAUbxnp5AbSu1hx6FwcNEc8-lHhN9"), //homework
+                Uri.parse("https://drive.google.com/uc?export=download&id=1gCz9Js9XJfb-xa5Sq24sOSgvKadaRZuB"), //name
+                Uri.parse("https://drive.google.com/uc?export=download&id=1A0aRLY48ZBlPHIZqjEB6XO5FcRLCwKuZ"), //class
+                Uri.parse("https://drive.google.com/uc?export=download&id=1A0aRLY48ZBlPHIZqjEB6XO5FcRLCwKuZ"), //table desk
                 // Add more URIs as needed
 
         };
@@ -286,8 +286,13 @@ public class advanceL1schoolterm extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -325,22 +330,56 @@ public class advanceL1schoolterm extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 8) {
                         DatabaseReference lessonaslRef = usersRef.child("advancelesson");
+                        DatabaseReference getscore = usersRef.child("schooltermscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
 
-                        // Check the current value of lessonasl before updating
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 8 && currentLessonAslValue < 200) {
-                                    lessonaslRef.setValue(200);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advanceL1schoolterm.this,advancelevel.class));
-                                    finish();
-                                }else{
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advanceL1schoolterm.this,advancelevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 200){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(2);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(advanceL1schoolterm.this, advanceL1asessschoterm.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+
+                                        }else if (lesson1 == 8 && currentScore < 7) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advanceL1schoolterm.this,advanceL1asessschoterm.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advanceL1schoolterm.this,advancelevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override

@@ -67,7 +67,7 @@ public class advance1L5celebration extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(advance1L5celebration.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -90,19 +90,19 @@ public class advance1L5celebration extends AppCompatActivity {
 
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1gHOpdGqPBVxOFD0Oss7WMZvl0MXj3qc1"), //holiday
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Xi7hSCX7vvfgEs8WY10N8Er3x-8Ob5er"), //christmas
-                Uri.parse("https://drive.google.com/uc?export=download&id=15-V9yJAogp50WFYUYDFceztcdLwpN0TP"), //easter
-                Uri.parse("https://drive.google.com/uc?export=download&id=1agb0vbTmP2kDSUUcXVTRrLuc3F8AQuzQ"), //thanksgiving
-                Uri.parse("https://drive.google.com/uc?export=download&id=1u64F55fao2UclL7DrVm_W4lqRXA77avC"), //ramadan
-                Uri.parse("https://drive.google.com/uc?export=download&id=1oP0c6J1mlUFWgMVlTTsTpduJymN9elJ4"), //all saints day
-                Uri.parse("https://drive.google.com/uc?export=download&id=1n-zawyNvzJWZtk5PEE9q-Emtr2dpozBV"), //good friday
-                Uri.parse("https://drive.google.com/uc?export=download&id=1bzQhWUcoAVW2AzOlJadjkeIj8isTQF-n"), //ash wednesday
-                Uri.parse("https://drive.google.com/uc?export=download&id=1CuRZ03Z3As71Gj6j66wYCO6Jiuu0_3m9"), //palm sunday
-                Uri.parse("https://drive.google.com/uc?export=download&id=1u69DdMAPIjZjfmSojfEvSt6hGRD-iSl1"), //maundy thursday
-                Uri.parse("https://drive.google.com/uc?export=download&id=10fRFlOs-qKLaAjDlNxqEZfE6ok7h34VP"), //lent
-                Uri.parse("https://drive.google.com/uc?export=download&id=1CnjH_DJ1JzhRUCFhH6GZTItKcohOmOmx"), //hollyweek
-                Uri.parse("https://drive.google.com/uc?export=download&id=15kPJrYkf86jEL_1bxGfOccZxDo0oBt4m"), //black saturday
+                Uri.parse("https://drive.google.com/uc?export=download&id=1OUHZcGOosOXvLjajDaTGf3VUAV2UJqxZ"), //holiday
+                Uri.parse("https://drive.google.com/uc?export=download&id=120_fNDbuumDBRic6HVvFdxFfYkWbyUo5"), //christmas
+                Uri.parse("https://drive.google.com/uc?export=download&id=1z6ItAAvomRm_MYHfKHmoQtDfPXyDsbaf"), //easter
+                Uri.parse("https://drive.google.com/uc?export=download&id=1tAQJPb3_7oagQB995DcvBWAjTAzVhWoi"), //thanksgiving
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Ws3pFRXdJ6GshMDTX6GiaEjn1IAwWXrf"), //ramadan
+                Uri.parse("https://drive.google.com/uc?export=download&id=1-G2Z1PW0vO8K6segEJyYH9OiKDSjCxX3"), //all saints day
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Z-iPQHLTji5oPkr7bYA7Hb6skfE3WTmk"), //good friday
+                Uri.parse("https://drive.google.com/uc?export=download&id=1uq2LA6C_fz9eyn422GMGnKKaRukkwaVJ"), //ash wednesday
+                Uri.parse("https://drive.google.com/uc?export=download&id=1e3-07IXd--I-KHxaa3VuoLnTD8aH2atE"), //palm sunday
+                Uri.parse("https://drive.google.com/uc?export=download&id=1O-W1zC7fuW67zI6ISKCPYOU7s76CBVDW"), //maundy thursday
+                Uri.parse("https://drive.google.com/uc?export=download&id=1IVgdtfuTAda1YEnKBN-nXmhFVGs292hX"), //lent
+                Uri.parse("https://drive.google.com/uc?export=download&id=1TnyihDuPNlG-xaK16Ejrqo3kXyiHLg_A"), //hollyweek
+                Uri.parse("https://drive.google.com/uc?export=download&id=1cXEuEwN079P2ICU2yqa66cwc0LwHC60d"), //black saturday
                 // Add more URIs as needed
 
         };
@@ -288,8 +288,13 @@ public class advance1L5celebration extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -326,22 +331,54 @@ public class advance1L5celebration extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 12) {
                         DatabaseReference lessonaslRef = usersRef.child("advancelesson1");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("religiouscelebscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 12 && currentLessonAslValue < 500) {
-                                    lessonaslRef.setValue(500);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advance1L5celebration.this,advancelevel1.class));
-                                    finish();
-                                }else{
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advance1L5celebration.this,advancelevel1.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 500){
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(5);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(advance1L5celebration.this, advance1L5asessceleb.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+
+                                        }else if (lesson1 == 12 && currentScore < 10) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advance1L5celebration.this,advance1L5asessceleb.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advance1L5celebration.this,advancelevel1.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override

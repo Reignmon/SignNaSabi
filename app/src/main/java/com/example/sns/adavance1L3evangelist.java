@@ -92,10 +92,10 @@ public class adavance1L3evangelist extends AppCompatActivity {
 
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1m4nV_UyI7vLeeyIt8NrLf9PYs9xqb1eT"), //mathew
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Bv1C7ltO1Usv4_obqyjuk7QyI7tLbizr"), //mark
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Wxx9Qg1IP3A9d003U_0PWrKWX5aJT9N9"), //luke
-                Uri.parse("https://drive.google.com/uc?export=download&id=1NMPRH_-NpowL5TI7CuC-AFBcgyJjSv3Y"), //john
+                Uri.parse("https://drive.google.com/uc?export=download&id=1B3foP2O0TEc1WQvITQOk10fKb0KDq7Ul"), //mathew
+                Uri.parse("https://drive.google.com/uc?export=download&id=1B_VrY9Y3I3TZXgJ_2BnBkgtXGiIS6Buo"), //mark
+                Uri.parse("https://drive.google.com/uc?export=download&id=111uMCuDJvb2SV4LCb-gYo5W8wP6r-vW3"), //luke
+                Uri.parse("https://drive.google.com/uc?export=download&id=1TOtKcTD1zTweWX7c1efAzqQVeUw_uW7W"), //john
                 // Add more URIs as needed
 
         };
@@ -282,8 +282,14 @@ public class adavance1L3evangelist extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if (currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -322,17 +328,34 @@ public class adavance1L3evangelist extends AppCompatActivity {
                     if (lesson1 == 3) {
                         DatabaseReference lessonaslRef = usersRef.child("advancelesson1");
 
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
                                 if (lesson1 == 3 && currentLessonAslValue < 300) {
-                                    lessonaslRef.setValue(300);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(adavance1L3evangelist.this,advancelevel1.class));
-                                    finish();
-                                }else {
+                                    //add sign value
+                                    sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if (snapshot.exists()){
+                                                int total = (currentLessonAslValue + 100);
+                                                lessonaslRef.setValue(total);
+                                                sign.setValue(3);
+                                                Loading.dismiss();
+                                                startActivity(new Intent(adavance1L3evangelist.this,advancelevel1.class));
+                                                finish();
+                                            }
+                                        }
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                    //add sign value
+
+                                }
+                                else{
                                     Loading.dismiss();
                                     startActivity(new Intent(adavance1L3evangelist.this,advancelevel1.class));
                                     finish();

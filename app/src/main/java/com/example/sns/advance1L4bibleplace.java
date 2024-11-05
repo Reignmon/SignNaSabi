@@ -67,7 +67,7 @@ public class advance1L4bibleplace extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(advance1L4bibleplace.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -88,22 +88,22 @@ public class advance1L4bibleplace extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d/view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ukX88ond5p1BumUQjD3jtnNITQZvaAhK"), //bethlehem
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ZBfm1rjj9rA545a1jAc5yf3Ktm3zfkLy"), //jerusalem
-                Uri.parse("https://drive.google.com/uc?export=download&id=1fR7b2M9_ZcAun-NXmEUr8snIpv-PXyZZ"), //canaan
-                Uri.parse("https://drive.google.com/uc?export=download&id=1w5OXnC395pHL-eGvFI49GI9f2yk7VmEG"), //galilee
-                Uri.parse("https://drive.google.com/uc?export=download&id=1-EuU9cpg5vzPAJDOMs6WLzqbuvpRD4mq"), //babylon
-                Uri.parse("https://drive.google.com/uc?export=download&id=1diKAKa1sE87uoqq1rSXdG4YQZDO6QtAQ"), //eden
-                Uri.parse("https://drive.google.com/uc?export=download&id=1tFLfLrJhj5VqtMgw81un83EvW0cHfQoP"), //nazareth
-                Uri.parse("https://drive.google.com/uc?export=download&id=1KmEb1ffBRZxov0BqRUsi_iFC4kHkCFRD"), //sanai
-                Uri.parse("https://drive.google.com/uc?export=download&id=1V37MK_2RRRUUzlCFeoE2uyd-AE97fkfb"), //gaza
-                Uri.parse("https://drive.google.com/uc?export=download&id=15NWWFn7nrxMsR7djyPw5AKp2NRHeb4LN"), //hebron
-                Uri.parse("https://drive.google.com/uc?export=download&id=1UBE_xf_WcsL0nEkKWTV3Gbt2z83vJPJF"), //calvary
-                Uri.parse("https://drive.google.com/uc?export=download&id=1hcJrzqR3M750uyLpJzNjlw7cGyyCjiL0"), //gamorrah
-                Uri.parse("https://drive.google.com/uc?export=download&id=1lS5dGS73yEs9axbA6uSDHQBX9DWDrJhO"), //judah
-                Uri.parse("https://drive.google.com/uc?export=download&id=1g-s4EahvhmpXZUB2MRqXlXpM3gsulY-S"), //samaria
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Q42azkEAzasPeIe1zoCh5mDv3lr_f711"), //bethlehem
+                Uri.parse("https://drive.google.com/uc?export=download&id=1aGnLwG-9MUD7n8UWjLO7Ut1KSWlPyFqE"), //jerusalem
+                Uri.parse("https://drive.google.com/uc?export=download&id=1MiTLG-kPVbXtzSCNsPTjtISUh2Djc4fY"), //canaan
+                Uri.parse("https://drive.google.com/uc?export=download&id=1_KtPHflK8fxJtMuzQtLFGWCwJkpd9Xsd"), //galilee
+                Uri.parse("https://drive.google.com/uc?export=download&id=1owsAx7TQf7Jvf-1e1BqUWCHmRcoubyvJ"), //babylon
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ivMPpCHUBVKwVYYLqarCmXW5nT6hprwD"), //eden
+                Uri.parse("https://drive.google.com/uc?export=download&id=17hcBrLoUxXVXJJ5NVOPaIQ9Gh_dIT3hx"), //nazareth
+                Uri.parse("https://drive.google.com/uc?export=download&id=1U3vdNQmSjLudCJgrbWesjqnpBwg3VxDb"), //sanai
+                Uri.parse("https://drive.google.com/uc?export=download&id=190gVpBw7aVGiQAxUhjsvDaZe7--cFXxM"), //gaza
+                Uri.parse("https://drive.google.com/uc?export=download&id=15kPRxO_3m4epbTxqwTcOKTrn2yhznZv7"), //hebron
+                Uri.parse("https://drive.google.com/uc?export=download&id=1FT4DDX3fqB3a6q5lqcLKmfclNkHBexew"), //calvary
+                Uri.parse("https://drive.google.com/uc?export=download&id=1NBr3lA4CoSeCpTuxqAf0BGi5b3IuabUs"), //gamorrah
+                Uri.parse("https://drive.google.com/uc?export=download&id=1MWy3s0KTjBbYgRqlxW38AO3MwUmZjkbE"), //judah
+                Uri.parse("https://drive.google.com/uc?export=download&id=1uxHD1ixHVmsu5jZZDlZQ_mY9crvALst-"), //samaria
                 // Add more URIs as needed
 
         };
@@ -290,8 +290,13 @@ public class advance1L4bibleplace extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -329,22 +334,54 @@ public class advance1L4bibleplace extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 13) {
                         DatabaseReference lessonaslRef = usersRef.child("advancelesson1");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("bibleplacescore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 13 && currentLessonAslValue < 400) {
-                                    lessonaslRef.setValue(400);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advance1L4bibleplace.this,advancelevel1.class));
-                                    finish();
-                                }else{
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advance1L4bibleplace.this,advancelevel1.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 400){
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(4);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(advance1L4bibleplace.this, advance1L4asessplace.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+
+                                        }else if (lesson1 == 13 && currentScore < 10) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advance1L4bibleplace.this,advance1L4asessplace.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advance1L4bibleplace.this,advancelevel1.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override

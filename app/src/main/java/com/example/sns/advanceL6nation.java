@@ -68,7 +68,7 @@ public class advanceL6nation extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(advanceL6nation.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -89,18 +89,18 @@ public class advanceL6nation extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d//view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1JJ7nU2fkl-Kf0q4tcXzOxctb3fTcJY1L"), //chines
-                Uri.parse("https://drive.google.com/uc?export=download&id=19A9JdqBSWCW9AXqGQR9LH0ThaIuNXjWV"), //french
-                Uri.parse("https://drive.google.com/uc?export=download&id=1rh705ENDaWrIHPnSqfiBtt4dv3py_-vw"), //german
-                Uri.parse("https://drive.google.com/uc?export=download&id=1j2e_ZJAr9jcWa--2DRkRcPpL8Z9fcIhA"), //greek
-                Uri.parse("https://drive.google.com/uc?export=download&id=12Zm_jvgkMVQqxPE-PvGj6XNb45AHQImB"), //italian
-                Uri.parse("https://drive.google.com/uc?export=download&id=1JoQds5N6y40RcnuwAZY9ST7vZr9QsbMH"), //japanese
-                Uri.parse("https://drive.google.com/uc?export=download&id=1mn_HdsBrpYsppKFaU4PNZmkHcl3nEf5q"), //polish
-                Uri.parse("https://drive.google.com/uc?export=download&id=1a0sz4lqhXSuJOlNynPMQwRAWZQqKYKm9"), //mexican
-                Uri.parse("https://drive.google.com/uc?export=download&id=1jbhIAjVWG2YXJaMnhSRGVW6iFct89_5Z"), //canadian
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ZqIx02TrsvfHFj8QLqsyDjVW8W70rUe1"), //brazillian
+                Uri.parse("https://drive.google.com/uc?export=download&id=1DObDIhTO982Z5o7epI3I-BfP_9_u4SWW"), //chines
+                Uri.parse("https://drive.google.com/uc?export=download&id=18Hl-RTVEYJrNL1XMzTmdhXduRtI6VLSI"), //french
+                Uri.parse("https://drive.google.com/uc?export=download&id=1moxDnnfjG_ixyWZ3E2JHvM7nvcPDPKfa"), //german
+                Uri.parse("https://drive.google.com/uc?export=download&id=1tKoZw1M7rO-s7Zhf-AkOnHRWAWOZtfOG"), //greek
+                Uri.parse("https://drive.google.com/uc?export=download&id=1cx8BPEUUY3LSmGk8hDCZZF3NHrNvyZ_F"), //italian
+                Uri.parse("https://drive.google.com/uc?export=download&id=1YCD-_vNUU6iWdQuHL0BcDqEOvFyZenqy"), //japanese
+                Uri.parse("https://drive.google.com/uc?export=download&id=1bdC-NCh_pl7ipUZTsuSTl1KfROfQIsfT"), //polish
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ydX01yhRaEOKnSHUKsOIQYOQju-wOZ_S"), //mexican
+                Uri.parse("https://drive.google.com/uc?export=download&id=11LIZ06L9ls2Mo63MENqD9VnmqFqJqQfD"), //canadian
+                Uri.parse("https://drive.google.com/uc?export=download&id=1rZ8nu-9IJVpj1zVhjLDpneeJP3ihxC_I"), //brazillian
                 // Add more URIs as needed
 
         };
@@ -286,9 +286,13 @@ public class advanceL6nation extends AppCompatActivity {
                     // Get currentIndex from Firebase
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
-
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else {
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -326,22 +330,55 @@ public class advanceL6nation extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 9) {
                         DatabaseReference lessonaslRef = usersRef.child("advancelesson");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("nationscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 9 && currentLessonAslValue < 900) {
-                                    lessonaslRef.setValue(900);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advanceL6nation.this,advancelevel.class));
-                                    finish();
-                                }else{
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advanceL6nation.this,advancelevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 1000){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(9);
+                                                        Loading.dismiss();
+                                                        finish();
+                                                        startActivity(new Intent(advanceL6nation.this, advanceL6asessnation.class));
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+
+                                        }else if (lesson1 == 9 && currentScore < 10) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advanceL6nation.this,advanceL6asessnation.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advanceL6nation.this,advancelevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override
@@ -394,12 +431,12 @@ public class advanceL6nation extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("advancelevel_tb").child(encodedEmail);
 
-        usersRef.child("advancelesson").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 900){
+                    if (currentLessonAslValue >= 9){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

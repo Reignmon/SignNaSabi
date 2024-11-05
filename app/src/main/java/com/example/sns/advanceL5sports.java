@@ -66,7 +66,7 @@ public class advanceL5sports extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(advanceL5sports.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -87,18 +87,18 @@ public class advanceL5sports extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d//view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1N80VEeNs1a5cOelCNoZWi7sW6wD9-6eJ"), //baseball
-                Uri.parse("https://drive.google.com/uc?export=download&id=1GXlY0Fnrk38H_-0JFwWRF3CPfQTfDdV-"), //bassketball
-                Uri.parse("https://drive.google.com/uc?export=download&id=1NILes957rtjZIe5ws7wZ77WHqV8blB4J"), //boxing
-                Uri.parse("https://drive.google.com/uc?export=download&id=1NY5qDlBbo9WpvdJ_7VAI8lsojBaSu0Xx"), //golf
-                Uri.parse("https://drive.google.com/uc?export=download&id=1AWY5ixbv1MmIkKYyWkCuT1rH_M9rNMF5"), //soccer
-                Uri.parse("https://drive.google.com/uc?export=download&id=1a9WjOGdqsJH6xsVD4A8IfBaWfnU8UBrU"), //tennis
-                Uri.parse("https://drive.google.com/uc?export=download&id=1frlymwCkEc75QOIX8RvSCS2t5FaSVP-F"), //volleyball
-                Uri.parse("https://drive.google.com/uc?export=download&id=1iseNLPOKcgCyp42o4zDT5d_7U2yNbrQk"), //jog
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ix5rIXOl2Nrn0ykCkJapxWTvfRi5olLo"), //play
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DzIdsPYOUbSbj6nKHrDd8vEcHUrIBkue"), //run
+                Uri.parse("https://drive.google.com/uc?export=download&id=1LA9xnpOKz52Qjv7hR19cjMOLWvIa2hxT"), //baseball
+                Uri.parse("https://drive.google.com/uc?export=download&id=1v6JerSJJ1KS4Ni7ptOGL1TT8yVPHBQrE"), //bassketball
+                Uri.parse("https://drive.google.com/uc?export=download&id=1OT1VE7K3lfyh6NARtjeJ8ccYQHtGDw1Q"), //boxing
+                Uri.parse("https://drive.google.com/uc?export=download&id=1IcEYgoRt1gqu0zZ7rB8REc_RUQMFen_G"), //golf
+                Uri.parse("https://drive.google.com/uc?export=download&id=1dm7OkADRXh1Hc3xCRfiKIlGU9VRGUVFz"), //soccer
+                Uri.parse("https://drive.google.com/uc?export=download&id=1RjzvtI4fPF6taL62SxZh9ikQNSendual"), //tennis
+                Uri.parse("https://drive.google.com/uc?export=download&id=1f8FkeeFIPBJyWu5eBaLej0j4Oi9ZN6G4"), //volleyball
+                Uri.parse("https://drive.google.com/uc?export=download&id=1bnS4bomH8ALqvhrlfjHscveyCoK3TSEq"), //jog
+                Uri.parse("https://drive.google.com/uc?export=download&id=16LTrcI_yF_TNiRw8DsOXE_DGu7uUP7rw"), //play
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ACBDQAHa0LRgzNcJozN-tanj9vY-gvey"), //run
                 // Add more URIs as needed
 
         };
@@ -284,9 +284,13 @@ public class advanceL5sports extends AppCompatActivity {
                     // Get currentIndex from Firebase
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
-
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if (currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -324,22 +328,55 @@ public class advanceL5sports extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 9) {
                         DatabaseReference lessonaslRef = usersRef.child("advancelesson");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("sportsscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 9 && currentLessonAslValue < 700) {
-                                    lessonaslRef.setValue(700);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advanceL5sports.this,advancelevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advanceL5sports.this,advancelevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 800){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(7);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(advanceL5sports.this, advanceL5asesssports.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+
+                                        }else if (lesson1 == 9 && currentScore < 9) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advanceL5sports.this,advanceL5asesssports.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advanceL5sports.this,advancelevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override
@@ -392,12 +429,12 @@ public class advanceL5sports extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("advancelevel_tb").child(encodedEmail);
 
-        usersRef.child("advancelesson").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 700){
+                    if (currentLessonAslValue >= 7){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

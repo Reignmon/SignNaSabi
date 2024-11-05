@@ -378,9 +378,9 @@ public class basicL1Asses1 extends AppCompatActivity {
         }
 
         currentQuestionIndex++;
-        if (currentQuestionIndex < questionImages.length) {
+       /* if (currentQuestionIndex < questionImages.length) {
             playRandomVideo(); // Load the next video
-        }
+        }*/
     }
 
 

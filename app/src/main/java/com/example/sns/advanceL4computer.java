@@ -67,7 +67,7 @@ public class advanceL4computer extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(advanceL4computer.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -90,16 +90,16 @@ public class advanceL4computer extends AppCompatActivity {
 
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1FqCv03pLIijfmuINgujWQkSQI5bNHbc4"), //cpu
-                Uri.parse("https://drive.google.com/uc?export=download&id=1OR7JfNUzbkQH5DJmSctTA4MzqWcddD4i"), //memory
-                Uri.parse("https://drive.google.com/uc?export=download&id=1E_nmh0-9YHCh39gml-z5nswl0hgm0bzF"), //monitor
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Kyto5HejrumS44obleYMggpdyRfiNvd5"), //mouse
-                Uri.parse("https://drive.google.com/uc?export=download&id=1-JU3fx8VosBK23yys6-HUGZDUP7gZ96n"), //keyboard
-                Uri.parse("https://drive.google.com/uc?export=download&id=1qCibLDnTdqXrVIkpQU0It46dg5eIaVTX"), //storage
-                Uri.parse("https://drive.google.com/uc?export=download&id=1n2OmK8OjMMHN-PSx_EHxdKQHtlekeemH"), //headphones
-                Uri.parse("https://drive.google.com/uc?export=download&id=1wHyWPmyXSYGQruajPFueGta4tu4tFCDe"), //printer
-                Uri.parse("https://drive.google.com/uc?export=download&id=1SI9MioMX-RGszlGRcrlb37wNlKJpJVt9"), //router
-                Uri.parse("https://drive.google.com/uc?export=download&id=1umatJoy3Ag-XXKEQw9zh7TX0t9u0rFh0"), //system unit
+                Uri.parse("https://drive.google.com/uc?export=download&id=1lJpR6ruthUfhBNwujRtQzc9PsCouBKdu"), //cpu
+                Uri.parse("https://drive.google.com/uc?export=download&id=1tuRclVZie4CtpcpKbgnoo2NhmZdTi-O7"), //memory
+                Uri.parse("https://drive.google.com/uc?export=download&id=17MJKpquMHzTHtuLx97KVgVsYLUVvQBvC"), //monitor
+                Uri.parse("https://drive.google.com/uc?export=download&id=14qwYumUVpsH-BUg_ic1P4lq-LwV4e_dX"), //mouse
+                Uri.parse("https://drive.google.com/uc?export=download&id=11BxvLUNhcrztMVfXizrEVYVywUmHnBXY"), //keyboard
+                Uri.parse("https://drive.google.com/uc?export=download&id=12sN_cx8Od-utbr-17JKX0Vp_4fYmdel2"), //storage
+                Uri.parse("https://drive.google.com/uc?export=download&id=1HBdx-S-8fyDw81GCqv3QUK6vZ1XLI59w"), //headphones
+                Uri.parse("https://drive.google.com/uc?export=download&id=1trOtY_fc-SeLoz-Klf1tujjmwWzARfqz"), //printer
+                Uri.parse("https://drive.google.com/uc?export=download&id=10LWUWxLNgJA0ulrhyR3v6Z2tqfsVVsRE"), //router
+                Uri.parse("https://drive.google.com/uc?export=download&id=1KGOiMhrGIheTJsKmsdpXI9Qv4m-TehIY"), //system unit
                 // Add more URIs as needed
 
         };
@@ -286,9 +286,13 @@ public class advanceL4computer extends AppCompatActivity {
                     // Get currentIndex from Firebase
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
-
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -326,22 +330,55 @@ public class advanceL4computer extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 9) {
                         DatabaseReference lessonaslRef = usersRef.child("advancelesson");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("computerscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 9 && currentLessonAslValue < 600) {
-                                    lessonaslRef.setValue(600);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advanceL4computer.this,advancelevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advanceL4computer.this,advancelevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 600){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(6);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(advanceL4computer.this, advanceL4asesscomp.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+
+                                        }else if (lesson1 == 9 && currentScore < 7) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advanceL4computer.this,advanceL4asesscomp.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advanceL4computer.this,advancelevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override
@@ -394,12 +431,12 @@ public class advanceL4computer extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("advancelevel_tb").child(encodedEmail);
 
-        usersRef.child("advancelesson").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 600){
+                    if (currentLessonAslValue >= 6){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

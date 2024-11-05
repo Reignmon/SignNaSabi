@@ -80,10 +80,9 @@ public class dashboard extends AppCompatActivity {
     Button btnprof,btnTrans,btnpractice,btnhistory;
     int backgroundColor = Color.argb(191, 0, 255, 255);
 
-    CardView intermediateCard,advancelevel,advanceLevel1,intermediateLevel;
+    CardView advancelevel,advanceLevel1,intermediateLevel;
     TextView Points,Sign,Complete;
-    String pointsTotal = "0",signTotal = "0";
-
+    int pointsTotal = 0,signTotal = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,7 +134,8 @@ public class dashboard extends AppCompatActivity {
         retrieveadvacelessson();
         retrieveadvacelessson1();
         retrieveintermediate();
-        showSign();
+        totalPoints();
+        totalSign();
 
         //code for showcase
         /*showCaseNumber = 1;
@@ -381,11 +381,10 @@ public class dashboard extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     dialog.dismiss();
-                    // Get currentIndex from Firebase
                     basiclevelprogress = snapshot.getValue(Integer.class);
-                    pointsTotal = String.valueOf(Integer.parseInt(Integer.toString(basiclevelprogress)));
+                  /*  pointsTotal = String.valueOf(Integer.parseInt(Integer.toString(basiclevelprogress)));
+                    Points.setText(pointsTotal);*/
                     basiclevelProgress.setProgress(basiclevelprogress);
-                    Points.setText(pointsTotal);
                     progressLevel = basiclevelProgress.getProgress();
 
                     sign.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -420,21 +419,39 @@ public class dashboard extends AppCompatActivity {
 
     private void retrieveadvacelessson() {
         String encodedEmail = encodeEmail(name);
-        DatabaseReference Advancelevel = databaseReference.child("advancelevel_tb").child(encodedEmail).child("advancelesson");
-        Advancelevel.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference Advancelevel = databaseReference.child("advancelevel_tb").child(encodedEmail);
+        DatabaseReference advancelesson = Advancelevel.child("advancelesson");
+        DatabaseReference idiomScore = Advancelevel.child("idiomscore");
+        advancelesson.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     advancelevelprog = snapshot.getValue(Integer.class);
                     advanceProgress.setProgress(advancelevelprog);
-                    if(advancelevelprog == 1000){
-                        advanceLevel1.setVisibility(View.VISIBLE);
-                        advanceLevel1.setEnabled(true);
-                    } else if (advancelevelprog == 0) {
-                        advanceProgress.setProgress(0);
-                        advanceLevel1.setVisibility(View.INVISIBLE);
-                        advanceLevel1.setEnabled(false);
-                    }
+                    idiomScore.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()){
+                                int sign = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                if (sign >= 8){
+                                    advanceLevel1.setVisibility(View.VISIBLE);
+                                    advanceLevel1.setEnabled(true);
+                                }else{
+                                    advanceLevel1.setVisibility(View.INVISIBLE);
+                                    advanceLevel1.setEnabled(false);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }else{
+                    advanceProgress.setProgress(0);
+                    advanceLevel1.setVisibility(View.INVISIBLE);
+                    advanceLevel1.setEnabled(false);
                 }
             }
 
@@ -447,21 +464,37 @@ public class dashboard extends AppCompatActivity {
 
     private void retrieveadvacelessson1() {
         String encodedEmail = encodeEmail(name);
-        DatabaseReference Advancelevel = databaseReference.child("advancelevel1_tb").child(encodedEmail).child("advancelesson1");
-        Advancelevel.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference Advancelevel = databaseReference.child("advancelevel1_tb").child(encodedEmail);
+        DatabaseReference advanceLevel = Advancelevel.child("advancelesson1");
+        DatabaseReference sign = Advancelevel.child("sign");
+        advanceLevel.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     advancelevelprog = snapshot.getValue(Integer.class);
                     advanceLevel1progress.setProgress(advancelevelprog);
-                    if(advancelevelprog == 900){
-                        intermediateLevel.setVisibility(View.VISIBLE);
-                        intermediateLevel.setEnabled(true);
-                    } else if (advancelevelprog == 0) {
-                        advanceProgress.setProgress(0);
-                        intermediateLevel.setVisibility(View.INVISIBLE);
-                        intermediateLevel.setEnabled(false);
-                    }
+                    sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()){
+                                int getvalue = snapshot.getValue(Integer.class);
+
+                                if (getvalue == 9){
+                                    intermediateLevel.setVisibility(View.VISIBLE);
+                                    intermediateLevel.setEnabled(true);
+                                }else{
+                                    advanceProgress.setProgress(0);
+                                    intermediateLevel.setVisibility(View.INVISIBLE);
+                                    intermediateLevel.setEnabled(false);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
             }
 
@@ -491,26 +524,130 @@ public class dashboard extends AppCompatActivity {
         });
     }
 
-    public void showSign(){
+    public void totalPoints() {
         String encodedEmail = encodeEmail(name);
-        DatabaseReference Advancelevel = databaseReference.child("BasicLevel_tb").child(encodedEmail).child("sign");
-        Advancelevel.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference lessonasl = databaseReference.child("BasicLevel_tb").child(encodedEmail).child("lessonasl");
+        DatabaseReference advancelevel = databaseReference.child("advancelevel_tb").child(encodedEmail).child("advancelesson");
+        DatabaseReference advancelevel1 = databaseReference.child("advancelevel1_tb").child(encodedEmail).child("advancelesson1");
+        DatabaseReference intermediate = databaseReference.child("advancelevel1_tb").child(encodedEmail).child("intermediatelesson");
+        lessonasl.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    int total = snapshot.getValue(Integer.class);
-                    signTotal = String.valueOf(Integer.parseInt(Integer.toString(total)));
-                    Sign.setText(signTotal);
+                if (snapshot.exists()) {
+                    int lessonASLPoints = snapshot.getValue(Integer.class);
+                    pointsTotal += lessonASLPoints;
+
+                    advancelevel.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()) {
+                                int advancelesson = snapshot.getValue(Integer.class);
+                                pointsTotal += advancelesson;
+                                Points.setText(String.valueOf(pointsTotal));
+                                advancelevel1.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        if (snapshot.exists()){
+                                            int advancelesson1 = snapshot.getValue(Integer.class);
+                                            pointsTotal += advancelesson1;
+                                            Points.setText(String.valueOf(pointsTotal));
+
+                                            intermediate.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int intermetiatepoints = snapshot.getValue(Integer.class);
+                                                        pointsTotal += intermetiatepoints;
+                                                        Points.setText(String.valueOf(pointsTotal));
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            // Handle any errors
+                        }
+                    });
                 }
+                Points.setText(String.valueOf(pointsTotal));
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Handle any errors
             }
         });
     }
 
+    public void totalSign() {
+        String encodedEmail = encodeEmail(name);
+        DatabaseReference lessonasl = databaseReference.child("BasicLevel_tb").child(encodedEmail).child("sign");
+        DatabaseReference advancelevel = databaseReference.child("advancelevel_tb").child(encodedEmail).child("sign");
+        DatabaseReference advancelevel1 = databaseReference.child("advancelevel1_tb").child(encodedEmail).child("sign");
+        lessonasl.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    int lessonASLPoints = snapshot.getValue(Integer.class);
+                    signTotal += lessonASLPoints;
+
+                    advancelevel.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()) {
+                                int advancelesson = snapshot.getValue(Integer.class);
+                                signTotal += advancelesson;
+                                Sign.setText(String.valueOf(signTotal));
+                                advancelevel1.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        if (snapshot.exists()){
+                                            int advancelesson1 = snapshot.getValue(Integer.class);
+                                            signTotal += advancelesson1;
+                                            Sign.setText(String.valueOf(signTotal));
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            // Handle any errors
+                        }
+                    });
+                }
+                Sign.setText(String.valueOf(signTotal));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle any errors
+            }
+        });
+    }
 
     public static String encodeEmail(String email) {
         // Replace '.' (dot) with ',' (comma) or any other safe character

@@ -67,7 +67,7 @@ public class advance1L8sector extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(advance1L8sector.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -90,11 +90,11 @@ public class advance1L8sector extends AppCompatActivity {
 
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1mra5nTxzByp6J0sHv6TmrQFbRS-Et_Kt"), //christianity
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Hg9i2Zw_cjlhhi758zSMFt0VhfKbApQp"), //islam
-                Uri.parse("https://drive.google.com/uc?export=download&id=1UeXImXngchT1mtxKvNec4upCaz4eQOz9"), //hinduism
-                Uri.parse("https://drive.google.com/uc?export=download&id=1s1Cw30JogHgaAwl-z9h-oi8dFTA-5BNQ"), //buddhism
-                Uri.parse("https://drive.google.com/uc?export=download&id=1iJcdbyPQVNOQPPdmNKesQNxqH9c47-TV"), //judaism
+                Uri.parse("https://drive.google.com/uc?export=download&id=1QJ2d-bQ_UNXs_R8MBR9lRhw9V24wOjST"), //christianity
+                Uri.parse("https://drive.google.com/uc?export=download&id=1A4oL6E4VMwWiUyqZGTyhbimmcWHmXLTM"), //islam
+                Uri.parse("https://drive.google.com/uc?export=download&id=1rxNZaEbmWdQVldCRcsrm1IRArpG3c80E"), //hinduism
+                Uri.parse("https://drive.google.com/uc?export=download&id=1V5ZMHUIt4amEeaLulWh_Liese40QLKLq"), //buddhism
+                Uri.parse("https://drive.google.com/uc?export=download&id=1HX8fVbt-QhcRXl5HG6vlcCG7vmEzJroR"), //judaism
                 // Add more URIs as needed
 
         };
@@ -281,8 +281,13 @@ public class advance1L8sector extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if (currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else {
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -321,17 +326,34 @@ public class advance1L8sector extends AppCompatActivity {
                     if (lesson1 == 4) {
                         DatabaseReference lessonaslRef = usersRef.child("advancelesson1");
 
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 4 && currentLessonAslValue < 800) {
-                                    lessonaslRef.setValue(800);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advance1L8sector.this,advancelevel1.class));
-                                    finish();
-                                }else {
+                                if (lesson1 == 4 && currentLessonAslValue < 810) {
+                                    //add sign value
+                                    sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if (snapshot.exists()){
+                                                int total = (currentLessonAslValue + 100);
+                                                lessonaslRef.setValue(total);
+                                                sign.setValue(8);
+                                                Loading.dismiss();
+                                                startActivity(new Intent(advance1L8sector.this,advancelevel1.class));
+                                                finish();
+                                            }
+                                        }
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                    //add sign value
+
+                                }
+                                else{
                                     Loading.dismiss();
                                     startActivity(new Intent(advance1L8sector.this,advancelevel1.class));
                                     finish();
@@ -388,12 +410,12 @@ public class advance1L8sector extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("advancelevel1_tb").child(encodedEmail);
 
-        usersRef.child("advancelesson1").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 800){
+                    if (currentLessonAslValue >= 8){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

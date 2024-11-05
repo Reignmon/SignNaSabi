@@ -67,7 +67,7 @@ public class advanceL2industries extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(advanceL2industries.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -90,16 +90,16 @@ public class advanceL2industries extends AppCompatActivity {
 
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1vNtr0fAxpOWQcX6uNqb9v7e6YyFFoAJF"), //youtube
-                Uri.parse("https://drive.google.com/uc?export=download&id=1UCs4LkgZpZOuh4kcdv7FB7AfUxipg784"), //google
-                Uri.parse("https://drive.google.com/uc?export=download&id=1mXasod3wr_vSV1xsDWguVPwbyRBbZglS"), //apple
-                Uri.parse("https://drive.google.com/uc?export=download&id=1COw9PmSkOF6iKSsSH0O4ntfIqMaKHZDn"), //nike
-                Uri.parse("https://drive.google.com/uc?export=download&id=1aCED6dr8ptmwPMWq8QmTZpp6uJUbQR1Y"), //dnd
-                Uri.parse("https://drive.google.com/uc?export=download&id=1FkZjuawUVEk2agGDNo9MEydcYpBzLiFm"), //mcdo
-                Uri.parse("https://drive.google.com/uc?export=download&id=1IM86a8h6q4VqK1n54rl1p7y5lg4Op6QU"), //burger king
-                Uri.parse("https://drive.google.com/uc?export=download&id=15eRbWsoixwyEH4X_NsXC46iUtk2OZhXC"), //711
-                Uri.parse("https://drive.google.com/uc?export=download&id=1m7i3XEnO_zc0CbSs9JTMOf0EN1PF1vZH"), //coke
-                Uri.parse("https://drive.google.com/uc?export=download&id=1cRAkifgt3Wa_6chxalvM3FnRN2K3fVY4"), //pepsi
+                Uri.parse("https://drive.google.com/uc?export=download&id=1CMNOls2-_cVOpOrVn0tWOfYenTxxHpZg"), //youtube
+                Uri.parse("https://drive.google.com/uc?export=download&id=1nq98QH8TSRxWCqEFKAuaApzCStCM2rmJ"), //google
+                Uri.parse("https://drive.google.com/uc?export=download&id=1nq98QH8TSRxWCqEFKAuaApzCStCM2rmJ"), //apple
+                Uri.parse("https://drive.google.com/uc?export=download&id=1m5HRZeX6YnQB2sC77LoAb-9IfONApZtM"), //nike
+                Uri.parse("https://drive.google.com/uc?export=download&id=1m5HRZeX6YnQB2sC77LoAb-9IfONApZtM"), //dnd
+                Uri.parse("https://drive.google.com/uc?export=download&id=1D3ow2NWiHHuw30UK6pWekHAX3hgONYMv"), //mcdo
+                Uri.parse("https://drive.google.com/uc?export=download&id=1dEaqvEt_gvqpRE1PA4ipXJKfSuABFl-R"), //burger king
+                Uri.parse("https://drive.google.com/uc?export=download&id=1szH8xWFap7paGqfNK7gYTR_mKQfPYv9J"), //711
+                Uri.parse("https://drive.google.com/uc?export=download&id=1wByp4TNTFHSCy7kSySxB3k4Ou2Pky6gx"), //coke
+                Uri.parse("https://drive.google.com/uc?export=download&id=19ZbsBd1AI9E_6gqQw3Wu7axusmxT6Mby"), //pepsi
                 // Add more URIs as needed
 
         };
@@ -286,9 +286,13 @@ public class advanceL2industries extends AppCompatActivity {
                     // Get currentIndex from Firebase
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
-
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -326,22 +330,55 @@ public class advanceL2industries extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 9) {
                         DatabaseReference lessonaslRef = usersRef.child("advancelesson");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("industriesscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 9 && currentLessonAslValue < 400) {
-                                    lessonaslRef.setValue(400);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advanceL2industries.this,advancelevel.class));
-                                    finish();
-                                }else{
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advanceL2industries.this,advancelevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 400){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(4);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(advanceL2industries.this, advanceL2asessidus.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+
+                                        }else if (lesson1 == 9 && currentScore < 10) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advanceL2industries.this,advanceL2asessidus.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advanceL2industries.this,advancelevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override

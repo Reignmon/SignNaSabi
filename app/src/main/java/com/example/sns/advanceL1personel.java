@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -67,7 +68,7 @@ public class advanceL1personel extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(advanceL1personel.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -90,15 +91,16 @@ public class advanceL1personel extends AppCompatActivity {
 
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1cgEN-LhlIsvaj46dPHGs8K17eaUCk_m1"), //student
-                Uri.parse("https://drive.google.com/uc?export=download&id=1gdilepolCo6h5kMv94sg4X2fRi_aHNrx"), //teacher
-                Uri.parse("https://drive.google.com/uc?export=download&id=1sLBDxZQR7dIj09NzXqciKxk-GvN_ggFd"), //principal
-                Uri.parse("https://drive.google.com/uc?export=download&id=1YmiFlNDLxszNSUwPVYleJU4OI3Yf-n4-"), //library
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Bq3ke49zs_l5bUgkhL-Rv1ZtWC7ZcYXe"), //office
-                Uri.parse("https://drive.google.com/uc?export=download&id=19MLPiLUR6ch_hepIhhx_R9hTRUlfC66J"), //caffeteria
-                Uri.parse("https://drive.google.com/uc?export=download&id=1z55h58K7yCd3ZpGRHvi9Js9ywK_I8OeP"), //Gym
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ewcvS9Cptl0u7Jn0nZif8HzehqzEdinD"), //student center
-                Uri.parse("https://drive.google.com/uc?export=download&id=1lThDLuxcMpVMrwG6CfSlnLXhEZiuI78O"), //guard
+                Uri.parse("https://drive.google.com/uc?export=download&id=12xrPGfWULCKEbeIqkRUCtPvlmjB8GQex"), //student
+                Uri.parse("https://drive.google.com/uc?export=download&id=1eoKLspk37zANzRSz-_TNr9hQoNWh-Phc"), //teacher
+                Uri.parse("https://drive.google.com/uc?export=download&id=1WmUPDkpxYH25ikqH3G5PZEra7xQwfLap"), //principal
+                Uri.parse("https://drive.google.com/uc?export=download&id=115rNfrm4F-HcXBifFdExlCMWgfHoNhWk"), //nurse
+                Uri.parse("https://drive.google.com/uc?export=download&id=1-4gT1xV6zRl5Gr03miEVH_kipdiLYYjO"), //library
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Bt46MZ66xbERROqUgGD_VrV5azyMUs6z"), //office
+                Uri.parse("https://drive.google.com/uc?export=download&id=11tCXuPOg-ywNTABmOqpJ6OMgdW2PdD0s"), //caffeteria
+                Uri.parse("https://drive.google.com/uc?export=download&id=1A30xAW6bwtEu8A_BLBHiRpm24-gusdDX"), //Gym
+                Uri.parse("https://drive.google.com/uc?export=download&id=1A30xAW6bwtEu8A_BLBHiRpm24-gusdDX"), //student center
+                Uri.parse("https://drive.google.com/uc?export=download&id=1mqQGp1inU5A5gd30LOJZQpu-itctkLoj"), //guard
                 // Add more URIs as needed
 
         };
@@ -322,31 +324,67 @@ public class advanceL1personel extends AppCompatActivity {
                 if (snapshot.exists()) {
                     // Get currentIndex from Firebase
                     int lesson1 = snapshot.getValue(Integer.class);
-                    if (lesson1 == 8) {
+                    if (lesson1 == 9) {
                         DatabaseReference lessonaslRef = usersRef.child("advancelesson");
-
-                        // Check the current value of lessonasl before updating
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 8 && currentLessonAslValue < 100) {
-                                    lessonaslRef.setValue(100);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advanceL1personel.this,advancelevel.class));
-                                    finish();
+                                Integer currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : null;
+                                DatabaseReference getScore = usersRef.child("personelscore");
+                                if (currentLessonAslValue != null) {
+                                    getScore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            Integer currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                            if (lesson1 == 9 && currentScore < 8) {
+                                                Log.e("UpdateLesson1", "Failed to update score" + currentScore);
+                                                Loading.dismiss();
+                                                startActivity(new Intent(advanceL1personel.this, advanceL1asesspers.class));
+                                                finish();
+                                            }else{
+                                                Log.e("UpdateLesson1", "update score " + currentScore);
+                                                Loading.dismiss();
+                                                startActivity(new Intent(advanceL1personel.this, advancelevel.class));
+                                                finish();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                            Loading.dismiss();
+                                        }
+                                    });
                                 }else{
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advanceL1personel.this,advancelevel.class));
-                                    finish();
+                                    //add sign value
+                                    sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if (!snapshot.exists()){
+                                                lessonaslRef.setValue(100);
+                                                sign.setValue(1);
+                                                Loading.dismiss();
+                                                startActivity(new Intent(advanceL1personel.this, advanceL1asesspers.class));
+                                                finish();
+                                            }
+                                        }
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                    //add sign value
                                 }
                             }
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
                                 // Handle any errors
+                                Loading.dismiss();
                             }
                         });
+
                     } else {
 
                     }

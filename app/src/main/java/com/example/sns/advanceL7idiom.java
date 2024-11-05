@@ -67,7 +67,7 @@ public class advanceL7idiom extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(advanceL7idiom.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -88,23 +88,23 @@ public class advanceL7idiom extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d//view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1OayaxqwMIyT0sDaum6dL8DTtRJ-l2tFm"), //back-up
-                Uri.parse("https://drive.google.com/uc?export=download&id=1WvA43LqEKuxn3oRbB5rLHr9GbIY5MVD2"), //better than nothing
-                Uri.parse("https://drive.google.com/uc?export=download&id=1TqoB6dHQOGTWzHIc7oJxEnEaMpz_I3xv"), //came to mind
-                Uri.parse("https://drive.google.com/uc?export=download&id=1_YG62tHLaxGxAtD7_tkc9KU2Vy4GMyWz"), //common sense
-                Uri.parse("https://drive.google.com/uc?export=download&id=1_YG62tHLaxGxAtD7_tkc9KU2Vy4GMyWz"), //darn you
-                Uri.parse("https://drive.google.com/uc?export=download&id=16IXafKhzIcX1oiMgeskFjioepE_Lw8MP"), //fallback
-                Uri.parse("https://drive.google.com/uc?export=download&id=13qjGUx55p0Mj8gSvAWeclj4aztXlcuZe"), //hit the jock pot
-                Uri.parse("https://drive.google.com/uc?export=download&id=1H8MclgwbtucxRiB4GuTUXBQ5izKEBCg4"), //jump for joy
-                Uri.parse("https://drive.google.com/uc?export=download&id=1o2KaWenwx-yiBXAo0QFnIi5ZMT9KQNlk"), //keep an eye on
-                Uri.parse("https://drive.google.com/uc?export=download&id=100WD1RHZ8y9MNI3KSjIitwqhvBjp89rZ"), //messed up
-                Uri.parse("https://drive.google.com/uc?export=download&id=11ATgJXgU9rSd3YsBTnkByr-HNgytIUoB"), //much better than someone
-                Uri.parse("https://drive.google.com/uc?export=download&id=10Zud4RkgoiQTB3gLfsGDIbfBJuG4U6lY"), //overwhelmed
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ailFgfXH2jTB-4nxyvD85umLAoZsnVjb"), //expert
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Ob4-oG8pnapTKveajQ5XLj7gJLBocsdr"), //totally
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Nq4mi1vjLexul-N5bPAVXxbDD8l8ejkO"), //that understandable
+                Uri.parse("https://drive.google.com/uc?export=download&id=1nsX2sbo3rRMc8QfFik1iQ7CGfLbE4F9W"), //back-up
+                Uri.parse("https://drive.google.com/uc?export=download&id=1WDdrRIvDRah_yiXBvP-CNsQThyWWglnd"), //better than nothing
+                Uri.parse("https://drive.google.com/uc?export=download&id=1AqpLKpaStadFxZU1aVVbtc5vhevxX551"), //came to mind
+                Uri.parse("https://drive.google.com/uc?export=download&id=1kgrDd9nK_1KjO_zysEjwM2iZ0QECN7wa"), //common sense
+                Uri.parse("https://drive.google.com/uc?export=download&id=1zarBJHkmwfyDBeHWHNbtL09dsgWE47do"), //darn you
+                Uri.parse("https://drive.google.com/uc?export=download&id=18VOYG2aEzzSfN422wF_AgnaEULean7rm"), //fallback
+                Uri.parse("https://drive.google.com/uc?export=download&id=1QtgphNkjGH8ew4Dp1--0YXwuccmBYgCk"), //hit the jock pot
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Qn8E-bCAl5WeyV9-VSnSF2sjpqlrlE8B"), //jump for joy
+                Uri.parse("https://drive.google.com/uc?export=download&id=1c4yDkytfeDPoVvF_246xlReQF4tS5ala"), //keep an eye on
+                Uri.parse("https://drive.google.com/uc?export=download&id=172XUWzV5hl4OkZmMA3lXQCKQvS5oWhpc"), //messed up
+                Uri.parse("https://drive.google.com/uc?export=download&id=1nbvNS_jdToF02xFkC2zbJe4sW-S-Bv1-"), //much better than someone
+                Uri.parse("https://drive.google.com/uc?export=download&id=1aEoUbtPm862ds1-rNIkuWAEoS9V5Mj-m"), //overwhelmed
+                Uri.parse("https://drive.google.com/uc?export=download&id=1K84Agg7U9NyPO-Q05ID6Iw43Cyl2knws"), //expert
+                Uri.parse("https://drive.google.com/uc?export=download&id=1VSI1fFtT_m4C0lXxF1Whrqd_n-zSaGCh"), //totally
+                Uri.parse("https://drive.google.com/uc?export=download&id=1b83PjmcBEOg_gmxIVYX8isy-yI5vqkhG"), //that understandable
                 // Add more URIs as needed
         };
 
@@ -289,9 +289,13 @@ public class advanceL7idiom extends AppCompatActivity {
                     // Get currentIndex from Firebase
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
-
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if (currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -329,22 +333,56 @@ public class advanceL7idiom extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 14) {
                         DatabaseReference lessonaslRef = usersRef.child("advancelesson");
+                        DatabaseReference getscore = usersRef.child("idiomscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
 
-                        // Check the current value of lessonasl before updating
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 14 && currentLessonAslValue < 1000) {
-                                    lessonaslRef.setValue(1000);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advanceL7idiom.this,advancelevel.class));
-                                    finish();
-                                }else{
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advanceL7idiom.this,advancelevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 1100){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(10);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(advanceL7idiom.this, advanceL7assesidiom.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+
+                                        }else if (lesson1 == 14 && currentScore < 10) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advanceL7idiom.this,advanceL7assesidiom.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advanceL7idiom.this,advancelevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override
@@ -397,12 +435,12 @@ public class advanceL7idiom extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("advancelevel_tb").child(encodedEmail);
 
-        usersRef.child("advancelesson").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 1000){
+                    if (currentLessonAslValue >= 10){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

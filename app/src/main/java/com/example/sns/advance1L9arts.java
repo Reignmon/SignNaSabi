@@ -67,7 +67,7 @@ public class advance1L9arts extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(advance1L9arts.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -90,11 +90,11 @@ public class advance1L9arts extends AppCompatActivity {
 
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1IDJoXBogFoy4aWV2GQaeeFcFR7A8djAc"), //music
-                Uri.parse("https://drive.google.com/uc?export=download&id=13I36G4ArOKeuhP_dcHW5Ywo9ObykaS_g"), //opera
-                Uri.parse("https://drive.google.com/uc?export=download&id=1BwS_I45PyS49am2vEhfPnhmBymmTPmQn"), //dance
-                Uri.parse("https://drive.google.com/uc?export=download&id=17uxngTY-vJ6dbirGKj4eeLCOu1l_fXVb"), //drama
-                Uri.parse("https://drive.google.com/uc?export=download&id=14pd-CzWU3qVE3d-Zaf6WmsnyE_W_SdrF"), //spoken words
+                Uri.parse("https://drive.google.com/uc?export=download&id=1_iQFyxH3b1v6DRegMH_7MIlTTsl3w90a"), //music
+                Uri.parse("https://drive.google.com/uc?export=download&id=1siJ1VlY4SzbDOZEaThBVNQw-Og8KqDlK"), //opera
+                Uri.parse("https://drive.google.com/uc?export=download&id=1LrybncqilWcNrUd8E7mMksWyl9jgLmWR"), //dance
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ikk-jJjHGIRVl5MupnrdpdMbqZxEIyek"), //drama
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ikk-jJjHGIRVl5MupnrdpdMbqZxEIyek"), //spoken words
                 // Add more URIs as needed
         };
 
@@ -280,8 +280,13 @@ public class advance1L9arts extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if (currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -320,17 +325,34 @@ public class advance1L9arts extends AppCompatActivity {
                     if (lesson1 == 4) {
                         DatabaseReference lessonaslRef = usersRef.child("advancelesson1");
 
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 4 && currentLessonAslValue < 900) {
-                                    lessonaslRef.setValue(900);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advance1L9arts.this,advancelevel1.class));
-                                    finish();
-                                }else {
+                                if (lesson1 == 4 && currentLessonAslValue < 920) {
+                                    //add sign value
+                                    sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if (snapshot.exists()){
+                                                int total = (currentLessonAslValue + 100);
+                                                lessonaslRef.setValue(total);
+                                                sign.setValue(9);
+                                                Loading.dismiss();
+                                                startActivity(new Intent(advance1L9arts.this,advancelevel1.class));
+                                                finish();
+                                            }
+                                        }
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                    //add sign value
+
+                                }
+                                else{
                                     Loading.dismiss();
                                     startActivity(new Intent(advance1L9arts.this,advancelevel1.class));
                                     finish();
@@ -387,12 +409,12 @@ public class advance1L9arts extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("advancelevel1_tb").child(encodedEmail);
 
-        usersRef.child("advancelesson1").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 900){
+                    if (currentLessonAslValue >= 9){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

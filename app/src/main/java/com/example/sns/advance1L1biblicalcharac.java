@@ -68,7 +68,7 @@ public class advance1L1biblicalcharac extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(advance1L1biblicalcharac.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -89,33 +89,33 @@ public class advance1L1biblicalcharac extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
+        //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1eJu7nP7w8EtpCbAN1w6tQF3P0wL5CSMB"), //adam
-                Uri.parse("https://drive.google.com/uc?export=download&id=1cAd50U2Fmfv3g0P0bVy4m-RhUw9KsSXI"), //eve
-                Uri.parse("https://drive.google.com/uc?export=download&id=1bI9IXQ5tyJzm2_O70OTeXg9S4rtFJU0X"), //noah
-                Uri.parse("https://drive.google.com/uc?export=download&id=1kSOR9oWiUs7Y9A1-MBic6nj84N38L5Mr"), //abraham
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XjISPohAgfHLAV32cpaGuhQWSuEn7gFM"), //moses
-                Uri.parse("https://drive.google.com/uc?export=download&id=13CY26EWipTTrvgZbu0dX1wbAUruRU3FA"), //david
-                Uri.parse("https://drive.google.com/uc?export=download&id=1CAOHZzC6g5d1uc04eWkCtEV9Vs_-_Jv5"), //jesus
-                Uri.parse("https://drive.google.com/uc?export=download&id=1bPK3ftBCyc5F_RB6qoCv0bZxDFDVXF7K"), //mary
-                Uri.parse("https://drive.google.com/uc?export=download&id=1wxMmMUKGUacrCRonJ4XMmwMl3M6-AP0A"), //paul
-                Uri.parse("https://drive.google.com/uc?export=download&id=1N42yWk40KMpMRe9aBwZto1twrt1s2SaJ"), //peter
-                Uri.parse("https://drive.google.com/uc?export=download&id=1N42yWk40KMpMRe9aBwZto1twrt1s2SaJ"), //james
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Yvl8fEfdPSQ0jSfnvEIuxhBFGf6NOJoD"), //john
-                Uri.parse("https://drive.google.com/uc?export=download&id=1gwP5YTpxvWqx0mKtn4UUTIFaNZzrQPmG"), //judas
-                Uri.parse("https://drive.google.com/uc?export=download&id=1BMm55NtNJfEv4c9gtTggOnxb9PVfNwdG"), //matthew
-                Uri.parse("https://drive.google.com/uc?export=download&id=19a_C2p_5x_nKSBNDK8_BGRDpjNyTe1wP"), //jude
-                Uri.parse("https://drive.google.com/uc?export=download&id=1BvlKroKGmi8rMkWnLCyOcpJOUG4xfYXD"), //bartolome
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Y74tkraXCIQdhi5D5sUq5JQJKuYR5a0S"), //isaiah
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Y74tkraXCIQdhi5D5sUq5JQJKuYR5a0S"), //jeremiah
-                Uri.parse("https://drive.google.com/uc?export=download&id=1zvwn4qS1cQmnpU6ALqsTOSz555BiOqbj"), //davis
-                Uri.parse("https://drive.google.com/uc?export=download&id=1oTgvq4ooC2Um8c8ORpMMxkT5xZPz0U7z"), //jacob
-                Uri.parse("https://drive.google.com/uc?export=download&id=1OR_TtYBoJ9xLw-w8hGSk0bLCs0uZb1ON"), //joshua
-                Uri.parse("https://drive.google.com/uc?export=download&id=1rCLCRxAmH0kCzcIkL1jB-zZwNUB4mIJk"), //amos
-                Uri.parse("https://drive.google.com/uc?export=download&id=1crbtoaNiBx7YnQ4jXN7e0UlgqY5O83Pq"), //samuel
-                Uri.parse("https://drive.google.com/uc?export=download&id=1D21Bst7HM-4dTMmfRjI2ZHrhVk3Vo75a"), //nathan
-                Uri.parse("https://drive.google.com/uc?export=download&id=1IEYBVjHXGC4y5y7bUHklXtsVswdD28a2"), //joel
-                // Add more URIs as needed
+                Uri.parse("https://drive.google.com/uc?export=download&id=158JTdd12pIKGMHuJ7TuVfzE1uOle9poX"), //adam
+                Uri.parse("https://drive.google.com/uc?export=download&id=1BsP5VRrzYa4wk8wHaDhxmTkvmifGotq6"), //eve
+                Uri.parse("https://drive.google.com/uc?export=download&id=12VGISKxgotRdSDpvAkbV_-PnffSoKeO3"), //noah
+                Uri.parse("https://drive.google.com/uc?export=download&id=1uQsMuXHtDj8L8Oxv12ZgqeESR-pSPt2a"), //abraham
+                Uri.parse("https://drive.google.com/uc?export=download&id=1acwARgDSznknK2erNQF2zkW4GKnmCwcb"), //moses
+                Uri.parse("https://drive.google.com/uc?export=download&id=1yPO0Eh-DCvspnVr_rBIl0lNq-z9vxh_b"), //david
+                Uri.parse("https://drive.google.com/uc?export=download&id=1pzdGj6B8cfYcpmyKVhtLpOJIsiWimIHR"), //jesus
+                Uri.parse("https://drive.google.com/uc?export=download&id=15OTacZjtF98_KRyCwKW3TbOYd9eHa3Fl"), //mary
+                Uri.parse("https://drive.google.com/uc?export=download&id=1vSfRY453kvM9UcY_Mh4o9PH1AJfVL7gl"), //paul
+                Uri.parse("https://drive.google.com/uc?export=download&id=1NRnR_stjWOhvYFDVIAWGsn8PoXnc_a3u"), //peter
+                Uri.parse("https://drive.google.com/uc?export=download&id=11VGOi-X6lKLDC9SG4lbRj8gPP2Rz5DqX"), //james
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Fw8Kh7GcLBSjPgIx5rZlNSlirvTYjHE0"), //john
+                Uri.parse("https://drive.google.com/uc?export=download&id=1nsZCcpgFsdVXZycodgQBLocG55HXIA7x"), //judas
+                Uri.parse("https://drive.google.com/uc?export=download&id=1M2eU7bftAVFK0N51gGa_S4Rs62qOj8vu"), //matthew
+                Uri.parse("https://drive.google.com/uc?export=download&id=1v4FtsFMcUg8GdaqXTva6gEDgKJXYHpcE"), //jude
+                Uri.parse("https://drive.google.com/uc?export=download&id=1km3MvVZ3ZGsw4jnr18cl1-2rj9lkeUfc"), //bartolome
+                Uri.parse("https://drive.google.com/uc?export=download&id=1eUJqs-7GO3xgWxcbIfHdJxubsy-ZdtOE"), //isaiah
+                Uri.parse("https://drive.google.com/uc?export=download&id=1beE6pea9MERbDm0Axpxz1uPb09T9WHf6"), //jeremiah
+                Uri.parse("https://drive.google.com/uc?export=download&id=1TIGxcUntnjBW7Cy0dL-DY8SDlWuOkN81"), //davis
+                Uri.parse("https://drive.google.com/uc?export=download&id=1m2IAfL4JzsxrbueaEHU4-QV7oiHdZttv"), //jacob
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ESq9lJOTJNmwWlhXC4XN4yQr8VFE5YQr"), //joshua
+                Uri.parse("https://drive.google.com/uc?export=download&id=1BqL0icQNZA6u0fEjgrBaaMMwwBkrhDn5"), //amos
+                Uri.parse("https://drive.google.com/uc?export=download&id=1KWB4mD9tohqRc6OWAysTXXYBEh0Xdtgr"), //samuel
+                Uri.parse("https://drive.google.com/uc?export=download&id=1NoCDmyZNoJ1EG2N7jDJnLqe4sriiSNpX"), //nathan
+                Uri.parse("https://drive.google.com/uc?export=download&id=1672SxK9YDaB6Wi6X3G-kP3i0ranHIc73"), //joel
 
         };
 
@@ -301,8 +301,13 @@ public class advance1L1biblicalcharac extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -340,22 +345,54 @@ public class advance1L1biblicalcharac extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 24) {
                         DatabaseReference lessonaslRef = usersRef.child("advancelesson1");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("biblicalcharacterscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 24 && currentLessonAslValue < 200) {
-                                    lessonaslRef.setValue(200);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advance1L1biblicalcharac.this,advancelevel1.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(advance1L1biblicalcharac.this,advancelevel1.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 200){
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(2);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(advance1L1biblicalcharac.this, advance1L2asesscharacter.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+
+                                        }else if (lesson1 == 24 && currentScore < 10) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advance1L1biblicalcharac.this,advance1L2asesscharacter.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(advance1L1biblicalcharac.this,advancelevel1.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override

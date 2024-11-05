@@ -16,6 +16,54 @@
         android:theme="@style/Theme.SNS"
         tools:targetApi="31">
         <activity
+            android:name=".advance1L7asessperso"
+            android:exported="false" />
+        <activity
+            android:name=".advance1L6asessSacrament"
+            android:exported="false" />
+        <activity
+            android:name=".advance1L5asessceleb"
+            android:exported="false" />
+        <activity
+            android:name=".advance1L4asessplace"
+            android:exported="false" />
+        <activity
+            android:name=".advance1L2asesscharacter"
+            android:exported="false" />
+        <activity
+            android:name=".advance1L1asessterm"
+            android:exported="false" />
+        <activity
+            android:name=".advanceL7assesidiom"
+            android:exported="false" />
+        <activity
+            android:name=".advanceL6asessnation"
+            android:exported="false" />
+        <activity
+            android:name=".advanceL6asesscountry"
+            android:exported="false" />
+        <activity
+            android:name=".advanceL5asesssports"
+            android:exported="false" />
+        <activity
+            android:name=".advanceL4asesscomp"
+            android:exported="false" />
+        <activity
+            android:name=".advanceL4asessweight"
+            android:exported="false" />
+        <activity
+            android:name=".advanceL2asessidus"
+            android:exported="false" />
+        <activity
+            android:name=".advanceL1asesssub"
+            android:exported="false" />
+        <activity
+            android:name=".advanceL1asessschoterm"
+            android:exported="false" />
+        <activity
+            android:name=".advanceL1asesspers"
+            android:exported="false" />
+        <activity
             android:name=".basicL8asessbodypart"
             android:exported="false" />
         <activity
