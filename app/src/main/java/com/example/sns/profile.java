@@ -32,6 +32,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class profile extends AppCompatActivity {
     private boolean backPressToExit = false;
     SharedPreferences sharedPreferences;
@@ -60,16 +64,14 @@ public class profile extends AppCompatActivity {
         }
 
         final Button btnLogout = findViewById(R.id.btnlogout);
-        TextView emailTxt = findViewById(R.id.txtEmail);
-        TextView Emailtxt = findViewById(R.id.emailtxt);
-        TextView fullName = findViewById(R.id.fullname);
+        TextView BtnBack = findViewById(R.id.btnback);
+        TextView btnEdit = findViewById(R.id.btnedit);
+        TextView emailTxt = findViewById(R.id.txtemail);
         TextView bod = findViewById(R.id.bod);
         TextView age = findViewById(R.id.age);
         TextView gender = findViewById(R.id.gender);
-        TextView disablity = findViewById(R.id.disablity);
+        TextView disablity = findViewById(R.id.disability);
         TextView fullname = findViewById(R.id.name);
-        TextView BtnBack = findViewById(R.id.btnback);
-        TextView btnEdit = findViewById(R.id.btnedit);
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         String name = sharedPreferences.getString(KEY_EMAIL,null);
@@ -102,16 +104,25 @@ public class profile extends AppCompatActivity {
                         getmname = (getmname != null) ? getmname : "";
                         getext = (getext != null) ? getext : "";
 
+                        String formattedDate = "";
+                        if (getbod != null) {
+                            try {
+                                SimpleDateFormat originalFormat = new SimpleDateFormat("M/d/yyyy", Locale.US);
+                                Date date = originalFormat.parse(getbod);
 
-                        fullname.setText(getfname + " " + getmname + " " + getlname);
-                        fullName.setText(getfname + " " + getmname + " " + getlname+ " " + getext);
-                        bod.setText(getbod);
+                                SimpleDateFormat newFormat = new SimpleDateFormat("MMMM dd, yyyy", Locale.US);
+                                formattedDate = newFormat.format(date);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                formattedDate = getbod;
+                            }
+                        }
+                        fullname.setText(getfname + " " + getmname + " " + getlname+ " " + getext);
+                        bod.setText(formattedDate);
                         age.setText(getage);
                         gender.setText(getgender);
                         disablity.setText(getdisablity);
                         emailTxt.setText(name);
-                        Emailtxt.setText(name);
-
                     }
                 }
                 @Override
@@ -121,7 +132,8 @@ public class profile extends AppCompatActivity {
             });
 
         }
-
+        
+        
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

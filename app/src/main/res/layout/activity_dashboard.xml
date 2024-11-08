@@ -108,8 +108,8 @@
                 android:layout_height="70dp"
                 android:layout_weight="1"
                 android:background="#F4E5C5"
-                android:drawableTop="@drawable/baseline_history_24"
-                android:text="History"
+                android:drawableTop="@drawable/baseline_menu_book_24"
+                android:text="Dictionary"
                 android:textColor="#824000" />
 
             <Button

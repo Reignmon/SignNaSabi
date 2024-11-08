@@ -9,138 +9,135 @@
     android:layout_height="match_parent"
     tools:context=".update">
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="#F4E5C5"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btnback"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_margin="5dp"
+                android:padding="10dp"
+                android:drawableStart="@drawable/baseline_arrow_back_24"/>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/logo1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:fontFamily="@font/fredoka_one"
+                android:text="SignNaSabi"
+                android:textColor="@color/text_color"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/chewy"
+            android:text="UPDATE PROFILE"
+            android:textAlignment="center"
+            android:textColor="@color/text_color"
+            android:textSize="30sp"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/curvebackground"
+        android:layout_marginTop="-10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/btnback"
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:layout_margin="5dp"
-                    android:padding="10dp"
-                    android:drawableStart="@drawable/baseline_arrow_back_24"/>
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"/>
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="3"
-
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/logo1" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:fontFamily="@font/fredoka_one"
-                    android:text="SignNaSabi"
-                    android:textColor="@color/text_color"
-                    android:textSize="20sp"
-                    tools:ignore="HardcodedText" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="50dp"
-                android:fontFamily="@font/chewy"
-                android:text="UPDATE PROFILE"
-                android:textAlignment="center"
-                android:textColor="@color/text_color"
-                android:textSize="30sp"
-                tools:ignore="HardcodedText" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingTop="10dp"
-                android:layout_marginHorizontal="40dp">
 
                 <EditText
                     android:id="@+id/firtsname"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="40dp"
                     android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:ems="10"
+                    android:layout_marginTop="50dp"
                     android:inputType="text"
                     android:textSize="16sp"
                     android:background="@drawable/border_bottom"
                     android:paddingStart="10dp"
                     android:textColor="@color/border_color"
                     android:hint="Firstname"
-                    android:textColorHint="@color/border_color"
-                    android:layout_marginEnd="10dp"/>
+                    android:textColorHint="@color/border_color" />
 
                 <EditText
                     android:id="@+id/lastname"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="40dp"
                     android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
-                    android:ems="10"
-                    android:textSize="16sp"
-                    android:hint="Lastname"
                     android:inputType="text"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/border_bottom"
                     android:paddingStart="10dp"
                     android:textColor="@color/border_color"
-                    android:textColorHint="@color/border_color" />
-            </LinearLayout>
+                    android:hint="Lastname"
+                    android:textColorHint="@color/border_color"  />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingTop="10dp"
-                android:layout_marginHorizontal="40dp">
 
                 <EditText
                     android:id="@+id/middlename"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="40dp"
                     android:layout_height="48dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
-                    android:ems="10"
-                    android:hint="Middlename"
-                    android:textSize="16sp"
                     android:inputType="text"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/border_bottom"
                     android:paddingStart="10dp"
                     android:textColor="@color/border_color"
+                    android:hint="Middilename"
                     android:textColorHint="@color/border_color" />
 
                 <EditText
                     android:id="@+id/jrname"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="40dp"
                     android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
-                    android:ems="10"
-                    android:textSize="16sp"
-                    android:hint="Extension Name"
                     android:inputType="text"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/border_bottom"
                     android:paddingStart="10dp"
                     android:textColor="@color/border_color"
+                    android:hint="Suffixname"
                     android:textColorHint="@color/border_color" />
-            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -205,46 +202,6 @@
                     android:layout_weight="1" />
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/txtemail"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="15dp"
-                android:textSize="16sp"
-                android:background="@drawable/border_bottom"
-                android:hint="Email Address"
-                android:inputType="textEmailAddress"
-                android:paddingStart="10dp"
-                android:textColor="@color/border_color"
-                android:textColorHint="@color/border_color" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginHorizontal="40dp"
-                android:theme="@style/MyHintText"
-                app:hintEnabled="false"
-                app:passwordToggleEnabled="true"
-                app:passwordToggleTint="@color/border_color"
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtpass"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="@drawable/border_bottom"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:paddingStart="10dp"
-                    android:textColor="@color/border_color"
-                    android:textSize="16sp">
-
-                </com.google.android.material.textfield.TextInputEditText>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
             <Button
                 android:id="@+id/btnregister"
                 android:layout_width="match_parent"
@@ -253,7 +210,7 @@
                 android:layout_marginVertical="16dp"
                 android:background="@drawable/btncolor"
                 android:fontFamily="@font/fredoka_one"
-                android:text="Register"
+                android:text="update"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 

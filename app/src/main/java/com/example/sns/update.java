@@ -8,11 +8,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -80,6 +83,13 @@ public class update extends AppCompatActivity {
             return insets;
         });
 
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimaryDark));
+        }
+
         loadingIndicatorDialog = new Dialog(update.this);
         loadingIndicatorDialog.setContentView(R.layout.loading_dialog);
         loadingIndicatorDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -91,8 +101,6 @@ public class update extends AppCompatActivity {
         mdname = findViewById(R.id.middlename);
         ename = findViewById(R.id.jrname);
         age = findViewById(R.id.age);
-        email = findViewById(R.id.txtemail);
-        pass = findViewById(R.id.txtpass);
         final Button btnreg = findViewById(R.id.btnregister);
         final TextView btnback = findViewById(R.id.btnback);
         mDisplayDate = findViewById(R.id.date);
@@ -106,6 +114,7 @@ public class update extends AppCompatActivity {
 
 
         if(name!=null){
+            loadingIndicatorDialog.show();
             databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -118,7 +127,6 @@ public class update extends AppCompatActivity {
                         getage = snapshot.child(DecodedEmail).child("age").getValue(String.class);
                         getgender = snapshot.child(DecodedEmail).child("gender").getValue(String.class);
                         getdisablity = snapshot.child(DecodedEmail).child("disablity").getValue(String.class);
-                        getpassword = snapshot.child(DecodedEmail).child("password").getValue(String.class);
                         try {
                             Decrypted = DecryptEncrypt.decrypt(getpassword);
                         } catch (Exception e) {
@@ -145,8 +153,7 @@ public class update extends AppCompatActivity {
                         ename.setText(getext);
                         mDisplayDate.setText(getbod);
                         age.setText(getage);
-                        email.setText(name);
-                        pass.setText(Decrypted);
+                        loadingIndicatorDialog.dismiss();
                     }
                 }
                 @Override
@@ -177,31 +184,12 @@ public class update extends AppCompatActivity {
                 String bod = mDisplayDate.getText().toString();
                 String Gender = spinnergender.getSelectedItem().toString();
                 String Disablity = spinneruser.getSelectedItem().toString();
-                String Email = email.getText().toString();
-                String Password = pass.getText().toString();
-                boolean check = CheckAllFields(firstname,lastname,Age,Email,Password);
-
-                String encryptedText;
-                try {
-                    encryptedText = DecryptEncrypt.encrypt(Password);
-                } catch (NoSuchPaddingException e) {
-                    throw new RuntimeException(e);
-                } catch (NoSuchAlgorithmException e) {
-                    throw new RuntimeException(e);
-                } catch (InvalidAlgorithmParameterException e) {
-                    throw new RuntimeException(e);
-                } catch (InvalidKeyException e) {
-                    throw new RuntimeException(e);
-                } catch (IllegalBlockSizeException e) {
-                    throw new RuntimeException(e);
-                } catch (BadPaddingException e) {
-                    throw new RuntimeException(e);
-                }
+                boolean check = CheckAllFields(firstname,lastname,Age);
 
                 if(check == true){
                     loadingIndicatorDialog.show();
                     databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
-                        String encodedEmail = decodeEmail(Email);
+                        String encodedEmail = decodeEmail(name);
                         DatabaseReference usersRef = databaseReference.child("users").child(encodedEmail);
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -214,7 +202,6 @@ public class update extends AppCompatActivity {
                                 usersRef.child("birthdate").setValue(bod);
                                 usersRef.child("gender").setValue(Gender);
                                 usersRef.child("disablity").setValue(Disablity);
-                                usersRef.child("password").setValue(encryptedText);
                                 startActivity(new Intent(update.this, profile.class));
                                 finish();
                                 loadingIndicatorDialog.dismiss();
@@ -326,7 +313,7 @@ public class update extends AppCompatActivity {
 
 
 
-    private boolean CheckAllFields(String firstname, String lastname, String Age, String Email, String Password) {
+    private boolean CheckAllFields(String firstname, String lastname, String Age) {
         if (firstname.length() == 0) {
             fname.setError("FIELD CANNOT BE EMPTY");
             return false;
@@ -358,25 +345,6 @@ public class update extends AppCompatActivity {
         if (spinneruser.getSelectedItemPosition() == 0) { // User Type Spinner
             TextView errorText = (TextView)spinneruser.getSelectedView();
             Toast.makeText(update.this, "Please select your disablity", Toast.LENGTH_LONG).show();
-            return false;
-        }
-
-        if (Email.length() == 0) {
-            email.setError("FIELD CANNOT BE EMPTY");
-            return false;
-        } else if (!Email.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
-            email.setError("ENTER VALID EMAIL");
-            return false;
-        }
-
-        if (Password.length() == 0) {
-            Toast.makeText(update.this, "Password field cannot be empty", Toast.LENGTH_LONG).show();
-            return false;
-        } else if (Password.length() < 8) {
-            Toast.makeText(update.this, "Password must be minimum 8 characters", Toast.LENGTH_LONG).show();
-            return false;
-        } else if (!containsUpperCase(Password)) {
-            Toast.makeText(update.this, "Password must contain at least one uppercase letter", Toast.LENGTH_LONG).show();
             return false;
         }
 
