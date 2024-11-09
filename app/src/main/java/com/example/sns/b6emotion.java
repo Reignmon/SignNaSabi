@@ -90,27 +90,27 @@ public class b6emotion extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d/1Y3pv0eKaNesry3BRDZ-gV4ldbZuztasj/view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1hjx6PI1UGTZVvC0HVGTG8qsx9qgwc26Q"), //good well
-                Uri.parse("https://drive.google.com/uc?export=download&id=1M_ulv3P5XovxcXfIPftS-ZvxBUSdSDjC"), //bad
-                Uri.parse("https://drive.google.com/uc?export=download&id=1sr9rd8Hfi_k6R0ojv13jN48GdE_PwvcO"), //excited
-                Uri.parse("https://drive.google.com/uc?export=download&id=12HyLJc33GcBtFl_syB-Samhueu8vg6YE"), //bored
-                Uri.parse("https://drive.google.com/uc?export=download&id=1NIh_UOjGSgsEaf04-Ruf9DfFKGJQyMn3"), //confused
-                Uri.parse("https://drive.google.com/uc?export=download&id=1V6FxdQllrb11H7727qwoonrJPDCJZQbC"), //embarassed
-                Uri.parse("https://drive.google.com/uc?export=download&id=1fZYIGA6lSjTx4GTgNwmhPagfVYs4xSBJ"), //shy
-                Uri.parse("https://drive.google.com/uc?export=download&id=1fMyjptB5EO2yrNZfkiPa31F9yuTPVJjW"), //happy
-                Uri.parse("https://drive.google.com/uc?export=download&id=1AWcop1ZTRCdOHrFXIKUSsEz0e8mtLZZu"), //sad
-                Uri.parse("https://drive.google.com/uc?export=download&id=144awYxGvT8LuFQOJHiyv6mntCjq2HziZ"), //fine
-                Uri.parse("https://drive.google.com/uc?export=download&id=1r03SHE3Q_RckKNU-vjqdwaLlw7I9HQUh"), //broken hearted
-                Uri.parse("https://drive.google.com/uc?export=download&id=1JijFlFHG50SzkZB0FT8tEsp-y6QKzS_G"), //emotional
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ABYYHSZPlv5uHdryliOI6G3HIvZUt_t2"), //frustrated
-                Uri.parse("https://drive.google.com/uc?export=download&id=17sE-KlgjqcjZkemhPq2GCSUDyNTs2Y7c"), //mad or angry
-                Uri.parse("https://drive.google.com/uc?export=download&id=1q3eKYwEKorg9UBAkC6soxPw8YX4hTpfl"), //nervous
-                Uri.parse("https://drive.google.com/uc?export=download&id=1-mRr6ZVuv9KALsih33gx1hl2DPMxpTzL"), //nothing
-                Uri.parse("https://drive.google.com/uc?export=download&id=12jrIfsYFDdkWtlqbUajAfG9sln4KjpOw"), //sick
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ka0hLSrYlKtFNR4NuzS6NOuHnhyGv3qU"), //sleepy
-                Uri.parse("https://drive.google.com/uc?export=download&id=1EsLUgniO6l_64-fDLAzSPdrJ2UcLdSqA"), //tired
+                Uri.parse("https://drive.google.com/uc?export=download&id=15VtxeCyljvQynZ8AfGwx51OEF5wgMC0p"), //good well
+                Uri.parse("https://drive.google.com/uc?export=download&id=1SeXWNwamdY59kn64-AQvnY1Q1mCrgQx2"), //bad
+                Uri.parse("https://drive.google.com/uc?export=download&id=1A-pRgtU8CSbUxpjfW5NVVyQA0FK3zlMo"), //excited
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Y3bNad6qshd3QgGOhUBuWxzqiFeVKWEY"), //bored
+                Uri.parse("https://drive.google.com/uc?export=download&id=1_JhcUQbRBumPqVDT0bhg5zxy0-G_cqtS"), //confused
+                Uri.parse("https://drive.google.com/uc?export=download&id=1AD5NzM9Lwlf-0Iv3j015kc3UXKK6g4dY"), //embarassed
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Y3pv0eKaNesry3BRDZ-gV4ldbZuztasj"), //shy
+                Uri.parse("https://drive.google.com/uc?export=download&id=14tmz369Y2skNRSZBOA2rWy5167HbbjuU"), //happy
+                Uri.parse("https://drive.google.com/uc?export=download&id=1X7IoHIYmE1vIFWMOsnHMv4HWUgbNpnTL"), //sad
+                Uri.parse("https://drive.google.com/uc?export=download&id=1bpzOqiwmw-_y7Xfd1pwFcm6cq6bfDi7g"), //fine
+                Uri.parse("https://drive.google.com/uc?export=download&id=1K4amr5IXm6Q3Czu8M9fsyCOdt7OkD9-s"), //broken hearted
+                Uri.parse("https://drive.google.com/uc?export=download&id=1zr6Uevf0eIPEIkE2EhMPnhlHVOYlQk7T"), //emotional
+                Uri.parse("https://drive.google.com/uc?export=download&id=1FjVJHBucVpGFE4JcSYXrBXR1saNYw3p4"), //frustrated
+                Uri.parse("https://drive.google.com/uc?export=download&id=12Z-sj5hYOlAU1uTNfM2vxkPtYP0kdBYo"), //mad or angry
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Lmnndn_T2Ci9gOeD3ox2beupNp-KupmX"), //nervous
+                Uri.parse("https://drive.google.com/uc?export=download&id=1tHInrHXphv1veVmqT3KHuoTMKjicR453"), //nothing
+                Uri.parse("https://drive.google.com/uc?export=download&id=1TzCe-U34P5h39RDDf2_7UEydcXoaW9jC"), //sick
+                Uri.parse("https://drive.google.com/uc?export=download&id=1tNJvrJPZZ46uypQ2FW263wlcG9yA-BLE"), //sleepy
+                Uri.parse("https://drive.google.com/uc?export=download&id=1AWyXAbRGuyKDmwhtFXhZ5pyv6wXJEB8R"), //tired
                 // Add more URIs as needed
 
         };

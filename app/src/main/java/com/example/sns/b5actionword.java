@@ -89,26 +89,27 @@ public class b5actionword extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
+        //https://drive.google.com/file/d/11EAX7xr0lzJtD4RHLAKlu__PCoh5uMNK/view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1uJ9h2He2HBsU8Ix8DGbEzniRTqE4g8Dn"), //walk
-                Uri.parse("https://drive.google.com/uc?export=download&id=1cYTh35NJ9dtDl5Sg5EBk_0wmiXgHTc4v"), //run
-                Uri.parse("https://drive.google.com/uc?export=download&id=1J7GTk4w_S4lnilbT5JH25HG1dm29HK7f"), //eating
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Ix1GO8sd1cy1DzC8oHWxg8SgSNSyTp61"), //drink
-                Uri.parse("https://drive.google.com/uc?export=download&id=1kYYDwKsz4NwhufqODperctdjY0QRpT7I"), //cook
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ukmepF5jgSaaQYuIc7jSookcnvOsYirt"), //write
-                Uri.parse("https://drive.google.com/uc?export=download&id=1aIcCPBIpGmCFaEU3tExvalyNCgajPf4U"), //draw
-                Uri.parse("https://drive.google.com/uc?export=download&id=1n_NuTFiTS6DGn3bgQislNhYcrcSpBxES"), //read
-                Uri.parse("https://drive.google.com/uc?export=download&id=1B8n_h5iJO7qX1mcWZ7onbw13gkug2naV"), //sing
-                Uri.parse("https://drive.google.com/uc?export=download&id=143r0EzjKRnFViQXNOI2UxG1QpPaeX-gY"), //talk
-                Uri.parse("https://drive.google.com/uc?export=download&id=1k-gjBo4yI8OofotORMgo0KttOTHHCDEF"), //to ride on
-                Uri.parse("https://drive.google.com/uc?export=download&id=1xcidoAArPRLXMbZ9zBvJZ-qT75pmUfaH"), //to ride in
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XbR-bV7SEmMa6nGjzFpm7WlsbKzCFwer"), //cry
-                Uri.parse("https://drive.google.com/uc?export=download&id=1cVLpL4zX2gjop0W3Enlrq-AlW_mGcRt2"), //laugh
-                Uri.parse("https://drive.google.com/uc?export=download&id=1EARheq7iH98GjpSSi82gJMYfwBeW32p7"), //play
-                Uri.parse("https://drive.google.com/uc?export=download&id=1gCKjg2HbvccC7YYujj1xxM35VA6JK-IK"), //clean
-                Uri.parse("https://drive.google.com/uc?export=download&id=1JjQngCroiIqFw34f1ztaJTLYeWQdcZvK"), //think
-                Uri.parse("https://drive.google.com/uc?export=download&id=1rdTO5jBHDw-fQNqPIu2APeKk2XarTKk2"), //dance
-                Uri.parse("https://drive.google.com/uc?export=download&id=16HX2q3tsw5DV3SoPS0iDlntI6nwTul1j"), //listen
+                Uri.parse("https://drive.google.com/uc?export=download&id=1VVqQQKsc9uczck1A-7oRokdw6T_taG3b"), //walk
+                Uri.parse("https://drive.google.com/uc?export=download&id=1RhMsV5ksPsulQD_NONE4vLuS8EafL9XS"), //run
+                Uri.parse("https://drive.google.com/uc?export=download&id=1nIvojigIrKHfYhlx9HVUSr5KRyp8upp_"), //eating
+                Uri.parse("https://drive.google.com/uc?export=download&id=1EjsVLJpkObn_5d41C0eLGLnPzad5naNh"), //drink
+                Uri.parse("https://drive.google.com/uc?export=download&id=1pRg0nYOkBx4jUhuIaIILd-Ygff6dF8s1"), //cook
+                Uri.parse("https://drive.google.com/uc?export=download&id=1rfl8D7f3plokm08ieo9rHUTRIcksm5D7"), //write
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Kjo5_vn5h0KHIYjucigpgy5F_jYW7FxE"), //draw
+                Uri.parse("https://drive.google.com/uc?export=download&id=1QjE_VQHgRYD5fM-GbmayRgmL5xm_WOoK"), //read
+                Uri.parse("https://drive.google.com/uc?export=download&id=1a-kME-0mQBI8XW2SRYRtAxA1xTD1CIeG"), //sing
+                Uri.parse("https://drive.google.com/uc?export=download&id=1UYKFt3-qVU5wNhHYv3Wif7FGDS6c0if1"), //talk
+                Uri.parse("https://drive.google.com/uc?export=download&id=1LiuNzegsAFCt5xW92fbM1aCfCg3AXWEO"), //to ride on
+                Uri.parse("https://drive.google.com/uc?export=download&id=1GTk1sxPp0bXmx5B4uCp1rs5P35V01kZB"), //to ride in
+                Uri.parse("https://drive.google.com/uc?export=download&id=11EAX7xr0lzJtD4RHLAKlu__PCoh5uMNK"), //cry
+                Uri.parse("https://drive.google.com/uc?export=download&id=11lZzc8isgeEuYbmKGGsoF71cIRbmRtF9"), //laugh
+                Uri.parse("https://drive.google.com/uc?export=download&id=17bOcWGK92InlSDe2PvG0BE9ixDjOUWGQ"), //play
+                Uri.parse("https://drive.google.com/uc?export=download&id=1dmO4Css4U08zYDIidnA-3xt3cgI98JOY"), //clean
+                Uri.parse("https://drive.google.com/uc?export=download&id=1KB2r0B9lMdXxvUH4XLumgpQtyZ2y2kdh"), //think
+                Uri.parse("https://drive.google.com/uc?export=download&id=1fOV8zPrc6sKMkL_-aki5dTv7cZTVfCCv"), //dance
+                Uri.parse("https://drive.google.com/uc?export=download&id=165MbMnW51XLWuMVYL5DUvPrgnAeVTb55"), //listen
                 // Add more URIs as needed
 
         };

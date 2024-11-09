@@ -93,16 +93,16 @@ public class b8clothehygiene extends AppCompatActivity {
 
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1eq8bwpkhaN0PGDGW6yZl9oBON_-E0wyA"), //shirt
-                Uri.parse("https://drive.google.com/uc?export=download&id=1z5b0P5ugS0uFBwRrHZfnCu-a3B5zyXxX"), //pants
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XX8LNMzwEdbf5GLN1924x4qBpqqB5y4p"), //short
-                Uri.parse("https://drive.google.com/uc?export=download&id=1gPG2DZ4L_xgOXFwamXtAA2QSuXvHK-np"), //jeans
-                Uri.parse("https://drive.google.com/uc?export=download&id=1JbjQd2icX6rHsXA4jTu-GkZY9sQdOUIl"), //dress
-                Uri.parse("https://drive.google.com/uc?export=download&id=1kzDYvO-xIBfTZ4qyPB6iXsE3w7j6VhBI"), //jacket
-                Uri.parse("https://drive.google.com/uc?export=download&id=1EUDfgUeEbHhky2C1KfU1lENgIy3v97yE"), //shower
-                Uri.parse("https://drive.google.com/uc?export=download&id=1JlfDupFvChCjr9vX6bNqzHP87nwu68r4"), //washing your hand
-                Uri.parse("https://drive.google.com/uc?export=download&id=1vaXmojF6k928XiI6895ELRWSr6XWlPrn"), //brushing your teeth
-                Uri.parse("https://drive.google.com/uc?export=download&id=1nRrw6vpCiL3iMpobdqBJci5_eqYSf13x"), //trimming your fingernails
+                Uri.parse("https://drive.google.com/uc?export=download&id=1xK8zLQe-Tq4GBSXWIGof3IfuPZgD-cV_"), //shirt
+                Uri.parse("https://drive.google.com/uc?export=download&id=1xDC9zAxuzmSkjgZ1p9wAb92EODX4KahK"), //pants
+                Uri.parse("https://drive.google.com/uc?export=download&id=1nrsqJoRp-XnyHcRiVQOlxIKREjJJzqGZ"), //short
+                Uri.parse("https://drive.google.com/uc?export=download&id=1q7uBI1POzfyMcmLJEBssCy9Cn8nEXU7V"), //jeans
+                Uri.parse("https://drive.google.com/uc?export=download&id=1comAiUM-PzyJZwdMq7uZMXCiwjNiI2oU"), //dress
+                Uri.parse("https://drive.google.com/uc?export=download&id=1xGJEEuBKYWwhOzWIcjOh2_OPBVKUUA9y"), //jacket
+                Uri.parse("https://drive.google.com/uc?export=download&id=13nRSvDamHl6bOkA6QxFOhilx3Rlevx6I"), //shower
+                Uri.parse("https://drive.google.com/uc?export=download&id=1wjVBUV5rvXPfUtsscpE4q6pTvk10wkQy"), //washing your hand
+                Uri.parse("https://drive.google.com/uc?export=download&id=1dvdTXzoCnOQFLEFgM03ra2O2Fq6lLbtC"), //brushing your teeth
+                Uri.parse("https://drive.google.com/uc?export=download&id=1iUjxEA1bYfSz_YaBypOpaTHsF8Q2tOPb"), //trimming your fingernails
                 // Add more URIs as needed
 
         };

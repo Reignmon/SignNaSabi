@@ -8,6 +8,7 @@
     <string name="previous">Previous</string>
     <string name="verification">Please enter the 6-digit code sent to</string>
     <string name="terms">Terms &amp; Condition</string>
+    <string name="month">Days &amp; Month</string>
 
     <!-- Strings used for term and agreement -->
     <string name="intro">

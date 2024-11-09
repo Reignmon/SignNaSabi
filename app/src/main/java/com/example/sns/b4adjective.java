@@ -93,19 +93,19 @@ public class b4adjective extends AppCompatActivity {
 
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1y-SyzcsGFZQ4ayX02ns2Y0NssbpzpBz3"), //far
-                Uri.parse("https://drive.google.com/uc?export=download&id=1er6w6VLVypXBiIaRSQm08aH-xS_BWBbL"), //close
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ALyKowaCRFMLgLiTt419cfknMMCgUkJx"), //ugly
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ZVazTDNfAk7iBu64Tpz0bkxY9JDZF_3A"), //pretty
-                Uri.parse("https://drive.google.com/uc?export=download&id=1cUijuPxiMIJEbQrfVlJmLP5jq09gVSgd"), //low
-                Uri.parse("https://drive.google.com/uc?export=download&id=1IAy6CoFG0P4Op0BbWFhik3kT8uYCFgfC"), //high
-                Uri.parse("https://drive.google.com/uc?export=download&id=1y0nY36NELnPveiE3O-A-N5CEhsfcxkWB"), //dirty
-                Uri.parse("https://drive.google.com/uc?export=download&id=1j9Ek6brf2MLrITVXi2RK5MtwRz5vSDpP"), //clean
-                Uri.parse("https://drive.google.com/uc?export=download&id=1W_kB6vI3SiXOQabmlpvTzQRQPl8tm3U_"), //dim
-                Uri.parse("https://drive.google.com/uc?export=download&id=1LEsiGg3rXsyeWBtLuguuUMdCNUs_GzZ-"), //bright
-                Uri.parse("https://drive.google.com/uc?export=download&id=15JWpmicfkDjBsxYqoqcUCa5l2Rtc8FGy"), //normal
-                Uri.parse("https://drive.google.com/uc?export=download&id=1IufBHSL-xai0zcSfdSYVOwseV76q1Y8h"), //light
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ZMxzrQmxFLaVF7sjjOLJgAywJDD8hbg0"), //heavy
+                Uri.parse("https://drive.google.com/uc?export=download&id=17e0cGpVh3VxpzWU8UQfLKfQ6F10jOLte"), //far
+                Uri.parse("https://drive.google.com/uc?export=download&id=19WV8g16Wae6EIKICGpVg_QHRc8E4YHso"), //close
+                Uri.parse("https://drive.google.com/uc?export=download&id=1DLkAyGnx05kNlvpLf8D7y9d2TNcf8I9V"), //ugly
+                Uri.parse("https://drive.google.com/uc?export=download&id=1sUMVNhrZvAMOxJ6MwmZae2Htzmtjv6r9"), //pretty
+                Uri.parse("https://drive.google.com/uc?export=download&id=1KPofECv_j2NGcFVzEHss7mzzbnuKrdi6"), //low
+                Uri.parse("https://drive.google.com/uc?export=download&id=1WAO9EYi2On1uYa7-Elw-qpZMdJ1L6m2W"), //high
+                Uri.parse("https://drive.google.com/uc?export=download&id=1yrefHVW5dYBOh7EDIl96xTcxhmfaKv22"), //dirty
+                Uri.parse("https://drive.google.com/uc?export=download&id=163kWgKzqSDYG3qcNcrLRQEL-mhOPfW2T"), //clean
+                Uri.parse("https://drive.google.com/uc?export=download&id=1KZSOMA7LcneTcHcabEyWs-13Uec68-i-"), //dim
+                Uri.parse("https://drive.google.com/uc?export=download&id=1P3viRwa-SBDRA74x8sfuYfNnFIUZxYYZ"), //bright
+                Uri.parse("https://drive.google.com/uc?export=download&id=1LvXFKIxymheCNQZIbfIRGon3je9KpSeO"), //normal
+                Uri.parse("https://drive.google.com/uc?export=download&id=1mplNL_NLKClY1qVeKGt9ZD5FkxQ2g1Xf"), //light
+                Uri.parse("https://drive.google.com/uc?export=download&id=1C6VPfCzaOf3kWV1Cgw20L3xwvNuEPEhZ"), //heavy
                 // Add more URIs as needed
 
         };

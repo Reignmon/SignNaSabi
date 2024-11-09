@@ -94,24 +94,24 @@ public class b4family extends AppCompatActivity {
 
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=15Z8yv_DyvyYyX_rTKLFyTxfkXqzChTRs"), //father
-                Uri.parse("https://drive.google.com/uc?export=download&id=14hGEh4ijkFpLUFpTST_HHTccqa0CpL4R"), //mother
-                Uri.parse("https://drive.google.com/uc?export=download&id=1RNaFtA5uu-gsoYZGRwdWo1wnaZaBGQS8"), //sister
-                Uri.parse("https://drive.google.com/uc?export=download&id=1IfJx1rV-22fp6yHxcEI6G-AAbZX9B8k1"), //brother
-                Uri.parse("https://drive.google.com/uc?export=download&id=1x5pPuRm4S1GIh-WbTkRqwir33S1f2ZQi"), //step brother
-                Uri.parse("https://drive.google.com/uc?export=download&id=1fmOrUChH2ft0Fje6foACFzTfFWBwAB1V"), //step sister
-                Uri.parse("https://drive.google.com/uc?export=download&id=1y8AjW3O-rdqOan_wHDV0FPbWEeF7p2z3"), //brother in law
-                Uri.parse("https://drive.google.com/uc?export=download&id=1VGNXYnQgXUQfK4ahbvhNZCPgCFRbHhGV"), //sister in law
-                Uri.parse("https://drive.google.com/uc?export=download&id=1B1CGf9QNR16-25SXdcgttIwMA_VopnCA"), //step mother
-                Uri.parse("https://drive.google.com/uc?export=download&id=1wqKlkHbzEKiHxgwNLW0m0PzopOQMPeOD"), //uncle
-                Uri.parse("https://drive.google.com/uc?export=download&id=1N6NaAhEf36UMw6jtw5k3teF30OeeXrBw"), //auntie
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Lp2NYYPcudW5PnPc7Cp4vFg8NbEXwM6x"), //neice
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ql8velOoJwbb5MD0b8Nii8nqmtSlAp3G"), //nephew
-                Uri.parse("https://drive.google.com/uc?export=download&id=1MHUfe3707J6YIgZ191smhZErb3f2ZRXs"), //cousin
-                Uri.parse("https://drive.google.com/uc?export=download&id=1OhgPq_FrplWNgLInG0zlAf3ZUgjC8BS2"), //grand father
-                Uri.parse("https://drive.google.com/uc?export=download&id=1PGpkyhQENNpMn_DatugfO6XpmpIkD8gS"), //grand mother
-                Uri.parse("https://drive.google.com/uc?export=download&id=117guv8k7jY85zlr_v19-imiywkEHBIVh"), //son
-                Uri.parse("https://drive.google.com/uc?export=download&id=1numWXYZqy0zxKN_fAm2EtaP7coVFE5IG"), //daughter
+                Uri.parse("https://drive.google.com/uc?export=download&id=1dZJwi5uhuJgknGuRrTzTt7Vs7TGB0c1B"), //father
+                Uri.parse("https://drive.google.com/uc?export=download&id=1jDd7_RbLfAhtdk9kOwb6HLnLhVFY_yiz"), //mother
+                Uri.parse("https://drive.google.com/uc?export=download&id=1uhG-_Kd8ESyip_7Vx-IJd372ULeLOg6M"), //sister
+                Uri.parse("https://drive.google.com/uc?export=download&id=1kenfQgmQgQMbZOCgq-QshxfvipiXkb3Y"), //brother
+                Uri.parse("https://drive.google.com/uc?export=download&id=1xYvAFzIrgTgLMyWrno8nBAkpXVCWYE2P"), //step brother
+                Uri.parse("https://drive.google.com/uc?export=download&id=15TBKvGiqT0r70wDzMy4rlDCD1Ga731aU"), //step sister
+                Uri.parse("https://drive.google.com/uc?export=download&id=1JH6aNgC2OnvfPBkUut-89IE8UQAZycx2"), //brother in law
+                Uri.parse("https://drive.google.com/uc?export=download&id=17_esmWBm8-UFWMZsRi21XjtbI9gs7sdZ"), //sister in law
+                Uri.parse("https://drive.google.com/uc?export=download&id=1i_8TJCZrbGHLKeoDyP8qDMhSO5B0KWC5"), //step mother
+                Uri.parse("https://drive.google.com/uc?export=download&id=1UrMtsFjiuQxT9rEfXgDK8o3rzx16AMQf"), //uncle
+                Uri.parse("https://drive.google.com/uc?export=download&id=15QMYp8yxd8tnxH6D28RO9n57A1tlY65x"), //auntie
+                Uri.parse("https://drive.google.com/uc?export=download&id=1fTovHp3SayDDTeGn5cQbAs5pQD7M65fj"), //neice
+                Uri.parse("https://drive.google.com/uc?export=download&id=1lJsw2SKj6SwdpimRejg9h-WbrLvjLGNy"), //nephew
+                Uri.parse("https://drive.google.com/uc?export=download&id=1WD_cBJ_ZzR-8LGThBviSIpBvJzkZxzhL"), //cousin
+                Uri.parse("https://drive.google.com/uc?export=download&id=1f5V_lcuWgnvw71wq_Wp1OMbfaIPc0xYS"), //grand father
+                Uri.parse("https://drive.google.com/uc?export=download&id=1woXZKLrJzq4Lr1nd4bi7xOzClrpPKapk"), //grand mother
+                Uri.parse("https://drive.google.com/uc?export=download&id=1j6-Hu5gaY0xHTLo5v3aGHbPRpTv_0YSn"), //son
+                Uri.parse("https://drive.google.com/uc?export=download&id=1GEXTsGSxfx2WLqT5sBJcuFD93bfppUId"), //daughter
                 // Add more URIs as needed
         };
 

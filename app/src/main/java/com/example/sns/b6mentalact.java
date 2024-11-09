@@ -89,26 +89,27 @@ public class b6mentalact extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
+        //https://drive.google.com/file/d/1midCTWrFZ2ohFSehth_pCZDtaBsFjVad/view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1mJcqPxbMJHRj9iNIDF_jae63SjYqi0ZF"), //mind
-                Uri.parse("https://drive.google.com/uc?export=download&id=16SnUNaHmS0Ea6gCeTC_fb3WzU1pQoy1R"), //remember
-                Uri.parse("https://drive.google.com/uc?export=download&id=1TGfzCeOMwoV3hGhEXlL4xA-zqbRP8pGY"), //forget
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DfzEhInyyKnqeJseKi6uv49W9P1JExi8"), //memorize
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DfzEhInyyKnqeJseKi6uv49W9P1JExi8"), //remind
-                Uri.parse("https://drive.google.com/uc?export=download&id=1N6pQI-phRBerP3Wrp7c2avKHueFLZ-50"), //for
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DN4Zm-6QONCB5hWyV5L-WVXXBOYjymto"), //because
-                Uri.parse("https://drive.google.com/uc?export=download&id=1MYWhTtYXDKNSiV4xcrWBsD7oBGCg6Iw_"), //reason
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Ma5_v4eLALH0gzExYQUFktLG9MpeXp9q"), //wonder
-                Uri.parse("https://drive.google.com/uc?export=download&id=1IYWctBTqp0oCNejPMyX-mYUXCFthLU5r"), //concern
-                Uri.parse("https://drive.google.com/uc?export=download&id=1GpyCvlWQRWBxt4F2VsY10oVMzGoxdPrP"), //mean
-                Uri.parse("https://drive.google.com/uc?export=download&id=13ziEPXkJMcXTDcZXaw5cBv9bSMlWUS6G"), //clever
-                Uri.parse("https://drive.google.com/uc?export=download&id=1b5WXMlTfmmLYzS542bCU_H5KgyOdeKJ5"), //ignorant
-                Uri.parse("https://drive.google.com/uc?export=download&id=1TzBFWVkcbNPtFL61QCZX3oPxoe6dh8gv"), //wise
-                Uri.parse("https://drive.google.com/uc?export=download&id=1sCxuVhDtI4fMFSNIKx6v0WVG5jw8wzw-"), //hope
-                Uri.parse("https://drive.google.com/uc?export=download&id=1g_P9_a14fp0c9BzlcXZ_YJuSi1Zo8yfJ"), //idea
-                Uri.parse("https://drive.google.com/uc?export=download&id=1c1V64VMipzV9ZGtw8rT0WI-rc4x9zlQ8"), //suppose
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Gc0CkUuCZ0uS6c1OQTRkrwp4l6ih-orT"), //oppinion
-                Uri.parse("https://drive.google.com/uc?export=download&id=1_ubueYuF94RqZ4sVbm-KxNwH1KjfFgd8"), //concept
+                Uri.parse("https://drive.google.com/uc?export=download&id=1O_C82YIA61pduB1nAlcIjaKXutec16dq"), //mind
+                Uri.parse("https://drive.google.com/uc?export=download&id=1a3HZF6C-ilzp10ag19h-KW4I83o_di_f"), //remember
+                Uri.parse("https://drive.google.com/uc?export=download&id=1KGUIyNVJVA3iQull-Hm7RgPzv2RI_zK7"), //forget
+                Uri.parse("https://drive.google.com/uc?export=download&id=166VTROh8RR93vPGZpuU5BHHb9PvXdhGC"), //memorize
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ZNyWmODS1X-L3iU1SSWLHPVWkFEoBZok"), //remind
+                Uri.parse("https://drive.google.com/uc?export=download&id=1PFbijkqfgjDCVcQE7ioRwOGrb2U9GwQF"), //for
+                Uri.parse("https://drive.google.com/uc?export=download&id=1RR0OhR08TOsSqe40zu0MENkSf7mNr1Vh"), //because
+                Uri.parse("https://drive.google.com/uc?export=download&id=1L84VUYY5ZCeILRK3u-0vlI3CrFPQfLSf"), //reason
+                Uri.parse("https://drive.google.com/uc?export=download&id=1vWf1baLN108M_KjgXerknMFh9sOs-tbF"), //wonder
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Q0G17WlEWR-7VjEAPJtiEDKuXmygdnqK"), //concern
+                Uri.parse("https://drive.google.com/uc?export=download&id=1qBs84-lw5C-wraH8yNhj8PzQ5NRkVFv-"), //mean
+                Uri.parse("https://drive.google.com/uc?export=download&id=1o46yGDa1Vdn3J-v7jF6ZYJmW8fGv9JjH"), //clever
+                Uri.parse("https://drive.google.com/uc?export=download&id=1midCTWrFZ2ohFSehth_pCZDtaBsFjVad"), //ignorant
+                Uri.parse("https://drive.google.com/uc?export=download&id=1OYETfekif8pXJvqTVaklXVnaCKkIqsQ4"), //wise
+                Uri.parse("https://drive.google.com/uc?export=download&id=1U6EzWrVnzeTZbgzP7TV-AwyEa8-jsUVC"), //hope
+                Uri.parse("https://drive.google.com/uc?export=download&id=14dkCMr5SHdWdQ913j1ews3_iZv5Zsrdv"), //idea
+                Uri.parse("https://drive.google.com/uc?export=download&id=1_HvpFmCy01812IOCgOqdszBazOW1dW39"), //suppose
+                Uri.parse("https://drive.google.com/uc?export=download&id=1eUNo3Zw43LvH66bH7m8-HVvWKpIDBZGu"), //oppinion
+                Uri.parse("https://drive.google.com/uc?export=download&id=1qncjtvWY2fDs6eUnjJcv0HGR3xLiHeeB"), //concept
                 // Add more URIs as needed
 
         };

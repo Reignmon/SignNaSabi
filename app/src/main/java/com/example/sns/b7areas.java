@@ -90,23 +90,23 @@ public class b7areas extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-
+        //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=14nq0msUPffUneR3dYdwjWqJqUpg4x0rR"), //living room
-                Uri.parse("https://drive.google.com/uc?export=download&id=1D3ZMT4U2qEEBM4-EgudvBrfDEKnCdbmC"), //kitchen
-                Uri.parse("https://drive.google.com/uc?export=download&id=18G75DRf6YDPp69uaEfmtApjVVHfPDJyM"), //pantry
-                Uri.parse("https://drive.google.com/uc?export=download&id=1G-K90nKlPl7CwxSR1RzKysLrtKNt-lFN"), //dining room
-                Uri.parse("https://drive.google.com/uc?export=download&id=1KZ19no2F2lB8xRohazGC1BPInk15bHJR"), //bed room
-                Uri.parse("https://drive.google.com/uc?export=download&id=1_k5yIRKbs4ZQTrcsHUsOSg752d1CP36N"), //bathroom
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ZeY-w6RN4Q1YxMgjvEJmXAbn0hgdT7h2"), //chair
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XKD3giay94uqd-nTbcOP6FjDynry39AU"), //sofa
-                Uri.parse("https://drive.google.com/uc?export=download&id=1PXmPF2ZG8Ji4i9N4fpHedouIq-P7Ax_7"), //table
-                Uri.parse("https://drive.google.com/uc?export=download&id=1wkbnAbxSodZUNSeTwcFjMoceePL6-zkc"), //bed
-                Uri.parse("https://drive.google.com/uc?export=download&id=19wJWKsebVnZxqr7A40Uoks2ngagxZWxN"), //mirror
-                Uri.parse("https://drive.google.com/uc?export=download&id=1O543Nj_atIB_bJO7Uo3X3-9Hv04h7hpD"), //TV
-                Uri.parse("https://drive.google.com/uc?export=download&id=1VsdtPdAEoZ99DXudoDfnbT3VL5p2vNza"), //light
-                Uri.parse("https://drive.google.com/uc?export=download&id=1OlcmXGKhkX8I-5U9K4FP4hdeKfgwIml1"), //refrigirator
-                Uri.parse("https://drive.google.com/uc?export=download&id=1477vdo8XR-Zgj8U7XcVN28WvgA2uFUuN"), //window
+                Uri.parse("https://drive.google.com/uc?export=download&id=14Mqxk9lx3OBC_sSZYnkaGUPhG_UW90VY"), //living room
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ZrTho9XHcIycuzHiN9UAVlhrOU5Erj7G"), //kitchen
+                Uri.parse("https://drive.google.com/uc?export=download&id=1JBS82NXcrzzKK8ts_cXNk9s2QgtuAraj"), //pantry
+                Uri.parse("https://drive.google.com/uc?export=download&id=1jK8c9yktmYzsp9K3ETMxghokmtMyc76m"), //dining room
+                Uri.parse("https://drive.google.com/uc?export=download&id=1kUu7l_NQJPXVRteee-onTr-Kkf2LOCuu"), //bed room
+                Uri.parse("https://drive.google.com/uc?export=download&id=19vnQPYRkmSvxybsZKmAK2u3KjDxnmRN5"), //bathroom
+                Uri.parse("https://drive.google.com/uc?export=download&id=1iyDHCFlrf5HZUJMyCgz2HqWNnLdfQbXo"), //chair
+                Uri.parse("https://drive.google.com/uc?export=download&id=13yTIPyVinue733sQvSHu4wV_rvYm6aGw"), //sofa
+                Uri.parse("https://drive.google.com/uc?export=download&id=1wZJ8yLxKrZe3yTkATvgAhLZEKWD7-Auc"), //table
+                Uri.parse("https://drive.google.com/uc?export=download&id=1g6EgFRx260ga8WubRMr9XgVdxbaxa4KQ"), //bed
+                Uri.parse("https://drive.google.com/uc?export=download&id=1sRRPf0wjLJGMuIvatmeHiOSYGty0TCJy"), //mirror
+                Uri.parse("https://drive.google.com/uc?export=download&id=1gOihu9F7b6v-YZVFTDQKxGKXgEmWl8jj"), //TV
+                Uri.parse("https://drive.google.com/uc?export=download&id=19hQ_93ZAEMnHDEjFvwTKYFwtXVyuFJMX"), //light
+                Uri.parse("https://drive.google.com/uc?export=download&id=1K4uHAcYTmQOTuNGNjOk8anKDLES2AcU_"), //refrigirator
+                Uri.parse("https://drive.google.com/uc?export=download&id=14IzR1XdSIWTAeN5QW0d8iVHv_o3l6W_z"), //window
 
                 // Add more URIs as needed
 

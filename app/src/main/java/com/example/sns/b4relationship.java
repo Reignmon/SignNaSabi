@@ -92,18 +92,18 @@ public class b4relationship extends AppCompatActivity {
 
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1SJTWluMRxOwiU6DRqZDP9QIXDeZOYCLC"), //partner
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Kij6orhEexz7eCXGPtIloW3BI42y-OHz"), //wife
-                Uri.parse("https://drive.google.com/uc?export=download&id=1FRM9tnmbMcVlYa66yytq2GzY7lk6p35p"), //husband
-                Uri.parse("https://drive.google.com/uc?export=download&id=1KNV3W9UzUSUzn41qALseLz5ePPzY5-Py"), //married
-                Uri.parse("https://drive.google.com/uc?export=download&id=1YFTSaoutqbI168cjatIpnM-GMYqQLST0"), //girlfriend
-                Uri.parse("https://drive.google.com/uc?export=download&id=1sRzGODKfpL4YorFThofdeoVEreMMPx4R"), //boyfriend
-                Uri.parse("https://drive.google.com/uc?export=download&id=19Dw0icVKxO7LESoyiK3Cm1XVNaYQ8_vv"), //together
-                Uri.parse("https://drive.google.com/uc?export=download&id=1zClhV4Hq8H-T9fvhDVUl8wh7rX7apmUW"), //date
-                Uri.parse("https://drive.google.com/uc?export=download&id=1_DM2T0TtO4PNJEjeZskZlrsxn4f262jf"), //fall in love
-                Uri.parse("https://drive.google.com/uc?export=download&id=18zAOQm44Gi1-2P1YoqOWyyiKeDHFrgnt"), //best friend
-                Uri.parse("https://drive.google.com/uc?export=download&id=1k7PMsPkTKJYJUqX4nvgeBf5VV3zUKMzb"), //family
-                Uri.parse("https://drive.google.com/uc?export=download&id=1WpT07vzZheCLvqGjs6el6F4K2fsHANA5"), //friend
+                Uri.parse("https://drive.google.com/uc?export=download&id=1XOkUSNDuKTYUJXv4RG68Lj_BL4FfCw23"), //partner
+                Uri.parse("https://drive.google.com/uc?export=download&id=1MM1KzsTH8JaSX7R1eHChS7Z9efEgOV9R"), //wife
+                Uri.parse("https://drive.google.com/uc?export=download&id=1eQ4L6xTq7Ina1_ycnSlNtaO-W3_LITW7"), //husband
+                Uri.parse("https://drive.google.com/uc?export=download&id=17V214qAIsP2N23P4kkHo34jlafEaVAVp"), //married
+                Uri.parse("https://drive.google.com/uc?export=download&id=1vEyNZrff3WBaugz2c_DuR4vscDMgpEcA"), //girlfriend
+                Uri.parse("https://drive.google.com/uc?export=download&id=1evI1RGHRU5BO6wcep3ZtYbP6IR0vLjUK"), //boyfriend
+                Uri.parse("https://drive.google.com/uc?export=download&id=1hHsHcn2oaZYbFKfga8EOqCTRMN-pBrSM"), //together
+                Uri.parse("https://drive.google.com/uc?export=download&id=15UpzjBzh6qNSBXwShYP9Ps6Cvnk5x5TP"), //date
+                Uri.parse("https://drive.google.com/uc?export=download&id=1CswnKdEJB1UQfGiqwNAOGElJbu2iisXo"), //fall in love
+                Uri.parse("https://drive.google.com/uc?export=download&id=1r5jy6gmJkAriBeB_hpZsG8pUUvugRcxP"), //best friend
+                Uri.parse("https://drive.google.com/uc?export=download&id=1xDUQ6V7H1Itc-wgOG6BHh0QtLciZ8Atz"), //family
+                Uri.parse("https://drive.google.com/uc?export=download&id=19IMxDjsSvJQABDw_zZx-4USXTQbqkdwV"), //friend
                 // Add more URIs as needed
 
         };

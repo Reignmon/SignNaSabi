@@ -91,22 +91,22 @@ public class b8bodypart extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d/1izmYzaYmKQNa8SAe524rxNO-lxqTgYUf/view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1h0MK6DAyoErZ0ZXDFso_wrteLu01Al3i"), //body
-                Uri.parse("https://drive.google.com/uc?export=download&id=1sPtP_pNOvwyEfBtBqWgcG8PBVx-quTNS"), //head
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ChvwtFmInMeQmFhZMAzRPzxxaEjvIQG-"), //hands
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ov4D8tMsM_d7rUInZN70rRpth76XG0Y1"), //arm
-                Uri.parse("https://drive.google.com/uc?export=download&id=1nJYL6f_CFXWtdKsWii9gbPEGhxNc-yLq"), //stomach
-                Uri.parse("https://drive.google.com/uc?export=download&id=1y3Z3l2FdYow7qeOfuIhDvdxkWPHiMDr5"), //back
-                Uri.parse("https://drive.google.com/uc?export=download&id=1mCnZLVlfBupVLRRcydzYvciRK73AY46m"), //foot
-                Uri.parse("https://drive.google.com/uc?export=download&id=10JlViJelOQo4I2U-h5Z4xRMSHnqniy8h"), //face
-                Uri.parse("https://drive.google.com/uc?export=download&id=10JlViJelOQo4I2U-h5Z4xRMSHnqniy8h"), //ear
-                Uri.parse("https://drive.google.com/uc?export=download&id=1taLSQt904CROGoDqUPMkOXPLEQ6y2k8S"), //eyes
-                Uri.parse("https://drive.google.com/uc?export=download&id=1axpjGZqM-JP4kiC5LvNwLPYpTP1vF34W"), //nose
-                Uri.parse("https://drive.google.com/uc?export=download&id=1erHi6AcuXoLTmSIkS2Z8G1yfI3Wf0qs0"), //mouth
-                Uri.parse("https://drive.google.com/uc?export=download&id=12QsmxZE4my8ahuoG8Fa_6Fai4opooz9b"), //hair
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ZYmBjWugR0TMs6GiVE4YM1xVPDsne8Hp"), //teeth
+                Uri.parse("https://drive.google.com/uc?export=download&id=1toQzkVD2wS2CGKYaEpfBRoooiFsAQk7Y"), //body
+                Uri.parse("https://drive.google.com/uc?export=download&id=1TtMZbPtdudkiBUiDpQjT4Zyt88kZWMF0"), //head
+                Uri.parse("https://drive.google.com/uc?export=download&id=1dMqoA9AgNlNBr8GgVyP6mZHa4I8mlgRO"), //hands
+                Uri.parse("https://drive.google.com/uc?export=download&id=10IFaXpbES0DTX2XFHzUMi5JYnli8k0rh"), //arm
+                Uri.parse("https://drive.google.com/uc?export=download&id=1QtiCDrpf42F5qA7tbrApuRTFYbmvyG4k"), //stomach
+                Uri.parse("https://drive.google.com/uc?export=download&id=1dYNqnR_k3N8z7h4JdkVN_Z4QlILhnzyi"), //back
+                Uri.parse("https://drive.google.com/uc?export=download&id=1aDhggtORnun8p96Q5WgNwmEG0juhEKJL"), //foot
+                Uri.parse("https://drive.google.com/uc?export=download&id=1SLoDdnKWfNSS5y_1wNLk0yVRt9XteXdl"), //face
+                Uri.parse("https://drive.google.com/uc?export=download&id=1izmYzaYmKQNa8SAe524rxNO-lxqTgYUf"), //ear
+                Uri.parse("https://drive.google.com/uc?export=download&id=1tglzupPLsojuDHRLxzjeZSodQCraEymV"), //eyes
+                Uri.parse("https://drive.google.com/uc?export=download&id=1NCaLvsAZOVaU-ItaduLdOnnHK4nxUH1y"), //nose
+                Uri.parse("https://drive.google.com/uc?export=download&id=17L-F5TCFInMPRHyz4V6b2dDrtaDwmBU9"), //mouth
+                Uri.parse("https://drive.google.com/uc?export=download&id=1xHG-Ku3a1ef9uZ9Kn3tqDPwftUkdOwTE"), //hair
+                Uri.parse("https://drive.google.com/uc?export=download&id=10XUfa8P4k2KoWa1A4--FkAuWXbLH1KC3"), //teeth
                 // Add more URIs as needed
 
         };

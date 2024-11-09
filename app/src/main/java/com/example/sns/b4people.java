@@ -92,21 +92,21 @@ public class b4people extends AppCompatActivity {
 
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1U7IuMnWWVgq5v18dq1l6fOssEg1YZwUf"), //farmer
-                Uri.parse("https://drive.google.com/uc?export=download&id=1kgyGs9b9Fxqi4A7yaHLF19ewsn1A-qw9"), //scientist
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XTJaiNipK60klpPibxNYhepQwk_XTsGT"), //shoulder
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XTJaiNipK60klpPibxNYhepQwk_XTsGT"), //athlete
-                Uri.parse("https://drive.google.com/uc?export=download&id=1czDBnyr4JF450hwg0qMDTe8zaXjnPwgj"), //pilot
-                Uri.parse("https://drive.google.com/uc?export=download&id=1jpLdx7jVPLetrz9YP8KdKSB2lhUncrxu"), //principal
-                Uri.parse("https://drive.google.com/uc?export=download&id=1c4nFNZKxFLJxu9tELwknQDXDDi5o7NHr"), //nurse
-                Uri.parse("https://drive.google.com/uc?export=download&id=1vdt4c4Xk9VlR9HHuFdiqxFB8X7coVCRV"), //engineer
-                Uri.parse("https://drive.google.com/uc?export=download&id=1PTop7ne4HhPvXqIW1s_12w0pOc30PIgo"), //entrep
-                Uri.parse("https://drive.google.com/uc?export=download&id=1dSivPKu1zj18JaV7Gk2LL2ULHxMRy_xz"), //lawyer
-                Uri.parse("https://drive.google.com/uc?export=download&id=1JWz-qGVzad7MNgxUtzLPKMHUVJB8sTHK"), //Actor
-                Uri.parse("https://drive.google.com/uc?export=download&id=1c2aR8Gl_l4BInsY7d-NtjUep5w1cjRyw"), //chief
-                Uri.parse("https://drive.google.com/uc?export=download&id=1gRlH2RDaKYsnH9MpLxuGsTF3nLH3fvsb"), //police officer
-                Uri.parse("https://drive.google.com/uc?export=download&id=1mk0RLiVp_81VIfUFZsjxgMiNjyUe3Od2"), //doctor
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Aa_6F5Gd_zeJQYu5OTKSIZYS52VHnv44"), //teacher
+                Uri.parse("https://drive.google.com/uc?export=download&id=15FzoamvM7TS1fMXfbfnjw35wEkXfZ4VI"), //farmer
+                Uri.parse("https://drive.google.com/uc?export=download&id=1JYazH2FMppQjG_COCI6Lo52VfRcZkMHm"), //scientist
+                Uri.parse("https://drive.google.com/uc?export=download&id=1jvPZMBOYjxAhpr3DdSEqqx7hhvL5dZ6b"), //shoulder
+                Uri.parse("https://drive.google.com/uc?export=download&id=15KEbGfDPQF7SuL26r26yTSruBfQUNldE"), //athlete
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ILWz3WfYVETYbNDt0Me0UJAA1kWmK03j"), //pilot
+                Uri.parse("https://drive.google.com/uc?export=download&id=1FVqLE1qKasPe1eNFVJvLB2o_8unoJCrQ"), //principal
+                Uri.parse("https://drive.google.com/uc?export=download&id=14P9Qf1zmqkNdM9BLLy3JTbsq3A7NtPom"), //nurse
+                Uri.parse("https://drive.google.com/uc?export=download&id=1NA844jL7_iEfSZw5anBfD3WVF56tVtXg"), //engineer
+                Uri.parse("https://drive.google.com/uc?export=download&id=1d0ZzKlGNG2OE6M0YZ2_pV8fOz2_SsphT"), //entrep
+                Uri.parse("https://drive.google.com/uc?export=download&id=11TI3n77ZuweF_Usw2nLorehO0Plv64OC"), //lawyer
+                Uri.parse("https://drive.google.com/uc?export=download&id=1a92kea3kTx4k7yiSaRwCZAsjoT2LNZ9y"), //Actor
+                Uri.parse("https://drive.google.com/uc?export=download&id=1smuS5bR8WHzNxi_HQgApq1kAy4e2KUJ8"), //chief
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Ni2T99P8AzAdFme_fhn3YNu9pFSdpvZV"), //police officer
+                Uri.parse("https://drive.google.com/uc?export=download&id=1O11CbKwEt-DjZ0bD0KWUiAGKQxji06Tt"), //doctor
+                Uri.parse("https://drive.google.com/uc?export=download&id=1nL8pNRCiPlOygHSU7Kah9sa0y8lYbGXZ"), //teacher
                 // Add more URIs as needed
 
         };

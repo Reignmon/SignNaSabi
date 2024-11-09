@@ -90,19 +90,20 @@ public class b7foodsdrinks extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
+        //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1JKzYcwn_zrXOjgRQGIUO0krQ2wSowgVr"), //fruits
-                Uri.parse("https://drive.google.com/uc?export=download&id=1H5W0A9xcR35N2ljtJvQNeBTKILJkLBrJ"), //frennch fries
-                Uri.parse("https://drive.google.com/uc?export=download&id=1tI8atbx7XUn8m-8OVqFJV5CSWSaeolrv"), //humburger
-                Uri.parse("https://drive.google.com/uc?export=download&id=1YvYIQ3LKYwkOha35rbJe7e7zgFiimgyU"), //pizza
-                Uri.parse("https://drive.google.com/uc?export=download&id=1jlSIDY8FNHBe1cwpRHeaVXEjpwaX_JvS"), //candy
-                Uri.parse("https://drive.google.com/uc?export=download&id=1wkK8MTXs93R71FLuCkndGRs1mGONHURt"), //soda
-                Uri.parse("https://drive.google.com/uc?export=download&id=1aQe3fRUUyP-l2vV6pKc1qiZ85tel7YWU"), //coffe
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Ph_nykb2PUCE_tysSQaqycDPYx6hhrBS"), //tea
-                Uri.parse("https://drive.google.com/uc?export=download&id=1AD813-_4ZQsBci5GVEtPPD_Ov7dU3JZ5"), //juice
-                Uri.parse("https://drive.google.com/uc?export=download&id=1FiUp8Sl-x-IDY_xOPGw9MpQ_jdV-f40S"), //milk
-                Uri.parse("https://drive.google.com/uc?export=download&id=1LGxKrFp5OjR0xjr_2-5Qky838mCLvWHi"), //water
-                Uri.parse("https://drive.google.com/uc?export=download&id=1jwWwq85C0HSsgBUj1X1au-RdNbIC0K8l"), //drink
+                Uri.parse("https://drive.google.com/uc?export=download&id=1x2vBI6vOND4ee7RRYzY4b5atv4h_F2jj"), //fruits
+                Uri.parse("https://drive.google.com/uc?export=download&id=1aNm9ZaLt8PAFP_7e7By2vnTicIGPaf3b"), //frennch fries
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Pz5TyxGaRg5cFk17adUa9wS_3e_e3xVk"), //humburger
+                Uri.parse("https://drive.google.com/uc?export=download&id=1-AB7gkcHy4CM_UITCNnhqwyELi_iJVsV"), //pizza
+                Uri.parse("https://drive.google.com/uc?export=download&id=169waIbFjzokfCeV8rO2PY8E-zAuaEi0V"), //candy
+                Uri.parse("https://drive.google.com/uc?export=download&id=1-jEzcKquLQjoj_2lWE6_xvlNEWkiCUlW"), //soda
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Gg-Boq9xW9TbiKiiVoO6rRUGEthZJWti"), //coffe
+                Uri.parse("https://drive.google.com/uc?export=download&id=1rlfJqrsPfpfZ4Whk9aAIhA2OuqS607wm"), //tea
+                Uri.parse("https://drive.google.com/uc?export=download&id=10I3jsSlszVdxd1g-OLDn_68QCGSRVgBk"), //juice
+                Uri.parse("https://drive.google.com/uc?export=download&id=1wZwgRGYCjUYL-smT7rc8wm4RcBNZBJC3"), //milk
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ieqfYl3-s1hmyG-BQdpgBYIOTMT2scNR"), //water
+                Uri.parse("https://drive.google.com/uc?export=download&id=1yn61fjm9Z9fG8abjc3-5lg-P2cnCPqwY"), //drink
                 // Add more URIs as needed
 
         };

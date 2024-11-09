@@ -215,6 +215,14 @@ public class dashboard extends AppCompatActivity {
             }
         });
 
+        btnhistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(dashboard.this, dictionary.class));
+                finish();
+            }
+        });
+
 
 
     }

@@ -89,24 +89,25 @@ public class b7placelocation extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
+        //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1rlK2t7VfSvhZzRSH1igAGvfMm2oOG5GL"), //up
-                Uri.parse("https://drive.google.com/uc?export=download&id=1LV4eFgbMZmt1YIypebCVjMwXEVWReKu8"), //bottom
-                Uri.parse("https://drive.google.com/uc?export=download&id=1sONODIwnZN9yUJh4SPSYiKPn6SHJSC--"), //bellow
-                Uri.parse("https://drive.google.com/uc?export=download&id=1STP549bs9B13hlU8re_LPswVbzQPATEM"), //in
-                Uri.parse("https://drive.google.com/uc?export=download&id=1xxOSHR897c3hac_Q8rBjmnBGMkW1zbOE"), //top
-                Uri.parse("https://drive.google.com/uc?export=download&id=1rkt2y0vY_xVaVieT2HBO-qcXtE4CNRyL"), //out
-                Uri.parse("https://drive.google.com/uc?export=download&id=16n4AnrTz80sbVzYIM7eltWSNnTgH5X0p"), //horizontal
-                Uri.parse("https://drive.google.com/uc?export=download&id=19DPkb3Z9y9-OzEMwn-HAPP_NmQOJ-Zyy"), //vertical
-                Uri.parse("https://drive.google.com/uc?export=download&id=1-kEL69Knqs69QK2Hz-EmOL_y_GXrWgwh"), //to
-                Uri.parse("https://drive.google.com/uc?export=download&id=1LllURLXVewsVYO4U9ro72b5SluE0-XxV"), //off
-                Uri.parse("https://drive.google.com/uc?export=download&id=17GM6MoLVIveTq0sudv27zfjM8KmfumgD"), //on
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Z1QBVyTS6CUWQ8vEUHcJm0nTKd4qggyb"), //south
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ywB_MqYsvF-DY0O6mNVL-PSXn-gZbbC-"), //east
-                Uri.parse("https://drive.google.com/uc?export=download&id=1u41Cb1btGQnr3XRnNY74vRhLpxTpKfdQ"), //west
-                Uri.parse("https://drive.google.com/uc?export=download&id=1fEFzVTWYhRuznLyNyATgqujHjPzKNPX9"), //left
-                Uri.parse("https://drive.google.com/uc?export=download&id=1hQIryjcqV0VpCiV-L6hiS3ZxhYvtPxv8"), //right
-                Uri.parse("https://drive.google.com/uc?export=download&id=1-btQ-Z6gRoXmkmRK45MTOoFU5VRZH0yF"), //over
+                Uri.parse("https://drive.google.com/uc?export=download&id=1orGkkF2Khu0miwsLXcViSJzRTIXkvzVR"), //up
+                Uri.parse("https://drive.google.com/uc?export=download&id=1U7L088FfGXXevBghoQuJUU_bRbWaJrpl"), //bottom
+                Uri.parse("https://drive.google.com/uc?export=download&id=1uO9gR15GXI9Dnec16RNEZ7n15M6oQR_2"), //bellow
+                Uri.parse("https://drive.google.com/uc?export=download&id=1g1_yZGyShZEKG5Vz8N9oLdPuOykC8eGi"), //in
+                Uri.parse("https://drive.google.com/uc?export=download&id=1bZIp5PdCWiaJ3r4mY6d4h8MuK6hFuMnl"), //top
+                Uri.parse("https://drive.google.com/uc?export=download&id=1YlJq9cdw9MuUDBPn08L2KSmNJM8qmbr7"), //out
+                Uri.parse("https://drive.google.com/uc?export=download&id=1iO23n1GVImTNPmFLhXj-YqtnKAnlcqkL"), //horizontal
+                Uri.parse("https://drive.google.com/uc?export=download&id=1AfMhsWCLl86feOwNJKwSUApIMYIr0VsD"), //vertical
+                Uri.parse("https://drive.google.com/uc?export=download&id=1d-_WRln0ZScX9B9xRKX3CnT_qIjcU0Y_"), //to
+                Uri.parse("https://drive.google.com/uc?export=download&id=1fbMnNcMwNqSRO1ZR0UPEtC7Y66Rz7PkF"), //off
+                Uri.parse("https://drive.google.com/uc?export=download&id=1rrvuqRVhLTta9UFV_1VMF-bIGqPrFjmP"), //on
+                Uri.parse("https://drive.google.com/uc?export=download&id=1K0RgQWiXv9XEgDl0kpYpxczfhBqf4dUr"), //south
+                Uri.parse("https://drive.google.com/uc?export=download&id=1HUWdf8qrFwIWMWAzvCGGf9q_NADyzsH5"), //east
+                Uri.parse("https://drive.google.com/uc?export=download&id=1BDX94m-DT1mZbNtfbVjF5wfdin5WRc4k"), //west
+                Uri.parse("https://drive.google.com/uc?export=download&id=119xGQDMFH2uFoc8NBUh_TQ8Uj1PQ6twH"), //left
+                Uri.parse("https://drive.google.com/uc?export=download&id=1JM7O0HKFY91xHKn3ds8ro3if_KX0Ze4_"), //right
+                Uri.parse("https://drive.google.com/uc?export=download&id=1nS-9KP4L2C1PfBmVgyHnTrGGD_EWREa7"), //over
                 // Add more URIs as needed
 
         };

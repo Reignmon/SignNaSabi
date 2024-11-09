@@ -89,15 +89,15 @@ public class b2questionword extends AppCompatActivity {
         mediaController.setVisibility(videoView.GONE);
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
-
+        //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1cPtvDgoTrICpy5M4wo4emPdZmX3L0Ql9"), //how
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Z4v2c0ov-F7thNh6dT_fPZoynx45Za1F"), //why
-                Uri.parse("https://drive.google.com/uc?export=download&id=1_krY4cIZwd84HoPzntDlaOHFlyeIcrXQ"), //who
-                Uri.parse("https://drive.google.com/uc?export=download&id=1xtL9jV3LBbQB8vqAAaCu1KmHUL-nMY-z"), //whom
-                Uri.parse("https://drive.google.com/uc?export=download&id=1A-Cgt2mPlsOZF-vQb-AONtU8C2XNpqwv"), //where
-                Uri.parse("https://drive.google.com/uc?export=download&id=1FZjjXXlbJS3iyRBzT4FYlyMkezVbSkQ3"), //when
-                Uri.parse("https://drive.google.com/uc?export=download&id=1cCq6_GKirlr556g9D0fFgwt9droWGHbj"), //what
+                Uri.parse("https://drive.google.com/uc?export=download&id=1FjQKfYUXeCS5C-sJ03hwBUY5UBOHELjK"), //how
+                Uri.parse("https://drive.google.com/uc?export=download&id=1--UGpGYbXCii3qe_sluwAfqcJUwVnUjp"), //why
+                Uri.parse("https://drive.google.com/uc?export=download&id=1hn-WM-lawU-g0OBxdjlNE9db_zmp0rzG"), //who
+                Uri.parse("https://drive.google.com/uc?export=download&id=1R7vqjaA6juBAWppKSPWa5ZJ3OY5XZHIg"), //whom
+                Uri.parse("https://drive.google.com/uc?export=download&id=11EAPINy8F3AIPs6Bc2IYfbAPWmMBP4gl"), //where
+                Uri.parse("https://drive.google.com/uc?export=download&id=1IIqy9YXGaYcYpOrE14rd3aF8qDgQUtDi"), //when
+                Uri.parse("https://drive.google.com/uc?export=download&id=15b7-8ULrAtcdEQdH-E6FqrTxgm-gOEsg"), //what
                 // Add more URIs as needed
         };
 

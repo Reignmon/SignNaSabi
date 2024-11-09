@@ -92,9 +92,9 @@ public class b3size extends AppCompatActivity {
 
         //https://drive.google.com/file/d//view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=136-jW3zyl7MzO_LwesHRgGrBCTd8IgDu"), //small
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DxPx396vPKkK7wgTsDjuLFLg8KoF6vfO"), //meduim
-                Uri.parse("https://drive.google.com/uc?export=download&id=1NYntdy-fRs49O_sVPUTGlUvn-W3mUvac"), //large
+                Uri.parse("https://drive.google.com/uc?export=download&id=11kMTfQwRv2GYHpJsCgUnGne1cQidpoh_"), //small
+                Uri.parse("https://drive.google.com/uc?export=download&id=1_WIRs36FpJDar2Khj_eQRTQsUVo7xmJ2"), //meduim
+                Uri.parse("https://drive.google.com/uc?export=download&id=1io3B4i-NC8V8SHY-XVNsBHD4itlSgLpu"), //large
                 // Add more URIs as needed
 
         };
