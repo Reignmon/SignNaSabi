@@ -60,7 +60,7 @@ public class register extends AppCompatActivity {
     boolean isAllFieldsChecked = false;
     String firstname = "", lastname = "", middlename = "", extensionname = "", Age = "",
             bod = "", Gender = "", Disablity = "", Email = "", Password = "", Password1 = "";
-    int calculatedAge = -1; // Variable to store calculated age
+    int calculatedAge = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -193,17 +193,17 @@ public class register extends AppCompatActivity {
                     Date selectedDate = sdf.parse(selectedDateStr);
                     Date currentDate = new Date();
 
-                    // Compare the selected date with the current date
                     if (selectedDate != null && selectedDate.after(currentDate)) {
                         Toast.makeText(register.this, "The date cannot be in the future", Toast.LENGTH_LONG).show();
-                        mDisplayDate.setText(""); // Clear the date field if invalid
+                        mDisplayDate.setText("");
                     } else {
-                        // Set the selected date if valid
+
                         date = selectedDateStr;
                         mDisplayDate.setText(date);
 
-                        // Calculate age
                         calculatedAge = calculateAge(selectedDate);
+
+                        age.setText(String.valueOf(calculatedAge));
                     }
                 } catch (ParseException e) {
                     e.printStackTrace();

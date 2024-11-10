@@ -16,6 +16,12 @@
         android:theme="@style/Theme.SNS"
         tools:targetApi="31">
         <activity
+            android:name=".dictionaryalphabetvid"
+            android:exported="false" />
+        <activity
+            android:name=".dictionaryalphabet"
+            android:exported="false" />
+        <activity
             android:name=".dictionary"
             android:exported="false" />
         <activity

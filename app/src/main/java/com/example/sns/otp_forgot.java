@@ -73,9 +73,6 @@ public class otp_forgot extends AppCompatActivity {
         sendotp obj = new sendotp();
         obj.SendOTP(EM, Integer.parseInt(otp));
 
-
-
-
         btnverify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

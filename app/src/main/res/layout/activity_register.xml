@@ -93,7 +93,7 @@
                 android:background="@drawable/border_bottom"
                 android:textSize="16sp"
                 android:layout_marginTop="5dp"
-                android:hint="Suffix Name"
+                android:hint="Suffix Name (Optional)"
                 android:inputType="text"
                 android:paddingStart="10dp"
                 android:textColor="@color/border_color"
