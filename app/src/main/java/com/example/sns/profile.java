@@ -95,7 +95,7 @@ public class profile extends AppCompatActivity {
                         String getfname = snapshot.child(DecodedEmail).child("firstname").getValue(String.class);
                         String getlname = snapshot.child(DecodedEmail).child("lastname").getValue(String.class);
                         getmname = snapshot.child(DecodedEmail).child("middlename").getValue(String.class);
-                        getext = snapshot.child(DecodedEmail).child("extensionname").getValue(String.class);
+                        getext = snapshot.child(DecodedEmail).child("extensioname").getValue(String.class);
                         String getbod = snapshot.child(DecodedEmail).child("birthdate").getValue(String.class);
                         String getage = snapshot.child(DecodedEmail).child("age").getValue(String.class);
                         String getgender = snapshot.child(DecodedEmail).child("gender").getValue(String.class);

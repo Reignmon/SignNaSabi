@@ -67,7 +67,7 @@ public class interL8animals extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(interL8animals.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -88,20 +88,18 @@ public class interL8animals extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d//view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=156yF2p1GJrjFIg787GmgyJRtrfdkRFEG"), //lion
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Uk3XEvpEi9cEl5TP4iggg2vd2HdeVdNp"), //elephant
-                Uri.parse("https://drive.google.com/uc?export=download&id=1PJTDJqxIB6rXCoyK6JAWo13gjb1A0PIA"), //dolphin
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DMMFTNJsCS-fQzyDaA2sP9jOi97gWjA9"), //bird
-                Uri.parse("https://drive.google.com/uc?export=download&id=1HCSVt93FXW9Fx-5AvjdiLZwZDaGcZX2C"), //penguin
-                Uri.parse("https://drive.google.com/uc?export=download&id=1pY9WzwvZCpvMJzRbj4zwvANTTNOQYXES"), //snake
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ebldH_X1XLnqJweDst7IX3EIlgHyEuO_"), //turtle
-                Uri.parse("https://drive.google.com/uc?export=download&id=1kHo5F35kcY9Bd68VkCHybnfVqtbRFQKv"), //frog
-                Uri.parse("https://drive.google.com/uc?export=download&id=1uN7hF_RtnQ7Wql7b3TTwAAk8TBgZapE4"), //shark
-
+                Uri.parse("https://drive.google.com/uc?export=download&id=1DQVT2mHZGYTv4uVafbmqo7hjRQK9Dt6n"), //lion
+                Uri.parse("https://drive.google.com/uc?export=download&id=1n-rz_S7QOe0EPHCI0geVeRUy_DkK2zsQ"), //elephant
+                Uri.parse("https://drive.google.com/uc?export=download&id=1r3mPbelT97jHKJEh-lodLdIHs5s869vh"), //dolphin
+                Uri.parse("https://drive.google.com/uc?export=download&id=1n4rauwtQF7rs5piHzjKy_VGOzQwPnM67"), //bird
+                Uri.parse("https://drive.google.com/uc?export=download&id=1rJkPmJyqjblgBUwx4-GMNJNi2UQzZk1E"), //penguin
+                Uri.parse("https://drive.google.com/uc?export=download&id=1UQY7PSwREn1AfVvCz7dLfy847hFQsAXC"), //snake
+                Uri.parse("https://drive.google.com/uc?export=download&id=131-GAA0YYxbYeEOPWFvpgY2GlU2lgCU0"), //turtle
+                Uri.parse("https://drive.google.com/uc?export=download&id=1_esrisZDIACHbmWqacdmpzVVP-0yYExu"), //frog
+                Uri.parse("https://drive.google.com/uc?export=download&id=1PxuC75d9KNjqzvt1mimXy6v63AFosRBM"), //shark
                 // Add more URIs as needed
-
         };
 
         retrieveCurrentIndexFromFirebase();
@@ -286,8 +284,13 @@ public class interL8animals extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if (currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -325,22 +328,54 @@ public class interL8animals extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 8) {
                         DatabaseReference lessonaslRef = usersRef.child("intermediatelesson");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("animalsscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 8 && currentLessonAslValue < 1400) {
-                                    lessonaslRef.setValue(1400);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL8animals.this,intermediatelevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL8animals.this,intermediatelevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 1510){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(14);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(interL8animals.this, interL8asessanimas.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+                                        }else if (lesson1 == 8 && currentScore < 9) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL8animals.this, interL8asessanimas.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL8animals.this,intermediatelevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override
@@ -393,12 +428,12 @@ public class interL8animals extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("intermediatelevel_tb").child(encodedEmail);
 
-        usersRef.child("intermediatelesson").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 1400){
+                    if (currentLessonAslValue >= 14){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

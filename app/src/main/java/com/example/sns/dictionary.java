@@ -95,6 +95,42 @@ public class dictionary extends AppCompatActivity {
                 finish();
             }
         });
+
+        sizeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scaleView(sizeBtn);
+                startActivity(new Intent(dictionary.this,dictionarysize.class));
+                finish();
+            }
+        });
+
+        communityBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scaleView(communityBtn);
+                startActivity(new Intent(dictionary.this,dictionarycommunity.class));
+                finish();
+            }
+        });
+
+        actionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scaleView(actionBtn);
+                startActivity(new Intent(dictionary.this,dictionaryactionword.class));
+                finish();
+            }
+        });
+
+        adjectiveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scaleView(adjectiveBtn);
+                startActivity(new Intent(dictionary.this,dictionaryadjective.class));
+                finish();
+            }
+        });
     }
 
     private void scaleView(View view) {

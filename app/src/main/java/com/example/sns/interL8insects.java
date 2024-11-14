@@ -67,7 +67,7 @@ public class interL8insects extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(interL8insects.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -88,17 +88,16 @@ public class interL8insects extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d//view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1hvo4v5qw9wy3Zoj1w4WpV00xnLb2A0NW"), //lady bug
-                Uri.parse("https://drive.google.com/uc?export=download&id=1hWyhS-7Q_X59sMSWKnSQkX__gAv5URRF"), //butter fly
-                Uri.parse("https://drive.google.com/uc?export=download&id=121q6a_1tLIftRNnXa-ItnhQsoYgVUANW"), //honeybee
-                Uri.parse("https://drive.google.com/uc?export=download&id=12BP0tmxpAt3EV-jbjmVKcCogjxp8Ns0G"), //flies
-                Uri.parse("https://drive.google.com/uc?export=download&id=1taSFRHp-gSnJQ0MSNQ_qO0PggFBgBuoQ"), //mosquitos
-                Uri.parse("https://drive.google.com/uc?export=download&id=1p9ebyFXZieY-UhxQiIz91CI4mrS5U4Nm"), //bug
-                Uri.parse("https://drive.google.com/uc?export=download&id=1pnE3xhu65c0ZOloMLEUk_glpvOtW7xln"), //dragon fly
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Otxp9awQQXPABtLmMlr2N1sw4Ln2LD-O"), //lady bug
+                Uri.parse("https://drive.google.com/uc?export=download&id=1VV8rbnb7v98GheTmYIvfIvb4_iZEICFu"), //butter fly
+                Uri.parse("https://drive.google.com/uc?export=download&id=1MO4DwXyKh_2n97nSWtnhXDtbVGQ1ajB1"), //honeybee
+                Uri.parse("https://drive.google.com/uc?export=download&id=1QgBU2xhomxgdaLC_OKQUijlYMgI_KkkC"), //flies
+                Uri.parse("https://drive.google.com/uc?export=download&id=1nqLJQB0b4sg1KcTzB9abW7DVCCALpuDB"), //mosquitos
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ElnhlBYq5kEwumK0KCluzay0ktTsLY7R"), //bug
+                Uri.parse("https://drive.google.com/uc?export=download&id=1wTJJ8nzsLfJZ6xdGL15rTdO9ZRuatIWN"), //dragon fly
                 // Add more URIs as needed
-
         };
 
         retrieveCurrentIndexFromFirebase();
@@ -283,8 +282,13 @@ public class interL8insects extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -322,22 +326,54 @@ public class interL8insects extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 6) {
                         DatabaseReference lessonaslRef = usersRef.child("intermediatelesson");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("insectsscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 6 && currentLessonAslValue < 1500) {
-                                    lessonaslRef.setValue(1500);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL8insects.this,intermediatelevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL8insects.this,intermediatelevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 1610){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(15);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(interL8insects.this, interL8asessinsects.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+                                        }else if (lesson1 == 6 && currentScore < 7) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL8insects.this, interL8asessinsects.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL8insects.this,intermediatelevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override
@@ -390,12 +426,12 @@ public class interL8insects extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("intermediatelevel_tb").child(encodedEmail);
 
-        usersRef.child("intermediatelesson").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 1500){
+                    if (currentLessonAslValue >= 15){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

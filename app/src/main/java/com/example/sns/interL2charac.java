@@ -353,7 +353,7 @@ public class interL2charac extends AppCompatActivity {
                                                         lessonaslRef.setValue(total);
                                                         sign.setValue(3);
                                                         Loading.dismiss();
-                                                        startActivity(new Intent(interL2charac.this, interL3asessact.class));
+                                                        startActivity(new Intent(interL2charac.this, interL2asesscharac.class));
                                                         finish();
                                                     }
                                                 }
@@ -365,7 +365,7 @@ public class interL2charac extends AppCompatActivity {
                                             //add sign value
                                         }else if (lesson1 == 9 && currentScore < 10) {
                                             Loading.dismiss();
-                                            startActivity(new Intent(interL2charac.this, interL3asessact.class));
+                                            startActivity(new Intent(interL2charac.this, interL2asesscharac.class));
                                             finish();
                                         }else{
                                             Loading.dismiss();

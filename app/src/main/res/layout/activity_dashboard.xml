@@ -523,7 +523,7 @@
                             android:layout_height="100dp"
                             android:background="@drawable/circle_shape"
                             android:indeterminate="false"
-                            android:max="1700"
+                            android:max="1938"
                             android:progress="0"
                             android:progressDrawable="@drawable/circular_progressbar" />
                     </RelativeLayout>

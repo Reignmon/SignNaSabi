@@ -38,7 +38,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class interL6asessdrinks extends AppCompatActivity {
+public class interL7asessplace extends AppCompatActivity {
     Dialog correctAnswer,wrongAnswer,congratsDialog,betterLuck,Loading;
     VideoView videoView;
     LinearLayout aButton, bButton;
@@ -62,7 +62,7 @@ public class interL6asessdrinks extends AppCompatActivity {
     TextView txt;
 
     ImageView question1, question2, question3,question4,question5,question6,
-            question7,question8,question9;
+            question7,question8,question9,question10;
     private ImageView[] questionImages;
     private int checkImage = R.drawable.check;
     private int wrongImage = R.drawable.wrong;
@@ -71,12 +71,11 @@ public class interL6asessdrinks extends AppCompatActivity {
     private int currentQuestionIndex = 0;
     static int previousScore = 0,gettotalScore = 0;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_inter_l6asessdrinks);
+        setContentView(R.layout.activity_inter_l7asessplace);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -100,18 +99,19 @@ public class interL6asessdrinks extends AppCompatActivity {
         question7 = findViewById(R.id.question7);
         question8 = findViewById(R.id.question8);
         question9 = findViewById(R.id.question9);
+        question10 = findViewById(R.id.question10);
 
         questionImages = new ImageView[]{question1, question2, question3,question4,question5,
-                question6,question7,question8,question9};
+                question6,question7,question8,question9,question10};
 
-        correctAnswer = new Dialog(interL6asessdrinks.this);
+        correctAnswer = new Dialog(interL7asessplace.this);
         correctAnswer.setContentView(R.layout.correct_answer);
         correctAnswer.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         correctAnswer.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         correctAnswer.setCancelable(false);
         final Button btncorrect = correctAnswer.findViewById(R.id.okaybtn);
 
-        betterLuck = new Dialog(interL6asessdrinks.this);
+        betterLuck = new Dialog(interL7asessplace.this);
         betterLuck.setContentView(R.layout.better_luck_nexttime);
         betterLuck.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         betterLuck.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -119,21 +119,21 @@ public class interL6asessdrinks extends AppCompatActivity {
         final Button btnbetter = betterLuck.findViewById(R.id.okaybtn);
         txt = betterLuck.findViewById(R.id.txt);
 
-        wrongAnswer = new Dialog(interL6asessdrinks.this);
+        wrongAnswer = new Dialog(interL7asessplace.this);
         wrongAnswer.setContentView(R.layout.incorrect_dialog);
         wrongAnswer.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         wrongAnswer.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         wrongAnswer.setCancelable(false);
         final Button btnwrong = wrongAnswer.findViewById(R.id.okaybtn);
 
-        congratsDialog = new Dialog(interL6asessdrinks.this);
+        congratsDialog = new Dialog(interL7asessplace.this);
         congratsDialog.setContentView(R.layout.lesson_complete_dialog);
         congratsDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         congratsDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         congratsDialog.setCancelable(false);
         final Button btncongrats = congratsDialog.findViewById(R.id.okaybtn);
 
-        Loading = new Dialog(interL6asessdrinks.this);
+        Loading = new Dialog(interL7asessplace.this);
         Loading.setContentView(R.layout.loading_dialog);
         Loading.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         Loading.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -151,19 +151,21 @@ public class interL6asessdrinks extends AppCompatActivity {
 
         //https://drive.google.com/file/d//view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1cRPAtOqWaVpqyThzNKII_6-TfwgUlhr2"), //Beer
-                Uri.parse("https://drive.google.com/uc?export=download&id=17rdNnPNK4JDlEc2uK6GbFRoWnGKtehDp"), //Coffee
-                Uri.parse("https://drive.google.com/uc?export=download&id=1TtCOVtugu2zZG7mkJykn9rm2czT9XvPM"), //Juice
-                Uri.parse("https://drive.google.com/uc?export=download&id=1clGGCTrrwaKv08qTIm7uy11_vfMIcj63"), //Milk
-                Uri.parse("https://drive.google.com/uc?export=download&id=1TF_7ednys5EcdOu6l29N9O5j7uvhrsCl"), //Soda
-                Uri.parse("https://drive.google.com/uc?export=download&id=12js54wFTKwvR7KpxvtEz6xF3KpTF8DB4"), //Tea
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DlAqEgmVVRIbfv-IVYmLehMVAKsiAc00="), //Water
-                Uri.parse("https://drive.google.com/uc?export=download&id=1knkR5gllDlXCFVRC99VpGsEsvJ-P-Wa_"), //Wine
-                Uri.parse("https://drive.google.com/uc?export=download&id=1qJ6oTpZlQR028Yrk7tF1bB9q8G0W7P6g"), //Yogurt
+                Uri.parse("https://drive.google.com/uc?export=download&id=1bj_KRE6WKmKbha8XW0N6KG-9IHtWsgwM"), //Airport
+                Uri.parse("https://drive.google.com/uc?export=download&id=1HD8E6YKAvAb-0kzNdbiqjjlJrngQjMpA"), //Bank
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ncySmt_st_PleTsWsQBmHRJzQaL0mzzg"), //Beach
+                Uri.parse("https://drive.google.com/uc?export=download&id=1YZAAiejZSJRLxXIjepqkYyu0vfjZ_KMH"), //Cinema
+                Uri.parse("https://drive.google.com/uc?export=download&id=1I-IuPPtVgRCAq48YMGCBAiLY_W2tQ_VM"), //Gym
+                Uri.parse("https://drive.google.com/uc?export=download&id=1LRkybSh3uiomvNBGczjw6Eme6ThkcIkC"), //Hospital
+                Uri.parse("https://drive.google.com/uc?export=download&id=1WUF1r7Ki_4wSe9GRAsezACgt1xwjwgXh"), //Museum
+                Uri.parse("https://drive.google.com/uc?export=download&id=1hVmteHqGhCYCaFgXOI5zU3GzOXmvGZfL"), //Park
+                Uri.parse("https://drive.google.com/uc?export=download&id=1bz53_qTG9VpNfRdYzVlpx0mC-Vv7jRlD"), //Post office
+                Uri.parse("https://drive.google.com/uc?export=download&id=1B4JICX1-SBM-UJX2g3FWwpYw-2NrJb5b"), //Restaurant
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ObqaFgMtuvPd_SbIOJlM22Z9JYQ4hlSW"), //Zoo
                 // Add more URIs as needed
         };
 
-        answers = new String[]{"Beer", "Coffee", "Juice", "Milk", "Soda", "Tea", "Water", "Wine", "Yogurt"};
+        answers = new String[]{"Airport", "Bank", "Beach", "Cinema", "Gym", "Hospital", "Museum", "Park", "Postoffice","Restaurant","Zoo",};
 
         // Initialize unplayed videos
         unplayedVideos = new ArrayList<>();
@@ -185,7 +187,7 @@ public class interL6asessdrinks extends AppCompatActivity {
         });
 
         btnback.setOnClickListener(view -> {
-            startActivity(new Intent(interL6asessdrinks.this, interL6drinks.class));
+            startActivity(new Intent(interL7asessplace.this, interL7place.class));
             finish();
         });
 
@@ -229,24 +231,24 @@ public class interL6asessdrinks extends AppCompatActivity {
                 Loading.show();
                 String encodedEmail = encodeEmail(name);
                 DatabaseReference usersRef = databaseReference.child("intermediatelevel_tb").child(encodedEmail);
-                usersRef.child("drinks").addListenerForSingleValueEvent(new ValueEventListener() {
+                usersRef.child("place").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        DatabaseReference lessonaslRef = usersRef.child("drinks");
-                        DatabaseReference checknumberScore = usersRef.child("drinksscore");
+                        DatabaseReference lessonaslRef = usersRef.child("place");
+                        DatabaseReference checknumberScore = usersRef.child("placescore");
                         checknumberScore.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 if (snapshot.exists()){
                                     betterLuck.dismiss();
                                     Loading.dismiss();
-                                    startActivity(new Intent(interL6asessdrinks.this, intermediatelevel.class));
+                                    startActivity(new Intent(interL7asessplace.this, intermediatelevel.class));
                                     finish();
                                 }else{
                                     lessonaslRef.setValue(0);
                                     betterLuck.dismiss();
                                     Loading.dismiss();
-                                    startActivity(new Intent(interL6asessdrinks.this, interL6drinks.class));
+                                    startActivity(new Intent(interL7asessplace.this, interL7place.class));
                                     finish();
                                 }
                             }
@@ -397,14 +399,14 @@ public class interL6asessdrinks extends AppCompatActivity {
         DatabaseReference usersRef = databaseReference.child("intermediatelevel_tb").child(encodedEmail);
 
         // Add a listener to read the previous score
-        usersRef.child("drinksscore").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("placescore").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     previousScore = snapshot.getValue(Integer.class);
                     Log.d("UpdateLesson1", "Previous score: " + previousScore);
                 }else{
-                    usersRef.child("drinksscore").setValue(correctScore).addOnCompleteListener(task -> {
+                    usersRef.child("placescore").setValue(correctScore).addOnCompleteListener(task -> {
                         Loading.dismiss();
                         if (task.isSuccessful()) {
                             if (onComplete != null) {
@@ -418,7 +420,7 @@ public class interL6asessdrinks extends AppCompatActivity {
 
                 if(correctScore > previousScore){
                     // Update the score with the current score
-                    usersRef.child("drinksscore").setValue(correctScore).addOnCompleteListener(task -> {
+                    usersRef.child("placescore").setValue(correctScore).addOnCompleteListener(task -> {
                         Loading.dismiss();
                         if (task.isSuccessful()) {
                             if (onComplete != null) {
@@ -430,7 +432,7 @@ public class interL6asessdrinks extends AppCompatActivity {
                     });
                 }else{
                     Loading.dismiss();
-                    startActivity(new Intent(interL6asessdrinks.this, intermediatelevel.class));
+                    startActivity(new Intent(interL7asessplace.this, intermediatelevel.class));
                     finish();
                 }
             }
@@ -458,7 +460,7 @@ public class interL6asessdrinks extends AppCompatActivity {
                 usersRef.child("intermediatelesson").setValue(total).addOnCompleteListener(task -> {
                     Loading.dismiss();
                     if (task.isSuccessful()) {
-                        startActivity(new Intent(interL6asessdrinks.this, intermediatelevel.class));
+                        startActivity(new Intent(interL7asessplace.this, intermediatelevel.class));
                         finish();
                     } else {
                         Log.e("UpdateLesson2", "Failed to update lesson", task.getException());

@@ -100,7 +100,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:fontFamily="@font/fredoka_one"
-                    android:text="Courship"
+                    android:text="Courtship"
                     android:textColor="@color/text_color"
                     android:textSize="20sp"
                     tools:ignore="HardcodedText" />

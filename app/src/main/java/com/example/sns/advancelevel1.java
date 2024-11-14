@@ -222,14 +222,12 @@ public class advancelevel1 extends AppCompatActivity {
     public void retrieveLessonASL() {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("advancelevel1_tb").child(encodedEmail).child("sign");
-        Loading.show();
         usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     int lessonAsl = snapshot.getValue(Integer.class);
                     handleVisibility(lessonAsl);
-                    Loading.dismiss();
                 }
             }
 
@@ -559,6 +557,7 @@ public class advancelevel1 extends AppCompatActivity {
     }
 
     private void fetchScore(String email, String score, Consumer<Integer> callback) {
+        Loading.show();
         String encodedEmail = encodeEmail(email);
         DatabaseReference usersRef = databaseReference.child("advancelevel1_tb").child(encodedEmail).child(score);
         usersRef.addListenerForSingleValueEvent(new ValueEventListener() {

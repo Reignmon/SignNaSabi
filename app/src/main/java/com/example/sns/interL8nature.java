@@ -68,7 +68,7 @@ public class interL8nature extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(interL8nature.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -89,18 +89,18 @@ public class interL8nature extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d//view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1TZ02fCGwBN0854476pDdoMBQG8k4PSoy"), //mountain
-                Uri.parse("https://drive.google.com/uc?export=download&id=1dAzcIn3mX-cj301D52nLYwKClIg3Fg2R"), //lake
-                Uri.parse("https://drive.google.com/uc?export=download&id=1r3Brvq4t_lRUGKpoAA5GBRkb1Iq-MTro"), //ocean
-                Uri.parse("https://drive.google.com/uc?export=download&id=1wNGBLer68kVToar5oxPYqQPqvJ2WeqdP"), //canyon
-                Uri.parse("https://drive.google.com/uc?export=download&id=1wNGBLer68kVToar5oxPYqQPqvJ2WeqdP"), //plane
-                Uri.parse("https://drive.google.com/uc?export=download&id=1swP4B2RXYMWWIg0CQ9mV3y6-YwSwq1-N"), //forest
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ROyc3JrgxKhaQeDtJv2s6BLDSoLYfpx1"), //jungle
-                Uri.parse("https://drive.google.com/uc?export=download&id=1D22AQXhsqQcVA4UbavNnLeJgAYl-mygC"), //tree
-                Uri.parse("https://drive.google.com/uc?export=download&id=1G2o0SyHqRQEi-VKhSjFeaVQUvZVYp-ov"), //earth
-                Uri.parse("https://drive.google.com/uc?export=download&id=1hr7D9HzolBd-783awn__23pK7NZLBjYj"), //desert
+                Uri.parse("https://drive.google.com/uc?export=download&id=1eXEaLfgbcaaLy0hvdHJqjzo906FG_ZKK"), //mountain
+                Uri.parse("https://drive.google.com/uc?export=download&id=1UFb2FXBvilRM-ZZ6mgQ63pnmpn4jrAus"), //lake
+                Uri.parse("https://drive.google.com/uc?export=download&id=13fHjebzoHQ0JXGf2kCROlh7va5LgQ8h1"), //ocean
+                Uri.parse("https://drive.google.com/uc?export=download&id=1S2yAqTQYNBKTfTKNUOu6-QyIaIE16kpA"), //canyon
+                Uri.parse("https://drive.google.com/uc?export=download&id=1-oeOt7u2MEnkOaM5tff_XY9neoMg4mBV"), //plane
+                Uri.parse("https://drive.google.com/uc?export=download&id=1-gFP6YfcnxZJ_7PpORS9h3bxOEipK2TP"), //forest
+                Uri.parse("https://drive.google.com/uc?export=download&id=1PGJQowJNMyB73IKHcc327VFm17m2KyBx"), //jungle
+                Uri.parse("https://drive.google.com/uc?export=download&id=1FKZdSfuT9G6oc837-PvRF3ZosSAXlkqN"), //tree
+                Uri.parse("https://drive.google.com/uc?export=download&id=1fqluF31wYhhoIDm_iWdJcAMoo75yWL1u"), //earth
+                Uri.parse("https://drive.google.com/uc?export=download&id=1oTDUe1vRN2yJAoCzXSryEb9M-GTJ9Wmw"), //desert
 
                 // Add more URIs as needed
 
@@ -288,8 +288,13 @@ public class interL8nature extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -327,22 +332,54 @@ public class interL8nature extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 9) {
                         DatabaseReference lessonaslRef = usersRef.child("intermediatelesson");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("naturescore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 9 && currentLessonAslValue < 1600) {
-                                    lessonaslRef.setValue(1600);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL8nature.this,intermediatelevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL8nature.this,intermediatelevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 1710){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(16);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(interL8nature.this, interL8asessnature.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+                                        }else if (lesson1 == 9 && currentScore < 10) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL8nature.this, interL8asessnature.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL8nature.this,intermediatelevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override
@@ -395,12 +432,12 @@ public class interL8nature extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("intermediatelevel_tb").child(encodedEmail);
 
-        usersRef.child("intermediatelesson").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 1600){
+                    if (currentLessonAslValue >= 16){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

@@ -67,7 +67,7 @@ public class interL8transpo extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(interL8transpo.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -88,15 +88,15 @@ public class interL8transpo extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //hhttps://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d//view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1xCbNb7YKLkyDoEngcq-ndlSSv2FO0n_n"), //car
-                Uri.parse("https://drive.google.com/uc?export=download&id=1wGRdiXa-BYKkvdnR8pvMTB4NFOX0CMSx"), //bus
-                Uri.parse("https://drive.google.com/uc?export=download&id=1IzR4jRorEUbQp79VwBnS7YccpTYFE3Y9"), //train
-                Uri.parse("https://drive.google.com/uc?export=download&id=10jd_QIMw8vtKNflvbJATZlhgwmd4NkVe"), //bicycle
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Rek1SfaDUGqd13KOlsV99q3iOtyZbf1l"), //motor cycle
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Rek1SfaDUGqd13KOlsV99q3iOtyZbf1l"), //boat
-                Uri.parse("https://drive.google.com/uc?export=download&id=1zqznx79KVb8v9KzVouMN3vilWBjt1i61"), //airplane
+                Uri.parse("https://drive.google.com/uc?export=download&id=1SZZPg83puKROEip7RPl-1FrafZU6sPxy"), //car
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ug9Xn8Rjq61Fe-Zd-nvnwS2UgXh55tY1"), //bus
+                Uri.parse("https://drive.google.com/uc?export=download&id=1mOmyAaQ8MiPJl1lUzIN7mdhTqBo0FbBc"), //train
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ZEnfR8FDIdR2hdCsUC_csKcfmzp53q4F"), //bicycle
+                Uri.parse("https://drive.google.com/uc?export=download&id=1guZ_Fdk3_xeW_fBkaXIEVT6-IUS798ug"), //motor cycle
+                Uri.parse("https://drive.google.com/uc?export=download&id=1r_lEyxQjGy4uXCB4YY3EfRNNHTbpNhpo"), //boat
+                Uri.parse("https://drive.google.com/uc?export=download&id=1gdOcqhwEm7NpA-SFDJwJvf6-SwakYitD"), //airplane
                 // Add more URIs as needed
 
         };
@@ -283,8 +283,13 @@ public class interL8transpo extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if (currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -322,22 +327,54 @@ public class interL8transpo extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 6) {
                         DatabaseReference lessonaslRef = usersRef.child("intermediatelesson");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("transportationscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 6 && currentLessonAslValue < 1700) {
-                                    lessonaslRef.setValue(1700);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL8transpo.this,intermediatelevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL8transpo.this,intermediatelevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 1910){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(17);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(interL8transpo.this, interL8asesstranspo.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+                                        }else if (lesson1 == 6 && currentScore < 7) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL8transpo.this, interL8asesstranspo.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL8transpo.this,intermediatelevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override
@@ -390,12 +427,12 @@ public class interL8transpo extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("intermediatelevel_tb").child(encodedEmail);
 
-        usersRef.child("intermediatelesson").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 1700){
+                    if (currentLessonAslValue >= 17){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

@@ -253,16 +253,13 @@ public class basiclevel extends AppCompatActivity {
     public void retrieveLessonASL() {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail).child("sign");
-        Loading.show();
         usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     int lessonAsl = snapshot.getValue(Integer.class);
                     handleVisibility(lessonAsl);
-                    Loading.dismiss();
                 }else{
-                    Loading.dismiss();
                 }
             }
 
@@ -869,6 +866,7 @@ public class basiclevel extends AppCompatActivity {
     }
 
     private void fetchAndDisplayScore(String email, TextView scoreTextView, String score) {
+        Loading.show();
         String encodedEmail = encodeEmail(email);
         DatabaseReference usersRef = databaseReference.child("BasicLevel_tb").child(encodedEmail).child(score);
         usersRef.addListenerForSingleValueEvent(new ValueEventListener() {

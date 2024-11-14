@@ -122,11 +122,16 @@ public class update extends AppCompatActivity {
                         getfname = snapshot.child(DecodedEmail).child("firstname").getValue(String.class);
                         getlname = snapshot.child(DecodedEmail).child("lastname").getValue(String.class);
                         getmname = snapshot.child(DecodedEmail).child("middlename").getValue(String.class);
-                        getext = snapshot.child(DecodedEmail).child("extensionname").getValue(String.class);
+                        getext = snapshot.child(DecodedEmail).child("extensioname").getValue(String.class);
                         getbod = snapshot.child(DecodedEmail).child("birthdate").getValue(String.class);
                         getage = snapshot.child(DecodedEmail).child("age").getValue(String.class);
                         getgender = snapshot.child(DecodedEmail).child("gender").getValue(String.class);
                         getdisablity = snapshot.child(DecodedEmail).child("disablity").getValue(String.class);
+
+
+                        Log.d(TAG, "getmname: " + getmname);  // Log to check if value is null or empty
+                        Log.d(TAG, "getext: " + getext);  // Log to check if value is null or empty
+
                         try {
                             Decrypted = DecryptEncrypt.decrypt(getpassword);
                         } catch (Exception e) {
@@ -149,8 +154,8 @@ public class update extends AppCompatActivity {
 
                         fname.setText(getfname);
                         lname.setText(getlname);
-                        mdname.setText(getmname);
-                        ename.setText(getext);
+                        mdname.setText(getmname != null && !getmname.isEmpty() ? getmname : "");  // Set empty if null or empty
+                        ename.setText(getext != null && !getext.isEmpty() ? getext : "");  // Set empty if null or empty
                         mDisplayDate.setText(getbod);
                         age.setText(getage);
                         loadingIndicatorDialog.dismiss();
@@ -184,20 +189,22 @@ public class update extends AppCompatActivity {
                 String bod = mDisplayDate.getText().toString();
                 String Gender = spinnergender.getSelectedItem().toString();
                 String Disablity = spinneruser.getSelectedItem().toString();
-                boolean check = CheckAllFields(firstname,lastname,Age);
+                boolean check = CheckAllFields(firstname, lastname, Age);
 
-                if(check == true){
+                if (check) {
                     loadingIndicatorDialog.show();
                     databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                         String encodedEmail = decodeEmail(name);
                         DatabaseReference usersRef = databaseReference.child("users").child(encodedEmail);
+
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.hasChild(encodedEmail)){
+                            if (snapshot.hasChild(encodedEmail)) {
+                                // Check if middlename or extensionname is empty, and set to "" if true
                                 usersRef.child("firstname").setValue(firstname);
                                 usersRef.child("lastname").setValue(lastname);
-                                usersRef.child("middlename").setValue(middlename);
-                                usersRef.child("extensioname").setValue(extensionname);
+                                usersRef.child("middlename").setValue(middlename.isEmpty() ? "" : middlename); // Set empty string if empty
+                                usersRef.child("extensioname").setValue(extensionname.isEmpty() ? "" : extensionname); // Set empty string if empty
                                 usersRef.child("age").setValue(Age);
                                 usersRef.child("birthdate").setValue(bod);
                                 usersRef.child("gender").setValue(Gender);
@@ -210,13 +217,13 @@ public class update extends AppCompatActivity {
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-
+                            // Handle any errors
                         }
                     });
                 }
-
             }
         });
+
 
 
 

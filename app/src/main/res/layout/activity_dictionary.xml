@@ -390,7 +390,7 @@
                             android:fontFamily="@font/roboto_bold"
                             android:textAlignment="viewEnd"
                             android:paddingEnd="20dp"
-                            android:text="Community"
+                            android:text="Roles"
                             android:textColor="@color/text_color"
                             android:textSize="18sp" />
                         <ImageView

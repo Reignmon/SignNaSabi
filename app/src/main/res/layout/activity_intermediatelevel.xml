@@ -1245,6 +1245,7 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="2dp"
+                android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/backgroundColor">
 

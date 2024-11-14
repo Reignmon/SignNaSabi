@@ -588,9 +588,136 @@ public class intermediatelevel extends AppCompatActivity {
 
                 // Display the score
                 drinksScore.setVisibility(View.VISIBLE);
-                drinksScore.setText(alphaScore + "/9");
+                drinksScore.setText(alphaScore + "/10");
             } else {
                 drinksScore.setVisibility(View.GONE);
+            }
+        });
+
+        if (lessonAsl >= 13){
+            placeimg.setVisibility(View.VISIBLE);
+        }
+
+        fetchScore(name, "placescore", alphaScore -> {
+            // Check the score
+            if (alphaScore >= 8) {
+                animalsBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(intermediatelevel.this, interL8animals.class));
+                        finish();
+                    }
+                });
+
+                Lesson8Click.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int v = (Lesson8.getVisibility() == View.GONE) ? View.VISIBLE: View.GONE;
+                        TransitionManager.beginDelayedTransition(Lesson8,new AutoTransition());
+                        Lesson8.setVisibility(v);
+
+                        scrollView.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                scrollView.fullScroll(View.FOCUS_DOWN);
+                            }
+                        });
+
+                    }
+                });
+                LESSON8.setAlpha(1.0f);
+
+
+                // Display the score
+                placeScore.setVisibility(View.VISIBLE);
+                placeScore.setText(alphaScore + "/10");
+            } else {
+                placeScore.setVisibility(View.GONE);
+            }
+        });
+
+
+        if (lessonAsl >= 14){
+            animalsimg.setVisibility(View.VISIBLE);
+        }
+
+        fetchScore(name, "animalsscore", alphaScore -> {
+            // Check the score
+            if (alphaScore >= 7) {
+                insectBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(intermediatelevel.this, interL8insects.class));
+                        finish();
+                    }
+                });
+
+                // Display the score
+                animalsScore.setVisibility(View.VISIBLE);
+                animalsScore.setText(alphaScore + "/9");
+            } else {
+                animalsScore.setVisibility(View.GONE);
+            }
+        });
+
+        if (lessonAsl >= 15){
+            insectimg.setVisibility(View.VISIBLE);
+        }
+
+        fetchScore(name, "insectsscore", alphaScore -> {
+            // Check the score
+            if (alphaScore >= 5) {
+                natureBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(intermediatelevel.this, interL8nature.class));
+                        finish();
+                    }
+                });
+
+                // Display the score
+                insectScore.setVisibility(View.VISIBLE);
+                insectScore.setText(alphaScore + "/7");
+            } else {
+                insectScore.setVisibility(View.GONE);
+            }
+        });
+
+        if (lessonAsl >= 16){
+            natureimg.setVisibility(View.VISIBLE);
+        }
+
+        fetchScore(name, "naturescore", alphaScore -> {
+            // Check the score
+            if (alphaScore >= 8) {
+                transpoBtm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(intermediatelevel.this, interL8transpo.class));
+                        finish();
+                    }
+                });
+
+                // Display the score
+                natureScore.setVisibility(View.VISIBLE);
+                natureScore.setText(alphaScore + "/10");
+            } else {
+                natureScore.setVisibility(View.GONE);
+            }
+        });
+
+        if (lessonAsl >= 17){
+            transpoimg.setVisibility(View.VISIBLE);
+        }
+
+        fetchScore(name, "transportationscore", alphaScore -> {
+            // Check the score
+            if (alphaScore >= 5) {
+                // Display the score
+                transpoScore.setVisibility(View.VISIBLE);
+                transpoScore.setText(alphaScore + "/7");
+            } else {
+                transpoScore.setVisibility(View.GONE);
             }
         });
 
@@ -601,6 +728,7 @@ public class intermediatelevel extends AppCompatActivity {
     private void fetchScore(String email, String score, Consumer<Integer> callback) {
         String encodedEmail = encodeEmail(email);
         DatabaseReference usersRef = databaseReference.child("intermediatelevel_tb").child(encodedEmail).child(score);
+        Loading.show();
         usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

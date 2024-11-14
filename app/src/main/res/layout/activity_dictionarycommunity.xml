@@ -1,0 +1,1166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/backgroundColor"
+    tools:context=".dictionarycommunity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="vertical"
+            android:background="#F4E5C5">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btnback"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_margin="5dp"
+                    android:padding="10dp"
+                    android:drawableStart="@drawable/baseline_arrow_back_24"/>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"/>
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/logo1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:fontFamily="@font/fredoka_one"
+                    android:text="SignNaSabi"
+                    android:textColor="@color/text_color"
+                    android:textSize="20sp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/fredoka_one"
+                android:text="Roles"
+                android:paddingStart="30dp"
+                android:textColor="@color/text_color"
+                android:textSize="30sp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/backgroundColor"
+                app:cardCornerRadius="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha=".7"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="A"
+                        android:paddingStart="20dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:id="@+id/Actor"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Actor"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/athlete"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Athlete"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/auntie"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Auntie"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha=".7"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="B"
+                        android:paddingStart="20dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:id="@+id/brother"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Brother"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/brotherinlaw"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Brother-in-law"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha=".7"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="C"
+                        android:paddingStart="20dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:id="@+id/cheif"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Chief"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/cousin"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Cousin"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha=".7"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="D"
+                        android:paddingStart="20dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:id="@+id/daughter"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Daugther"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/doctor"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Doctor"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha=".7"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="E"
+                        android:paddingStart="20dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:id="@+id/engineer"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Engineer"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/entrep"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Entrepreneur"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha=".7"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="F"
+                        android:paddingStart="20dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:id="@+id/Farmer"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Farmer"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Father"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Father"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha=".7"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="G"
+                        android:paddingStart="20dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:id="@+id/Grandfather"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Grandfather"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Grandmother"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Grandmother"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha=".7"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="L"
+                        android:paddingStart="20dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:id="@+id/Lawyer"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Lawyer"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha=".7"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="M"
+                        android:paddingStart="20dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:id="@+id/Mother"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Mother"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha=".7"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="N"
+                        android:paddingStart="20dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:id="@+id/Neice"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Neice"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Nephew"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Nephew"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Nurse"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Nurse"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha=".7"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="P"
+                        android:paddingStart="20dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:id="@+id/Pilot"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Pilot"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Policeofficer"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Police officer"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Principal"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Principal"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha=".7"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="S"
+                        android:paddingStart="20dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:id="@+id/Scientist"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Scientist"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Shoulder"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Shoulder"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Sister"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Sister"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Sisterinlaw"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Sister-in-law"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Son"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Son"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Stepbrother"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Stepbrother"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Stepmother"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Stepmother"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Stepsister"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Stepsister"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha=".7"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="T"
+                        android:paddingStart="20dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:id="@+id/Teacher"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Teacher"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha=".7"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="U"
+                        android:paddingStart="20dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:id="@+id/Uncle"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Uncle"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

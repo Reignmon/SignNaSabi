@@ -66,7 +66,7 @@ public class interL7place extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(interL7place.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -87,23 +87,23 @@ public class interL7place extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d//view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1_xmNIg2HeTt3jhKp0WdPh3L83Hlkrvd2"), //home
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Xdz1zveaygP6JRj8oT5ZdRQqJnD5z0wN"), //school
-                Uri.parse("https://drive.google.com/uc?export=download&id=1x5gfxwqYgoDulmf9_wsK85Q9JhDLLs5j"), //store
-                Uri.parse("https://drive.google.com/uc?export=download&id=12a2hlYM6rtFDcN3n-E5-S0_D4uMVthi9"), //library
-                Uri.parse("https://drive.google.com/uc?export=download&id=1oZp8e38rqFJTXDoKbwU-xekbEtW9uUd1"), //hospital
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Z8R59_VU9ONY3soJF1petDNYe_MI8Gny"), //bank
-                Uri.parse("https://drive.google.com/uc?export=download&id=14ycoc0r1EI-r129z-VrqIMydsxZcqYh0"), //restaurant
-                Uri.parse("https://drive.google.com/uc?export=download&id=1lOKUz0H3vM5lhH5ulFDEEE3ATSO0b_wp"), //park
-                Uri.parse("https://drive.google.com/uc?export=download&id=1MKGEW8RPrW1BPi6TtJzsTT4fSxWOjWk4"), //post office
-                Uri.parse("https://drive.google.com/uc?export=download&id=1VdLetn87oNMIjftG7-gF23nK_rGTrory"), //gym
-                Uri.parse("https://drive.google.com/uc?export=download&id=1PS4-hBCtQL5UK5DBYBlolA7aG9Rjahbc"), //museum
-                Uri.parse("https://drive.google.com/uc?export=download&id=1SjOr1TqFUbEAtNpJNCIb5bsRyxgSUkPA"), //cinema
-                Uri.parse("https://drive.google.com/uc?export=download&id=1EP9DlHRTvn6qa5vBUEK6kJAIwsTK_oTx"), //airport
-                Uri.parse("https://drive.google.com/uc?export=download&id=1aCKRM1amcTZiLexShfbt9zkMcp6TJ8gr"), //beach
-                Uri.parse("https://drive.google.com/uc?export=download&id=1bEr2Zso_MMG2m1aYpMVDxswwNE95hl4z"), //beach
+                Uri.parse("https://drive.google.com/uc?export=download&id=1hwEWEq8TyCGlAmT2ns3tGSP5QVmhg-fU"), //home
+                Uri.parse("https://drive.google.com/uc?export=download&id=1pzsdd7N5Zeo9tB4TgMVc5aWX6AgYdQcj"), //school
+                Uri.parse("https://drive.google.com/uc?export=download&id=17FnVV-pdsy4h4gHVIM4521exabPNTrS9"), //store
+                Uri.parse("https://drive.google.com/uc?export=download&id=1oAraq0-R5MMK1R2i98ZQUjCWCPdYBi81"), //library
+                Uri.parse("https://drive.google.com/uc?export=download&id=18qDmAEUv429x_b86F8ky9KycClo1dvyT"), //hospital
+                Uri.parse("https://drive.google.com/uc?export=download&id=1iGGOG4CcXlTblS9ojw4cRGL0XsXFE41D"), //bank
+                Uri.parse("https://drive.google.com/uc?export=download&id=1eRStk32Nq_KgI2_jCs45TrR3J6d9j0AV"), //restaurant
+                Uri.parse("https://drive.google.com/uc?export=download&id=19YQuw-uwKUe68A0xnMJuYMoqREb5Rbkk"), //park
+                Uri.parse("https://drive.google.com/uc?export=download&id=125v1y9cbuew31AQZlpFInm0LsJpM2aWO"), //post office
+                Uri.parse("https://drive.google.com/uc?export=download&id=15c8fPFsGvfKnhctPfOL7jKcajUGDQ2SD"), //gym
+                Uri.parse("https://drive.google.com/uc?export=download&id=1tXqF5Zq3o5k7eqJfP5gAO0ET7tXGzqPA"), //museum
+                Uri.parse("https://drive.google.com/uc?export=download&id=1C3gm0Ej2zpYo0b9hiCfCCQRwYYTKe50z"), //cinema
+                Uri.parse("https://drive.google.com/uc?export=download&id=14HBEWvbCYJMrud1oeMq-KXlzarS81oB-"), //airport
+                Uri.parse("https://drive.google.com/uc?export=download&id=1cpQEq7nJWklyjJ3k-VWLbxKdLpEEDKwv"), //beach
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Cml9XBS4JQi9xgBLDcIy-3NjrHwtmRzm"), //beach
 
                 // Add more URIs as needed
 
@@ -291,8 +291,13 @@ public class interL7place extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if (currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -330,22 +335,54 @@ public class interL7place extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 14) {
                         DatabaseReference lessonaslRef = usersRef.child("intermediatelesson");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("placescore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 14 && currentLessonAslValue < 1300) {
-                                    lessonaslRef.setValue(1300);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL7place.this,intermediatelevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL7place.this,intermediatelevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 1410){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(13);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(interL7place.this, interL7asessplace.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+                                        }else if (lesson1 == 14 && currentScore < 10) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL7place.this, interL7asessplace.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL7place.this,intermediatelevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override
@@ -398,12 +435,12 @@ public class interL7place extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("intermediatelevel_tb").child(encodedEmail);
 
-        usersRef.child("intermediatelesson").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 1300){
+                    if (currentLessonAslValue >= 13){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);
