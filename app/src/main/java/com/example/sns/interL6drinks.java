@@ -67,7 +67,7 @@ public class interL6drinks extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(interL6drinks.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -88,17 +88,17 @@ public class interL6drinks extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d//view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1-C_BlTIHjsA8ZArntHXkkV2Kp3kcjO14"), //water
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Z7LDVTqy5F2InqYqaKMqEq9l3L4uIfb3"), //juice
-                Uri.parse("https://drive.google.com/uc?export=download&id=1MzhIveFSQOh4VjoK335KiiaNi5b3b_Qd"), //soda
-                Uri.parse("https://drive.google.com/uc?export=download&id=1KK3JBpkKUp_E45e3uiCBrdu8xQTF5hiQ"), //tea
-                Uri.parse("https://drive.google.com/uc?export=download&id=17iYNrpkCDdR3S2MKFeh0NB2QPxpZx_0L"), //coffe
-                Uri.parse("https://drive.google.com/uc?export=download&id=173CEP2t76LxRhtRQLdgHB_tRsB1F2wiV"), //milk
-                Uri.parse("https://drive.google.com/uc?export=download&id=1n4Xbj08f5uYLGLuRt_RgQ2wYP6aKAZAP"), //yogurt
-                Uri.parse("https://drive.google.com/uc?export=download&id=1-gVZ1Cir_smvuKnjRkY3mkaUHQ41AGRC"), //beer
-                Uri.parse("https://drive.google.com/uc?export=download&id=1-YCjkdVXS0iJXKT_AnDOIOdivgBEdnbE"), //wine
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Z1MUHarYiE_nCX-QyJHuhaomuVQ3lGn9"), //water
+                Uri.parse("https://drive.google.com/uc?export=download&id=1mcIWPxf8z0bXo3wiUMTqN_SMlftNE1Gs"), //juice
+                Uri.parse("https://drive.google.com/uc?export=download&id=1S-tdTX9lk8-pmOhqnGE8ozybbzGFn6lA"), //soda
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Ps7GqJS5hEb4Dw8BOCFBd9jLfjHMKXhN"), //tea
+                Uri.parse("https://drive.google.com/uc?export=download&id=11_35QnpnJ5Ku0evLEwE9zLCBJd0Sm6s0"), //coffe
+                Uri.parse("https://drive.google.com/uc?export=download&id=13Z-SrN0OVBX4gCmG06oJsmb71hgNBtuM"), //milk
+                Uri.parse("https://drive.google.com/uc?export=download&id=1MM-k-UE01r7PCjlcm9bmTgn-bSQyf6tj"), //yogurt
+                Uri.parse("https://drive.google.com/uc?export=download&id=1HVfsY5fnxXfT2CnD99U5XoYcw5smlVfj"), //beer
+                Uri.parse("https://drive.google.com/uc?export=download&id=1PN8wJV0WDQhzwnwMMgjUwGp8O3oF_65t"), //wine
                 // Add more URIs as needed
 
         };
@@ -285,8 +285,13 @@ public class interL6drinks extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else {
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -324,22 +329,54 @@ public class interL6drinks extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 8) {
                         DatabaseReference lessonaslRef = usersRef.child("intermediatelesson");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("drinksscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 8 && currentLessonAslValue < 1200) {
-                                    lessonaslRef.setValue(1200);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL6drinks.this,intermediatelevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL6drinks.this,intermediatelevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 1400){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(12);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(interL6drinks.this, interL6asessdrinks.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+                                        }else if (lesson1 == 8 && currentScore < 9) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL6drinks.this, interL6asessdrinks.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL6drinks.this,intermediatelevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override
@@ -392,12 +429,12 @@ public class interL6drinks extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("intermediatelevel_tb").child(encodedEmail);
 
-        usersRef.child("intermediatelesson").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 1200){
+                    if (currentLessonAslValue >= 12){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

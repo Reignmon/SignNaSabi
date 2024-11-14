@@ -67,7 +67,7 @@ public class interL2attitudes extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(interL2attitudes.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -88,16 +88,17 @@ public class interL2attitudes extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d//view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1BEO-Tfl0ZLhJETairoby2CZ_KPrv4Toy"), //optimistic
-                Uri.parse("https://drive.google.com/uc?export=download&id=1n6KjurCHPtylWv9x0y2LkmjGes7kThq0"), //pessimistic
-                Uri.parse("https://drive.google.com/uc?export=download&id=1GNJ9RuMN-_EHiTeKhVdNXEcJt0f71brk"), //enthusiastic
-                Uri.parse("https://drive.google.com/uc?export=download&id=1BQ4Fr2lGL9NsjOSCsRCIwXkh0L9Gy3NR"), //indefferent
-                Uri.parse("https://drive.google.com/uc?export=download&id=1P3lXXwYVRC8KKSmgvTltpZL5Hvd2Jrgs"), //apprehensive
-                Uri.parse("https://drive.google.com/uc?export=download&id=1zSmVe8JxNNP_T2WOdXm3M1qWSsINThtx"), //confident
-                Uri.parse("https://drive.google.com/uc?export=download&id=1RBqf0lIA8DzqEYcTGwIJDp7PWThgnagW"), //cynical
-                Uri.parse("https://drive.google.com/uc?export=download&id=1f_UYojvgDH2vvzq1URaq7j-UMPmSdcee"), //hopeful
+                Uri.parse("https://drive.google.com/uc?export=download&id=1sx94s1G2wPLriBHTkY5sqNVOh5je9LIb"), //optimistic
+                Uri.parse("https://drive.google.com/uc?export=download&id=1IYN7FZgpXR_vuXF2yttTNgcCVRY88iup"), //pessimistic
+                Uri.parse("https://drive.google.com/uc?export=download&id=1T-J4Xu543xkEw4FksJBgwTATY_DAD9E_"), //enthusiastic
+                Uri.parse("https://drive.google.com/uc?export=download&id=1agtAIDrq84D5KNTBzQlNRhzyqYM2gNTz"), //indefferent
+                Uri.parse("https://drive.google.com/uc?export=download&id=1EeJr4rlzGTb5wPblrcnxYPS4MuuR0JUh"), //apprehensive
+                Uri.parse("https://drive.google.com/uc?export=download&id=1OkU6iJj2TnX6aGj9Zm0nXMzeVle6WT-T"), //confident
+                Uri.parse("https://drive.google.com/uc?export=download&id=14IdON7EDtID9Oc4sxPiShFwWbhBCvC43"), //cynical
+                Uri.parse("https://drive.google.com/uc?export=download&id=1tWL6fr3MauJfCt5p5PZTiBF7CxXckwzF"), //hopeful
+                Uri.parse("https://drive.google.com/uc?export=download&id=1hoRCqnM_VMzDRqi3jj7OkA21MAJ0UEsL"), //hopeful
                 // Add more URIs as needed
 
         };
@@ -284,8 +285,13 @@ public class interL2attitudes extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -321,24 +327,56 @@ public class interL2attitudes extends AppCompatActivity {
                 if (snapshot.exists()) {
                     // Get currentIndex from Firebase
                     int lesson1 = snapshot.getValue(Integer.class);
-                    if (lesson1 == 7) {
+                    if (lesson1 == 8) {
                         DatabaseReference lessonaslRef = usersRef.child("intermediatelesson");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("attitudesscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 7 && currentLessonAslValue < 200) {
-                                    lessonaslRef.setValue(200);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL2attitudes.this,intermediatelevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL2attitudes.this,intermediatelevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 200){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(2);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(interL2attitudes.this, interL2asessatt.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+                                        }else if (lesson1 == 8 && currentScore < 8) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL2attitudes.this,interL2asessatt.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL2attitudes.this,basiclevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override

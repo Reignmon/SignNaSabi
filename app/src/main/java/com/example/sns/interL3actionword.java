@@ -67,7 +67,7 @@ public class interL3actionword extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(interL3actionword.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -88,28 +88,28 @@ public class interL3actionword extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d//view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1nAkHB8uFQeC_63dqHq0vRn2vYikl5fhE"), //ride
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ZIszqF6_Bjx-Bmh90G0NdJhEr47ZK88j"), //fight
-                Uri.parse("https://drive.google.com/uc?export=download&id=1H-1DS0wpdAXmzOeeh5QZ7Bvm8hubRU9k"), //fly
-                Uri.parse("https://drive.google.com/uc?export=download&id=1xYtPDda7lDWmHrNKAKuLmCWgoRa41Qzu"), //sit down
-                Uri.parse("https://drive.google.com/uc?export=download&id=16ustxcBLTAv8YGdxW9_S-aYqkORnc3rs"), //wash
-                Uri.parse("https://drive.google.com/uc?export=download&id=1y4gBtkoP-LjWvpK4Jq8ixdjEBCOh5ZRb"), //dig
-                Uri.parse("https://drive.google.com/uc?export=download&id=1DUP1ZNHaAs120AAvw_RAYFJSinqXTpTN"), //wait
-                Uri.parse("https://drive.google.com/uc?export=download&id=1FHmDKxYX2uQzCt0dw0HknbRaa_O6FiEe"), //snore
-                Uri.parse("https://drive.google.com/uc?export=download&id=1L2ndCKOArwS7kUNuUm-V3okxMJAGZhgF"), //act
-                Uri.parse("https://drive.google.com/uc?export=download&id=1L2ndCKOArwS7kUNuUm-V3okxMJAGZhgF"), //cut
-                Uri.parse("https://drive.google.com/uc?export=download&id=1wujvj34k6w3fEhdsdaZsQZ0sLQKBVliE"), //kick
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Y1CNgZ0uAvoF04rTNeg3s7zgY5d6zZ0U"), //sleep
-                Uri.parse("https://drive.google.com/uc?export=download&id=15QdtAiYBQd2UZUiYZ3H6CuLu_R_Huv7w"), //dream
-                Uri.parse("https://drive.google.com/uc?export=download&id=1CXCfBztdiIZpdMfpSz9T_CDnn8Ge63fb"), //smile
-                Uri.parse("https://drive.google.com/uc?export=download&id=1MwehhpBkaThIwGng768T5S0nQ3Ff0c3p"), //bow
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Ic7lhP0wqYeqg8AAJtYfA2Thot8lAhJ3"), //study
-                Uri.parse("https://drive.google.com/uc?export=download&id=1NyLnT44jPUf460tB5O2PkDc5pqG--9ZG"), //open
-                Uri.parse("https://drive.google.com/uc?export=download&id=1VbcF3kZ7jHcN_i9IRBfp5DKZQThlv4SU"), //push
-                Uri.parse("https://drive.google.com/uc?export=download&id=1j4thed7neKGNECmCjxdD-5ynNKzsyCUH"), //buy
-                Uri.parse("https://drive.google.com/uc?export=download&id=1IuE-uehxh0_XMojoyPqHsSnSbcXShMdP"), //shake
+                Uri.parse("https://drive.google.com/uc?export=download&id=1EBY0raKxAv-J_UrTIXvuekaVDB9PFO-s"), //ride
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ZUDmpTCOF5bLROBzzx0ztBP_OazT4A1u"), //fight
+                Uri.parse("https://drive.google.com/uc?export=download&id=1n_tpR_Jea3Gu26me8gIJmbORvXfkLlnU"), //fly
+                Uri.parse("https://drive.google.com/uc?export=download&id=16ruiE6UTVRZxjgfxSFN5PEgyne7OBM9v"), //sit down
+                Uri.parse("https://drive.google.com/uc?export=download&id=1xVbCu1x3A5pwTrm7TaE7Wn9-MmBqk5Gb"), //wash
+                Uri.parse("https://drive.google.com/uc?export=download&id=1MOPiF41LKcTAt6rtub98InSFb-5c4_E2"), //dig
+                Uri.parse("https://drive.google.com/uc?export=download&id=1yysv_2Rc5YShQrEWe2LZM46vJqLDQe5a"), //wait
+                Uri.parse("https://drive.google.com/uc?export=download&id=173oSTIplR_Hm5BKDoHvgcsEetrzwng6b"), //snore
+                Uri.parse("https://drive.google.com/uc?export=download&id=1bPFyqFVcA_e7-d438kU0KFRVdXwqHnjA"), //act
+                Uri.parse("https://drive.google.com/uc?export=download&id=1IRM3Q2w094_o-HJ2I2qAUNFhx8D3zI7V"), //cut
+                Uri.parse("https://drive.google.com/uc?export=download&id=1c8PgE5gJNUFL6LtvRhjhLKgAHy8Oh8qI"), //kick
+                Uri.parse("https://drive.google.com/uc?export=download&id=1o09cR5GJju7zre-6AstAD-910yRAHwtP"), //sleep
+                Uri.parse("https://drive.google.com/uc?export=download&id=1gqMc4Oasiwqfw-2P3zAiMMu2l1t34lna"), //dream
+                Uri.parse("https://drive.google.com/uc?export=download&id=1j5lbAmTZ-Jeyigpe1L9EuYDgACpCboFJ"), //smile
+                Uri.parse("https://drive.google.com/uc?export=download&id=1zrd6guuWJuW7rB-5LXXZh9R13-_QEyOU"), //bow
+                Uri.parse("https://drive.google.com/uc?export=download&id=14DpXuay7sfRU29etE5Ga3s_YkuxkpCXe"), //study
+                Uri.parse("https://drive.google.com/uc?export=download&id=1gfc2a6GmuENlm8XaLN3trJ5RoDQXOg3Z"), //open
+                Uri.parse("https://drive.google.com/uc?export=download&id=1zW_lGfdRlOXGgIsY1040FQ7ada2EVTV_"), //push
+                Uri.parse("https://drive.google.com/uc?export=download&id=1pDNrWoiu45NHJKBKHNLFCsMGcK69O4UY"), //buy
+                Uri.parse("https://drive.google.com/uc?export=download&id=1LNn6GMxqrkUawuqGoDKhQZNOoMbcwQ1G"), //shake
 
                 // Add more URIs as needed
 
@@ -297,8 +297,13 @@ public class interL3actionword extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -336,22 +341,54 @@ public class interL3actionword extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 19) {
                         DatabaseReference lessonaslRef = usersRef.child("intermediatelesson");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("actwordscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 19 && currentLessonAslValue < 600) {
-                                    lessonaslRef.setValue(600);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL3actionword.this,intermediatelevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL3actionword.this,intermediatelevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 600){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(6);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(interL3actionword.this, interL3asessact.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+                                        }else if (lesson1 == 19 && currentScore < 10) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL3actionword.this, interL3asessact.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL3actionword.this,intermediatelevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override
@@ -404,12 +441,12 @@ public class interL3actionword extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("intermediatelevel_tb").child(encodedEmail);
 
-        usersRef.child("intermediatelesson").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 600){
+                    if (currentLessonAslValue >= 6){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

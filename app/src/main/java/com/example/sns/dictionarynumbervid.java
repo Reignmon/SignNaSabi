@@ -1,7 +1,5 @@
 package com.example.sns;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
@@ -25,7 +23,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.lang.reflect.Field;
 
-public class dictionaryalphabetvid extends AppCompatActivity {
+public class dictionarynumbervid extends AppCompatActivity {
     int getvalue;
     TextView btnBack;
     VideoView videoView;
@@ -34,11 +32,12 @@ public class dictionaryalphabetvid extends AppCompatActivity {
     boolean play = true,slowmotion = false;
     private int playimg = R.drawable.playbutton;
     private int pauseimg = R.drawable.videopausebutton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_dictionaryalphabetvid);
+        setContentView(R.layout.activity_dictionarynumbervid);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -55,32 +54,16 @@ public class dictionaryalphabetvid extends AppCompatActivity {
 
         //https://drive.google.com/file/d/1gFccyNedPiKJbcfNw4dcp5wYMt0fxtPs/view?usp=sharing
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1nk9TCJVY75c4RNaE0K557zuOU7_Xj3jJ"), //A
-                Uri.parse("https://drive.google.com/uc?export=download&id=1LYq04gT_0cYYGJKfEy3J8cahbVj_cCFU"), //B
-                Uri.parse("https://drive.google.com/uc?export=download&id=18uCaOeTJ_YnI5XmbQv7UtLHvlF25-Ifj"), //C
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ETRF9cXJw6TaQXFgdlYRXYQy5h6zFQs7"), //D
-                Uri.parse("https://drive.google.com/uc?export=download&id=147b873O2g22GKtTkmyeNPBR1hkd5bXaY"), //E
-                Uri.parse("https://drive.google.com/uc?export=download&id=16R8wU5DO7XulRk46HbjXF-sGLYrmBc0_"), //F
-                Uri.parse("https://drive.google.com/uc?export=download&id=17tMKP8LhX7GJ8lVJgWIl2qxelro3njAV"), //G
-                Uri.parse("https://drive.google.com/uc?export=download&id=191VxcT-dGYarC_PHOus-oo3FcCOUm_NT"), //H
-                Uri.parse("https://drive.google.com/uc?export=download&id=1A1wDkaPaJV08ogW_6ZG94N0Mb3PXKTeS"), //I
-                Uri.parse("https://drive.google.com/uc?export=download&id=1qnTIzvxxGVfFyp3sMr7KeaQz-yEu8kFq"), //J
-                Uri.parse("https://drive.google.com/uc?export=download&id=10k4SfFV_4Iq7H1-E8M8d9Cvi3p-ikAMO"), //K
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ipvYoGkMjcgoLBrRVL8LuWXiQ5RrX1Qm"), //L
-                Uri.parse("https://drive.google.com/uc?export=download&id=1G_LtQQCytHQVdoHG47At-Wq64Gk6pb82"), //M
-                Uri.parse("https://drive.google.com/uc?export=download&id=1oFfGAKT4y7_lPnqeYwY4ZdhTKKJB2ZMV"), //N
-                Uri.parse("https://drive.google.com/uc?export=download&id=18sjDhRQclb6tv-_pBHL0GDbVGImEdCI8"), //O
-                Uri.parse("https://drive.google.com/uc?export=download&id=1g90rSEKfs-DOab9qocW7bV7kiF0lk7Rz"), //P
-                Uri.parse("https://drive.google.com/uc?export=download&id=18iKVqpCgD0jeH3L-eX_5UXZM3S71vpq-"), //Q
-                Uri.parse("https://drive.google.com/uc?export=download&id=1gFccyNedPiKJbcfNw4dcp5wYMt0fxtPs"), //R
-                Uri.parse("https://drive.google.com/uc?export=download&id=1HSJKoUhCgTN1VbB-Yt75dExdBjVh4PwL"), //S
-                Uri.parse("https://drive.google.com/uc?export=download&id=1w6jDZv8zoaYZBCnNW-p3KJdz4Idw_K2m"), //T
-                Uri.parse("https://drive.google.com/uc?export=download&id=1C6MApuyMl9Q0zIFQRbCrIDrFDxyUfZOj"), //U
-                Uri.parse("https://drive.google.com/uc?export=download&id=1_qWWVQO_0h9BBghZngVv0Ao7-pbqp2Pf"), //V
-                Uri.parse("https://drive.google.com/uc?export=download&id=16qUL8Nz1ILMfG2aTj76TvQvETXwyzcCH"), //W
-                Uri.parse("https://drive.google.com/uc?export=download&id=1i1w-Z5Zk0hRgYliQ_KNoMSifUUBEmlRm"), //X
-                Uri.parse("https://drive.google.com/uc?export=download&id=1_GnrFu3E4hVkBTvyDrJSqx_1g-_WbbIM"), //Y
-                Uri.parse("https://drive.google.com/uc?export=download&id=1CnYRzXkld3tAoCBBvF2ci6Z2GZj2bJyd")  //Z
+                Uri.parse("https://drive.google.com/uc?export=download&id=1l31fgeSpL24uV3tN7PeTha7ZChhYvrTd"), //1
+                Uri.parse("https://drive.google.com/uc?export=download&id=12pQ84oIZU8SDbRfkD9nCoDYJToXgiENO"), //2
+                Uri.parse("https://drive.google.com/uc?export=download&id=1EgHrXF66JZGZ5E4orEbGuXh-i_VqQASZ"), //3
+                Uri.parse("https://drive.google.com/uc?export=download&id=1KpdfTvkAXDz0Xq6rQShnnjtfDqNbaXs5"), //4
+                Uri.parse("https://drive.google.com/uc?export=download&id=1elGBZw37vKqPTmgGBnMGbvUKyE1tby9b"), //5
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ZqM4jbWrormTWUXwl33R48p9P_qCCbPL"), //6
+                Uri.parse("https://drive.google.com/uc?export=download&id=1rL3KtZ6iVUgwQYrSMyGftpl2RYQ_qdqo"), //7
+                Uri.parse("https://drive.google.com/uc?export=download&id=1CrZjtbY1DomoUYe54JRuosyFrLsml4X1"), //8
+                Uri.parse("https://drive.google.com/uc?export=download&id=1MXxvoDG3_R6_oMzqZ8HwZPHZRCdIVgL1"), //9
+                Uri.parse("https://drive.google.com/uc?export=download&id=1r-4gTc0JZHcAd5dQTP9mEiSrrQSvrnyh"), //10
                 //https://drive.google.com/file/d//view?usp=sharing
         };
 
@@ -121,7 +104,7 @@ public class dictionaryalphabetvid extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(dictionaryalphabetvid.this, dictionaryalphabet.class));
+                startActivity(new Intent(dictionarynumbervid.this, dictionarynumber.class));
                 finish();
             }
         });
@@ -185,24 +168,22 @@ public class dictionaryalphabetvid extends AppCompatActivity {
     }
 
     private void scaleView(View view) {
-        // Create ObjectAnimators for scaling down (shrink)
-        ObjectAnimator scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.8f); // Shrink X-axis to 80%
-        ObjectAnimator scaleDownY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 0.8f); // Shrink Y-axis to 80%
+        ObjectAnimator scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.8f);
+        ObjectAnimator scaleDownY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 0.8f);
         scaleDownX.setDuration(100);
         scaleDownY.setDuration(100);
 
-        // Create ObjectAnimators for scaling back up to original size
-        ObjectAnimator scaleUpX = ObjectAnimator.ofFloat(view, "scaleX", 0.8f, 1f); // Scale back to original size (X)
-        ObjectAnimator scaleUpY = ObjectAnimator.ofFloat(view, "scaleY", 0.8f, 1f); // Scale back to original size (Y)
+
+        ObjectAnimator scaleUpX = ObjectAnimator.ofFloat(view, "scaleX", 0.8f, 1f);
+        ObjectAnimator scaleUpY = ObjectAnimator.ofFloat(view, "scaleY", 0.8f, 1f);
         scaleUpX.setDuration(100);
         scaleUpY.setDuration(100);
 
-        // Create an AnimatorSet to play the animations sequentially
+
         AnimatorSet scaleSet = new AnimatorSet();
-        scaleSet.play(scaleDownX).with(scaleDownY); // Play scaleDownX and scaleDownY together
-        scaleSet.play(scaleUpX).with(scaleUpY).after(scaleDownX); // Play scaleUpX and scaleUpY after scaleDownX/Y
+        scaleSet.play(scaleDownX).with(scaleDownY);
+        scaleSet.play(scaleUpX).with(scaleUpY).after(scaleDownX);
         scaleSet.start();
     }
-
 
 }

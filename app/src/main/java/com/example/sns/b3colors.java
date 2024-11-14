@@ -95,7 +95,7 @@ public class b3colors extends AppCompatActivity {
                 Uri.parse("https://drive.google.com/uc?export=download&id=1BceO-AvCTuAOYCkE-CBrqiSsgM2P__Qn"), //white
                 Uri.parse("https://drive.google.com/uc?export=download&id=1druvr0fVw5-jw-3qt7jVVUh4lLuFkxLP"), //black
                 Uri.parse("https://drive.google.com/uc?export=download&id=1KVos9Tfx7GdH6sxu_cpqoE6RJUN0PwWZ"), //red
-                Uri.parse("https://drive.google.com/uc?export=download&id=1KVos9Tfx7GdH6sxu_cpqoE6RJUN0PwWZ"), //green
+                Uri.parse("https://drive.google.com/uc?export=download&id=1EkcAC20t7UqQTHe22n0tw6Mkienx994e"), //green
                 Uri.parse("https://drive.google.com/uc?export=download&id=1Vs-mG0UPpYbc9vJS3JdDhvm_EHyGehpT"), //blue
                 Uri.parse("https://drive.google.com/uc?export=download&id=1Vs-mG0UPpYbc9vJS3JdDhvm_EHyGehpT"), //brown
                 Uri.parse("https://drive.google.com/uc?export=download&id=1-pflDP3zBxWBGELh1PfblfDKVqVK1U9t"), //yellow

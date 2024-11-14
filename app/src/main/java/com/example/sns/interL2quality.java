@@ -68,7 +68,7 @@ public class interL2quality extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(interL2quality.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -89,17 +89,17 @@ public class interL2quality extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d//view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ZYcsYQqmPUt3xXu93WJuSAH15GOT11OE"), //delicious
-                Uri.parse("https://drive.google.com/uc?export=download&id=1jv6qyiKIl6DU51kmApWftP2p8gCHzMZh"), //beautiful
-                Uri.parse("https://drive.google.com/uc?export=download&id=1AfzPMhHAidIDJwEyRKzPtk_yzK3bs7Gz"), //strong
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Hum1K2e8BTgfG_uIAEWsNx4ag3D3FStw"), //elegant
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ke2yn0SiV7Xmt8nC3c6jSDdBFq5-6noI"), //brilliant
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XEaAedbnB6rMKCV8t_xOJDFArkB9nf81"), //gentle
-                Uri.parse("https://drive.google.com/uc?export=download&id=1v_-Hbc24ONkTq0tAejiqZHmYKiYBFzaV"), //friendly
-                Uri.parse("https://drive.google.com/uc?export=download&id=1296J3ADgRCopsTJNqflApK9-zhrHrsNu"), //innovative
-                Uri.parse("https://drive.google.com/uc?export=download&id=1nwz1sMKpsuhRWxNjBngpjiYaAwQ_sjx6"), //efficient
+                Uri.parse("https://drive.google.com/uc?export=download&id=1buNxR8knNJ4100t6eS9iu8dvcMaE0qL1"), //delicious
+                Uri.parse("https://drive.google.com/uc?export=download&id=1SB2R_SLf0iRCK0UnnssJfYI1_wbMPVCv"), //beautiful
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ykIOcobFamSy36Zu-AIQebQZINqIQFdI"), //strong
+                Uri.parse("https://drive.google.com/uc?export=download&id=1jPikDdDDLWBMHWrvXywrtsYdOR9aD7h8"), //elegant
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Y7ygxerVLLEn6R8JSafdtJytrbvlsahA"), //brilliant
+                Uri.parse("https://drive.google.com/uc?export=download&id=12yuyfSlIDxO9QZ7ckDP0syxMjV6oNoA3"), //gentle
+                Uri.parse("https://drive.google.com/uc?export=download&id=1XjniPgfZD2vK2YstlwrAQiDN20xqmzMe"), //friendly
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ZlWwISqZeNtRQ6f-cCKxrqJG8w-Ssatr"), //innovative
+                Uri.parse("https://drive.google.com/uc?export=download&id=1tTPmzWz42-tz8_-M5iBpUpSeQ9i_c7sZ"), //efficient
                 // Add more URIs as needed
 
         };
@@ -286,8 +286,14 @@ public class interL2quality extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
+
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -325,22 +331,54 @@ public class interL2quality extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 8) {
                         DatabaseReference lessonaslRef = usersRef.child("intermediatelesson");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("qualityscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 8 && currentLessonAslValue < 400) {
-                                    lessonaslRef.setValue(400);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL2quality.this,intermediatelevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL2quality.this,intermediatelevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 400){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(4);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(interL2quality.this, interL2asessqual.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+                                        }else if (lesson1 == 8 && currentScore < 9) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL2quality.this, interL2asessqual.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL2quality.this,intermediatelevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override

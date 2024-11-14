@@ -67,7 +67,7 @@ public class interL4courtship extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(interL4courtship.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -88,14 +88,14 @@ public class interL4courtship extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d//view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1kHf94gPbILIaDzdIjwgBeLJZIYo_-Q2t"), //going on date
-                Uri.parse("https://drive.google.com/uc?export=download&id=1d_k-0kQDMQm5iR-CYaZevihu3E2XWXAx"), //having conversation
-                Uri.parse("https://drive.google.com/uc?export=download&id=1dkMl-suhTDgFOP6Hql6zOjtDG7_DJsec"), //texting
-                Uri.parse("https://drive.google.com/uc?export=download&id=1EGmtIKSttjLLGQ1bUnpXpp6vrJVKxq0a"), //social media
-                Uri.parse("https://drive.google.com/uc?export=download&id=1unzkYME8tX5qVtd6bfBeCgxQK3xG04KA"), //giving gifts
-                Uri.parse("https://drive.google.com/uc?export=download&id=1vNymGpGyW3kjX6qYhAXc0Kkvan9n5xnO"), //physical affection
+                Uri.parse("https://drive.google.com/uc?export=download&id=1WzOoO02yI5ySKZSG2D1fEIiWyNcLZKE7"), //going on date
+                Uri.parse("https://drive.google.com/uc?export=download&id=1iFjULdlahvSzkrDyX2VWGoeraTYbEfx-"), //having conversation
+                Uri.parse("https://drive.google.com/uc?export=download&id=1yiV52LtrzeSvYS1GovtqfT6ha7MoxyXi"), //texting
+                Uri.parse("https://drive.google.com/uc?export=download&id=1qCqb1PNaTE8YmHQKrWNQxAsNh0ouTnX6"), //social media
+                Uri.parse("https://drive.google.com/uc?export=download&id=1As1uP_PFGvtPRvNOQTjIlZ31j0rIfPyU"), //giving gifts
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Y5M3ZxZ3TDqvReVC5oIm_ivWSDAJAuPg"), //physical affection
 
                 // Add more URIs as needed
 
@@ -282,9 +282,11 @@ public class interL4courtship extends AppCompatActivity {
                     // Get currentIndex from Firebase
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
+                    if(currentIndex == 0){
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -322,20 +324,36 @@ public class interL4courtship extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 5) {
                         DatabaseReference lessonaslRef = usersRef.child("intermediatelesson");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 5 && currentLessonAslValue < 700) {
-                                    lessonaslRef.setValue(700);
+                                if (lesson1 == 5 && currentLessonAslValue < 710) {
+                                    //add sign value
+                                    sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if (snapshot.exists()){
+                                                int total = (currentLessonAslValue + 100);
+                                                lessonaslRef.setValue(total);
+                                                sign.setValue(7);
+                                                Loading.dismiss();
+                                                startActivity(new Intent(interL4courtship.this, intermediatelevel.class));
+                                                finish();
+                                            }
+                                        }
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                    //add sign value
+
+                                }
+                                else{
                                     Loading.dismiss();
-                                    startActivity(new Intent(interL4courtship.this,intermediatelevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL4courtship.this,intermediatelevel.class));
+                                    startActivity(new Intent(interL4courtship.this, intermediatelevel.class));
                                     finish();
                                 }
                             }
@@ -390,12 +408,12 @@ public class interL4courtship extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("intermediatelevel_tb").child(encodedEmail);
 
-        usersRef.child("intermediatelesson").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 700){
+                    if (currentLessonAslValue >= 7){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

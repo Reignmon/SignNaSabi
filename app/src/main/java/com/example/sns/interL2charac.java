@@ -89,18 +89,18 @@ public class interL2charac extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d//view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1NAYE41gbYQ0MMfe0pE9P20l6GgqAJJ1E"), //freindly
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Z1Sy9cXVM27MWoE7m99taN4-vReBsnx3"), //ambitious
-                Uri.parse("https://drive.google.com/uc?export=download&id=13qC7xmh1ChdBt7tKwL6-KBXxj6QgXWi-"), //creative
-                Uri.parse("https://drive.google.com/uc?export=download&id=1f3koopeZ8qnB98pASqsvF82Hcw8B2F6y"), //reliable
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Yo28a60cZUaPMxixS_gCP3wkEUrLl2ST"), //curious
-                Uri.parse("https://drive.google.com/uc?export=download&id=1etIO_uDt5ecKo3vsDQxdPy5lcHdlQJsh"), //confident
-                Uri.parse("https://drive.google.com/uc?export=download&id=1rNGOXTJpUGrYtOeMLDKOcZ8_KfHh0rBu"), //diligent
-                Uri.parse("https://drive.google.com/uc?export=download&id=13pGfujY2_SjA8oK_eBB7Pwj5LGBHr6sX"), //generous
-                Uri.parse("https://drive.google.com/uc?export=download&id=16Is9OswT_Yf15bDPF-USlaS0qyL7yzlr"), //patient
-                Uri.parse("https://drive.google.com/uc?export=download&id=1dv6QO0t90rxHfmQbyBU0m53Q1c_MnCpH"), //honest
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ZNN6XK28E7hvKBdOs9FSOzNfjTCdqazS"), //freindly
+                Uri.parse("https://drive.google.com/uc?export=download&id=1kxrYNHv9ShtIK-AHkXebovgmdXcmxnUH-"), //ambitious
+                Uri.parse("https://drive.google.com/uc?export=download&id=1rnDJh6F3PImYo1H2CIeHwGABANtvIk3H"), //creative
+                Uri.parse("https://drive.google.com/uc?export=download&id=1AasOx4aKrVCbK-lLB8zWutnPciozIvMP"), //reliable
+                Uri.parse("https://drive.google.com/uc?export=download&id=16d5Jb0hMMnjaxJ4tWeVjw9pNWR2MaDlt"), //curious
+                Uri.parse("https://drive.google.com/uc?export=download&id=1zHGwdAYUfZAjqY-6rRK8RIfnFmmNM10y"), //confident
+                Uri.parse("https://drive.google.com/uc?export=download&id=14-RSgL6kqPRNwd44J7cinqsB7GwgSRpr"), //diligent
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ezN5imv7kNrxW5hU9tMMHaoFSjLIkAbb"), //generous
+                Uri.parse("https://drive.google.com/uc?export=download&id=1wpUc8fyQC6wkdUiKJWi_69fHd3Mgi_e5"), //patient
+                Uri.parse("https://drive.google.com/uc?export=download&id=1eTTr1tTw7jC-qRr7qa_1WhlBbjV2DJXq"), //honest
 
                 // Add more URIs as needed
 
@@ -288,8 +288,13 @@ public class interL2charac extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -327,22 +332,54 @@ public class interL2charac extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 9) {
                         DatabaseReference lessonaslRef = usersRef.child("intermediatelesson");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("characteristicsscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 9 && currentLessonAslValue < 300) {
-                                    lessonaslRef.setValue(300);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL2charac.this,intermediatelevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL2charac.this,intermediatelevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 300){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(3);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(interL2charac.this, interL3asessact.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+                                        }else if (lesson1 == 9 && currentScore < 10) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL2charac.this, interL3asessact.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL2charac.this,intermediatelevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override

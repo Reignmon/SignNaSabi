@@ -67,7 +67,7 @@ public class interL5senses extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(interL5senses.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -88,13 +88,13 @@ public class interL5senses extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d//view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1mImsOm69RH_uUIqAwn_B00epb0gJCZ0-"), //eyes-sight
-                Uri.parse("https://drive.google.com/uc?export=download&id=1g_ipgjYfzkcgFRsp76zeau9HQ0o6w8Vr"), //nose smell
-                Uri.parse("https://drive.google.com/uc?export=download&id=1G9sXH6uTKudEcoTmIc6eWEFFSpdletFo"), //ear sound
-                Uri.parse("https://drive.google.com/uc?export=download&id=19RdA3WeHrHyn2gPiFK-oCZXRjGV4Y6OQ"), //tounge taste
-                Uri.parse("https://drive.google.com/uc?export=download&id=14Pr44yFrHW3sJEIy3qWVHZTeTQEpL91s"), //touch hand
+                Uri.parse("https://drive.google.com/uc?export=download&id=184yL0Hrx58JS6IhAbRynyJyvu1jm5muz"), //eyes-sight
+                Uri.parse("https://drive.google.com/uc?export=download&id=15-Lm6e603u_yTfqnKGxMgdxjhc1ZuPKA"), //nose smell
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ufhCdqKDZmeVu1bnlfmmGUR9eCu7arxm"), //ear sound
+                Uri.parse("https://drive.google.com/uc?export=download&id=1FQ-x9JD8GoL5AuBxlwRDhi49QH9nJjZD"), //tounge taste
+                Uri.parse("https://drive.google.com/uc?export=download&id=1CgRsPqxBVTOzZBmjWHCVhwFwPNoohBWq"), //touch hand
 
                 // Add more URIs as needed
 
@@ -281,9 +281,13 @@ public class interL5senses extends AppCompatActivity {
                     // Get currentIndex from Firebase
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
-
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else {
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -322,19 +326,36 @@ public class interL5senses extends AppCompatActivity {
                     if (lesson1 == 4) {
                         DatabaseReference lessonaslRef = usersRef.child("intermediatelesson");
 
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 4 && currentLessonAslValue < 1000) {
-                                    lessonaslRef.setValue(1000);
+                                if (lesson1 == 4 && currentLessonAslValue < 1100) {
+                                    //add sign value
+                                    sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if (snapshot.exists()){
+                                                int total = (currentLessonAslValue + 100);
+                                                lessonaslRef.setValue(total);
+                                                sign.setValue(10);
+                                                Loading.dismiss();
+                                                startActivity(new Intent(interL5senses.this, intermediatelevel.class));
+                                                finish();
+                                            }
+                                        }
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                    //add sign value
+
+                                }
+                                else{
                                     Loading.dismiss();
-                                    startActivity(new Intent(interL5senses.this,intermediatelevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL5senses.this,intermediatelevel.class));
+                                    startActivity(new Intent(interL5senses.this, intermediatelevel.class));
                                     finish();
                                 }
                             }
@@ -389,12 +410,12 @@ public class interL5senses extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("intermediatelevel_tb").child(encodedEmail);
 
-        usersRef.child("intermediatelesson").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 1000){
+                    if (currentLessonAslValue >= 10){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

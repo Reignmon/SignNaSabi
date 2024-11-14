@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -68,7 +69,7 @@ public class interL1vocubulary extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(interL1vocubulary.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -89,28 +90,27 @@ public class interL1vocubulary extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d//view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=19-tfENUX5lvs8ODNW4OdwIF3uYHhTVdK"), //see you later
-                Uri.parse("https://drive.google.com/uc?export=download&id=1EPM2iI76vTiPCEI56cbW4RVvXgWZ6tQw"), //i or me
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ZVKL6PJJbkQ3Q30xqFdxnzQYqIeghHpc"), //yes
-                Uri.parse("https://drive.google.com/uc?export=download&id=1OUaJZjdugD5eZcFEvXQ0JFp_JH_JIspv"), //no
-                Uri.parse("https://drive.google.com/uc?export=download&id=1cLudvOMtxbOUC-c5u3U_pFqBPXzJEuuT"), //help
-                Uri.parse("https://drive.google.com/uc?export=download&id=1e-ZsfLaEIp3h2HXgGGwsUdWM8qXpaSLG"), //thank you
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Q_4AQxKZIUBaFn4y9KA2i9ur6QOof59-"), //want
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ZVKL6PJJbkQ3Q30xqFdxnzQYqIeghHpc"), //what
-                Uri.parse("https://drive.google.com/uc?export=download&id=1dkS2PNDeyEiUzUMlBT2BRungdP5cjAzH"), //again or repeat
-                Uri.parse("https://drive.google.com/uc?export=download&id=11ktuF-WFEaFGpyPesvGogElR42lCTN_-"), //milk
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XH_5X0ALQ5cRWNMe0_QFuH6_iCxXBv6t"), //more
-                Uri.parse("https://drive.google.com/uc?export=download&id=1tTrCtn4HIaTaJuiMHieW8qI0kFj2QL02"), //fine
-                Uri.parse("https://drive.google.com/uc?export=download&id=14RWTGXsLj3jwt1lF2QBvZHY-U-TSil8M"), //life
-                Uri.parse("https://drive.google.com/uc?export=download&id=1CgU9ISOCmLhb4yYgWbbnByivOWXHKhiT"), //learn
-                Uri.parse("https://drive.google.com/uc?export=download&id=1hwVJ583zBNXq88yW6E2GxiZe7t5whN4g"), //sign
-                Uri.parse("https://drive.google.com/uc?export=download&id=1XApXzlWuAK3Ps6em0xAlQLA8MveDXDzE"), //finish or done
-                Uri.parse("https://drive.google.com/uc?export=download&id=1GMSdAnrdZU2QTOG9PSmq6tzJnk88kj8o"), //need
-                Uri.parse("https://drive.google.com/uc?export=download&id=1KGYVwiLfrdP1K_gdUdAVQ_7pe6Z11rYT"), //find
-                Uri.parse("https://drive.google.com/uc?export=download&id=117c0qtFMANh2v0yBJam-rBzCTiZuE8lx"), //go out
-
+                Uri.parse("https://drive.google.com/uc?export=download&id=10a6AwLKURn-sz6Gld16qdusjqxXS15I0"), //see you later
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ko3mfQkbMUrwxm545PzWvvFFF0XGoFJ1"), //i or me
+                Uri.parse("https://drive.google.com/uc?export=download&id=1xpc_VqNs5PXkm0NOE7Ob7k9aP7P-KDvA"), //yes
+                Uri.parse("https://drive.google.com/uc?export=download&id=1UWJD62hE7dVIBTC04B9sGqG6Oi2uxpJF"), //no
+                Uri.parse("https://drive.google.com/uc?export=download&id=1FGx1j5P7DHUrjT8F8HXEGwcoqv1TwraP"), //help
+                Uri.parse("https://drive.google.com/uc?export=download&id=1nc2rnD8xmbV68TfsQ-imUlwYJ-rFLdqi"), //thank you
+                Uri.parse("https://drive.google.com/uc?export=download&id=1yxUhLOf4tJ2r5C8yiSPH7t6op2lItio4"), //want
+                Uri.parse("https://drive.google.com/uc?export=download&id=146__V9F2CT3ACL439EP37UXciQIVhZcv"), //what
+                Uri.parse("https://drive.google.com/uc?export=download&id=1aOXP6hUCNgZ73YG3IO2TImGsGihCKupX"), //again or repeat
+                Uri.parse("https://drive.google.com/uc?export=download&id=1wsWrPvNYkhguYXyCqpEYqNN6jYtSYCtq"), //milk
+                Uri.parse("https://drive.google.com/uc?export=download&id=1hCgtQvCMk_qz-ZhRb2E6NhX_gqs_U8bT"), //more
+                Uri.parse("https://drive.google.com/uc?export=download&id=1rLCPfUtvuqapR8Hw1nvVDe8s77mz1_Qp"), //fine
+                Uri.parse("https://drive.google.com/uc?export=download&id=1DtugPq320toaiFeIG9j2v6xs1ow8gtQr"), //life
+                Uri.parse("https://drive.google.com/uc?export=download&id=1-5f_RsM9YQtRfmZJ8IjdQBHIR1hD1Mps"), //learn
+                Uri.parse("https://drive.google.com/uc?export=download&id=1DjFNPH67eZcCHtINnVeFpVAWvxlfxpRe"), //sign
+                Uri.parse("https://drive.google.com/uc?export=download&id=1rD8-8LGMqd_xdTG6xuuMOuMyabQ6V8J-"), //finish or done
+                Uri.parse("https://drive.google.com/uc?export=download&id=1yW6vd9pcDyX6_r5iIFN-ih7VPzOyiVO5"), //need
+                Uri.parse("https://drive.google.com/uc?export=download&id=1BF7EbRFbo4uPpQcCz1NE5FmglqPp4-f9"), //find
+                Uri.parse("https://drive.google.com/uc?export=download&id=1MRLwvPbk3N3EdrT2AYeR4CiuqJu4jK0S"), //go out
                 // Add more URIs as needed
 
         };
@@ -297,9 +297,13 @@ public class interL1vocubulary extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
-
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
                 } else {
@@ -337,26 +341,63 @@ public class interL1vocubulary extends AppCompatActivity {
                     if (lesson1 == 18) {
                         DatabaseReference lessonaslRef = usersRef.child("intermediatelesson");
 
-                        // Check the current value of lessonasl before updating
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
+
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 18 && currentLessonAslValue < 100) {
-                                    lessonaslRef.setValue(100);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL1vocubulary.this,intermediatelevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL1vocubulary.this,intermediatelevel.class));
-                                    finish();
+                                Integer currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : null;
+                                DatabaseReference getScore = usersRef.child("vocubularyscore");
+                                if (currentLessonAslValue != null) {
+                                    getScore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            Integer currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                            if (lesson1 == 18 && currentScore < 10) {
+                                                Log.e("UpdateLesson1", "Failed to update score" + currentScore);
+                                                Loading.dismiss();
+                                                startActivity(new Intent(interL1vocubulary.this, interL1asessvocu.class));
+                                                finish();
+                                            }else{
+                                                Log.e("UpdateLesson1", "update score " + currentScore);
+                                                Loading.dismiss();
+                                                startActivity(new Intent(interL1vocubulary.this, intermediatelevel.class));
+                                                finish();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                            Loading.dismiss();
+                                        }
+                                    });
+                                }else{
+                                    //add sign value
+                                    sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if (!snapshot.exists()){
+                                                lessonaslRef.setValue(100);
+                                                sign.setValue(1);
+                                                Loading.dismiss();
+                                                startActivity(new Intent(interL1vocubulary.this, interL1asessvocu.class));
+                                                finish();
+                                            }
+                                        }
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                    //add sign value
                                 }
                             }
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
                                 // Handle any errors
+                                Loading.dismiss();
                             }
                         });
                     } else {

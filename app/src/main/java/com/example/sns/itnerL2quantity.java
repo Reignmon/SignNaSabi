@@ -68,7 +68,7 @@ public class itnerL2quantity extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(itnerL2quantity.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -89,16 +89,16 @@ public class itnerL2quantity extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d//view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1yRPli0DDxmRX0MsIiAh0BlSv5MwY4F08"), //few
-                Uri.parse("https://drive.google.com/uc?export=download&id=1yRPli0DDxmRX0MsIiAh0BlSv5MwY4F08"), //many
-                Uri.parse("https://drive.google.com/uc?export=download&id=1pT7WUaHfyX6VDxVtkZ0ISNO2QxLs7bL3"), //enough
-                Uri.parse("https://drive.google.com/uc?export=download&id=1q31O4Jp4ptCpDOnd3XZtGdRbN5qWoEcC"), //some
-                Uri.parse("https://drive.google.com/uc?export=download&id=1ZJltfiZIM9hW5-OBjOLb9NwzepKjJyMg"), //all
-                Uri.parse("https://drive.google.com/uc?export=download&id=1zkF6hXR12AKc8mQbRtTJDyEvlWrO0A6D"), //whole
-                Uri.parse("https://drive.google.com/uc?export=download&id=1FLVSEuRgYWhJEF2U_MXw2sVDETO1shmE"), //dozen
-                Uri.parse("https://drive.google.com/uc?export=download&id=1SHXExsGTPr_vwDL5PAkeBLKkxvsHQvpg"), //several
+                Uri.parse("https://drive.google.com/uc?export=download&id=1La2J6RwCLzD5Le7O5zqy8LiDRys2pNX6"), //few
+                Uri.parse("https://drive.google.com/uc?export=download&id=1orG4m8Q-coYJbXqMgpMzktAQTxJkm3z7"), //many
+                Uri.parse("https://drive.google.com/uc?export=download&id=1JOyWEBKc6sz_hO03PUYo5yIFGJzeGcCS"), //enough
+                Uri.parse("https://drive.google.com/uc?export=download&id=1IOYOXBjTIMGBsUfNW3gVQKetp2nWdVrJ"), //some
+                Uri.parse("https://drive.google.com/uc?export=download&id=1JjOS7kQo68Djr_hyAPtJiGxWTaFjpglv"), //all
+                Uri.parse("https://drive.google.com/uc?export=download&id=1eP7B2mXDQKMiiYPgET1a4S0bsKPM0kEX"), //whole
+                Uri.parse("https://drive.google.com/uc?export=download&id=13idW6KrEYV8hIYrYr3bTOel2y0AhHE57"), //dozen
+                Uri.parse("https://drive.google.com/uc?export=download&id=1mewr02v1-gXqQokXutQ6_OGSxdpvNSoy"), //several
                 // Add more URIs as needed
 
         };
@@ -284,9 +284,13 @@ public class itnerL2quantity extends AppCompatActivity {
                     // Get currentIndex from Firebase
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
-
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -324,22 +328,54 @@ public class itnerL2quantity extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 7) {
                         DatabaseReference lessonaslRef = usersRef.child("intermediatelesson");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("quantityscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 7 && currentLessonAslValue < 500) {
-                                    lessonaslRef.setValue(500);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(itnerL2quantity.this,intermediatelevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(itnerL2quantity.this,intermediatelevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 500){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(5);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(itnerL2quantity.this, interL2asessquan.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+                                        }else if (lesson1 == 7 && currentScore < 8) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(itnerL2quantity.this, interL2asessquan.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(itnerL2quantity.this,intermediatelevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override

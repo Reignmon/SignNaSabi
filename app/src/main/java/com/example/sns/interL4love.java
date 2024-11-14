@@ -67,7 +67,7 @@ public class interL4love extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(interL4love.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -88,15 +88,15 @@ public class interL4love extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d//view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1aMopzOBeo6HJwA9-Fh5kaLSIt0TB5pjB"), //romantic love
-                Uri.parse("https://drive.google.com/uc?export=download&id=11HmPUrQqZ3ifnYiiQej1nED6d7eqQdDd"), //familial love
-                Uri.parse("https://drive.google.com/uc?export=download&id=1rdmJwrScZVdjiHS3C1mNGx9WBYWYFH4-"), //friendship
-                Uri.parse("https://drive.google.com/uc?export=download&id=1JjVP7aPJpLHIoJpdnXHhTP3X_ng-bVLH"), //self love
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Xyiuh4V4de3BR1wEXv4cHkb0QMVPCAuq"), //compassionate love
-                Uri.parse("https://drive.google.com/uc?export=download&id=18dlEv77_Klvb7YBnuCt5UVZltgxFoKTT"), //spiritual love
-                Uri.parse("https://drive.google.com/uc?export=download&id=1u1RnbElqgMotmfsz__j46xA8ijB5yQMP"), //pet love
+                Uri.parse("https://drive.google.com/uc?export=download&id=1xZhxEArbyzV4k8i2Y2UtZAfonJ4YnaP7"), //romantic love
+                Uri.parse("https://drive.google.com/uc?export=download&id=1l5JrFpGr3qGbpwwKfvw1LqwaKk8qkxzE"), //familial love
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Yx00biEN8VAwUClojwyPkaNEh0xJ_qG_"), //friendship
+                Uri.parse("https://drive.google.com/uc?export=download&id=1-VYK266FwQiAReRqqm-XKuf0AKT5dZ9i"), //self love
+                Uri.parse("https://drive.google.com/uc?export=download&id=1-xwtYNaTTsaFoHsEoDfHl0SrZcGQW_6t"), //compassionate love
+                Uri.parse("https://drive.google.com/uc?export=download&id=1ekwPlmIjlo-Nmm27fMRFp7OW9tjn0cj_"), //spiritual love
+                Uri.parse("https://drive.google.com/uc?export=download&id=1aTiPZQ5Xt93i1pw9h9FSyv6O2bsmCx5w"), //pet love
 
                 // Add more URIs as needed
 
@@ -284,8 +284,14 @@ public class interL4love extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -323,20 +329,36 @@ public class interL4love extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 6) {
                         DatabaseReference lessonaslRef = usersRef.child("intermediatelesson");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 6 && currentLessonAslValue < 800) {
-                                    lessonaslRef.setValue(800);
+                                if (lesson1 == 6 && currentLessonAslValue < 810) {
+                                    //add sign value
+                                    sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if (snapshot.exists()){
+                                                int total = (currentLessonAslValue + 100);
+                                                lessonaslRef.setValue(total);
+                                                sign.setValue(8);
+                                                Loading.dismiss();
+                                                startActivity(new Intent(interL4love.this, intermediatelevel.class));
+                                                finish();
+                                            }
+                                        }
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                    //add sign value
+
+                                }
+                                else{
                                     Loading.dismiss();
-                                    startActivity(new Intent(interL4love.this,intermediatelevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL4love.this,intermediatelevel.class));
+                                    startActivity(new Intent(interL4love.this, intermediatelevel.class));
                                     finish();
                                 }
                             }
@@ -391,12 +413,12 @@ public class interL4love extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("intermediatelevel_tb").child(encodedEmail);
 
-        usersRef.child("intermediatelesson").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 800){
+                    if (currentLessonAslValue >= 8){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

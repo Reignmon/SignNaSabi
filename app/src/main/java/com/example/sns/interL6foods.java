@@ -67,7 +67,7 @@ public class interL6foods extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(interL6foods.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -88,21 +88,21 @@ public class interL6foods extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d/1reevsnTA0C9qHEM85MdNDY-Fw6B1_XOa/view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1eKu0xJCFIE8-RDqOx2f9MghOS22xrV-k"), //bread
-                Uri.parse("https://drive.google.com/uc?export=download&id=1JwtRfP06Ty0Mkj1-dhN6WKDHyp_T-ndI"), //french fries
-                Uri.parse("https://drive.google.com/uc?export=download&id=1MEY1uL-i2yc5LktgKjmv8nPo20aQYQt7"), //humburger
-                Uri.parse("https://drive.google.com/uc?export=download&id=14CP2l0jhVE7guRNgXn_E0pRsF0RVrDj-"), //pizza
-                Uri.parse("https://drive.google.com/uc?export=download&id=1Yb9uHHTTC-o7Y2nIBt1rX_L02rYAvwem"), //soup
-                Uri.parse("https://drive.google.com/uc?export=download&id=1YmjHKqMrWyz6QgBlQngFXfMTnpRhNpGd"), //spaghetti
-                Uri.parse("https://drive.google.com/uc?export=download&id=10fVX4mZZ9rrb9L0rqzhUPNMklVglD5r4"), //chicken
-                Uri.parse("https://drive.google.com/uc?export=download&id=1QRM-o_G-efw1ZqqbFShwWhO2ciooCKkS"), //hotdog
-                Uri.parse("https://drive.google.com/uc?export=download&id=154lhZSaF-LuqKZKKL69wkhLzc3QhmjIj"), //meat
-                Uri.parse("https://drive.google.com/uc?export=download&id=14FHYF_etOOdqTowZSY5r71FgvQ_PGcDK"), //egg
-                Uri.parse("https://drive.google.com/uc?export=download&id=1aXerKPpeOCLEsiH3xT9Q0K4eDFVebp42"), //apple
-                Uri.parse("https://drive.google.com/uc?export=download&id=1G9cg3-c1VUFmg7M4Ey9Q51JgLJOevDLm"), //banana
-                Uri.parse("https://drive.google.com/uc?export=download&id=1kYsbnK9qObmCzUoHry2U9ePX9Cxqoi9d"), //mango
+                Uri.parse("https://drive.google.com/uc?export=download&id=1CsyV8oism0UMJYfLQ57zyOvV1_tw_xB8"), //bread
+                Uri.parse("https://drive.google.com/uc?export=download&id=1c26CGRyfuCftSLIkPGbTFDWu-HzAtQuv"), //french fries
+                Uri.parse("https://drive.google.com/uc?export=download&id=110Gy3JPT67ET_e1lE2bqgTw1nIzLeMr3"), //humburger
+                Uri.parse("https://drive.google.com/uc?export=download&id=1_-hNrFcUXG7-k4G8vxCduezBibV43TnY"), //pizza
+                Uri.parse("https://drive.google.com/uc?export=download&id=1mTTwri9P4edy5qM1JNBJg4w5XBW4BJf4"), //soup
+                Uri.parse("https://drive.google.com/uc?export=download&id=1BumGukuYCLDrGj9TZqoSWXlLht5RxfzI"), //spaghetti
+                Uri.parse("https://drive.google.com/uc?export=download&id=1QRjXsLmXeSZNjczUXlZ3Wwc0pzALmwj3"), //chicken
+                Uri.parse("https://drive.google.com/uc?export=download&id=1b6lne1eW9SZihV3Gh5QLPoQqmIEaDJlb"), //hotdog
+                Uri.parse("https://drive.google.com/uc?export=download&id=10DrR5xsUbilG8NYyYLDtvZ-htL49ItZy"), //meat
+                Uri.parse("https://drive.google.com/uc?export=download&id=1reevsnTA0C9qHEM85MdNDY-Fw6B1_XOa"), //egg
+                Uri.parse("https://drive.google.com/uc?export=download&id=1Jozb1J6Rk5VGuCVJZLwrT0Dw45EXXNY0"), //apple
+                Uri.parse("https://drive.google.com/uc?export=download&id=1-Qfd238hSmTSBl3SI_LljuT0o0cTbtvy"), //banana
+                Uri.parse("https://drive.google.com/uc?export=download&id=1emrHbVl3wgqlQ49-eAQpIahu5JtfUTn2"), //mango
 
                 // Add more URIs as needed
 
@@ -289,9 +289,13 @@ public class interL6foods extends AppCompatActivity {
                     // Get currentIndex from Firebase
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
-
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }else{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
 
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
@@ -329,22 +333,54 @@ public class interL6foods extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 12) {
                         DatabaseReference lessonaslRef = usersRef.child("intermediatelesson");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference getscore = usersRef.child("foodsscore");
+                        //add sign value in data base
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 12 && currentLessonAslValue < 1100) {
-                                    lessonaslRef.setValue(1100);
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL6foods.this,intermediatelevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL6foods.this,intermediatelevel.class));
-                                    finish();
-                                }
+                                getscore.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int currentScore = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
+                                        if (currentLessonAslValue < 1210){
+                                            //add sign value
+                                            sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()){
+                                                        int total = (currentLessonAslValue + 100);
+                                                        lessonaslRef.setValue(total);
+                                                        sign.setValue(11);
+                                                        Loading.dismiss();
+                                                        startActivity(new Intent(interL6foods.this, interL6asessfood.class));
+                                                        finish();
+                                                    }
+                                                }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            //add sign value
+                                        }else if (lesson1 == 12 && currentScore < 10) {
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL6foods.this, interL6asessfood.class));
+                                            finish();
+                                        }else{
+                                            Loading.dismiss();
+                                            startActivity(new Intent(interL6foods.this,intermediatelevel.class));
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override
@@ -397,12 +433,12 @@ public class interL6foods extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("intermediatelevel_tb").child(encodedEmail);
 
-        usersRef.child("intermediatelesson").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 1100){
+                    if (currentLessonAslValue >= 11){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);

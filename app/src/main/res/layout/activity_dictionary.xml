@@ -104,6 +104,7 @@
                 android:layout_weight="1"/>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/number"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 app:cardCornerRadius="10dp"
@@ -149,6 +150,7 @@
                 android:gravity="center">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/greeting"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     app:cardCornerRadius="10dp"
@@ -190,6 +192,7 @@
                     android:layout_weight="1"/>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/question"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     app:cardCornerRadius="10dp"
@@ -235,6 +238,7 @@
                 android:gravity="center">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/colorbtn"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     app:cardCornerRadius="10dp"
@@ -276,6 +280,7 @@
                     android:layout_weight="1"/>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/daysmonth"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     app:cardCornerRadius="10dp"
@@ -321,6 +326,7 @@
                 android:gravity="center">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/size"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     app:cardCornerRadius="10dp"
@@ -362,6 +368,7 @@
                     android:layout_weight="1"/>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/community"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     app:cardCornerRadius="10dp"
@@ -407,6 +414,7 @@
                 android:gravity="center">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/action"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     app:cardCornerRadius="10dp"
@@ -448,6 +456,7 @@
                     android:layout_weight="1"/>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/adjective"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     app:cardCornerRadius="10dp"

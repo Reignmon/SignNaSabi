@@ -16,6 +16,61 @@
         android:theme="@style/Theme.SNS"
         tools:targetApi="31">
         <activity
+            android:name=".dictionarymonthdayvid"
+            android:exported="false" />
+        <activity
+            android:name=".dictionarydaysmonth"
+            android:exported="false" />
+        <activity
+            android:name=".dictionarycolorsvid"
+            android:exported="false" />
+        <activity
+            android:name=".dictionarycolors"
+            android:exported="false" />
+        <activity
+            android:name=".dictionaryquestionvid"
+            android:exported="false" />
+        <activity
+            android:name=".dictionaryquestion"
+            android:exported="false" />
+        <activity
+            android:name=".dictionarygreetingsvid"
+            android:exported="false" />
+        <activity
+            android:name=".dictionarygreeting"
+            android:exported="false"
+            android:theme="@style/Theme.SNS" />
+        <activity
+            android:name=".dictionarynumbervid"
+            android:exported="false" />
+        <activity
+            android:name=".dictionarynumber"
+            android:exported="false" />
+        <activity
+            android:name=".interL6asessdrinks"
+            android:exported="false" />
+        <activity
+            android:name=".interL6asessfood"
+            android:exported="false" />
+        <activity
+            android:name=".interL3asessact"
+            android:exported="false" />
+        <activity
+            android:name=".interL2asessquan"
+            android:exported="false" />
+        <activity
+            android:name=".interL2asessqual"
+            android:exported="false" />
+        <activity
+            android:name=".interL2asesscharac"
+            android:exported="false" />
+        <activity
+            android:name=".interL2asessatt"
+            android:exported="false" />
+        <activity
+            android:name=".interL1asessvocu"
+            android:exported="false" />
+        <activity
             android:name=".dictionaryalphabetvid"
             android:exported="false" />
         <activity

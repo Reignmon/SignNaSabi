@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/backgroundColor"
+    tools:context=".dictionarygreeting">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="vertical"
+            android:background="#F4E5C5">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btnback"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_margin="5dp"
+                    android:padding="10dp"
+                    android:drawableStart="@drawable/baseline_arrow_back_24"/>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"/>
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/logo1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:fontFamily="@font/fredoka_one"
+                    android:text="SignNaSabi"
+                    android:textColor="@color/text_color"
+                    android:textSize="20sp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/fredoka_one"
+                android:text="Greetings"
+                android:paddingStart="30dp"
+                android:textColor="@color/text_color"
+                android:textSize="30sp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/backgroundColor"
+                app:cardCornerRadius="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha=".7"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="G"
+                        android:paddingStart="20dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="35sp" />
+                    <LinearLayout
+                        android:id="@+id/goodbye"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Good Bye"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/goodafternoon"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Good Afternoon"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/goodmorning"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Good Morning"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/goodnight"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Good Night"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha=".7"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="H"
+                        android:paddingStart="20dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:id="@+id/happynewyear"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Happy New Year"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/happybirth"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Happy Birthday"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha=".7"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="I"
+                        android:paddingStart="20dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:id="@+id/imglad"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Im Glad To See You"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/imfine"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Im Fine"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/sorry"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Im Sorry"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha=".7"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="M"
+                        android:paddingStart="20dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:id="@+id/merry"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Merry Christmas"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha=".7"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="S"
+                        android:paddingStart="20dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:id="@+id/seeyah"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingHorizontal="20dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/borderprofile">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha=".7"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="See You Later"
+                            android:textColor="@color/text_color"
+                            android:textSize="22sp" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_keyboard_arrow_right_24"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -61,6 +61,7 @@
         tools:ignore="HardcodedText" />
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -128,37 +129,54 @@
                             android:id="@+id/vocubularybtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/vocubulary" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Basic Vocubulary"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
                                 android:layout_width="100dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/vocubularyimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 app:srcCompat="@drawable/approved" />
+
+                            <TextView
+                                android:id="@+id/vocubularyscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                />
 
                         </LinearLayout>
 
@@ -167,9 +185,12 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/lesson2"
+                android:alpha=".7"
+                android:clickable="false"
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="2dp"
@@ -183,11 +204,12 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:id="@+id/lesson2Click"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
                         android:onClick="lesson2_view"
                         android:layout_marginVertical="5dp"
-                        android:layout_marginHorizontal="20dp"
                         android:layout_weight="1"
                         android:gravity="start"
                         android:orientation="vertical">
@@ -225,37 +247,55 @@
                             android:id="@+id/attitudesbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/positive" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Attitudes"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
                                 android:layout_width="150dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/attitudesimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 app:srcCompat="@drawable/approved" />
+
+
+                            <TextView
+                                android:id="@+id/attitudesscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                />
 
                         </LinearLayout>
 
@@ -264,38 +304,55 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginHorizontal="15dp"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
-                                android:layout_weight="1"
                                 app:srcCompat="@drawable/characteristics" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Characteristics"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
 
                             <Space
+                                android:layout_weight="1"
                                 android:layout_width="110dp"
                                 android:layout_height="wrap_content" />
 
                             <ImageView
                                 android:id="@+id/Characteristicsimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/approved"/>
+
+                            <TextView
+                                android:id="@+id/Characteristicsscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                />
 
                         </LinearLayout>
 
@@ -304,22 +361,24 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginHorizontal="15dp"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
-                                android:layout_weight="1"
                                 app:srcCompat="@drawable/highquality" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Quality"
                                 android:textColor="#DD7719"
@@ -327,15 +386,30 @@
 
                             <Space
                                 android:layout_width="160dp"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <ImageView
                                 android:id="@+id/Qualityimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/approved"/>
+
+                            <TextView
+                                android:id="@+id/Qualityscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                />
 
                         </LinearLayout>
 
@@ -344,38 +418,55 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginHorizontal="15dp"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
-                                android:layout_weight="1"
                                 app:srcCompat="@drawable/quantity" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Quantity"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
 
                             <Space
+                                android:layout_weight="1"
                                 android:layout_width="150dp"
                                 android:layout_height="wrap_content" />
 
                             <ImageView
                                 android:id="@+id/Quantityimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 app:srcCompat="@drawable/approved" />
+
+                            <TextView
+                                android:id="@+id/Quantityscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                />
 
                         </LinearLayout>
 
@@ -384,9 +475,12 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/lesson3"
+                android:alpha=".7"
+                android:clickable="false"
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="2dp"
@@ -400,11 +494,12 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:id="@+id/lesson3Click"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="lesson3_view"
-                        android:layout_marginVertical="5dp"
                         android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="5dp"
+                        android:onClick="lesson3_view"
                         android:layout_weight="1"
                         android:gravity="start"
                         android:orientation="vertical">
@@ -443,37 +538,54 @@
                             android:id="@+id/actwordbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/rideabike" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Action Word"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
+                                android:layout_weight="1"
                                 android:layout_width="135dp"
                                 android:layout_height="wrap_content"/>
 
                             <ImageView
                                 android:id="@+id/actwordimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/approved"/>
+
+                            <TextView
+                                android:id="@+id/actwordscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                />
 
                         </LinearLayout>
                     </LinearLayout>
@@ -481,9 +593,12 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/lesson4"
+                android:alpha=".7"
+                android:clickable="false"
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="2dp"
@@ -497,11 +612,12 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:id="@+id/lesson4Click"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="lesson4_view"
-                        android:layout_marginVertical="5dp"
                         android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="5dp"
                         android:layout_weight="1"
                         android:gravity="start"
                         android:orientation="vertical">
@@ -539,37 +655,55 @@
                             android:id="@+id/Courtshipbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/courtship" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Courtship"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
+                                android:layout_weight="1"
                                 android:layout_width="150dp"
                                 android:layout_height="wrap_content"/>
 
                             <ImageView
                                 android:id="@+id/Courtshipimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/approved"/>
+
+
+                            <TextView
+                                android:id="@+id/Courtshipscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                />
 
                         </LinearLayout>
 
@@ -578,38 +712,55 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginHorizontal="15dp"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
-                                android:layout_weight="1"
                                 app:srcCompat="@drawable/love" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Love"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
 
                             <Space
+                                android:layout_weight="1"
                                 android:layout_width="180dp"
                                 android:layout_height="wrap_content" />
 
                             <ImageView
                                 android:id="@+id/Loveimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/approved"/>
+
+                            <TextView
+                                android:id="@+id/Lovescore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                />
 
                         </LinearLayout>
 
@@ -618,38 +769,55 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginHorizontal="15dp"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
-                                android:layout_weight="1"
                                 app:srcCompat="@drawable/groom" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Marriage"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
 
                             <Space
+                                android:layout_weight="1"
                                 android:layout_width="150dp"
                                 android:layout_height="wrap_content" />
 
                             <ImageView
                                 android:id="@+id/Marriageimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/approved"/>
+
+                            <TextView
+                                android:id="@+id/Marriagescore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                />
 
                         </LinearLayout>
 
@@ -658,9 +826,12 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/lesson5"
+                android:alpha=".7"
+                android:clickable="false"
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="2dp"
@@ -674,11 +845,12 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:id="@+id/lesson5Click"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
                         android:onClick="lesson5_view"
                         android:layout_marginVertical="5dp"
-                        android:layout_marginHorizontal="20dp"
                         android:layout_weight="1"
                         android:gravity="start"
                         android:orientation="vertical">
@@ -708,45 +880,62 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="5dp"
-                        android:visibility="gone"
                         android:layout_weight="1"
+                        android:visibility="gone"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:id="@+id/sensesbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/fivesenses" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Senses and their uses"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
+                                android:layout_weight="1"
                                 android:layout_width="80dp"
                                 android:layout_height="wrap_content"/>
 
                             <ImageView
                                 android:id="@+id/sensesimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 app:srcCompat="@drawable/approved" />
+
+                            <TextView
+                                android:id="@+id/sensesscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                />
 
                         </LinearLayout>
 
@@ -755,9 +944,12 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/lesson6"
+                android:alpha=".7"
+                android:clickable="false"
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="2dp"
@@ -771,13 +963,14 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:id="@+id/lesson6Click"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="lesson6_view"
-                        android:layout_marginVertical="5dp"
                         android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="5dp"
                         android:layout_weight="1"
                         android:gravity="start"
+                        android:onClick="lesson6_view"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="wrap_content"
@@ -813,37 +1006,54 @@
                             android:id="@+id/Foodsbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/fooddonation" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Foods"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
+                                android:layout_weight="1"
                                 android:layout_width="180dp"
                                 android:layout_height="wrap_content"/>
 
                             <ImageView
                                 android:id="@+id/Foodsimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 app:srcCompat="@drawable/approved" />
+                            <TextView
+                                android:id="@+id/Foodsscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                />
+
 
                         </LinearLayout>
 
@@ -852,38 +1062,54 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginHorizontal="15dp"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
-                                android:layout_weight="1"
                                 app:srcCompat="@drawable/drink" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Drinks"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
 
                             <Space
+                                android:layout_weight="1"
                                 android:layout_width="175dp"
                                 android:layout_height="wrap_content" />
 
                             <ImageView
                                 android:id="@+id/Drinksimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 app:srcCompat="@drawable/approved" />
+                            <TextView
+                                android:id="@+id/Drinksscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                />
 
                         </LinearLayout>
 
@@ -892,9 +1118,12 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/lesson7"
+                android:alpha=".7"
+                android:clickable="false"
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="2dp"
@@ -908,11 +1137,12 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:id="@+id/lesson7Click"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="lesson7_view"
-                        android:layout_marginVertical="5dp"
                         android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="5dp"
                         android:layout_weight="1"
                         android:gravity="start"
                         android:orientation="vertical">
@@ -950,37 +1180,54 @@
                             android:id="@+id/Placebtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/search" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Place"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
+                                android:layout_weight="1"
                                 android:layout_width="180dp"
                                 android:layout_height="wrap_content"/>
 
                             <ImageView
                                 android:id="@+id/Placeimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/approved"/>
+
+                            <TextView
+                                android:id="@+id/Placescore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                />
 
                         </LinearLayout>
 
@@ -989,9 +1236,12 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/lesson8"
+                android:alpha=".7"
+                android:clickable="false"
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="2dp"
@@ -1005,12 +1255,13 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:id="@+id/lesson8Click"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="lesson8_view"
-                        android:layout_marginVertical="5dp"
                         android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="5dp"
                         android:layout_weight="1"
+                        android:onClick="lesson8_view"
                         android:gravity="start"
                         android:orientation="vertical">
                         <TextView
@@ -1047,37 +1298,54 @@
                             android:id="@+id/Animalsbtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
-                                android:layout_weight="1"
                                 android:layout_height="24dp"
                                 app:srcCompat="@drawable/animals" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Animals"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
                             <Space
+                                android:layout_weight="1"
                                 android:layout_width="170dp"
                                 android:layout_height="wrap_content"/>
 
                             <ImageView
                                 android:id="@+id/Animalsimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/approved"/>
+
+                            <TextView
+                                android:id="@+id/Animalsscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                />
 
                         </LinearLayout>
 
@@ -1086,38 +1354,55 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginHorizontal="15dp"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
-                                android:layout_weight="1"
                                 app:srcCompat="@drawable/insects" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Insects"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
 
                             <Space
+                                android:layout_weight="1"
                                 android:layout_width="170dp"
                                 android:layout_height="wrap_content" />
 
                             <ImageView
                                 android:id="@+id/Insectsimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 app:srcCompat="@drawable/approved" />
+
+                            <TextView
+                                android:id="@+id/Insectsscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                />
 
                         </LinearLayout>
 
@@ -1126,38 +1411,55 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginHorizontal="15dp"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
-                                android:layout_weight="1"
                                 app:srcCompat="@drawable/nature" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Nature"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
 
                             <Space
+                                android:layout_weight="1"
                                 android:layout_width="170dp"
                                 android:layout_height="wrap_content" />
 
                             <ImageView
                                 android:id="@+id/Natureimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
                                 app:srcCompat="@drawable/approved" />
+
+                            <TextView
+                                android:id="@+id/Naturescore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                />
 
                         </LinearLayout>
 
@@ -1166,38 +1468,56 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginHorizontal="15dp"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="horizontal"
+                            tools:ignore="TouchTargetSizeCheck">
 
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
-                                android:layout_weight="1"
                                 app:srcCompat="@drawable/transportation" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
                                 android:fontFamily="@font/chewy"
                                 android:text="Transportation"
                                 android:textColor="#DD7719"
                                 android:textSize="16sp" />
 
                             <Space
+                                android:layout_weight="1"
                                 android:layout_width="120dp"
                                 android:layout_height="wrap_content" />
 
                             <ImageView
                                 android:id="@+id/Transportationimg"
-                                android:layout_width="30dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:visibility="invisible"
-                                app:srcCompat="@drawable/approved" />
+                                android:layout_marginEnd="5dp"
+                                android:scaleType="fitEnd"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/approved"  />
+
+
+                            <TextView
+                                android:id="@+id/Transportationscore"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/chewy"
+                                android:gravity="center"
+                                android:text="10/10"
+                                android:visibility="gone"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                />
 
                         </LinearLayout>
 

@@ -68,7 +68,7 @@ public class interL4marriage extends AppCompatActivity {
         btnRestart = findViewById(R.id.btnerestart);
 
         dialog = new Dialog(interL4marriage.this);
-        dialog.setContentView(R.layout.lesson_complete_dialog);
+        dialog.setContentView(R.layout.completevideo);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -89,16 +89,15 @@ public class interL4marriage extends AppCompatActivity {
         mediaController.setMediaPlayer(videoView);
         videoView.setMediaController(mediaController);
 
-        //https://drive.google.com/file/d//view?usp=sharing
+        //https://drive.google.com/file/d//view?usp=drive_link
         videoUris = new Uri[]{
-                Uri.parse("https://drive.google.com/uc?export=download&id=1KdHf7hAYrvk8KVamk_X73m7vHIHRtmrT"), //traditional western marraige
-                Uri.parse("https://drive.google.com/uc?export=download&id=1N_PsJXxIjAVhV3MxmFbcGLUeJOZR1NLY"), //hindu marriage
-                Uri.parse("https://drive.google.com/uc?export=download&id=1_UVv-V6OkmfesPqbIAxDbE2upMP56pOt"), //islamic marriage
-                Uri.parse("https://drive.google.com/uc?export=download&id=1VzTSFoLQ5lFXCf8T2G_MJEI0NtO8r_uM"), //chinese marriage
-                Uri.parse("https://drive.google.com/uc?export=download&id=1dPl5z-7BCDmKBCFk2hcW03mbeaGoLqrI"), //same sex marriage
-                Uri.parse("https://drive.google.com/uc?export=download&id=1r6P1Con5gTh1Tvk_PdGUapksfQe-CBSJ"), //arrange marriage
+                Uri.parse("https://drive.google.com/uc?export=download&id=103OxWRP_eKbzcM99-FFDpuAeSPosXUZY"), //traditional western marraige
+                Uri.parse("https://drive.google.com/uc?export=download&id=1pnU0ZFJULbr3f2eIppDJHasXIRkqTiGq"), //hindu marriage
+                Uri.parse("https://drive.google.com/uc?export=download&id=1m2ESGLQExdoKxzcmltLlMQ83fN4Z_fPF"), //islamic marriage
+                Uri.parse("https://drive.google.com/uc?export=download&id=1iGp5RNZ_uU-M-R696D3nP8JZAuOCqCfi"), //chinese marriage
+                Uri.parse("https://drive.google.com/uc?export=download&id=1UpUdPfDEvHcbvTQ9cnfqy35nCea56WTJ"), //same sex marriage
+                Uri.parse("https://drive.google.com/uc?export=download&id=14-2gksf3EBOobxgvor--uTBdZHDXE0JW"), //arrange marriage
                 // Add more URIs as needed
-
         };
 
         retrieveCurrentIndexFromFirebase();
@@ -283,9 +282,13 @@ public class interL4marriage extends AppCompatActivity {
                     currentIndex = snapshot.getValue(Integer.class);
                     // Set the videoView to play the video at currentIndex
 
-                    prevButton.setVisibility(View.VISIBLE);
-                    prevButton.setEnabled(true);
-
+                    if(currentIndex == 0){
+                        prevButton.setVisibility(View.INVISIBLE);
+                        prevButton.setEnabled(false);
+                    }{
+                        prevButton.setVisibility(View.VISIBLE);
+                        prevButton.setEnabled(true);
+                    }
                     videoView.setVideoURI(videoUris[currentIndex]);
                     videoView.start();
                 } else {
@@ -322,20 +325,36 @@ public class interL4marriage extends AppCompatActivity {
                     int lesson1 = snapshot.getValue(Integer.class);
                     if (lesson1 == 5) {
                         DatabaseReference lessonaslRef = usersRef.child("intermediatelesson");
-
-                        // Check the current value of lessonasl before updating
+                        DatabaseReference sign = usersRef.child("sign");
                         lessonaslRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int currentLessonAslValue = dataSnapshot.exists() ? dataSnapshot.getValue(Integer.class) : 0;
-                                if (lesson1 == 5 && currentLessonAslValue < 900) {
-                                    lessonaslRef.setValue(900);
+                                if (lesson1 == 5 && currentLessonAslValue < 910) {
+                                    //add sign value
+                                    sign.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if (snapshot.exists()){
+                                                int total = (currentLessonAslValue + 100);
+                                                lessonaslRef.setValue(total);
+                                                sign.setValue(9);
+                                                Loading.dismiss();
+                                                startActivity(new Intent(interL4marriage.this, intermediatelevel.class));
+                                                finish();
+                                            }
+                                        }
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                    //add sign value
+
+                                }
+                                else{
                                     Loading.dismiss();
-                                    startActivity(new Intent(interL4marriage.this,intermediatelevel.class));
-                                    finish();
-                                }else {
-                                    Loading.dismiss();
-                                    startActivity(new Intent(interL4marriage.this,intermediatelevel.class));
+                                    startActivity(new Intent(interL4marriage.this, intermediatelevel.class));
                                     finish();
                                 }
                             }
@@ -390,12 +409,12 @@ public class interL4marriage extends AppCompatActivity {
         String encodedEmail = encodeEmail(name);
         DatabaseReference usersRef = databaseReference.child("intermediatelevel_tb").child(encodedEmail);
 
-        usersRef.child("intermediatelesson").addListenerForSingleValueEvent(new ValueEventListener() {
+        usersRef.child("sign").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     int currentLessonAslValue = snapshot.exists() ? snapshot.getValue(Integer.class) : 0;
-                    if (currentLessonAslValue >= 900){
+                    if (currentLessonAslValue >= 9){
                         btnRestart.setVisibility(View.VISIBLE);
                     }else{
                         btnRestart.setVisibility(View.GONE);
