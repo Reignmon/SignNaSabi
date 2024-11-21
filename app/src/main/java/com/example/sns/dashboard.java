@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.os.Build;
@@ -44,6 +45,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.erkutaras.showcaseview.ShowcaseManager;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -60,7 +63,7 @@ import java.util.function.Consumer;
 
 public class dashboard extends AppCompatActivity {
 
-    Dialog dialog;
+    Dialog dialog,warning;
     ImageButton imagebtn;
     private static final int REQUEST_CODE_SPEECH_INPUT = 1000;
     EditText txttrans;
@@ -69,6 +72,8 @@ public class dashboard extends AppCompatActivity {
 
     static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://capstone-f5a82-default-rtdb.firebaseio.com/");
     SharedPreferences sharedPreferences;
+    private static final String PREFS_NAME = "YourPrefs";
+    private static final String KEY_TUTORIAL_SHOWN = "tutorial_shown";
     private static final String SHARED_PREF_NAME = "mypref";
     private static final String KEY_EMAIL = "email";
     private static final String KEY_PASSWORD = "password";
@@ -128,7 +133,22 @@ public class dashboard extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
 
+        warning = new Dialog(dashboard.this);
+        warning.setContentView(R.layout.notif_practice);
+        warning.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        warning.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        warning.setCancelable(false);
+
         final TextView txt = dialog.findViewById(R.id.txt);
+
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        boolean isTutorialShown = prefs.getBoolean(KEY_TUTORIAL_SHOWN, false);
+
+        if (!isTutorialShown) {
+            showTutorial();
+            prefs.edit().putBoolean(KEY_TUTORIAL_SHOWN, true).apply();
+        }
+
 
         retrieveCurrentBasicLevelProgress();
         retrieveadvacelessson();
@@ -138,25 +158,6 @@ public class dashboard extends AppCompatActivity {
         totalSign();
 
         dialog.show();
-
-        //code for showcase
-        /*showCaseNumber = 1;
-        new Handler().postDelayed(() -> {
-            ShowcaseManager.Builder builder = new ShowcaseManager.Builder();
-            builder.context(this)
-                    .key("Key")
-                    .developerMode(true)
-                    .view(btnTrans)
-                    .descriptionTitle("Translator Camera")
-                    .descriptionText("This button is use for ASL translor. Just simply point your camera at ASL signs, and instantly see them translated into spoken language.")
-                    .buttonText("Done")
-                    .buttonVisibility(true)
-                    .cancelButtonVisibility(false)
-                    .add()
-                    .build()
-                    .show();
-        }, 1000); // 1-second delay
-        //end of code for showcase*/
 
         intermediateLevel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -229,6 +230,90 @@ public class dashboard extends AppCompatActivity {
 
     }
 
+    public void showTutorial(){
+        new TapTargetSequence(this)
+                .targets(
+                        TapTarget.forView(btnTrans, getString(R.string.button_trans_title), getString(R.string.button_trans_des))
+                                .cancelable(false)
+                                .outerCircleColor(R.color.text_color)
+                                .outerCircleAlpha(0.80f)
+                                .titleTextSize(25)
+                                .descriptionTextSize(16)
+                                .textTypeface(Typeface.SANS_SERIF)
+                                .targetCircleColor(R.color.policie_color)
+                                .titleTextColor(R.color.colorPrimaryDark)
+                                .descriptionTextColor(R.color.black)
+                                .dimColor(R.color.black)
+                                .drawShadow(true)
+                                .transparentTarget(true)
+                                .targetRadius(70)
+                                .tintTarget(true),
+                        TapTarget.forView(btnpractice, getString(R.string.button_practice_title), getString(R.string.button_practice_des))
+                                .cancelable(false)
+                                .outerCircleColor(R.color.text_color)
+                                .outerCircleAlpha(0.80f)
+                                .titleTextSize(25)
+                                .descriptionTextSize(16)
+                                .textTypeface(Typeface.SANS_SERIF)
+                                .targetCircleColor(R.color.policie_color)
+                                .titleTextColor(R.color.colorPrimaryDark)
+                                .descriptionTextColor(R.color.black)
+                                .dimColor(R.color.black)
+                                .drawShadow(true)
+                                .transparentTarget(true)
+                                .targetRadius(70)
+                                .tintTarget(true),
+                        TapTarget.forView(btnhistory, getString(R.string.button_dcitionary_title), getString(R.string.button_dictionary_des))
+                                .cancelable(false)
+                                .outerCircleColor(R.color.text_color)
+                                .outerCircleAlpha(0.80f)
+                                .titleTextSize(25)
+                                .descriptionTextSize(16)
+                                .textTypeface(Typeface.SANS_SERIF)
+                                .targetCircleColor(R.color.policie_color)
+                                .titleTextColor(R.color.colorPrimaryDark)
+                                .descriptionTextColor(R.color.black)
+                                .dimColor(R.color.black)
+                                .drawShadow(true)
+                                .transparentTarget(true)
+                                .targetRadius(70)
+                                .tintTarget(true),
+                        TapTarget.forView(btnprof, getString(R.string.button_profile_title), getString(R.string.button_button_profile_title_des))
+                                .cancelable(false)
+                                .outerCircleColor(R.color.text_color)
+                                .outerCircleAlpha(0.80f)
+                                .titleTextSize(25)
+                                .descriptionTextSize(16)
+                                .textTypeface(Typeface.SANS_SERIF)
+                                .targetCircleColor(R.color.policie_color)
+                                .titleTextColor(R.color.colorPrimaryDark)
+                                .descriptionTextColor(R.color.black)
+                                .dimColor(R.color.black)
+                                .drawShadow(true)
+                                .transparentTarget(true)
+                                .targetRadius(70)
+                                .tintTarget(true)
+                )
+                .listener(new TapTargetSequence.Listener() {
+                    @Override
+                    public void onSequenceFinish() {
+                        // Handle sequence finish if needed
+                    }
+
+                    @Override
+                    public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
+                        // Handle sequence steps if needed
+                    }
+
+                    @Override
+                    public void onSequenceCanceled(TapTarget lastTarget) {
+                        // Handle cancellation if needed
+                    }
+                })
+                .start();
+    }
+
+
     //code for backpress
     @Override
     public void onBackPressed() {
@@ -270,67 +355,6 @@ public class dashboard extends AppCompatActivity {
         }, 2000);
     }
 //end of code for backpress
-/*
-
-    private void openShowCase1(){
-        showCaseNumber = 2;
-        new Handler().postDelayed(() -> {
-            ShowcaseManager.Builder builder = new ShowcaseManager.Builder();
-            builder.context(this)
-                    .key("Key")
-                    .developerMode(true)
-                    .view(btnpractice)
-                    .descriptionTitle("Practice Button")
-                    .descriptionText("This button is use for ASL practice. Practice ASL by " +
-                            "capturing gestures with your camera, and receive instant translations into " +
-                            "spoken language for learning and improvement.")
-                    .buttonText("Done")
-                    .buttonVisibility(true)
-                    .cancelButtonVisibility(false)
-                    .add()
-                    .build()
-                    .show();
-        }, 500); // 1-second delay
-    }
-
-    private void openShowCase2(){
-        showCaseNumber = 3;
-        new Handler().postDelayed(() -> {
-            ShowcaseManager.Builder builder = new ShowcaseManager.Builder();
-            builder.context(this)
-                    .key("Key")
-                    .developerMode(true)
-                    .view(btnhistory)
-                    .descriptionTitle("History Button")
-                    .descriptionText("This button use to see the last progress that you take in e-learning by this you can view your progress over time.")
-                    .buttonText("Done")
-                    .buttonVisibility(true)
-                    .cancelButtonVisibility(false)
-                    .add()
-                    .build()
-                    .show();
-        }, 500); // 1-second delay
-    }
-
-    private void openShowCase3(){
-        showCaseNumber = 4;
-        new Handler().postDelayed(() -> {
-            ShowcaseManager.Builder builder = new ShowcaseManager.Builder();
-            builder.context(this)
-                    .key("Key")
-                    .developerMode(true)
-                    .view(btnprof)
-                    .descriptionTitle("Profile Button")
-                    .descriptionText("This button show you and manage your personal profile information, including user details and preferences")
-                    .buttonText("Done")
-                    .buttonVisibility(true)
-                    .cancelButtonVisibility(false)
-                    .add()
-                    .build()
-                    .show();
-        }, 500); // 1-second delay
-    }
-*/
 
 
     //code for mic
@@ -364,19 +388,6 @@ public class dashboard extends AppCompatActivity {
             }
         }
         // end of code here
-
-      /*  // check if the showcase was done and proceed to another showcase
-        if (requestCode == ShowcaseManager.REQUEST_CODE_SHOWCASE && resultCode == Activity.RESULT_OK && showCaseNumber == 1) {
-            showCaseNumber = 2;
-            openShowCase1();
-        } else if (requestCode == ShowcaseManager.REQUEST_CODE_SHOWCASE && resultCode == Activity.RESULT_OK && showCaseNumber == 2) {
-            showCaseNumber = 3;
-            openShowCase2();
-        }else if (requestCode == ShowcaseManager.REQUEST_CODE_SHOWCASE && resultCode == Activity.RESULT_OK && showCaseNumber == 3) {
-            showCaseNumber = 4;
-            openShowCase3();
-        }
-        // end of code here*/
     }
     //end of code for mic
 
@@ -391,8 +402,7 @@ public class dashboard extends AppCompatActivity {
                 if (snapshot.exists()) {
                     dialog.dismiss();
                     basiclevelprogress = snapshot.getValue(Integer.class);
-                  /*  pointsTotal = String.valueOf(Integer.parseInt(Integer.toString(basiclevelprogress)));
-                    Points.setText(pointsTotal);*/
+
                     basiclevelProgress.setProgress(basiclevelprogress);
                     progressLevel = basiclevelProgress.getProgress();
 

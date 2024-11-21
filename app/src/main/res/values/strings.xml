@@ -121,4 +121,37 @@
     </string>
 
 
+    <string name="button_trans_title">
+        Button Translator
+    </string>
+
+    <string name="button_trans_des">
+        This button use to translate gesture into text.
+    </string>
+
+    <string name="button_practice_title">
+        Button Practice
+    </string>
+
+    <string name="button_practice_des">
+        This button use to practice your sign language, you can open it by finishing all the lesson.
+    </string>
+
+    <string name="button_dcitionary_title">
+        Button Dictionary
+    </string>
+
+    <string name="button_dictionary_des">
+        This button use to explore a basic guide to American Sign Language (ASL) signs.
+    </string>
+
+    <string name="button_profile_title">
+        Button Profile
+    </string>
+
+    <string name="button_button_profile_title_des">
+        This button use to view and edit your profile.
+    </string>
+
+
 </resources>
